@@ -21,7 +21,10 @@
     ./modules/programs/vscode.nix
     # ./modules/programs/zathura.nix
 
-    ./modules/programs/firefox
+    (import ./modules/programs/firefox {
+      inherit config pkgs;
+      package = pkgs.firefox;
+    })
     # (import ./modules/programs/firefox {
     #   inherit config pkgs;
     #   package = pkgs.firefox-wayland;
