@@ -42,7 +42,6 @@
 	neofetch
 	alacritty
 	vscodium
-	pavucontrol
         # glib
         # gnumake
         # gnutls
@@ -66,6 +65,7 @@
         # pkgconfig
         # psmisc
         # pulseaudio
+	        pavucontrol
         # ripgrep
         # rsync
         unrar

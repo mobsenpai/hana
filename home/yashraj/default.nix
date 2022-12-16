@@ -14,7 +14,6 @@
     # ./modules/desktop/windowManagers/hyprland
     # ./modules/desktop/windowManagers/awesome.nix
 
-    # ./modules/programs/discord.nix
     # ./modules/programs/kitty.nix
     # ./modules/programs/mpd.nix
     # ./modules/programs/neovim.nix
@@ -25,9 +24,5 @@
       inherit config pkgs;
       package = pkgs.firefox;
     })
-    # (import ./modules/programs/firefox {
-    #   inherit config pkgs;
-    #   package = pkgs.firefox-wayland;
-    # })
   ];
 }
