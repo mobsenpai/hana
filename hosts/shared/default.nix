@@ -37,13 +37,12 @@
         # ffmpeg
         # fzf
         # gcc
-        git
+        # git
 	neofetch
         neovim
-	# firefox
 	alacritty
 	vscodium
-	pavucontrol
+	        pavucontrol
         # glib
         # gnumake
         # gnutls

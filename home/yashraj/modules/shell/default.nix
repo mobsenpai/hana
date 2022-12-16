@@ -32,12 +32,12 @@ with lib; let
   };
 in {
   imports = [
-    # ./cli.nix
-    ./git.nix
-    # ./nix.nix
-    # ./starship.nix
-    # ./transient-services.nix
-    # ./zsh.nix
+    ./cli.nix
+    # ./git.nix
+    ./nix.nix
+    ./starship.nix
+    ./transient-services.nix
+    ./zsh.nix
   ];
 
   home = {
