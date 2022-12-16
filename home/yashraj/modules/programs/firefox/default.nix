@@ -19,7 +19,7 @@
     inherit package;
 
     profiles = {
-      rxyhn = {
+      yashraj = {
         id = 0;
         settings = {
           "general.smoothScroll" = true;

@@ -40,7 +40,7 @@
         git
 	neofetch
         neovim
-	firefox
+	# firefox
 	alacritty
 	vscodium
 	pavucontrol
