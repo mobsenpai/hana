@@ -12,7 +12,7 @@
     # devshell.url = "github:numtide/devshell";
     flake-utils.url = "github:numtide/flake-utils";
     # hyprland.url = "github:hyprwm/Hyprland/";
-    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    # xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     # hyprland-contrib.url = "github:hyprwm/contrib";
     # hyprpicker.url = "github:hyprwm/hyprpicker";
 
