@@ -37,7 +37,7 @@
         # ffmpeg
         # fzf
         # gcc
-        # git
+        git
 	neofetch
         neovim
 	alacritty
