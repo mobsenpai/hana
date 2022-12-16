@@ -15,10 +15,10 @@
     lfs.enable = true;
     userName = "itsmeyashraj";
     userEmail = "iamyashraj@proton.me";
-    signing = {
-      key = "F01BC62D2BAE2122";
-      signByDefault = true;
-    };
+    # signing = {
+    #   key = "F01BC62D2BAE2122";
+    #   signByDefault = true;
+    # };
 
     delta = {
       enable = true;

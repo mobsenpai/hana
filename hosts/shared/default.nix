@@ -31,18 +31,18 @@
         # cairo
         # cmake
         # coreutils
-        # curl
+        curl
         # fd
         # findutils
         # ffmpeg
         # fzf
         # gcc
         git
-	neofetch
         neovim
+	neofetch
 	alacritty
 	vscodium
-	        pavucontrol
+	pavucontrol
         # glib
         # gnumake
         # gnutls
@@ -68,17 +68,17 @@
         # pulseaudio
         # ripgrep
         # rsync
-        # unrar
-        # unzip
+        unrar
+        unzip
         # util-linux
         # vim
         # wget
         # wirelesstools
         # xarchiver
         # xclip
-        # xdg-utils
+        xdg-utils
         # xh
-        # zip
+        zip
         ;
     };
 
