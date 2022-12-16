@@ -10,7 +10,7 @@
     ./packages.nix
 
     ./modules/colorschemes
-    #./modules/shell
+    ./modules/shell
     # ./modules/desktop/windowManagers/hyprland
     # ./modules/desktop/windowManagers/awesome.nix
 
