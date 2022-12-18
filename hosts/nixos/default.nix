@@ -58,13 +58,13 @@
   services = {
     xserver = {
       enable = true;
-      windowManager.awesome.enable = true;
+       windowManager.awesome.enable = true;
       # videoDrivers = ["nvidia"];
 
     #  displayManager = {
-        # defaultSession = "hyprland";
-    #    gdm.enable = true;
-        # sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
+    #     defaultSession = "hyprland";
+         #gdm.enable = true;
+         #sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
     #  };
     };
 

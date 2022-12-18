@@ -1,9 +1,12 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
-  programs.awesome = {
+  xsession = {
     enable = true;
-    # settings = import ./settings.nix { inherit theme; };
-    # settings = import ./alacritty-yml.nix;
+    windowManager.awesome = {
+      enable = true;
+      package = pkgs.awesome;
+      settings = import ./rc-lua.nix;
+    };
   };
 }
