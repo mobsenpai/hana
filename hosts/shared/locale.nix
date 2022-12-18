@@ -11,7 +11,7 @@
   };
 
   time = {
-    timeZone = lib.mkDefault "Asia/India";
+    timeZone = lib.mkDefault "Asia/Kolkata";
     hardwareClockInLocalTime = true;
   };
 }
