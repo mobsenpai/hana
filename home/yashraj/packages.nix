@@ -21,6 +21,7 @@ in {
     # yt-dlp
     # zoom-us
     # jetbrains.goland
+    neofetch
 
     # CLI Tools
     # bandwhich

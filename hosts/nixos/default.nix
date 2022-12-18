@@ -61,18 +61,18 @@
       # videoDrivers = ["nvidia"];
 
       windowManager = {
-        awesome = {
-          enable = true;
-        };
-      };
+         awesome = {
+           enable = true;
+         };
+       };
       dpi = 96;
       #  windowManager.awesome.enable = true;
 
-     displayManager = {
-        defaultSession = "none+awesome";
-         lightdm.enable = true;
-        #  sessionPackages = [pkgs.awesome];
-     };
+      displayManager = {
+          defaultSession = "none+awesome";
+          lightdm.enable = true;
+          #sessionPackages = [pkgs.awesome];
+      };
     };
 
     # tlp = {
