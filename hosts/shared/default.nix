@@ -39,7 +39,7 @@
         # gcc
         git
         neovim
-	neofetch
+	# neofetch
 	# alacritty
 	vscodium
         # glib

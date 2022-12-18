@@ -6,7 +6,7 @@
     windowManager.awesome = {
       enable = true;
       package = pkgs.awesome;
-      settings = import ./rc-lua.nix;
+      # extraConfig = import ./rc-lua.nix;
     };
   };
 }

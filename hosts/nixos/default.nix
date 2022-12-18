@@ -58,14 +58,21 @@
   services = {
     xserver = {
       enable = true;
-       windowManager.awesome.enable = true;
       # videoDrivers = ["nvidia"];
 
-    #  displayManager = {
-    #     defaultSession = "hyprland";
-         #gdm.enable = true;
-         #sessionPackages = [inputs.hyprland.packages.${pkgs.system}.default];
-    #  };
+      windowManager = {
+        awesome = {
+          enable = true;
+        };
+      };
+      dpi = 96;
+      #  windowManager.awesome.enable = true;
+
+     displayManager = {
+        defaultSession = "none+awesome";
+         lightdm.enable = true;
+        #  sessionPackages = [pkgs.awesome];
+     };
     };
 
     # tlp = {
