@@ -1,0 +1,146 @@
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/navbar_tabs_oneliner.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+/* Make tabs and navbar appear side-by-side tabs on right */
+
+/* Use page_action_buttons_on_hover.css to hide page-action-buttons to save more space for the address */
+
+/*
+urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of new urlbar popup
+*/
+
+:root[uidensity="compact"]{
+  --tab-block-margin: 2px !important;
+}
+
+/* Modify these to change relative widths or default height */
+#nav-bar:not(:-moz-lwtheme) {height: 33px !important; margin-top: -37px !important;}
+#navigator-toolbox{
+  --uc-navigationbar-width: 40vw;
+  --uc-toolbar-height: 40px;
+  --uc-urlbar-min-width: 50vw; /* minimum width for opened urlbar */
+}
+#scrollbutton-up,
+#scrollbutton-down{ border-block-width: 2px !important; }
+
+/* Override for other densities */
+:root[uidensity="compact"] #navigator-toolbox{ --uc-toolbar-height: 34px; }
+:root[uidensity="touch"] #navigator-toolbox{ --uc-toolbar-height: 44px; }
+
+/* prevent urlbar overflow on narrow windows */
+/* Dependent on how many items are in navigation toolbar ADJUST AS NEEDED */
+@media screen and (max-width: 1500px){
+  #urlbar-container{ min-width:unset !important }
+}
+
+#TabsToolbar{
+  margin-left: var(--uc-navigationbar-width);
+  --tabs-navbar-shadow-size: 0px;
+}
+#tabbrowser-tabs{
+  --tab-min-height: calc(var(--uc-toolbar-height) - 2 * var(--tab-block-margin,0px)) !important;
+}
+
+/* This isn't useful when tabs start in the middle of the window */
+
+.titlebar-spacer[type="pre-tabs"]{ display: none }
+
+#navigator-toolbox > #nav-bar{
+  margin-right:calc(100vw - var(--uc-navigationbar-width));
+  margin-top: calc(0px - var(--uc-toolbar-height));
+}
+
+/* Window drag space  */
+:root[tabsintitlebar="true"] #nav-bar{ padding-left: 24px !important }
+
+/* Rules specific to window controls on right layout */
+@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled"){
+  .titlebar-buttonbox-container{ position: fixed; display: block; left: 0px; z-index: 3; }
+  :root[tabsintitlebar="true"] #nav-bar{ padding-left: 96px !important; padding-right: 0px !important; }
+}
+
+/* 1px margin on touch density causes tabs to be too high */
+.tab-close-button{ margin-top: 0 !important }
+
+/* Make opened urlbar overlay the toolbar */
+#urlbar[open]:focus-within{ min-width: var(--uc-urlbar-min-width,none) !important; }
+
+/* Hide dropdown placeholder */
+#urlbar-container:not(:hover) .urlbar-history-dropmarker{ margin-inline-start: -28px; }
+
+/* Fix customization view */
+#customization-panelWrapper > .panel-arrowbox > .panel-arrow{ margin-inline-end: initial !important; }
+
+#tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[pinned] {
+  flex-grow: 10;
+  -moz-box-flex: 10;
+  max-width: 40px;
+}
+
+:root[uidensity="compact"] #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab[pinned] {
+  max-width: 32px 
+}
+
+#tabbrowser-arrowscrollbox:not([overflowing]) .tab-content[pinned] {
+  padding: 0px !important;
+  -moz-box-pack: center;
+}
+
+.tab-label-container[pinned] {
+  display: none;
+}
+
+.scrollbutton-up[orient="horizontal"]~spacer{ display: none }
+
+.scrollbutton-up[orient="horizontal"]~scrollbox{
+  -moz-box-direction: inherit;
+  -moz-box-pack: end;
+}
+
+.scrollbutton-up[orient="horizontal"]~scrollbox::after{
+  display: -moz-box;
+  content: "";
+  -moz-box-flex: 1;
+  -moz-box-ordinal-group: 2;
+}
+
+@-moz-document url(chrome://browser/content/browser.xhtml){
+
+  :root:not([inDOMFullscreen]){
+    --uc-vertical-toolbar-width: 33px;
+  }
+
+  #PersonalToolbar{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    width: var(--uc-vertical-toolbar-width,0);
+    
+    /* These create a empty area to the bottom of the toolbar, which is to mask a fact that we don't know exactly how high the toolbar should be */
+    height: 100vh;
+    max-height: 100vh !important; 
+    padding-bottom: 120px !important;
+  }
+
+  #personal-bookmarks{ overflow-y: auto; scrollbar-width: none;}
+
+  #PersonalToolbar >  #personal-bookmarks > #PlacesToolbar > hbox{ -moz-box-orient: vertical !important; }
+  #PersonalToolbar #PlacesToolbarItems{
+    display: flex;
+    flex-direction: column;
+  }
+  #PersonalToolbar .toolbarbutton-1{ padding-block: 10px !important }
+  #PersonalToolbar #PlacesToolbarItems > .bookmark-item{ padding-block: 4px !important; }
+  
+
+  body > #browser,
+  body > #browser-bottombox,
+  #customization-container{
+    margin-left: var(--uc-vertical-toolbar-width,0);
+  }
+
+}
+
+
+#back-button, #forward-button { display:none!important; }
