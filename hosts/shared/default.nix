@@ -40,7 +40,7 @@
         git
         neovim
 	neofetch
-	alacritty
+	# alacritty
 	vscodium
         # glib
         # gnumake

@@ -13,7 +13,7 @@
     ./modules/shell
     # ./modules/desktop/windowManagers/hyprland
     # ./modules/desktop/windowManagers/awesome.nix
-    ./modules/programs/alacritty.nix
+    ./modules/programs/alacritty
 
     # ./modules/programs/kitty.nix
     # ./modules/programs/mpd.nix
