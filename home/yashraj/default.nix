@@ -11,11 +11,9 @@
 
     ./modules/colorschemes
     ./modules/shell
-    # ./modules/desktop/windowManagers/hyprland
     ./modules/desktop/windowManagers/awesome
     ./modules/programs/alacritty
-    # ./modules/programs/neofetch.nix
-    # ./modules/programs/kitty.nix
+    ./modules/programs/neofetch.nix
     # ./modules/programs/mpd.nix
     # ./modules/programs/neovim.nix
     ./modules/programs/vscode.nix
