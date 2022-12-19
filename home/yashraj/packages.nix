@@ -22,7 +22,7 @@ in {
     # zoom-us
     # jetbrains.goland
     neofetch
-
+    
     # CLI Tools
     # bandwhich
     # cachix
