@@ -30,7 +30,7 @@
         # userChrome = import ./userChrome1-css.nix {
         #   # inherit (config) colorscheme;
         # };
-        userChrome = import ./userChrome1-css.nix;
+        userChrome = import ./userChrome-css.nix;
         # userContent = import ./userContent-css.nix {
         #   inherit (config) colorscheme;
         # };

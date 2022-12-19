@@ -34,7 +34,7 @@ in {
     # grex
     # hyperfine
     # keepassxc
-    # killall
+    killall
     # lm_sensors
     # todo
     # trash-cli

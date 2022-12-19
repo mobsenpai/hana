@@ -44,8 +44,8 @@
         # gnumake
         # gnutls
         # gnuplot
-        # gtk3
-        # gtk4
+        gtk3
+        gtk4
         # imagemagick
         # inotify-tools
         # jq
@@ -62,13 +62,13 @@
         # pciutils
         # pkgconfig
         # psmisc
-        # pulseaudio
+        pulseaudio
         # ripgrep
         # rsync
         unrar
         unzip
         # util-linux
-        # vim
+        vim
         # wget
         # wirelesstools
         # xarchiver
