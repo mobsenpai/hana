@@ -17,8 +17,8 @@ in {
   nixos = nixosSystem {
     modules =
       [
-        ./nixos
-        {networking.hostName = "nixos";}
+        ./acer
+        {networking.hostName = "acer";}
       ]
       ++ sharedModules;
 

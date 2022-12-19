@@ -39,8 +39,6 @@
         # gcc
         git
         neovim
-	# neofetch
-	# alacritty
 	vscodium
         # glib
         # gnumake
@@ -86,6 +84,12 @@
       eval $(gnome-keyring-daemon --start --components=ssh)
       eval $(ssh-agent)
     '';
+
+    variables = {
+      EDITOR = "neovim";
+      BROWSER = "firefox";
+      GDK_SCALE = "0.5";
+    };
   };
 
   programs = {
