@@ -10,7 +10,7 @@
     #   };
     # };
   };
-  home.file.".config/alacritty.colors.yml".source = ./colors-yml.nix;
+  home.file.".config/alacritty/colors.yml".source = ./colors.yml;
   home.file.".config/alacritty/alacritty.yml".text = ''
       ## Import files (Colors, Fonts, Etc)
       import:
