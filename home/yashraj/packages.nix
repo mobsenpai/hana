@@ -15,7 +15,8 @@
 in {
   home.packages = with pkgs; [
     # Apps
-    cinnamon.nemo
+    # cinnamon.nemo
+    pcmanfm
     # libsForQt5.qtstyleplugin-kvantum
     # mpv-unwrapped
     # yt-dlp

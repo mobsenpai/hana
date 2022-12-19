@@ -14,7 +14,7 @@ inputs: let
     }
   ];
 in {
-  nixos = nixosSystem {
+  acer = nixosSystem {
     modules =
       [
         ./acer

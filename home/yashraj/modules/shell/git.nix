@@ -3,11 +3,11 @@
     bfg-repo-cleaner
     colordiff
     gist
-    gitAndTools.git-absorb
-    gitAndTools.gitui
-    gitAndTools.git-machete
-    gitAndTools.gh
-    git-filter-repo
+    # gitAndTools.git-absorb
+    # gitAndTools.gitui
+    # gitAndTools.git-machete
+    # gitAndTools.gh
+    # git-filter-repo
   ];
 
   programs.git = {
