@@ -65,7 +65,6 @@
         # pkgconfig
         # psmisc
         # pulseaudio
-	        pavucontrol
         # ripgrep
         # rsync
         unrar

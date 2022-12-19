@@ -11,7 +11,7 @@
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # ./nvidia.nix
+    ./nvidia.nix
 
     ../shared
     ../shared/users/yashraj.nix
@@ -33,14 +33,14 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      #grub = {
+      # grub = {
       #  enable = true;
       #  version = 2;
       #  device = "nodev";
       #  efiSupport = true;
       #  useOSProber = true;
       #  gfxmodeEfi = "1920x1080";
-      #};
+      # };
     };
   };
 
@@ -58,7 +58,6 @@
   services = {
     xserver = {
       enable = true;
-      # videoDrivers = ["nvidia"];
 
       windowManager = {
          awesome = {
@@ -66,7 +65,6 @@
          };
        };
       dpi = 96;
-      #  windowManager.awesome.enable = true;
 
       displayManager = {
           defaultSession = "none+awesome";
@@ -142,7 +140,7 @@
     # acpi
     # blueberry
     # brightnessctl
-    # pavucontrol
+    pavucontrol
     # docker-client
     # mesa
     # polkit_gnome
