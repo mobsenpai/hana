@@ -1,10 +1,15 @@
 # { config, theme, ... }:
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.alacritty = {
     enable = true;
     # settings = import ./settings.nix { inherit theme; };
-    settings = import ./alacritty-yml.nix;
+    settings = {
+      # type = pkgs.formats.yaml { }.type;
+      # default = { };
+      import = ./alacritty-yaml.nix;
+
+    };
   };
 }
