@@ -39,7 +39,6 @@
         # gcc
         git
         neovim
-	vscodium
         # glib
         # gnumake
         # gnutls
