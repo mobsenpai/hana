@@ -84,7 +84,7 @@
               // (with nixpkgs-f2k.packages.${system}; {
                 # Overlays with f2k's repo
                 awesome = awesome-git;
-                # picom = picom-git;
+                picom = picom-git;
                 # wezterm = wezterm-git;
               })
               // {

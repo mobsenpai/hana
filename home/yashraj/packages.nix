@@ -23,7 +23,9 @@ in {
     # zoom-us
     # jetbrains.goland
     neofetch
-    
+    rofi picom 
+    #picom-jonaburg #remove after
+
     # CLI Tools
     # bandwhich
     # cachix
