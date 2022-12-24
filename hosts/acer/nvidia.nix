@@ -1,6 +1,18 @@
 {config, pkgs, ...}:
 {
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+  boot.blacklistedKernelModules = ["nouveau"];
+
+  hardware = {
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+      modesetting.enable = true;
+      powerManagement.enable = true;
+
+    };
+
+    opengl = {
+    extraPackages = with pkgs; [nvidia-vaapi-driver];
+    };
+  };
 }

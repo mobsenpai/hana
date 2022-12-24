@@ -14,32 +14,59 @@
   });
 in {
   home.packages = with pkgs; [
-    # Apps
-    # cinnamon.nemo
     pcmanfm
-    # libsForQt5.qtstyleplugin-kvantum
-    # mpv-unwrapped
-    # yt-dlp
-    # zoom-us
-    # jetbrains.goland
+    mpv-unwrapped
+    pamixer
+    pavucontrol
+    pulseaudio
     neofetch
-    rofi picom 
-    #picom-jonaburg #remove after
+    neovim
+    rofi picom
+    killall
 
-    # CLI Tools
+    # alsa-lib
+    # alsa-plugins
+    # alsa-tools
+    # alsa-utils
     # bandwhich
-    # cachix
-    # dconf
-    # docker-compose
-    # docker-credential-helpers
+    # bc
+    # blueberry
+    # cairo
+    # cached-nix-shell
+    # cinnamon.nemo
+    # coreutils
+    dconf
+    # findutils
+    ffmpeg-full
+    fzf
+    # glib
     # glxinfo
+    # gnumake
+    # gnuplot
+    # gnused
+    # gnutls
     # grex
     # hyperfine
+    # imagemagick
+    # inotify-tools
     # keepassxc
-    killall
-    # lm_sensors
+    # libappindicator
+    # libnotify
+    # libsecret
+    # libreoffice-fresh
+    # nodejs
+    # psmisc
+    # python3
+    # rsync
     # todo
     # trash-cli
+    # util-linux
+    # wirelesstools
+    # xarchiver
+    # xclip
+    xdg-utils
+    # xh
     # xorg.xhost
+    # zoom-us
   ];
 }

@@ -5,20 +5,17 @@
   ...
 }: {
   imports = [
-    # inputs.hardware.nixosModules.common-cpu-intel
-    # inputs.hardware.nixosModules.common-gpu-nvidia
-    # inputs.hardware.nixosModules.common-pc-ssd
-
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./nvidia.nix
 
+    # Shared configuration across all machines.
     ../shared
     ../shared/users/yashraj.nix
   ];
 
   boot = {
-    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     # kernelParams = [
     #   "i915.force_probe=46a6"
     #   "i915.enable_psr=0"
@@ -27,19 +24,22 @@
     #   "i8042.dumbkbd"
     # ];
 
+    # supportedFilesystems = ["btrfs"];
+
     loader = {
-      systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
+
+      systemd-boot.enable = true;
+      # systemd-boot.enable = false;
+
       # grub = {
       #  enable = true;
       #  version = 2;
       #  device = "nodev";
       #  efiSupport = true;
-      #  useOSProber = true;
-      #  gfxmodeEfi = "1920x1080";
       # };
     };
   };
@@ -63,11 +63,11 @@
          awesome = {
            enable = true;
            luaModules = with pkgs.luaPackages; [
-        luarocks # is the package manager for Lua modules
-        # luadbi-mysql
+            luarocks
           ];
          };
        };
+
       dpi = 96;
 
       displayManager = {
@@ -85,26 +85,27 @@
     #   };
     # };
 
+    # btrfs.autoScrub.enable = true;
     # acpid.enable = true;
     # thermald.enable = true;
     # upower.enable = true;
   };
 
   hardware = {
-    opengl = {
+    opengl = with pkgs; {
       enable = true;
-    #   driSupport = true;
-    #   driSupport32Bit = true;
-      extraPackages = with pkgs; [
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = [
         # intel-compute-runtime
         # intel-media-driver
+        # libva
         # vaapiIntel
         # vaapiVdpau
-        # libvdpau-va-gl
       ];
     };
-    # cpu.intel.updateMicrocode = true;
-    # enableRedistributableFirmware = true;
+
+    enableRedistributableFirmware = true;
     pulseaudio.enable = false;
     # bluetooth = {
     #   enable = true;
@@ -112,9 +113,9 @@
     # };
   };
 
-#   nixpkgs.config.packageOverrides = pkgs: {
-#     vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
-#   };
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+  # };
 
   # compresses half the ram for use as swap
   zramSwap = {
@@ -142,15 +143,10 @@
 
   environment.systemPackages = with pkgs; [
     # acpi
-    # blueberry
     # brightnessctl
-    pavucontrol
     # docker-client
-    # mesa
-    # polkit_gnome
-    # spice-gtk
-    # swtpm
     # virt-manager
+    qt5ct
   ];
 
 #   virtualisation = {

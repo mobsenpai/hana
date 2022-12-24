@@ -16,86 +16,56 @@
     # font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
     keyMap = "us";
   };
+  # console = let
+  #   normal = ["181825" "F38BA8" "A6E3A1" "F9E2AF" "89B4FA" "F5C2E7" "94E2D5" "BAC2DE"];
+  #   bright = ["1E1E2E" "F38BA8" "A6E3A1" "F9E2AF" "89B4FA" "F5C2E7" "94E2D5" "A6ADC8"];
+  # in {
+  #   colors = normal ++ bright;
+  #   font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
+  #   keyMap = "us";
+  # };
 
   environment = {
     binsh = "${pkgs.bash}/bin/bash";
     shells = with pkgs; [zsh];
 
-    systemPackages = lib.attrValues {
-      inherit
-        (pkgs)
-        # alsa-lib
-        # alsa-plugins
-        # alsa-tools
-        # alsa-utils
-        # cairo
-        # cmake
-        # coreutils
-        curl
-        # fd
-        # findutils
-        # ffmpeg
-        # fzf
-        # gcc
-        git
-        neovim
-        # glib
-        # gnumake
-        # gnutls
-        # gnuplot
-        gtk3
-        gtk4
-        # imagemagick
-        # inotify-tools
-        # jq
-        # libtool
-        # libappindicator
-        # libnotify
-        # libsecret
-        # librsvg
-        # lm_sensors
-        # man-pages
-        # man-pages-posix
-        # nodejs
-        # pamixer
-        # pciutils
-        # pkgconfig
-        # psmisc
-        pulseaudio
-        # ripgrep
-        # rsync
-        unrar
-        unzip
-        # util-linux
-        vim
-        # wget
-        # wirelesstools
-        # xarchiver
-        # xclip
-        xdg-utils
-        # xh
-        zip
-        ;
-    };
+    systemPackages = with pkgs; [
+      curl
+      # gcc
+      git
+      vim
+      # hddtemp
+      jq
+      # lm_sensors
+      # lz4
+      # ntfs3g
+      # nvme-cli
+      # p7zip
+      # pciutils
+      unrar
+      unzip
+      wget
+      zip
+    ];
 
-    loginShellInit = ''
-      dbus-update-activation-environment --systemd DISPLAY
-      eval $(gnome-keyring-daemon --start --components=ssh)
-      eval $(ssh-agent)
-    '';
+    # loginShellInit = ''
+    #   dbus-update-activation-environment --systemd DISPLAY
+    #   eval $(gnome-keyring-daemon --start --components=ssh)
+    #   eval $(ssh-agent)
+    # '';
 
     variables = {
-      EDITOR = "neovim";
+      EDITOR = "vim";
       BROWSER = "firefox";
       GDK_SCALE = "0.5";
     };
   };
 
   programs = {
-    # bash.promptInit = ''eval "$(${pkgs.starship}/bin/starship init bash)"'';
+    bash.promptInit = ''eval "$(${pkgs.starship}/bin/starship init bash)"'';
 
     # adb.enable = true;
-    # dconf.enable = true;
+    dconf.enable = true;
     # nm-applet.enable = true;
     # seahorse.enable = true;
 
