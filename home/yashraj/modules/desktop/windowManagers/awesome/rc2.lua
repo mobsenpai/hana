@@ -36,7 +36,7 @@ end)
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.font = "JetBrains Mono 11"
+beautiful.font = "JetBrainsMono Nerd Font Regular 8"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -120,7 +120,7 @@ end)
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock(" %a %b %d, %I:%M ")
 
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.

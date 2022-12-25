@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    # ./fonts.nix
+    ./fonts.nix
     ./locale.nix
     ./nix.nix
     ./network.nix
@@ -16,6 +16,12 @@
     # font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
     keyMap = "us";
   };
+
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [ "en_US.UTF-8/UTF-8" ];
+  };
+
   # console = let
   #   normal = ["181825" "F38BA8" "A6E3A1" "F9E2AF" "89B4FA" "F5C2E7" "94E2D5" "BAC2DE"];
   #   bright = ["1E1E2E" "F38BA8" "A6E3A1" "F9E2AF" "89B4FA" "F5C2E7" "94E2D5" "A6ADC8"];
