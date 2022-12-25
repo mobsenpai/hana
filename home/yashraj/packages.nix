@@ -21,7 +21,8 @@ in {
     pulseaudio
     neofetch
     neovim
-    rofi picom
+    htop
+    rofi picom polybar
     killall
 
     # alsa-lib
