@@ -143,8 +143,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      qt5ct
-      # qt5.qtstyleplugins
+      libsForQt5.qtstyleplugins
     ];
 
     variables = {

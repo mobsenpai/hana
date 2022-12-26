@@ -49,14 +49,25 @@
     # };
 
     # awesome modules
-    bling = {
-      type = "git";
-      url = "https://github.com/BlingCorp/bling.git";
-      flake = false;
-    };
+    # bling = {
+    #   type = "git";
+    #   url = "https://github.com/BlingCorp/bling.git";
+    #   flake = false;
+    # };
+
+    # lain = {
+    #   type = "git";
+    #   url = "https://github.com/lcpz/lain.git";
+    #   flake = false;
+    # };
+
+    # freedesktop = {
+    #   type = "git";
+    #   url = "https://github.com/lcpz/awesome-freedesktop.git";
+    #   flake = false;
+    # };
 
     # vscode extensions
-
   };
 
   outputs = {
@@ -80,37 +91,36 @@
         allowUnfree = true;
         tarball-ttl = 0;
       };
-      overlays = with inputs;
-        [
-          (
-            final: _: let
-              inherit (final) system;
-            in
-              {
-                # Packages provided by flake inputs
-                # crane-lib = crane.lib.${system};
-                # neovim-nightly = neovim.packages."${system}".neovim;
-              }
-              // (with nixpkgs-f2k.packages.${system}; {
-                # Overlays with f2k's repo
-                awesome = awesome-git;
-                picom = picom-git;
-                # wezterm = wezterm-git;
-              })
-              // {
-                # Non Flakes
-                # nyoomNvim-src = nyoomNvim;
-                # sf-mono-liga-src = sf-mono-liga;
-              }
-          )
+      overlays = with inputs; [
+        (
+          final: _: let
+            inherit (final) system;
+          in
+            {
+              # Packages provided by flake inputs
+              # crane-lib = crane.lib.${system};
+              # neovim-nightly = neovim.packages."${system}".neovim;
+            }
+            // (with nixpkgs-f2k.packages.${system}; {
+              # Overlays with f2k's repo
+              awesome = awesome-git;
+              picom = picom-git;
+              # wezterm = wezterm-git;
+            })
+            // {
+              # Non Flakes
+              # nyoomNvim-src = nyoomNvim;
+              # sf-mono-liga-src = sf-mono-liga;
+            }
+        )
         #   nur.overlay
         #   neovim-nightly.overlay
         #   nixpkgs-wayland.overlay
         #   nixpkgs-f2k.overlays.default
         #   rust-overlay.overlays.default
-        ]; #remove ; if using the below ./overlays folder
-        # Overlays from ./overlays directory
-        # ++ (importNixFiles ./overlays);
+      ]; #remove ; if using the below ./overlays folder
+      # Overlays from ./overlays directory
+      # ++ (importNixFiles ./overlays);
     };
   in rec {
     inherit lib pkgs;

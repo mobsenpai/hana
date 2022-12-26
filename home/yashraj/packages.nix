@@ -22,7 +22,10 @@ in {
     neofetch
     neovim
     htop
-    rofi picom polybar
+    rofi
+    picom
+    polybar
+    lxappearance
     killall
 
     # alsa-lib

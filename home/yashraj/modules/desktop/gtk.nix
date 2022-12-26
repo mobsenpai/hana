@@ -6,18 +6,18 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
-      package = pkgs.catppuccin-gtk;
+      name = "gruvbox-dark";
+      package = pkgs.gruvbox-dark-gtk;
     };
 
     # iconTheme = {
-    #   name = "Papirus";
-    #   package = pkgs.catppuccin-folders;
+    #   name = "gruvbox-dark-icons";
+    #   package = pkgs.gruvbox-dark-icons-gtk;
     # };
 
     font = {
       name = "JetBrainsMono Nerd Font Regular";
-      size = 13;
+      size = 11;
     };
 
     gtk3.extraConfig = {
@@ -36,25 +36,25 @@
     '';
   };
 
-  # qt = {
-  #   enable = true;
-  #   platformTheme = "gnome";
-  #   style = {
-  #     package = pkgs.adwaita-qt;
-  #     name = "adwaita-dark";
-  #   };
-  # };
-
-  home.pointerCursor = {
-    name = "Catppuccin-Mocha-Light-Cursors";
-    package = pkgs.catppuccin-cursors;
-    size = 24;
-    gtk.enable = true;
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    # style = {
+    #   package = pkgs.adwaita-qt;
+    #   name = "adwaita-dark";
+    # };
   };
+
+  # home.pointerCursor = {
+  #   name = "Catppuccin-Mocha-Light-Cursors";
+  #   package = pkgs.catppuccin-cursors;
+  #   size = 24;
+  #   gtk.enable = true;
+  # };
 
   home.sessionVariables = {
     # Theming Related Variables
-    GTK_THEME = "Catppuccin-Mocha-Standard-Mauve-Dark";
+    GTK_THEME = "gruvbox-dark";
     XCURSOR_SIZE = "24";
   };
 }
