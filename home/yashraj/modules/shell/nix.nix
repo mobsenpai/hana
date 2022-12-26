@@ -6,7 +6,7 @@
 # nix tooling
 {
   home.packages = with pkgs; [
-    # alejandra
+    alejandra
     # deadnix
     # nix-index
     # statix

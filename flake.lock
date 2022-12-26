@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "bling": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668980203,
+        "narHash": "sha256-ehFUAhLUEOfqB/2Dung7fBPTCvuXepZB6oVLUv+rkTk=",
+        "ref": "refs/heads/master",
+        "rev": "e6de047ced41051236a390b081105f598cb0ad8b",
+        "revCount": 269,
+        "type": "git",
+        "url": "https://github.com/BlingCorp/bling.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/BlingCorp/bling.git"
+      }
+    },
     "crane": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -291,6 +307,7 @@
     },
     "root": {
       "inputs": {
+        "bling": "bling",
         "flake-utils": "flake-utils",
         "hardware": "hardware",
         "home-manager": "home-manager",

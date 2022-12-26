@@ -60,20 +60,20 @@
       enable = true;
 
       windowManager = {
-         awesome = {
-           enable = true;
-           luaModules = with pkgs.luaPackages; [
+        awesome = {
+          enable = true;
+          luaModules = with pkgs.luaPackages; [
             luarocks
           ];
-         };
-       };
+        };
+      };
 
       dpi = 96;
 
       displayManager = {
-          defaultSession = "none+awesome";
-          lightdm.enable = true;
-          #sessionPackages = [pkgs.awesome];
+        defaultSession = "none+awesome";
+        lightdm.enable = true;
+        #sessionPackages = [pkgs.awesome];
       };
     };
 
@@ -123,48 +123,54 @@
     memoryPercent = 50;
   };
 
-#   xdg.portal = {
-#     enable = true;
-#     wlr.enable = false;
-#     extraPortals = [
-#       pkgs.xdg-desktop-portal-gtk
-#       inputs.xdg-portal-hyprland.packages.${pkgs.system}.default
-#     ];
-#   };
+  #   xdg.portal = {
+  #     enable = true;
+  #     wlr.enable = false;
+  #     extraPortals = [
+  #       pkgs.xdg-desktop-portal-gtk
+  #       inputs.xdg-portal-hyprland.packages.${pkgs.system}.default
+  #     ];
+  #   };
 
-#   security = {
-#     rtkit.enable = true;
-#     pam.services.swaylock = {
-#       text = ''
-#         auth include login
-#       '';
-#     };
-#   };
+  #   security = {
+  #     rtkit.enable = true;
+  #     pam.services.swaylock = {
+  #       text = ''
+  #         auth include login
+  #       '';
+  #     };
+  #   };
 
-  environment.systemPackages = with pkgs; [
-    # acpi
-    # brightnessctl
-    # docker-client
-    # virt-manager
-    qt5ct
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      qt5ct
+      # qt5.qtstyleplugins
+    ];
 
-#   virtualisation = {
-#     docker.enable = true;
+    variables = {
+      # add here
+    };
+    sessionVariables = rec {
+      # add here
+    };
+  };
 
-#     libvirtd = {
-#       enable = true;
-#       qemu = {
-#         package = pkgs.qemu_kvm;
-#         ovmf = {
-#           enable = true;
-#           packages = with pkgs; [OVMFFull.fd];
-#         };
-#         swtpm.enable = true;
-#       };
-#     };
-#     spiceUSBRedirection.enable = true;
-#   };
+  #   virtualisation = {
+  #     docker.enable = true;
+
+  #     libvirtd = {
+  #       enable = true;
+  #       qemu = {
+  #         package = pkgs.qemu_kvm;
+  #         ovmf = {
+  #           enable = true;
+  #           packages = with pkgs; [OVMFFull.fd];
+  #         };
+  #         swtpm.enable = true;
+  #       };
+  #     };
+  #     spiceUSBRedirection.enable = true;
+  #   };
 
   system.stateVersion = lib.mkForce "22.11"; # DONT TOUCH THIS
 }

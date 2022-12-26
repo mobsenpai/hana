@@ -47,6 +47,16 @@
     #   url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
     #   flake = false;
     # };
+
+    # awesome modules
+    bling = {
+      type = "git";
+      url = "https://github.com/BlingCorp/bling.git";
+      flake = false;
+    };
+
+    # vscode extensions
+
   };
 
   outputs = {
@@ -109,14 +119,15 @@
     nixosConfigurations = import ./hosts inputs;
 
     # dev shell (for direnv)
-    # devShells.${system}.default = pkgs.mkShell {
-    #   packages = with pkgs; [
-    #     rnix-lsp
-    #     yaml-language-server
-    #     alejandra
-    #     git
-    #   ];
-    #   name = "dotfiles";
-    # };
+    devShells.${system}.default = pkgs.mkShell {
+      packages = with pkgs; [
+        alejandra
+        git
+      ];
+      name = "dotfiles";
+    };
+
+    # Default formatter for the entire repo
+    formatter.${system} = pkgs.${system}.alejandra;
   };
 }

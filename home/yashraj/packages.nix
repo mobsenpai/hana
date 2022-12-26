@@ -16,7 +16,7 @@ in {
   home.packages = with pkgs; [
     pcmanfm
     mpv-unwrapped
-    pamixer
+    # pamixer
     pavucontrol
     pulseaudio
     neofetch
@@ -28,7 +28,7 @@ in {
     # alsa-lib
     # alsa-plugins
     # alsa-tools
-    # alsa-utils
+    alsa-utils
     # bandwhich
     # bc
     # blueberry

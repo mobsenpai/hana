@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home = {
@@ -18,6 +18,7 @@
 
     file = {
       ".config/awesome/rc.lua".source = ./rc2.lua;
+      ".config/awesome/modules/bling".source = inputs.bling.outPath;
     };
 
   };
@@ -31,17 +32,9 @@
   #   };
   # };
 
-  # home.file.".config/awesome/rc.lua".source = ./rc.lua;
-  # home.file = {
-  #   # ".config/awesome/rc.lua".source = ./rc.lua;
-  #   ".config/awesome/rc.lua".source = ./rc2.lua;
-  #   # ".config/awesome/modules/bling".source = inputs.bling.outPath;
-  #   # ".config/awesome/modules/rubato".source = inputs.rubato.outPath;
-  # };
-
-  # imports = [
-  #   ../../dunst
-  #   ../../gtk.nix
-  #   ../../rofi.nix
-  # ];
+  imports = [
+    # ../../dunst
+    # ../../gtk.nix
+    # ../../rofi.nix
+  ];
 }
