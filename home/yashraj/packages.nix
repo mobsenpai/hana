@@ -17,6 +17,7 @@ in {
     pcmanfm
     mpv-unwrapped
     # pamixer
+    scrot
     pavucontrol
     pulseaudio
     neofetch
