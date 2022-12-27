@@ -44,30 +44,8 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.useless_gap = dpi(5)
 beautiful.font = "JetBrainsMono Nerd Font Bold 9"
 
-
 -- Theme
 beautiful.wallpaper = "/home/yashraj/Pictures/wall.png"
--- beautiful.taglist_bg_focus = "#fe8019"
--- beautiful.taglist_fg_focus = "#1d2021"
--- beautiful.bg_systray = "#282828"
--- beautiful.tasklist_bg_focus = "#282828"
--- beautiful.tasklist_fg_focus = "#98971a"
--- beautiful.tasklist_bg_normal = "#282828"
--- beautiful.tasklist_fg_normal = "#ebdbb2"
--- beautiful.menu_bg_normal = "#282828"
--- beautiful.menu_fg_normal = "#ebdbb2"
--- beautiful.menu_bg_focus = "#d79921"
--- beautiful.menu_fg_focus = "#282828"
--- beautiful.menu_border_color = 10
--- beautiful.border_focus = "#d65d0e"
--- beautiful.border_normal = "#282828"
--- beautiful.border_width = dpi(3)
--- beautiful.bg_minimize = "#282828"
--- beautiful.fg_minimize = "#282828"
--- beautiful.fg_normal = "#d65d0e"
--- beautiful.bg_normal = "#d65d0e"
--- beautiful.fg_focus = "#"
--- beautiful.widget_border_color = "#282828"
 
 -- Background
 beautiful.bg_normal = "#282828"
@@ -305,7 +283,7 @@ end)
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %a %b %d, %I:%M ")
+mytextclock = wibox.widget.textclock()
 
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
@@ -643,38 +621,6 @@ client.connect_signal("request::default_keybindings", function()
             {description = "(un)maximize horizontally", group = "client"}),
         })
     end)
-
--- Custom
-    -- ALSA volume control
-    -- awful.key({ }, "XF86AudioRaiseVolume",
-    --     function ()
-    --         os.execute(string.format("amixer -c 0 -q set Master 1dB+", beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end)
-    -- awful.key({ }, "XF86AudioLowerVolume",
-    --     function ()
-    --         os.execute(string.format("amixer -c 0 -q set Master 1dB-", beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end)
-    -- awful.key({ }, "XF86AudioMute",
-    --     function ()
-    --         os.execute(string.format("amixer -c 0 -q set Master toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end)
-    -- awful.key({ modkey1, "Shift" }, "m",
-    --     function ()
-    --         os.execute(string.format("amixer -c 0 -q set Master 100%", beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end)
-    -- awful.key({ modkey1, "Shift" }, "0",
-    --     function ()
-    --         os.execute(string.format("amixer -c 0 -q set Master 0%", beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end)
-
---     awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pipewire sset Master 2%+", false) end)
--- awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pipewire sset Master 2%-", false) end)
--- awful.key({}, "XF86AudioMute", function () awful.util.spawn("amixer -D pipewire sset Master toggle", false) end)
 
     -- }}}
 

@@ -22,7 +22,6 @@ in {
     neofetch
     neovim
     htop
-    # picom
     lxappearance #remove later
     volumeicon
     killall

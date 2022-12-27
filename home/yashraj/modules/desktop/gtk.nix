@@ -11,7 +11,7 @@
     };
 
     # iconTheme = {
-    #   name = "gruvbox-dark-icons";
+    #   name = "oomox-gruvbox-dark";
     #   package = pkgs.gruvbox-dark-icons-gtk;
     # };
 
@@ -45,12 +45,12 @@
     # };
   };
 
-  # home.pointerCursor = {
-  #   name = "Catppuccin-Mocha-Light-Cursors";
-  #   package = pkgs.catppuccin-cursors;
-  #   size = 24;
-  #   gtk.enable = true;
-  # };
+  home.pointerCursor = {
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+  };
 
   home.sessionVariables = {
     # Theming Related Variables

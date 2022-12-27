@@ -40,7 +40,7 @@
   imports = [
     # ../../dunst
     ../../gtk.nix
-    ./../picom.nix
+    ../../picom.nix
     # ../../rofi.nix
   ];
 }
