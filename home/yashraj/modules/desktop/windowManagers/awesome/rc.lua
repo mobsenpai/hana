@@ -9,6 +9,7 @@ local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
+local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -20,6 +21,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+local dpi = require("beautiful.xresources").apply_dpi
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -39,13 +41,166 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- {{{ Custom configs
 -- UI
-beautiful.useless_gap = 5
-beautiful.menu_height = 20
-beautiful.menu_width = 180
+beautiful.useless_gap = dpi(5)
+beautiful.font = "JetBrainsMono Nerd Font Bold 9"
+
 
 -- Theme
-beautiful.font = "JetBrainsMono Nerd Font Regular 8"
 beautiful.wallpaper = "/home/yashraj/Pictures/wall.png"
+-- beautiful.taglist_bg_focus = "#fe8019"
+-- beautiful.taglist_fg_focus = "#1d2021"
+-- beautiful.bg_systray = "#282828"
+-- beautiful.tasklist_bg_focus = "#282828"
+-- beautiful.tasklist_fg_focus = "#98971a"
+-- beautiful.tasklist_bg_normal = "#282828"
+-- beautiful.tasklist_fg_normal = "#ebdbb2"
+-- beautiful.menu_bg_normal = "#282828"
+-- beautiful.menu_fg_normal = "#ebdbb2"
+-- beautiful.menu_bg_focus = "#d79921"
+-- beautiful.menu_fg_focus = "#282828"
+-- beautiful.menu_border_color = 10
+-- beautiful.border_focus = "#d65d0e"
+-- beautiful.border_normal = "#282828"
+-- beautiful.border_width = dpi(3)
+-- beautiful.bg_minimize = "#282828"
+-- beautiful.fg_minimize = "#282828"
+-- beautiful.fg_normal = "#d65d0e"
+-- beautiful.bg_normal = "#d65d0e"
+-- beautiful.fg_focus = "#"
+-- beautiful.widget_border_color = "#282828"
+
+-- Background
+beautiful.bg_normal = "#282828"
+beautiful.bg_focus = "#32302f"
+beautiful.bg_urgent = "#cc241d"
+beautiful.bg_minimize = "#282828"
+
+-- Foreground
+beautiful.fg_normal = "#ebdbb2"
+beautiful.fg_focus = "#fabd2f"
+beautiful.fg_urgent = "#fb4934"
+beautiful.fg_minimize = "#a89984"
+
+-- Borders
+beautiful.border_width = dpi(3)
+beautiful.border_normal = "#282828"
+beautiful.border_focus = "#d65d0e"
+beautiful.border_color_normal = "#282828"
+
+-- Taglist
+beautiful.taglist_bg_focus = "#fe8019"
+beautiful.taglist_fg_focus = "#1d2021"
+beautiful.taglist_bg_occupied = "#282828"
+beautiful.taglist_fg_occupied = "#282828"
+
+-- Tasklist
+beautiful.tasklist_bg_focus = "#282828"
+beautiful.tasklist_fg_focus = "#98971a"
+beautiful.tasklist_bg_normal = "#282828"
+beautiful.tasklist_fg_normal = "#ebdbb2"
+beautiful.tasklist_disable_icon = false
+
+-- Menu
+beautiful.menu_height = dpi(20)
+beautiful.menu_width = dpi(180)
+
+-- Wibar
+beautiful.wibar_height = dpi(25)
+-- beautiful.wibar.font =
+local markup = lain.util.markup
+
+-- Other
+beautiful.bg_systray = "#282828"
+beautiful.systray_icon_spacing = dpi(5)
+beautiful.snap_bg = "#d65d0e"
+
+-- {{{ Modules
+-- local widget = { _NAME = "fishlive.widget" }
+-- local widget = wibox.widget.textbox
+function wiboxBoxIconUnderline(icon, wbox, bgcolor, fgcolor, leftIn, rightIn, wiboxMargin)
+  return {
+    {
+      {
+        wibox.container.margin(wibox.widget { icon, wbox, layout = wibox.layout.align.horizontal }, leftIn, rightIn),
+        fg = fgcolor,
+        bg = bgcolor,
+        widget = wibox.container.background
+      },
+      layout = wibox.container.margin
+    },
+    left = wiboxMargin,
+    right = wiboxMargin,
+    bottom = dpi(3),
+    top = dpi(3),
+    layout = wibox.container.margin
+  }
+end
+
+local wiboxBox1 = wiboxBoxIconUnderline
+
+-- Clock
+local clockicon = wibox.widget.textbox();
+clockicon:set_markup(markup.fontbg("JetBrainsMono Nerd Font Bold 11", "#83a598", "  "))
+local mytextclock = wibox.widget.textclock(markup.fontfg("JetBrainsMono Nerd Font Bold 10", "#ffffff", " %a %b %d - %I:%M %p "))
+local clockWibox = wiboxBox1(clockicon, mytextclock, "#458588", "#282828", 0, 0, 5)
+
+
+-- CPU
+local cpuicon = wibox.widget.textbox();
+cpuicon:set_markup(markup.fontbg("JetBrainsMono Nerd Font Bold 13", "#fabd2f", "  "))
+local cpu = lain.widget.cpu({
+  settings = function()
+    widget:set_markup(markup.fontfg("JetBrainsMono Nerd Font Bold 10", "#d79921", " " .. cpu_now.usage .. "% "))
+  end
+})
+local cpuWibox = wiboxBox1(cpuicon, cpu.widget, "#3c3836", "#1d2021", 0, 0, 5)
+
+
+-- Net
+local neticon = wibox.widget.textbox();
+neticon:set_markup(markup.fontbg("JetBrainsMono Nerd Font Bold 13", "#fe8019", "  "))
+local net = lain.widget.net({
+  settings = function()
+    widget:set_markup(markup.fontfg("JetBrainsMono Nerd Font Bold 10", "#282828", string.format("%#7.1f", net_now.sent) .. " ﰵ " .. string.format("%#7.1f", net_now.received) .. " ﰬ "))
+  end
+})
+local netWibox = wiboxBox1(neticon, net.widget, "#ffffff", "#282828", 0, 0, 10)
+
+
+-- MEM
+local memicon = wibox.widget.textbox();
+memicon:set_markup(markup.fontbg("JetBrainsMono Nerd Font Bold 10", "#8ec07c", "  "))
+local mem = lain.widget.mem({
+  settings = function()
+    widget:set_markup(markup.fontfg("JetBrainsMono Nerd Font Bold 10", "#282828", " " .. mem_now.used .. " MB "))
+  end
+})
+local memWibox = wiboxBox1(memicon, mem.widget, "#689d6a", "#1d2021", 0, 0, 5)
+
+
+-- Weather widget
+local tempicon = wibox.widget.textbox();
+tempicon:set_markup(markup.fontbg("JetBrainsMono Nerd Font Bold 12", "#b8bb26", "  "))
+local myWeather = lain.widget.weather({
+    APPID = "d1b3b6a81db867259446b0863d5f9108",
+    city_id = 1260086,
+    settings = function()
+        descr = weather_now["weather"][1]["description"]:lower()
+		units = math.floor(weather_now["main"]["temp"])
+		widget:set_markup(markup.fontfg("JetBrainsMono Nerd Font Bold 10", "#98971a", " " .. descr .. ", " .. units .. "°C "))
+    end
+})
+local weatherWibox = wiboxBox1(tempicon, myWeather, "#3c3836", "#282828", 0, 0, 5)
+
+-- }}}
+
+
+-- -- Keyboard map indicator and switcher
+-- local wboxColor = theme.baseColors[1]
+-- local keyboardText = wibox.widget.textbox();
+-- keyboardText:set_markup(markup.fontfg(theme.font_larger, wboxColor, " "))
+-- theme.mykeyboardlayout = awful.widget.keyboardlayout()
+-- local keyboardWibox = wiboxBox1(keyboardText, theme.mykeyboardlayout, wboxColor, theme.widgetbar_fg, 3, 6, underLineSize, wiboxMargin)
 -- }}}
 
 -- This is used later as the default terminal and editor to run.
@@ -201,7 +356,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
     -- Create the wibox
     s.mywibox = awful.wibar {
         position = "top",
-        height = 25,
         screen   = s,
         widget   = {
             layout = wibox.layout.align.horizontal,
@@ -216,9 +370,14 @@ screen.connect_signal("request::desktop_decoration", function(s)
                 layout = wibox.layout.fixed.horizontal,
                 mykeyboardlayout,
                 wibox.widget.systray(),
-                mytextclock,
+                -- mytextclock,
+                -- netWibox,
+                weatherWibox,
+                memWibox,
+                cpuWibox,
+                clockWibox,
                 s.mylayoutbox,
-            },
+            }
         }
     }
 end)
@@ -261,6 +420,10 @@ awful.keyboard.append_global_keybindings({
     {description = "run prompt", group = "launcher"}),
     awful.key({ modkey }, "p", function() menubar.show() end,
     {description = "show the menubar", group = "launcher"}),
+
+    awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pipewire sset Master 1%+", false) end),
+awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pipewire sset Master 1%-", false) end),
+awful.key({}, "XF86AudioMute", function () awful.util.spawn("amixer -D pipewire sset Master toggle", false) end),
 })
 
 -- Tags related keybindings
@@ -494,6 +657,9 @@ client.connect_signal("request::default_keybindings", function()
     --         beautiful.volume.update()
     --     end)
 
+--     awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pipewire sset Master 2%+", false) end)
+-- awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pipewire sset Master 2%-", false) end)
+-- awful.key({}, "XF86AudioMute", function () awful.util.spawn("amixer -D pipewire sset Master toggle", false) end)
 
     -- }}}
 
@@ -508,7 +674,7 @@ client.connect_signal("request::default_keybindings", function()
                 focus     = awful.client.focus.filter,
                 raise     = true,
                 screen    = awful.screen.preferred,
-                placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                placement = awful.placement.no_overlap+awful.placement.no_offscreen,
             }
         }
 
@@ -614,6 +780,15 @@ client.connect_signal("mouse::enter", function(c)
     c:activate { context = "mouse_enter", raise = false }
 end)
 
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
 -- Autostart applications
--- awful.spawn.with_shell("~/.config/awesome/autostart.sh")
--- awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
+-- This function will run once every time Awesome is started
+local function run_once(cmd_arr)
+    for _, cmd in ipairs(cmd_arr) do
+        awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
+    end
+end
+
+run_once({ "volumeicon", "picom" }) -- comma-separated entries
