@@ -17,7 +17,7 @@
 
     font = {
       name = "JetBrainsMono Nerd Font Regular";
-      size = 11;
+      size = 9;
     };
 
     gtk3.extraConfig = {

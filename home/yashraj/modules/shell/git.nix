@@ -20,19 +20,19 @@
     #   signByDefault = true;
     # };
 
-    delta = {
-      enable = true;
-      options.map-styles = "bold purple => syntax #8839ef, bold cyan => syntax #1e66f5";
-    };
+    # delta = {
+    #   enable = true;
+    #   options.map-styles = "bold purple => syntax #8839ef, bold cyan => syntax #1e66f5";
+    # };
 
     extraConfig = {
       init = {defaultBranch = "main";};
       diff.colorMoved = "default";
       merge.conflictstyle = "diff3";
-      delta = {
-        syntax-theme = "Nord";
-        line-numbers = true;
-      };
+      # delta = {
+      #   syntax-theme = "Nord";
+      #   line-numbers = true;
+      # };
       credential.helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
     };
 
