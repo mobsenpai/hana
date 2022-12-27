@@ -124,22 +124,6 @@
         "type": "github"
       }
     },
-    "freedesktop": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1655976937,
-        "narHash": "sha256-lQstCcTPUYUt5hzAJIyQ16crPngeOnUla7I4QiG6gEs=",
-        "ref": "refs/heads/master",
-        "rev": "c82ad2960c5f0c84e765df68554c266ea7e9464d",
-        "revCount": 118,
-        "type": "git",
-        "url": "https://github.com/lcpz/awesome-freedesktop.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://github.com/lcpz/awesome-freedesktop.git"
-      }
-    },
     "hardware": {
       "locked": {
         "lastModified": 1671631481,
@@ -324,7 +308,6 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "freedesktop": "freedesktop",
         "hardware": "hardware",
         "home-manager": "home-manager",
         "lain": "lain",

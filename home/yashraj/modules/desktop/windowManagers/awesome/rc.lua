@@ -85,20 +85,22 @@ beautiful.fg_minimize = "#a89984"
 beautiful.border_width = dpi(3)
 beautiful.border_normal = "#282828"
 beautiful.border_focus = "#d65d0e"
-beautiful.border_color_normal = "#282828"
+beautiful.border_color_normal = "#fe8019"
 
 -- Taglist
 beautiful.taglist_bg_focus = "#fe8019"
 beautiful.taglist_fg_focus = "#1d2021"
-beautiful.taglist_bg_occupied = "#282828"
-beautiful.taglist_fg_occupied = "#282828"
+-- beautiful.taglist_bg_occupied = "#282828"
+-- beautiful.taglist_fg_occupied = "#282828"
 
 -- Tasklist
 beautiful.tasklist_bg_focus = "#282828"
 beautiful.tasklist_fg_focus = "#98971a"
 beautiful.tasklist_bg_normal = "#282828"
 beautiful.tasklist_fg_normal = "#ebdbb2"
-beautiful.tasklist_disable_icon = false
+beautiful.tasklist_disable_icon = true
+beautiful.tasklist_spacing = 5
+beautiful.tasklist_forced_width = 5
 
 -- Menu
 beautiful.menu_height = dpi(20)
@@ -106,17 +108,26 @@ beautiful.menu_width = dpi(180)
 
 -- Wibar
 beautiful.wibar_height = dpi(25)
--- beautiful.wibar.font =
-local markup = lain.util.markup
 
--- Other
+local markup = lain.util.markup
+local separator = wibox.widget.textbox()
+separator:set_text(" ")
+
+-- Systray
 beautiful.bg_systray = "#282828"
 beautiful.systray_icon_spacing = dpi(5)
+local systray = wibox.widget.systray()
+systray.base_size = dpi(22)
+
+-- Other
 beautiful.snap_bg = "#d65d0e"
 
+-- Credit
+-- https://github.com/raven2cz/awesomewm-config/blob/master/themes/multicolor/theme.lua
+-- Note
+-- Volume, notification, music module(s) are also available.
+
 -- {{{ Modules
--- local widget = { _NAME = "fishlive.widget" }
--- local widget = wibox.widget.textbox
 function wiboxBoxIconUnderline(icon, wbox, bgcolor, fgcolor, leftIn, rightIn, wiboxMargin)
   return {
     {
@@ -192,15 +203,13 @@ local myWeather = lain.widget.weather({
 })
 local weatherWibox = wiboxBox1(tempicon, myWeather, "#3c3836", "#282828", 0, 0, 5)
 
--- }}}
+-- Keyboard map indicator and switcher
+local keyboardText = wibox.widget.textbox();
+keyboardText:set_markup(markup.fontbg("JetBrainsMono Nerd Font Bold 13", "#fe8019", "   "))
+beautiful.mykeyboardlayout = awful.widget.keyboardlayout()
+local keyboardWibox = wiboxBox1(keyboardText, beautiful.mykeyboardlayout, "#3c3836", "#1d2021", 0, 0, 5)
 
-
--- -- Keyboard map indicator and switcher
--- local wboxColor = theme.baseColors[1]
--- local keyboardText = wibox.widget.textbox();
--- keyboardText:set_markup(markup.fontfg(theme.font_larger, wboxColor, " "))
--- theme.mykeyboardlayout = awful.widget.keyboardlayout()
--- local keyboardWibox = wiboxBox1(keyboardText, theme.mykeyboardlayout, wboxColor, theme.widgetbar_fg, 3, 6, underLineSize, wiboxMargin)
+    -- }}}
 -- }}}
 
 -- This is used later as the default terminal and editor to run.
@@ -343,6 +352,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
+        -- filter  = awful.widget.tasklist.filter.focused,
         buttons = {
             awful.button({ }, 1, function (c)
                 c:activate { context = "tasklist", action = "toggle_minimization" }
@@ -362,21 +372,26 @@ screen.connect_signal("request::desktop_decoration", function(s)
             { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
+            s.mylayoutbox,
             s.mytaglist,
+            separator,
             s.mypromptbox,
         },
             s.mytasklist, -- Middle widget
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                mykeyboardlayout,
-                wibox.widget.systray(),
+                separator,
+                -- mykeyboardlayout,
                 -- mytextclock,
                 -- netWibox,
+                keyboardWibox,
                 weatherWibox,
                 memWibox,
                 cpuWibox,
                 clockWibox,
-                s.mylayoutbox,
+                separator,
+                wibox.widget.systray(),
+                -- s.mylayoutbox,
             }
         }
     }

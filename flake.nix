@@ -55,11 +55,11 @@
     #   flake = false;
     # };
 
-    # lain = {
-    #   type = "git";
-    #   url = "https://github.com/lcpz/lain.git";
-    #   flake = false;
-    # };
+    lain = {
+      type = "git";
+      url = "https://github.com/lcpz/lain.git";
+      flake = false;
+    };
 
     # freedesktop = {
     #   type = "git";

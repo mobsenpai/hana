@@ -23,6 +23,7 @@
       # ".config/awesome/rc.lua".source = ./rc2.lua;
       # ".config/awesome/modules/bling".source = inputs.bling.outPath;
       # ".config/awesome/modules/lain".source = inputs.lain.outPath;
+      ".config/awesome/lain".source = inputs.lain.outPath;
       # ".config/awesome/modules/freedesktop".source = inputs.freedesktop.outPath;
     };
   };
@@ -39,6 +40,7 @@
   imports = [
     # ../../dunst
     ../../gtk.nix
+    ./../picom.nix
     # ../../rofi.nix
   ];
 }
