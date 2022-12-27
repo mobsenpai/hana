@@ -22,7 +22,6 @@ in {
     neofetch
     neovim
     htop
-    lxappearance #remove later
     volumeicon
     killall
 
