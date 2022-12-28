@@ -5,8 +5,7 @@
 
 # Setup details
 
-WM : Awesome
-
+- WM : Awesome
 - Distro : Nixos(home manager + flake)
 - Terminal : Alacritty
 - Bar : Wibar
