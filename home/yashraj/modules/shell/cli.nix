@@ -5,19 +5,19 @@
   ...
 }: {
   home.packages = with pkgs; [
-    duf
-    du-dust
+    #duf
+    #du-dust
     fd
-    file
-    joshuto
+    #file
+    #joshuto
     ranger
-    ripgrep
-    yt-dlp
+    #ripgrep
+    #yt-dlp
   ];
 
   programs = {
     exa.enable = true;
-    tmux.enable = true;
+    #tmux.enable = true;
 
     fzf = {
       enable = true;
