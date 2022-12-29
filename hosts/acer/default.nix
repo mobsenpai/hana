@@ -32,15 +32,15 @@
         efiSysMountPoint = "/boot";
       };
 
-      systemd-boot.enable = true;
-      # systemd-boot.enable = false;
+      # systemd-boot.enable = true;
+      systemd-boot.enable = false;
 
-      # grub = {
-      #  enable = true;
-      #  version = 2;
-      #  device = "nodev";
-      #  efiSupport = true;
-      # };
+      grub = {
+        enable = true;
+        version = 2;
+        device = "nodev";
+        efiSupport = true;
+      };
     };
   };
 
