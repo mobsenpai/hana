@@ -228,9 +228,9 @@ in {
       ls = "${pkgs.exa}/bin/exa --icons --group-directories-first";
       la = "${pkgs.exa}/bin/exa -lah";
       tree = "${pkgs.exa}/bin/exa --tree --icons";
-    #   http = "${pkgs.python3}/bin/python3 -m http.server";
+      #   http = "${pkgs.python3}/bin/python3 -m http.server";
       v = "nvim";
-    #   ssh = "kitty +kitten ssh";
+      #   ssh = "kitty +kitten ssh";
     };
 
     plugins = with pkgs; [

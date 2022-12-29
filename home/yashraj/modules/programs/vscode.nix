@@ -6,8 +6,7 @@
   programs.vscode = {
     enable = true;
 
-    extensions = with pkgs.vscode-extensions;
-    [
+    extensions = with pkgs.vscode-extensions; [
       esbenp.prettier-vscode
       christian-kohler.path-intellisense
       bbenoist.nix
@@ -18,7 +17,7 @@
 
     userSettings = {
       # "editor.fontWeight" = "bold";
-      "editor.tabSize" =  2;
+      "editor.tabSize" = 2;
       "editor.letterSpacing" = 1.05;
       "editor.lineHeight" = 20;
       "problems.showCurrentInStatus" = true;

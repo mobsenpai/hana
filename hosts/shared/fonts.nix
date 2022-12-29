@@ -20,11 +20,10 @@
     # };
 
     fonts = with pkgs; [
-        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; })
-        noto-fonts-emoji
-        noto-fonts
-        noto-fonts-cjk
-
+      (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "JetBrainsMono"];})
+      noto-fonts-emoji
+      noto-fonts
+      noto-fonts-cjk
     ];
 
     fontconfig = {
