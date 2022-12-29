@@ -16,13 +16,13 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    # kernelParams = [
-    #   "i915.force_probe=46a6"
-    #   "i915.enable_psr=0"
-    #   "i915.enable_guc=2"
-    #   "i8042.direct"
-    #   "i8042.dumbkbd"
-    # ];
+    kernelParams = [
+      # "i915.force_probe=46a6"
+      # "i915.enable_psr=0"
+      # "i915.enable_guc=2"
+      # "i8042.direct"
+      # "i8042.dumbkbd"
+    ];
 
     # supportedFilesystems = ["btrfs"];
 
