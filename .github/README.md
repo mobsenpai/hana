@@ -16,12 +16,6 @@ Yash Raj's Dotfiles
 
 <br>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" width="500px" alt="NixOS logo"/>
-</p>
-
-<br>
-
 ```ocaml
 NixOS / Home-Manager / Flake
 ```
@@ -45,8 +39,6 @@ NixOS / Home-Manager / Flake
 
 </div>
 
-<br>
-<br>
 <br>
 
 ## :wrench: <samp>Installation</samp>
@@ -120,7 +112,7 @@ NixOS / Home-Manager / Flake
 <br>
 <br>
 
-## :busts_in_silhouette: <samp>People</samp>
+## :snowflake: <samp>Info</samp>
 
 <table align="right">
   <tr>
