@@ -40,6 +40,7 @@
         version = 2;
         device = "nodev";
         efiSupport = true;
+        gfxmodeEfi = "1366x768";
       };
     };
   };
