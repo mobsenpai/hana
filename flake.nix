@@ -9,7 +9,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     # neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     # nur.url = "github:nix-community/NUR";
-    # devshell.url = "github:numtide/devshell";
+    devshell.url = "github:numtide/devshell";
     flake-utils.url = "github:numtide/flake-utils";
     # hyprland.url = "github:hyprwm/Hyprland/";
     # xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
