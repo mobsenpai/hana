@@ -24,7 +24,7 @@
       # "i8042.dumbkbd"
     ];
 
-    # supportedFilesystems = ["btrfs"];
+    supportedFilesystems = ["btrfs"];
 
     loader = {
       efi = {
