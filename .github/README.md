@@ -35,8 +35,6 @@ NixOS / Home-Manager / Flake
 
 </p>
 
-<br>
-
 </div>
 
 <br>
