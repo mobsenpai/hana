@@ -414,8 +414,8 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey }, "p", function() menubar.show() end,
     {description = "show the menubar", group = "launcher"}),
 
-    awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pipewire sset Master 1%+", false) end),
-    awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pipewire sset Master 1%-", false) end),
+    awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pipewire sset Master 4%+", false) end),
+    awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pipewire sset Master 4%-", false) end),
     awful.key({}, "XF86AudioMute", function () awful.util.spawn("amixer -D pipewire sset Master toggle", false) end),
 })
 
