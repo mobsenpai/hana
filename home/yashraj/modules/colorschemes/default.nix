@@ -7,7 +7,7 @@
 
   # Custom colorscheme list
   # default-dark = (import ./default-dark.nix).colorscheme;
-  default-dark = (import ./gruvbox-medium.nix).colorscheme;
+  gruvbox-medium = (import ./gruvbox-medium.nix).colorscheme;
 in {
   imports = [
     inputs.nix-colors.homeManagerModule
