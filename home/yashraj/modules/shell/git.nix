@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    bfg-repo-cleaner
+    # bfg-repo-cleaner
     colordiff
-    gist
+    # gist
     # gitAndTools.git-absorb
     # gitAndTools.gitui
     # gitAndTools.git-machete
