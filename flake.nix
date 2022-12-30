@@ -116,7 +116,7 @@
         #   nur.overlay
         #   neovim-nightly.overlay
         #   nixpkgs-wayland.overlay
-        #   nixpkgs-f2k.overlays.default
+        nixpkgs-f2k.overlays.default
         #   rust-overlay.overlays.default
       ]; #remove ; if using the below ./overlays folder
       # Overlays from ./overlays directory
