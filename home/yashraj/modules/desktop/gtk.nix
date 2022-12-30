@@ -85,7 +85,7 @@ in {
 
   home.sessionVariables = {
     # Theming Related Variables
-    GTK_THEME = "gruvbox-dark";
+    GTK_THEME = "phocus";
     XCURSOR_SIZE = "24";
   };
 }
