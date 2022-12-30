@@ -21,7 +21,7 @@
 
       fading = false;
 
-      # blur = false;
+      vsync = true;
 
       experimental-backends = true;
       backend = "glx";
@@ -34,10 +34,8 @@
       ];
 
       blur = {
-        method = "kawase";
+        method = "dual_kawase";
         strength = 7;
-        # deviation = 1.0;
-        # kernel = "11x11gaussian";
         background = false;
         background-frame = false;
         background-fixed = false;
