@@ -1,9 +1,9 @@
 <!-- Yash Raj's dotfiles -->
-<!-- https://github.com/itsmeyashraj/dotfiles -->
+<!-- https://github.com/MobSenpai/dotfiles -->
 
-[![NixOS](https://img.shields.io/badge/NixOS-unstable-informational.svg?style=flat&logo=nixos)](https://github.com/nixos/nixpkgs)
+[![NixOS](https://img.shields.io/badge/NixOS-unstable-informational.svg?style=flat-square&logo=nixos)](https://github.com/nixos/nixpkgs) [![AwesomeWM](https://img.shields.io/badge/AwesomeWM-master-blue.svg?style=flat-square&logo=lua)](https://github.com/awesomeWM/awesome)
 
-[![NixOS_Check](https://github.com/itsmeyashraj/dotfiles/actions/workflows/check.yml/badge.svg)](https://github.com/itsmeyashraj/dotfiles/actions/workflows/check.yml) [![NixOS_Fmt](https://github.com/itsmeyashraj/dotfiles/actions/workflows/fmt.yml/badge.svg)](https://github.com/itsmeyashraj/dotfiles/actions/workflows/fmt.yml)
+[![NixOS_Check](https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml/badge.svg)](https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml) [![NixOS_Fmt](https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml/badge.svg)](https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml)
 
 <br>
 
@@ -11,7 +11,7 @@
 <div align="center">
 
 ```ocaml
-Yash Raj's Dotfiles
+Mob's Dotfiles
 ```
 
 <br>
@@ -92,12 +92,12 @@ NixOS / Home-Manager / Flake
 
 6. Install nixos from flake
    ```bash
-   $ nixos-install --flake github:itsmeyashraj/dotfiles#acer --impure
+   $ nixos-install --flake github:MobSenpai/dotfiles#acer --impure
    ```
    or
    ```bash
    $ cd
-   $ git clone https://github.com/itsmeyashraj/dotfiles.git
+   $ git clone https://github.com/MobSenpai/dotfiles.git
    $ cd dotfiles
    $ nixos-install --flake .#acer
    ```
