@@ -58,7 +58,8 @@ in {
       cursor_stop_blinking_after = "5.0";
 
       # Font
-      font_family = "JetBrainsMono Nerd Font";
+      # kitty +list-fonts --psnames | grep Jet
+      font_family = "JetBrains Mono Bold Nerd Font Complete";
       italic_font = "auto";
       bold_font = "auto";
       bold_italic_font = "auto";
@@ -69,9 +70,9 @@ in {
       box_drawing_scale = "0.001, 1, 1.5, 2";
 
       # The basic colors
-      foreground = "#${colors.base05}";
+      foreground = "#${colors.base0F}";
       background = "#${colors.base00}";
-      selection_background = "#${colors.base05}";
+      selection_background = "#${colors.base0F}";
       selection_foreground = "#${colors.base00}";
 
       # Cursor colors
@@ -88,30 +89,30 @@ in {
       # Tab bar colors
       active_tab_background = "#${colors.base00}";
       active_tab_foreground = "#${colors.base06}";
-      inactive_tab_background = "#${colors.base01}";
+      inactive_tab_background = "#${colors.base08}";
       inactive_tab_foreground = "#${colors.base04}";
-      tab_bar_background = "#${colors.base01}";
+      tab_bar_background = "#${colors.base08}";
 
       # Base16 colors
       # Normal
       color0 = "#${colors.base00}";
-      color1 = "#${colors.base0B}";
-      color2 = "#${colors.base0C}";
-      color3 = "#${colors.base0D}";
-      color4 = "#${colors.base07}";
-      color5 = "#${colors.base0F}";
-      color6 = "#${colors.base09}";
-      color7 = "#${colors.base04}";
+      color1 = "#${colors.base01}";
+      color2 = "#${colors.base02}";
+      color3 = "#${colors.base03}";
+      color4 = "#${colors.base04}";
+      color5 = "#${colors.base05}";
+      color6 = "#${colors.base06}";
+      color7 = "#${colors.base07}";
 
       # Bright
-      color8 = "#${colors.base03}";
-      color9 = "#${colors.base0B}";
-      color10 = "#${colors.base0C}";
-      color11 = "#${colors.base0D}";
-      color12 = "#${colors.base07}";
-      color13 = "#${colors.base0F}";
-      color14 = "#${colors.base09}";
-      color15 = "#${colors.base06}";
+      color8 = "#${colors.base08}";
+      color9 = "#${colors.base09}";
+      color10 = "#${colors.base0A}";
+      color11 = "#${colors.base0B}";
+      color12 = "#${colors.base0C}";
+      color13 = "#${colors.base0D}";
+      color14 = "#${colors.base0E}";
+      color15 = "#${colors.base0F}";
     };
     # Keys
     keybindings = {
