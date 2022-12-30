@@ -12,7 +12,6 @@
     ./modules/colorschemes
     ./modules/shell
     ./modules/desktop/windowManagers/awesome
-    ./modules/programs/alacritty
     ./modules/programs/kitty.nix
     # ./modules/programs/mpd.nix
     # ./modules/programs/neovim.nix
