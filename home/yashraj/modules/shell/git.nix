@@ -13,7 +13,7 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "itsmeyashraj";
+    userName = "MobSenpai";
     userEmail = "iamyashraj@proton.me";
     # signing = {
     #   key = "F01BC62D2BAE2122";
