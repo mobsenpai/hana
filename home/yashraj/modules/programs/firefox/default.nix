@@ -25,6 +25,7 @@
           "general.smoothScroll" = true;
         };
 
+        # Note : You can also use colorschemes in firefox instead of extensions if you want
         userChrome = import ./userChrome-css.nix;
         # userContent = import ./userContent-css.nix {
         #   inherit (config) colorscheme;

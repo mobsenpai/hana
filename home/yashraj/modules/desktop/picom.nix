@@ -27,10 +27,11 @@
       backend = "glx";
 
       opacity-rule = [
-        "90:class_g    = 'XTerm'"
-        "90:class_g     = 'Alacritty'"
-        "100:class_i    = 'tray'"
-        "100:class_g =   'Code'"
+        "90:class_g = 'XTerm'"
+        "90:class_g = 'Alacritty'"
+        "90:class_g = 'kitty'"
+        "100:class_i = 'tray'"
+        "100:class_g = 'Code'"
       ];
 
       blur = {

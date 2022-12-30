@@ -8,29 +8,65 @@ in {
   programs.kitty = {
     enable = true;
     settings = {
-      background_opacity = "1.0";
-      font_family = "JetBrainsMono Nerd Font";
-      font_size = 13;
-      disable_ligatures = "never";
-      cursor_shape = "underline";
-      cursor_blink_interval = "0.5";
-      cursor_stop_blinking_after = "15.0";
-      scrollback_lines = 10000;
-      click_interval = "0.5";
-      select_by_word_characters = ":@-./_~?&=%+#";
-      remember_window_size = false;
-      allow_remote_control = true;
-      initial_window_width = 640;
-      initial_window_height = 400;
-      repaint_delay = 15;
-      input_delay = 3;
-      visual_bell_duration = "0.0";
+      # background_opacity = "0.1";
+      inactive_text_alpha = "1.0";
+      window_padding_width = "12 24 0 24";
+      placement_strategy = "center";
+      # resize_in_steps = "yes";
+      enabled_layouts = "*";
+      remember_window_size = "no";
+      initial_window_width = "640";
+      initial_window_height = "400";
+      confirm_os_window_close = "0";
+      allow_remote_control = "yes";
+
+      # URLs
       url_style = "double";
-      open_url_with = "default";
-      confirm_os_window_close = 0;
-      enable_audio_bell = false;
-      window_padding_width = 15;
-      window_margin_width = 10;
+      copy_on_select = "yes";
+
+      # Selection
+      select_by_word_characters = ":@-./_~?&=%+#";
+
+      # Mouse
+      click_interval = "0.5";
+      mouse_hide_wait = "0";
+      focus_follows_mouse = "no";
+
+      # Bell
+      visual_bell_duration = "0.0";
+      enable_audio_bell = "no";
+
+      # Scroolback
+      scrollback_lines = "10000";
+      wheel_scroll_multiplier = "5.0";
+      touch_scroll_multiplier = "1.0";
+
+      # Tab bar
+      tab_bar_min_tabs = 1;
+      tab_bar_edge = "bottom";
+      tab_bar_style = "powerline";
+      tab_powerline_style = "slanted";
+      tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
+      active_tab_font_style = "bold";
+      inactive_tab_font_style = "normal";
+
+      # Cursor
+      cursor_shape = "underline";
+      cursor_beam_thickness = "1.2";
+      cursor_underline_thickness = "2.0";
+      cursor_blink_interval = "-1.0";
+      cursor_stop_blinking_after = "5.0";
+
+      # Font
+      font_family = "JetBrainsMono Nerd Font";
+      italic_font = "auto";
+      bold_font = "auto";
+      bold_italic_font = "auto";
+      font_size = "10.0";
+      disable_ligatures = "never";
+      adjust_line_height = "0";
+      adjust_column_width = "0";
+      box_drawing_scale = "0.001, 1, 1.5, 2";
 
       # The basic colors
       foreground = "#${colors.base05}";
@@ -46,8 +82,8 @@ in {
       url_color = "#${colors.base04}";
 
       # Kitty window border colors
-      active_border_color = "#${colors.base03}";
-      inactive_border_color = "#${colors.base01}";
+      # active_border_color = "#${colors.base03}";
+      # inactive_border_color = "#${colors.base01}";
 
       # Tab bar colors
       active_tab_background = "#${colors.base00}";
@@ -77,16 +113,22 @@ in {
       color14 = "#${colors.base09}";
       color15 = "#${colors.base06}";
     };
-
+    # Keys
     keybindings = {
-      "ctrl+c" = "copy_or_interrupt";
-      "ctrl+alt+c" = "copy_to_clipboard";
-      "ctrl+alt+v" = "paste_from_clipboard";
       "ctrl+shift+v" = "paste_from_clipboard";
+      "ctrl+shift+s" = "paste_from_selection";
+      "ctrl+shift+c" = "copy_to_clipboard";
+      "shift+insert" = "paste_from_selection";
 
-      "ctrl+shift+up" = "increase_font_size";
-      "ctrl+shift+down" = "decrease_font_size";
-      "ctrl+shift+backspace" = "restore_font_size";
+      "ctrl+shift+up" = "scroll_line_up";
+      "ctrl+shift+down" = "scroll_line_down";
+      "ctrl+shift+k" = "scroll_line_up";
+      "ctrl+shift+j" = "scroll_line_down";
+      "ctrl+shift+page_up" = "scroll_page_up";
+      "ctrl+shift+page_down" = "scroll_page_down";
+      "ctrl+shift+home" = "scroll_home";
+      "ctrl+shift+end" = "scroll_end";
+      "ctrl+shift+h" = "show_scrollback";
 
       "ctrl+shift+enter" = "new_window";
       "ctrl+shift+n" = "new_os_window";
@@ -115,6 +157,10 @@ in {
       "ctrl+shift+." = "move_tab_forward";
       "ctrl+shift+," = "move_tab_backward";
       "ctrl+shift+alt+t" = "set_tab_title";
+
+      "ctrl+shift+equal" = "increase_font_size";
+      "ctrl+shift+minus" = "decrease_font_size";
+      "ctrl+shift+backspace" = "restore_font_size";
     };
   };
 }
