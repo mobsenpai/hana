@@ -92,10 +92,15 @@ local separator = wibox.widget.textbox()
 separator:set_text(" ")
 
 -- Systray
+local systray = wibox.widget{
+    forced_height = dpi(2),
+    base_size = dpi(22),
+    halign = "center",
+    valign = "center",
+    widget = wibox.widget.systray,
+}
 beautiful.bg_systray = "#282828"
 beautiful.systray_icon_spacing = dpi(5)
-local systray = wibox.widget.systray()
-systray.base_size = dpi(22)
 
 -- Other
 beautiful.snap_bg = "#d65d0e"
@@ -182,10 +187,13 @@ local myWeather = lain.widget.weather({
 local weatherWibox = wiboxBox1(tempicon, myWeather, "#3c3836", "#282828", 0, 0, 5)
 
 -- Keyboard map indicator and switcher
-local keyboardText = wibox.widget.textbox();
-keyboardText:set_markup(markup.fontbg("JetBrainsMono Nerd Font Bold 13", "#fe8019", "   "))
+local keyboardText = wibox.widget{
+    font = "JetBrainsMono Nerd Font Bold 11",
+    markup = "<span background='#d3869b' foreground='#32302f'>   </span>",
+    widget = wibox.widget.textbox
+}
 beautiful.mykeyboardlayout = awful.widget.keyboardlayout()
-local keyboardWibox = wiboxBox1(keyboardText, beautiful.mykeyboardlayout, "#3c3836", "#1d2021", 0, 0, 5)
+local keyboardWibox = wiboxBox1(keyboardText, beautiful.mykeyboardlayout, "#b16286", "#1d2021", 0, 0, 5)
 
     -- }}}
 -- }}}
@@ -368,7 +376,8 @@ screen.connect_signal("request::desktop_decoration", function(s)
                 cpuWibox,
                 clockWibox,
                 separator,
-                wibox.widget.systray(),
+                systray,
+                -- wibox.widget.systray(),
                 -- s.mylayoutbox,
             }
         }
