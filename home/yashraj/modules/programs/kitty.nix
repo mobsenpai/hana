@@ -96,12 +96,12 @@ in {
       # Base16 colors
       # Normal
       color0 = "#${colors.base00}";
-      color1 = "#${colors.base01}";
-      color2 = "#${colors.base02}";
-      color3 = "#${colors.base03}";
-      color4 = "#${colors.base04}";
-      color5 = "#${colors.base05}";
-      color6 = "#${colors.base06}";
+      color1 = "#${colors.base09D}";
+      color2 = "#${colors.base0AD}";
+      color3 = "#${colors.base0BD}";
+      color4 = "#${colors.base0CD}";
+      color5 = "#${colors.base0DD}";
+      color6 = "#${colors.base0ED}";
       color7 = "#${colors.base07}";
 
       # Bright
@@ -114,6 +114,7 @@ in {
       color14 = "#${colors.base0E}";
       color15 = "#${colors.base0F}";
     };
+
     # Keys
     keybindings = {
       "ctrl+shift+v" = "paste_from_clipboard";

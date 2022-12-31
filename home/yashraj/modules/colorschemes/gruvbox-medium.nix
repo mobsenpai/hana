@@ -4,37 +4,38 @@
     name = "Gruvbox Medium";
     kind = "dark";
     colors = {
-      # black
-      base00 = "282828";
-      base08 = "665c54";
+      # Base 16
+      # Black (background)
+      base00 = "282828"; # dark
+      base08 = "665c54"; # light
 
-      # red
-      base01 = "cc241d";
-      base09 = "fb4934";
+      # Black variations (for status bars and stuff) (dark -> light)
+      base01 = "3c3836";
+      base02 = "504945";
+      base03 = "665c54";
+      base04 = "bdae93";
+      base05 = "d5c4a1";
+      base06 = "ebdbb2";
 
-      # green
-      base02 = "98971a";
-      base0A = "b8bb26";
+      # Bright colors
+      base09 = "fb4934"; # red
+      base0A = "b8bb26"; # green
+      base0B = "fabd2f"; # yellow
+      base0C = "83a598"; # blue
+      base0D = "d3869b"; # magenta
+      base0E = "8ec07c"; # cyan
 
-      # yellow
-      base03 = "d79921";
-      base0B = "fabd2f";
+      # White (foreground)
+      base07 = "fbf1c7"; # dark
+      base0F = "ebdbb2"; # light
 
-      # blue
-      base04 = "458588";
-      base0C = "83a598";
-
-      # magenta
-      base05 = "b16286";
-      base0D = "d3869b";
-
-      # cyan
-      base06 = "689d6a";
-      base0E = "8ec07c";
-
-      # white
-      base07 = "bdae93";
-      base0F = "ebdbb2";
+      # Dark colors (09 - 0E)
+      base09D = "cc241d"; # red D
+      base0AD = "98971a"; # green D
+      base0BD = "d79921"; # yellow D
+      base0CD = "458588"; # blue D
+      base0DD = "b16286"; # magenta D
+      base0ED = "689d6a"; # cyan D
     };
   };
 }
