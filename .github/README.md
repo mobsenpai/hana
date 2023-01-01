@@ -106,6 +106,15 @@ NixOS / Home-Manager / Flake
 - After install check / match hardware-configuration.nix. Make sure or edit the disk/by-uuid to disk/by-label/ like it is in this repo for reproductable build.
 - passwd yashraj (`your username, must edit it in the repo for using your own name`)
 
+8. Stuff still in mind
+
+- Emoji
+- Clipboard
+- Screenshot
+- Volume
+- Theme.lua, firefox css
+- Systemd
+
 <br>
 <br>
 <br>
