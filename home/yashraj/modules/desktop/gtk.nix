@@ -18,8 +18,8 @@ in {
     iconTheme = {
       name = "${
         if config.colorscheme.kind == "light"
-        then "adwaita"
-        else "adwaita-dark"
+        then "Adwaita"
+        else "Adwaita"
       }";
       package = pkgs.gnome.adwaita-icon-theme;
     };
@@ -62,8 +62,8 @@ in {
   home.pointerCursor = {
     name = "${
       if config.colorscheme.kind == "light"
-      then "Bibata-Modern-Ice" # dark
-      else "Bibata-Modern-Ice" # light
+      then "Bibata-Modern-Classic"
+      else "Bibata-Modern-Ice"
     }";
     package = pkgs.bibata-cursors;
     size = 24;
