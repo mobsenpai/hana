@@ -1,53 +1,31 @@
 {
+  inputs,
   pkgs,
   config,
-  inputs,
-  lib,
   ...
 }: let
-  inherit (config.colorscheme) colors;
+  inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
 in {
   gtk = {
     enable = true;
-    # theme = {
-    #   name = "gruvbox-dark";
-    #   package = pkgs.gruvbox-dark-gtk;
-    # };
-
     theme = {
-      name = "phocus";
-      package = pkgs.phocus.override {
-        colors = with colors; {
-          base00 = "${base00}";
-          base01 = "${base01}";
-          base02 = "${base02}";
-          base03 = "${base03}";
-          base04 = "${base04}";
-          base05 = "${base05}";
-          base06 = "${base06}";
-          base07 = "${base07}";
-          base08 = "${base08}";
-          base09 = "${base09}";
-          base0A = "${base0A}";
-          base0B = "${base0B}";
-          base0C = "${base0C}";
-          base0D = "${base0D}";
-          base0E = "${base0E}";
-          base0F = "${base0F}";
-        };
-
-        primary = "${colors.base02}";
-        secondary = "${colors.base04}";
+      name = "${config.colorscheme.slug}";
+      package = gtkThemeFromScheme {
+        scheme = config.colorscheme;
       };
     };
 
-    # iconTheme = {
-    #   name = "oomox-gruvbox-dark";
-    #   package = pkgs.gruvbox-dark-icons-gtk;
-    # };
+    iconTheme = {
+      name = "${
+        if config.colorscheme.kind == "light"
+        then "adwaita"
+        else "adwaita-dark"
+      }";
+      package = pkgs.gnome.adwaita-icon-theme;
+    };
 
     font = {
-      name = "JetBrainsMono Nerd Font Regular";
+      name = "monospace";
       size = 10;
     };
 
@@ -70,14 +48,23 @@ in {
   qt = {
     enable = true;
     platformTheme = "gtk";
+    # platformTheme = "gnome";
     # style = {
     #   package = pkgs.adwaita-qt;
-    #   name = "adwaita-dark";
+    #   name = "${
+    #     if config.colorscheme.kind == "light"
+    #     then "adwaita"
+    #     else "adwaita-dark"
+    #   }";
     # };
   };
 
   home.pointerCursor = {
-    name = "Bibata-Modern-Ice";
+    name = "${
+      if config.colorscheme.kind == "light"
+      then "Bibata-Modern-Ice" # dark
+      else "Bibata-Modern-Ice" # light
+    }";
     package = pkgs.bibata-cursors;
     size = 24;
     gtk.enable = true;
@@ -85,7 +72,7 @@ in {
 
   home.sessionVariables = {
     # Theming Related Variables
-    GTK_THEME = "phocus";
+    GTK_THEME = "${config.colorscheme.slug}";
     XCURSOR_SIZE = "24";
   };
 }

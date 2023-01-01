@@ -63,7 +63,7 @@
     variables = {
       EDITOR = "vim";
       BROWSER = "firefox";
-      GDK_SCALE = "0.5";
+      # GDK_SCALE = "0.5";
     };
   };
 
@@ -96,7 +96,7 @@
 
   services = {
     # blueman.enable = true;
-    # fwupd.enable = true;
+    fwupd.enable = true;
     gvfs.enable = true;
     # lorri.enable = true;
     # udisks2.enable = true;

@@ -6,14 +6,23 @@
   programs.vscode = {
     enable = true;
 
-    extensions = with pkgs.vscode-extensions; [
-      esbenp.prettier-vscode
-      christian-kohler.path-intellisense
-      bbenoist.nix
-      jdinhlife.gruvbox
-      file-icons.file-icons
-      kamadorueda.alejandra
-    ];
+    extensions = with pkgs.vscode-extensions;
+      [
+        esbenp.prettier-vscode
+        christian-kohler.path-intellisense
+        bbenoist.nix
+        jdinhlife.gruvbox
+        file-icons.file-icons
+        kamadorueda.alejandra
+      ]
+      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "vscodeintellicode";
+          publisher = "visualstudioexptteam";
+          version = "1.2.29";
+          sha256 = "Wl++d7mCOjgL7vmVVAKPQQgWRSFlqL4ry7v0wob1OyU=";
+        }
+      ];
 
     userSettings = {
       # "editor.fontWeight" = "bold";
@@ -32,12 +41,12 @@
       "workbench.colorTheme" = "Gruvbox Dark Hard";
       "workbench.iconTheme" = "file-icons";
       "editor.cursorStyle" = "block";
-      "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace', monospace";
+      "editor.fontFamily" = "'monospace', monospace";
       # "editor.fontSize" = 13;
       "editor.fontLigatures" = true;
       "workbench.fontAliasing" = "antialiased";
       "files.trimTrailingWhitespace" = true;
-      # "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace', monospace";
+      "terminal.integrated.fontFamily" = "'monospace', monospace";
       # "window.titleBarStyle" = "custom";
       "terminal.integrated.automationShell.linux" = "nix-shell";
       "terminal.integrated.defaultProfile.linux" = "zsh";

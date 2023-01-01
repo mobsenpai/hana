@@ -28,7 +28,7 @@ NixOS / Home-Manager / Flake
 
 - WM : Awesome
 - Distro : Nixos(home manager + flake)
-- Terminal : Kitty
+- Terminal : Alacritty
 - Bar : Wibar
 
 [![Alt text](https://i.imgur.com/woPmvSU.png)](https://imgur.com)
@@ -114,6 +114,7 @@ NixOS / Home-Manager / Flake
 - Volume
 - Theme.lua, firefox css
 - Systemd
+- Hyprland
 
 <br>
 <br>

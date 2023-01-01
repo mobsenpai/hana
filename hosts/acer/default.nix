@@ -150,9 +150,6 @@
     variables = {
       # add here
     };
-    sessionVariables = rec {
-      # add here
-    };
   };
 
   #   virtualisation = {
