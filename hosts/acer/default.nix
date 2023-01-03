@@ -63,9 +63,9 @@
       windowManager = {
         awesome = {
           enable = true;
-          luaModules = with pkgs.luaPackages; [
-            luarocks
-          ];
+          luaModules = lib.attrValues {
+            inherit (pkgs.luaPackages) lgi;
+          };
         };
       };
 
@@ -124,17 +124,16 @@
     memoryPercent = 50;
   };
 
-  #   xdg.portal = {
-  #     enable = true;
-  #     wlr.enable = false;
-  #     extraPortals = [
-  #       pkgs.xdg-desktop-portal-gtk
-  #       inputs.xdg-portal-hyprland.packages.${pkgs.system}.default
-  #     ];
-  #   };
+  xdg.portal = {
+    enable = true;
+    # wlr.enable = false;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      # inputs.xdg-portal-hyprland.packages.${pkgs.system}.default
+    ];
+  };
 
   #   security = {
-  #     rtkit.enable = true;
   #     pam.services.swaylock = {
   #       text = ''
   #         auth include login

@@ -24,7 +24,7 @@ in {
       ++ ifTheyExist [
         # "mysql"
         # "docker"
-        # "git"
+        "git"
         # "libvirtd"
       ];
 
