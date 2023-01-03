@@ -31,7 +31,7 @@ NixOS / Home-Manager / Flake
 - Terminal : Alacritty
 - Bar : Wibar
 
-[![Alt text](https://i.imgur.com/woPmvSU.png)](https://imgur.com)
+[![Alt text](https://i.imgur.com/zbty12A.png)](https://imgur.com)
 
 </p>
 
