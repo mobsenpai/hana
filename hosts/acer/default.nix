@@ -146,9 +146,8 @@
       libsForQt5.qtstyleplugins
     ];
 
-    variables = {
-      # add here
-    };
+    variables = {};
+    sessionVariables = {};
   };
 
   #   virtualisation = {

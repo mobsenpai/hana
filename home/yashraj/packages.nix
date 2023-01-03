@@ -16,8 +16,6 @@ in {
   home.packages = with pkgs; [
     pcmanfm
     mpv-unwrapped
-    # pamixer
-    scrot
     pavucontrol
     pulseaudio
     neofetch
@@ -53,10 +51,11 @@ in {
     # inotify-tools
     # keepassxc
     # libappindicator
-    # libnotify
+    libnotify
     # libsecret
     # libreoffice-fresh
     # nodejs
+    # pamixer
     # psmisc
     # python3
     # rsync
