@@ -48,6 +48,7 @@ in {
   qt = {
     enable = true;
     platformTheme = "gtk";
+    style = {name = "gtk2";};
     # platformTheme = "gnome";
     # style = {
     #   package = pkgs.adwaita-qt;
