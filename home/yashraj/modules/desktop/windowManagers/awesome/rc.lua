@@ -383,7 +383,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
         }
     }
 end)
-
 -- }}}
 
 -- {{{ Mouse bindings
@@ -630,7 +629,6 @@ client.connect_signal("request::default_keybindings", function()
             {description = "(un)maximize horizontally", group = "client"}),
         })
     end)
-
     -- }}}
 
     -- {{{ Rules
@@ -742,7 +740,6 @@ end)
 naughty.connect_signal("request::display", function(n)
     naughty.layout.box { notification = n }
 end)
-
 -- }}}
 
 -- Enable sloppy focus, so that focus follows mouse.
