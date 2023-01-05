@@ -211,6 +211,9 @@ in {
         printf 'Command not found ->\033[32;05;16m %s\033[0m \n' "$0" >&2
           return 127
       }
+
+      # Startup arguments
+      colorscript -r
     '';
 
     shellAliases = {

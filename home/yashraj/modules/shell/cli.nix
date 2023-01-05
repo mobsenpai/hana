@@ -13,6 +13,7 @@
     ranger
     #ripgrep
     #yt-dlp
+    dt-shell-color-scripts
   ];
 
   programs = {
