@@ -56,8 +56,7 @@
     # };
 
     lain = {
-      type = "git";
-      url = "https://github.com/lcpz/lain.git";
+      url = "github:lcpz/lain";
       flake = false;
     };
 
@@ -66,8 +65,6 @@
     #   url = "https://github.com/lcpz/awesome-freedesktop.git";
     #   flake = false;
     # };
-
-    # vscode extensions
   };
 
   outputs = {
