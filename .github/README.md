@@ -112,7 +112,7 @@ NixOS / Home-Manager / Flake
 - Clipboard
 - Screenshot
 - Volume
-- Theme.lua, firefox css
+- Theme.lua
 - Systemd
 - Hyprland
 
