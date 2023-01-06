@@ -17,10 +17,6 @@
     # ./modules/programs/neovim.nix
     ./modules/programs/vscode.nix
     # ./modules/programs/zathura.nix
-
-    (import ./modules/programs/firefox {
-      inherit config pkgs;
-      package = pkgs.firefox;
-    })
+    ./modules/programs/firefox
   ];
 }
