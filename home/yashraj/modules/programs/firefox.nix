@@ -34,7 +34,10 @@
           "extensions.pocket.onSaveRecs" = false;
         };
 
-        userChrome = import ./userChrome-css.nix;
+        # userChrome = import ./userChrome-css.nix;
+        userChrome = ''
+          @import "${pkgs.firefox-csshacks}/share/firefox-csshacks/chrome/tabs_on_bottom.css";
+        '';
         # userContent = import ./userContent-css.nix {
         #   inherit (config) colorscheme;
         # };

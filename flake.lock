@@ -82,6 +82,22 @@
         "type": "github"
       }
     },
+    "firefox-csshacks": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672924908,
+        "narHash": "sha256-xjC/hcXy19yVR4USt/d/Mv1I0QYQcZcON7T/GcFeJfo=",
+        "owner": "MrOtherGuy",
+        "repo": "firefox-csshacks",
+        "rev": "b88c1f5bf1bcd51800afe15713c70aeeb8dfeba6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MrOtherGuy",
+        "repo": "firefox-csshacks",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -358,6 +374,7 @@
     "root": {
       "inputs": {
         "devshell": "devshell",
+        "firefox-csshacks": "firefox-csshacks",
         "flake-utils": "flake-utils_2",
         "hardware": "hardware",
         "home-manager": "home-manager",
