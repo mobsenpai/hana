@@ -151,14 +151,14 @@ local cpuWibox = wiboxBox1(cpuicon, cpu.widget, "#3c3836", "#1d2021", 0, 0, 5)
 
 
 -- Net
-local neticon = wibox.widget.textbox();
-neticon:set_markup(markup.fontbg("JetBrainsMono Nerd Font Bold 13", "#fe8019", "  "))
-local net = lain.widget.net({
-  settings = function()
-    widget:set_markup(markup.fontfg("JetBrainsMono Nerd Font Bold 10", "#282828", string.format("%#7.1f", net_now.sent) .. " ﰵ " .. string.format("%#7.1f", net_now.received) .. " ﰬ "))
-  end
-})
-local netWibox = wiboxBox1(neticon, net.widget, "#ffffff", "#282828", 0, 0, 10)
+-- local neticon = wibox.widget.textbox();
+-- neticon:set_markup(markup.fontbg("JetBrainsMono Nerd Font Bold 13", "#fe8019", "  "))
+-- local net = lain.widget.net({
+--   settings = function()
+--     widget:set_markup(markup.fontfg("JetBrainsMono Nerd Font Bold 10", "#282828", string.format("%#7.1f", net_now.sent) .. " ﰵ " .. string.format("%#7.1f", net_now.received) .. " ﰬ "))
+--   end
+-- })
+-- local netWibox = wiboxBox1(neticon, net.widget, "#ffffff", "#282828", 0, 0, 10)
 
 
 -- MEM
