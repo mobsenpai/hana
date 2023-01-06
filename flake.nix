@@ -3,18 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
-    hardware.url = "github:nixos/nixos-hardware";
     nix-colors.url = "github:misterio77/nix-colors";
-    # neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     # nur.url = "github:nix-community/NUR";
     devshell.url = "github:numtide/devshell";
     flake-utils.url = "github:numtide/flake-utils";
-    # hyprland.url = "github:hyprwm/Hyprland/";
-    # xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-    # hyprland-contrib.url = "github:hyprwm/contrib";
-    # hyprpicker.url = "github:hyprwm/hyprpicker";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -38,20 +31,11 @@
     # };
 
     # Non Flakes
-    # nyoomNvim = {
-    #   url = "github:nyoom-engineering/nyoom.nvim";
-    #   flake = false;
-    # };
-
-    # sf-mono-liga = {
-    #   url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
-    #   flake = false;
-    # };
-
     firefox-csshacks = {
       url = "github:MrOtherGuy/firefox-csshacks";
       flake = false;
     };
+
     # awesome modules
     # bling = {
     #   type = "git";
@@ -76,6 +60,8 @@
     nixpkgs,
     ...
   } @ inputs: let
+    inherit (self) outputs;
+
     system = "x86_64-linux";
     lib = nixpkgs.lib;
 
@@ -101,26 +87,20 @@
               {
                 # Packages provided by flake inputs
                 # crane-lib = crane.lib.${system};
-                # neovim-nightly = neovim.packages."${system}".neovim;
               }
               // (with nixpkgs-f2k.packages.${system}; {
                 # Overlays with f2k's repo
                 awesome = awesome-git;
                 picom = picom-git;
-                # wezterm = wezterm-git;
               })
               // {
                 # Non Flakes
-                # nyoomNvim-src = nyoomNvim;
-                # sf-mono-liga-src = sf-mono-liga;
                 firefox-csshacks-src = firefox-csshacks;
               }
           )
-          #   nur.overlay
-          #   neovim-nightly.overlay
-          #   nixpkgs-wayland.overlay
+          # nur.overlay
           nixpkgs-f2k.overlays.default
-          #   rust-overlay.overlays.default
+          # rust-overlay.overlays.default
         ]
         # Overlays from ./overlays directory
         ++ (importNixFiles ./overlays);
@@ -129,7 +109,7 @@
     inherit lib pkgs;
 
     # nixos-configs with home-manager
-    nixosConfigurations = import ./hosts inputs;
+    nixosConfigurations = import ./hosts {inherit inputs outputs;};
 
     # dev shell (for direnv)
     devShells.${system}.default = pkgs.mkShell {

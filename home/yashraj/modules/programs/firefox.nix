@@ -3,6 +3,12 @@
   pkgs,
   ...
 }: {
+  home.sessionVariables = {
+    MOZ_USE_XINPUT2 = "1";
+    # Required to use va-api with Firefox
+    MOZ_DISABLE_RDD_SANDBOX = "1";
+  };
+
   programs.firefox = {
     enable = true;
     # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -34,7 +40,6 @@
           "extensions.pocket.onSaveRecs" = false;
         };
 
-        # userChrome = import ./userChrome-css.nix;
         userChrome = ''
           @import "${pkgs.firefox-csshacks}/share/firefox-csshacks/chrome/tabs_on_bottom.css";
         '';

@@ -74,6 +74,6 @@ in {
   home.sessionVariables = {
     # Theming Related Variables
     GTK_THEME = "${config.colorscheme.slug}";
-    XCURSOR_SIZE = "24";
+    XCURSOR_SIZE = "48";
   };
 }

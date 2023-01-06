@@ -1,20 +1,22 @@
-inputs: let
-  inherit (inputs) self;
-  inherit (self.lib) nixosSystem;
-
+{
+  inputs,
+  outputs,
+  ...
+}: let
   sharedModules = [
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = {inherit inputs self;};
+        extraSpecialArgs = {inherit inputs outputs;};
         users.yashraj = ../home/yashraj;
       };
     }
   ];
+  # ++ (builtins.attrValues outputs.nixosModules);
 in {
-  acer = nixosSystem {
+  acer = outputs.lib.nixosSystem {
     modules =
       [
         ./acer

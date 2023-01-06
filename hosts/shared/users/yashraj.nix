@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  outputs,
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -12,6 +11,7 @@ in {
     description = "Yash Raj";
     isNormalUser = true;
     shell = pkgs.zsh;
+    initialPassword = "nixos";
     extraGroups =
       [
         "wheel"
@@ -28,6 +28,6 @@ in {
         # "libvirtd"
       ];
 
-    packages = [pkgs.home-manager];
+    # packages = [pkgs.home-manager];
   };
 }

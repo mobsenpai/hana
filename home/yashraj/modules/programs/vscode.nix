@@ -1,5 +1,5 @@
 {
-  inputs,
+  config,
   pkgs,
   ...
 }: {
@@ -75,6 +75,10 @@
       "security.workspace.trust.enabled" = false;
       "explorer.confirmDelete" = false;
       "breadcrumbs.enabled" = true;
+      # "git.autofetch" = true;
+      # "git.enableSmartCommit" = true;
+      # "git.enableCommitSigning" = true;
+      # "git.verboseCommit" = true;
     };
   };
 }

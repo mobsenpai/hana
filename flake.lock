@@ -174,21 +174,6 @@
         "type": "github"
       }
     },
-    "hardware": {
-      "locked": {
-        "lastModified": 1672644464,
-        "narHash": "sha256-RYlvRMcQNT7FDoDkViijQBHg9g+blsB+U6AvL/gAsPI=",
-        "owner": "nixos",
-        "repo": "nixos-hardware",
-        "rev": "ca29e25c39b8e117d4d76a81f1e229824a9b3a26",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixos-hardware",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -376,7 +361,6 @@
         "devshell": "devshell",
         "firefox-csshacks": "firefox-csshacks",
         "flake-utils": "flake-utils_2",
-        "hardware": "hardware",
         "home-manager": "home-manager",
         "lain": "lain",
         "nix-colors": "nix-colors",

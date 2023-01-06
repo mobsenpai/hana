@@ -1,7 +1,7 @@
 {
+  config,
   lib,
   pkgs,
-  inputs,
   ...
 }: {
   imports = [
@@ -16,15 +16,25 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [
-      # "i915.force_probe=46a6"
-      # "i915.enable_psr=0"
-      # "i915.enable_guc=2"
-      # "i8042.direct"
-      # "i8042.dumbkbd"
-    ];
 
-    supportedFilesystems = ["btrfs"];
+    # Make modules available to modprobe
+    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
+
+    initrd = {
+      systemd.enable = true;
+      supportedFilesystems = ["btrfs"];
+    };
+
+    # Load modules on boot
+    kernelModules = ["acpi_call"];
+
+    kernelParams = [
+      "i915.force_probe=46a6"
+      "i915.enable_psr=0"
+      "i915.enable_guc=2"
+      "i8042.direct"
+      "i8042.dumbkbd"
+    ];
 
     loader = {
       efi = {
@@ -97,7 +107,7 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = [
+      extraPackages = with pkgs; [
         # intel-compute-runtime
         # intel-media-driver
         # libva
@@ -143,6 +153,7 @@
 
   environment = {
     systemPackages = with pkgs; [
+      acpi
       libsForQt5.qtstyleplugins
     ];
 
