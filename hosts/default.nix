@@ -14,7 +14,6 @@
       };
     }
   ];
-  # ++ (builtins.attrValues outputs.nixosModules);
 in {
   acer = outputs.lib.nixosSystem {
     modules =

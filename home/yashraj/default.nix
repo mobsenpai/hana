@@ -12,6 +12,8 @@
     ./modules/colorschemes
     ./modules/shell
     ./modules/desktop/windowManagers/awesome
-    ./modules/programs
+    ./modules/programs/alacritty.nix
+    ./modules/programs/firefox.nix
+    ./modules/programs/vscode.nix
   ];
 }

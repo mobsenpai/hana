@@ -2,7 +2,6 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }: {
   imports = [
@@ -21,15 +20,6 @@
     supportedLocales = ["en_US.UTF-8/UTF-8"];
   };
 
-  # console = let
-  #   normal = ["181825" "F38BA8" "A6E3A1" "F9E2AF" "89B4FA" "F5C2E7" "94E2D5" "BAC2DE"];
-  #   bright = ["1E1E2E" "F38BA8" "A6E3A1" "F9E2AF" "89B4FA" "F5C2E7" "94E2D5" "A6ADC8"];
-  # in {
-  #   colors = normal ++ bright;
-  #   font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
-  #   keyMap = "us";
-  # };
-
   environment = {
     binsh = "${pkgs.bash}/bin/bash";
     shells = with pkgs; [zsh];
@@ -43,7 +33,7 @@
       jq
       # lm_sensors
       # lz4
-      # ntfs3g
+      ntfs3g
       # nvme-cli
       # p7zip
       # pciutils
@@ -58,6 +48,10 @@
     #   eval $(gnome-keyring-daemon --start --components=ssh)
     #   eval $(ssh-agent)
     # '';
+    loginShellInit = ''
+      dbus-update-activation-environment --systemd DISPLAY
+      eval $(gnome-keyring-daemon --start --components=ssh)
+    '';
 
     variables = {
       EDITOR = "vim";
@@ -71,8 +65,8 @@
 
     # adb.enable = true;
     dconf.enable = true;
-    # nm-applet.enable = true;
-    # seahorse.enable = true;
+    nm-applet.enable = true;
+    seahorse.enable = true;
 
     # gnupg.agent = {
     #   enable = true;
@@ -102,8 +96,6 @@
     # printing.enable = true;
     # fstrim.enable = true;
 
-    udev.packages = with pkgs; [gnome.gnome-settings-daemon];
-
     dbus = {
       enable = true;
       packages = with pkgs; [dconf gcr];
@@ -113,6 +105,7 @@
       glib-networking.enable = true;
       gnome-keyring.enable = true;
     };
+    udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
     pipewire = {
       enable = true;
@@ -144,9 +137,6 @@
       enable = true;
       killUnconfinedConfinables = true;
       packages = [pkgs.apparmor-profiles];
-    };
-    pam = {
-      # services.login.enableGnomeKeyring = true;
     };
     polkit.enable = true;
   };

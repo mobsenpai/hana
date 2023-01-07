@@ -22,12 +22,10 @@ in {
         "systemd-journal"
       ]
       ++ ifTheyExist [
+        "git"
         # "mysql"
         # "docker"
-        "git"
         # "libvirtd"
       ];
-
-    # packages = [pkgs.home-manager];
   };
 }

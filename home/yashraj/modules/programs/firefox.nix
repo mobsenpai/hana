@@ -42,6 +42,7 @@
 
         userChrome = ''
           @import "${pkgs.firefox-csshacks}/share/firefox-csshacks/chrome/tabs_on_bottom.css";
+          @import "${pkgs.firefox-csshacks}/share/firefox-csshacks/chrome/combined_favicon_and_tab_close_button.css";
         '';
         # userContent = import ./userContent-css.nix {
         #   inherit (config) colorscheme;
