@@ -80,6 +80,16 @@
 
     # btrfs.autoScrub.enable = true;
     # acpid.enable = true;
+    # thermald.enable = true;
+    # upower.enable = true;
+
+    # tlp = {
+    #   enable = true;
+    #   settings = {
+    #     START_CHARGE_THRESH_BAT0 = 0;
+    #     STOP_CHARGE_THRESH_BAT0 = 80;
+    #   };
+    # };
   };
 
   hardware = {
@@ -123,6 +133,11 @@
   environment = {
     systemPackages = with pkgs; [
       libsForQt5.qtstyleplugins
+      # acpi
+      # brightnessctl
+      # libva-utils
+      # ocl-icd
+      # vulkan-tools
     ];
 
     variables = {};

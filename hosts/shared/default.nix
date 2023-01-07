@@ -138,6 +138,7 @@
       killUnconfinedConfinables = true;
       packages = [pkgs.apparmor-profiles];
     };
+    # pam = {};
     polkit.enable = true;
   };
 }
