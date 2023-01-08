@@ -48,14 +48,22 @@
         #   inherit (config) colorscheme;
         # };
 
-        extraConfig =
-          builtins.readFile "${pkgs.arkenfox}/share/arkenfox/user.js"
-          ''
-            user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-            user_pref("browser.compactmode.show", true);
-            user_pref("browser.uidensity", 1);
-            user_pref("svg.context-properties.content.enabled", true);
-          '';
+        extraConfig = ''
+          user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+          user_pref("browser.compactmode.show", true);
+          user_pref("browser.uidensity", 1);
+          user_pref("svg.context-properties.content.enabled", true);
+
+          // Arkenfox User.js
+          ${builtins.readFile "${pkgs.arkenfox}/share/arkenfox/user.js"}
+
+          // Arkenfox overrides
+          user_pref('keyword.enabled', true);
+          user_pref('privacy.resistFingerprinting', false);
+          user_pref('privacy.resistFingerprinting.letterboxing', false);
+          user_pref('privacy.sanitize.sanitizeOnShutdown', false);
+          user_pref('privacy.clearOnShutdown.offlineApps', false);
+        '';
       };
     };
   };
