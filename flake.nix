@@ -36,6 +36,11 @@
       flake = false;
     };
 
+    arkenfox = {
+      url = "github:arkenfox/user.js";
+      flake = false;
+    };
+
     # awesome modules
     # bling = {
     #   type = "git";
@@ -96,6 +101,7 @@
               // {
                 # Non Flakes
                 firefox-csshacks-src = firefox-csshacks;
+                arkenfox-src = arkenfox;
               }
           )
           # nur.overlay
