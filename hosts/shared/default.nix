@@ -43,14 +43,10 @@
       zip
     ];
 
-    # loginShellInit = ''
-    #   dbus-update-activation-environment --systemd DISPLAY
-    #   eval $(gnome-keyring-daemon --start --components=ssh)
-    #   eval $(ssh-agent)
-    # '';
     loginShellInit = ''
       dbus-update-activation-environment --systemd DISPLAY
-      eval $(gnome-keyring-daemon --start --components=ssh)
+      # eval $(gnome-keyring-daemon --start --components=ssh)
+      # eval $(ssh-agent)
     '';
 
     variables = {
