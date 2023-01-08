@@ -23,11 +23,11 @@
     };
 
     kernelParams = [
-      "i915.force_probe=46a6"
-      "i915.enable_psr=0"
-      "i915.enable_guc=2"
-      "i8042.direct"
-      "i8042.dumbkbd"
+      # "i915.force_probe=46a6"
+      # "i915.enable_psr=0"
+      # "i915.enable_guc=2"
+      # "i8042.direct"
+      # "i8042.dumbkbd"
     ];
 
     loader = {
@@ -36,7 +36,6 @@
         efiSysMountPoint = "/boot";
       };
 
-      # systemd-boot.enable = true;
       systemd-boot.enable = false;
 
       grub = {
@@ -98,13 +97,13 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-        intel-compute-runtime
-        intel-media-driver # iHD
-        libva
-        libvdpau
-        libvdpau-va-gl
-        (vaapiIntel.override {enableHybridCodec = true;}) # i965 (older but works better for Firefox/Chromium)
-        vaapiVdpau
+        # intel-compute-runtime
+        # intel-media-driver # iHD
+        # libva
+        # libvdpau
+        # libvdpau-va-gl
+        # (vaapiIntel.override {enableHybridCodec = true;}) # i965 (older but works better for Firefox/Chromium)
+        # vaapiVdpau
       ];
     };
 
