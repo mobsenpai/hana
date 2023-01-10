@@ -25,7 +25,7 @@ NixOS / Home-Manager / Flake
 <br>
 
 <div>
-<img src="https://raw.githubusercontent.com/awesomeWM/apidoc/gh-pages/images/AUTOGEN_wibox_logo_logo_and_name.svg" align=right />
+<img src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" align=right />
 
 <table align=left><tr><td>
 <b>- Operating System: </b><br />
@@ -165,7 +165,7 @@ NixOS / Home-Manager / Flake
 
 <br>
 
-<p align="center"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
+<p align="left"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
 </div>
 
 </div>
