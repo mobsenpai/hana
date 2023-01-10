@@ -102,6 +102,7 @@
                 # Non Flakes
                 firefox-csshacks-src = firefox-csshacks;
                 arkenfox-src = arkenfox;
+                lain-src = lain;
               }
           )
           # nur.overlay
