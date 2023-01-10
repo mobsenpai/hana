@@ -25,7 +25,7 @@ NixOS / Home-Manager / Flake
 <br>
 
 <div>
-<img src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" align=right width="120" height="120"/>
+<img src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" align=right width="300" height="300"/>
 
 <table align=left><tr><td>
 <b>- Operating System: </b><br />
@@ -51,11 +51,7 @@ NixOS / Home-Manager / Flake
 
 <br>
 
-<p align="center">
-
-[![Alt text](https://i.imgur.com/zbty12A.png)](https://imgur.com)
-
-</p>
+<img src="https://i.imgur.com/zbty12A.png" alt="img" align="center" width="600px">
 
 <br>
 
@@ -163,8 +159,6 @@ NixOS / Home-Manager / Flake
 **Thanks to all these amazing people.**
 
 **[rxyhn](https://github.com/rxyhn) - [JavaCafe01](https://github.com/JavaCafe01) - [raven2cz](https://github.com/raven2cz)**
-
-<img src="https://media.giphy.com/media/fub4kHI1NlZrCauLkJ/giphy.gif" align=left width="120" height="120" />
 
 <p align="left"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
 
