@@ -14,28 +14,48 @@
 Mob's Dotfiles
 ```
 
-<br>
-
 ```ocaml
 NixOS / Home-Manager / Flake
 ```
+
+</div>
+
+## :snowflake: <samp>Information</samp>
+
+<br>
+
+<div>
+<img src="https://raw.githubusercontent.com/awesomeWM/apidoc/gh-pages/images/AUTOGEN_wibox_logo_logo_and_name.svg" align=right />
+
+<table align=left><tr><td>
+<b>- Operating System: </b><br />
+<b>- Window Manager: </b><br />
+<b>- Compositor: </b><br />
+<b>- Terminal: </b><br />
+<b>- Shell: </b><br />
+<b>- Editor: </b><br />
+<b>- GPU: </b><br /></table>
+
+<table><tr><td>
+<a href="https://nixos.org">NixOS</a><br />
+<a href="https://awesomewm.org">AwesomeWM</a><br />
+<a href="https://github.com/yshui/picom">Picom</a><br />
+<a href="https://wezfurlong.org/wezterm/">Alacritty</a><br />
+<a href="https://www.zsh.org">ZSH</a><br />
+<a href="https://helix-editor.com">Vscode</a><br />
+<a href="https://www.nvidia.com">Nvidia</a><br /></table>
+</div>
+
+<br>
+<br>
 
 <br>
 
 <p align="center">
 
-# Setup details
-
-- WM : Awesome
-- Distro : Nixos(home manager + flake)
-- Terminal : Alacritty
-- Bar : Wibar
-
 [![Alt text](https://i.imgur.com/zbty12A.png)](https://imgur.com)
 
 </p>
-
-</div>
 
 <br>
 
@@ -111,16 +131,13 @@ NixOS / Home-Manager / Flake
 - Emoji
 - Clipboard
 - Screenshot
-- Volume
 - Theme.lua
 - Systemd
 - Hyprland
 
 <br>
-<br>
-<br>
 
-## :snowflake: <samp>Info</samp>
+## :busts_in_silhouette: <samp>Info</samp>
 
 <table align="right">
   <tr>
@@ -143,6 +160,9 @@ NixOS / Home-Manager / Flake
   </tr>
 </table>
 
-<p align="center"><a href="https://github.com/rxyhn/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
+<div>
+![Alt Text](https://media.giphy.com/media/fub4kHI1NlZrCauLkJ/giphy.gif)
+<p align="center"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
+</div>
 
 </div>
