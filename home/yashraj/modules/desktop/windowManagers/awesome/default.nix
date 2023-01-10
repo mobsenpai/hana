@@ -19,7 +19,6 @@
   };
 
   imports = [
-    # ../../dunst
     ../../gtk.nix
     ../../picom.nix
     # ../../rofi.nix
