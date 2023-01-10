@@ -12,6 +12,7 @@
 
     file = {
       ".config/awesome/rc.lua".source = ./rc.lua;
+      ".config/awesome/themes".source = ./themes;
       ".config/awesome/lain".source = inputs.lain.outPath;
       # ".config/awesome/modules/bling".source = inputs.bling.outPath;
       # ".config/awesome/modules/freedesktop".source = inputs.freedesktop.outPath;
