@@ -49,8 +49,6 @@ NixOS / Home-Manager / Flake
 <br>
 <br>
 
-<br>
-
 <img src="https://i.imgur.com/zbty12A.png" alt="img" align="center" width="600px">
 
 <br>
@@ -158,10 +156,14 @@ NixOS / Home-Manager / Flake
   </tr>
 </table>
 
+<div align="center">
+
 **Thanks to all these amazing people.**
 
 **[rxyhn](https://github.com/rxyhn) - [JavaCafe01](https://github.com/JavaCafe01) - [raven2cz](https://github.com/raven2cz)**
 
 <p align="left"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
+
+</div>
 
 </div>
