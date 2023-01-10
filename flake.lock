@@ -214,11 +214,11 @@
     "lain": {
       "flake": false,
       "locked": {
-        "lastModified": 1672767062,
-        "narHash": "sha256-KFTegs3nimquylepeqnAD25HdhCbACHxce0Sbv2CysY=",
+        "lastModified": 1673009677,
+        "narHash": "sha256-Z35+d/q9iqTMHT1kuT5Z4xt1rrNGQSGZMVu+daPCEIU=",
         "owner": "lcpz",
         "repo": "lain",
-        "rev": "506ecf2ea27306c205ed816d614b1349df30b7f9",
+        "rev": "e7bc8c04e94756038dec53bbd13329aa1d1d2ccd",
         "type": "github"
       },
       "original": {

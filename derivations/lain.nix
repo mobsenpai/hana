@@ -16,7 +16,7 @@ stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/share/lain
     cp -r $src/* $out/share/lain
-    sed 's/lain/module/g' "${pkgs.lain}/share/lain/init.lua"
+    sed -i 's/lain/module/g' $out/share/lain/init.lua
   '';
 
   meta = with lib; {
