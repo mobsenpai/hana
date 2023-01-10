@@ -161,7 +161,7 @@ NixOS / Home-Manager / Flake
 </table>
 
 <div>
-![Alt Text](https://media.giphy.com/media/fub4kHI1NlZrCauLkJ/giphy.gif)
+<img src="https://media.giphy.com/media/fub4kHI1NlZrCauLkJ/giphy.gif" align=left />
 <p align="center"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
 </div>
 
