@@ -25,7 +25,7 @@ NixOS / Home-Manager / Flake
 <br>
 
 <div>
-<img src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" align=right width="250" height="250"/>
+<img src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" align=right width="200" height="200"/>
 
 <table align=left><tr><td>
 <b>- Operating System: </b><br />
