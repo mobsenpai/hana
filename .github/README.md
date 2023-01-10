@@ -25,26 +25,21 @@ NixOS / Home-Manager / Flake
 <br>
 
 <div>
-<img src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" align=right width="200" height="200"/>
 
-<table align=left><tr><td>
-<b>- Operating System: </b><br />
-<b>- Window Manager: </b><br />
-<b>- Compositor: </b><br />
-<b>- Terminal: </b><br />
-<b>- Shell: </b><br />
-<b>- Editor: </b><br />
-<b>- GPU: </b><br /></table>
+---
 
-<table><tr><td>
-<a href="https://nixos.org">NixOS</a><br />
-<a href="https://awesomewm.org">AwesomeWM</a><br />
-<a href="https://github.com/yshui/picom">Picom</a><br />
-<a href="https://wezfurlong.org/wezterm/">Alacritty</a><br />
-<a href="https://www.zsh.org">ZSH</a><br />
-<a href="https://helix-editor.com">Vscode</a><br />
-<a href="https://www.nvidia.com">Nvidia</a><br /></table>
-</div>
+<img align="right" src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" width="50%" />
+
+|                 |                        acer                         |
+| :-------------: | :-------------------------------------------------: |
+|       OS        |             [NixOS](https://nixos.org/)             |
+| WM / Compositor |  [AwesomeWM](https://github.com/awesomeWM/awesome)  |
+|    Terminal     | [Alacritty](https://github.com/alacritty/alacritty) |
+|     Editor      |    [Vscode](https://github.com/microsoft/vscode)    |
+|  File Manager   |     [Pcmanfm](https://github.com/lxde/pcmanfm)      |
+|      Shell      |             [Zsh](https://www.zsh.org/)             |
+
+---
 
 <br>
 <br>
@@ -122,11 +117,9 @@ NixOS / Home-Manager / Flake
 
 8. Stuff still in mind
 
-```
-- Emoji
-- Clipboard
-- Screenshot
-- Theme.lua
+```ocaml
+- Modules
+- Config changes as per requirement or mood
 - Systemd
 - Hyprland
 ```
