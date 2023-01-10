@@ -25,7 +25,7 @@ NixOS / Home-Manager / Flake
 <br>
 
 <div>
-<img src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" align=right width="300" height="300"/>
+<img src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" align=right width="250" height="250"/>
 
 <table align=left><tr><td>
 <b>- Operating System: </b><br />
@@ -124,12 +124,14 @@ NixOS / Home-Manager / Flake
 
 8. Stuff still in mind
 
+```
 - Emoji
 - Clipboard
 - Screenshot
 - Theme.lua
 - Systemd
 - Hyprland
+```
 
 <br>
 
