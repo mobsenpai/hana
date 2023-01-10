@@ -26,9 +26,7 @@ NixOS / Home-Manager / Flake
 
 <div>
 
----
-
-<img align="right" src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" width="50%" />
+<img align="right" src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" width="30%" />
 
 |                 |                        acer                         |
 | :-------------: | :-------------------------------------------------: |
@@ -38,8 +36,6 @@ NixOS / Home-Manager / Flake
 |     Editor      |    [Vscode](https://github.com/microsoft/vscode)    |
 |  File Manager   |     [Pcmanfm](https://github.com/lxde/pcmanfm)      |
 |      Shell      |             [Zsh](https://www.zsh.org/)             |
-
----
 
 <br>
 <br>
