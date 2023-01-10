@@ -160,8 +160,10 @@ NixOS / Home-Manager / Flake
   </tr>
 </table>
 
+<div align="left">
 <img src="https://media.giphy.com/media/fub4kHI1NlZrCauLkJ/giphy.gif" align=left width="120" height="120" />
 
-<p align="left"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
+<p align="center"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
+</div>
 
 </div>
