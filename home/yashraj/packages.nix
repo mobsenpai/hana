@@ -7,8 +7,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "mpv-player";
       repo = "mpv";
-      rev = "48ad2278c7a1fc2a9f5520371188911ef044b32c";
-      sha256 = "sha256-6qbv34ysNQbI/zff6rAnVW4z6yfm2t/XL/PF7D/tjv4=";
+      rev = "HEAD";
+      sha256 = "sha256-/JhOQWqI+6lmAPDV/iYC0X2RrdrAKllKA1Wfp3i2ecs=";
     };
   });
 in {
@@ -39,7 +39,7 @@ in {
     ffmpeg-full
     fzf
     # glib
-    # glxinfo
+    glxinfo
     # gnumake
     # gnuplot
     # gnused

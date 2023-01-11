@@ -4,7 +4,7 @@
   ...
 }: {
   home.sessionVariables = {
-    MOZ_USE_XINPUT2 = "1";
+    # MOZ_USE_XINPUT2 = "1";
     # Required to use va-api with Firefox
     MOZ_DISABLE_RDD_SANDBOX = "1";
   };
@@ -52,14 +52,12 @@
           user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
           user_pref("browser.compactmode.show", true);
           user_pref("browser.uidensity", 1);
-          user_pref("svg.context-properties.content.enabled", true);
 
           // Arkenfox User.js
           ${builtins.readFile "${pkgs.arkenfox}/share/arkenfox/user.js"}
 
           // Arkenfox overrides
           user_pref('keyword.enabled', true);
-          user_pref('privacy.resistFingerprinting', false);
           user_pref('privacy.resistFingerprinting.letterboxing', false);
           user_pref('privacy.sanitize.sanitizeOnShutdown', false);
           user_pref('privacy.clearOnShutdown.offlineApps', false);
@@ -67,6 +65,7 @@
           user_pref("browser.startup.homepage", "moz-extension://b2b767bc-408e-4254-ba65-a39168d8ee25/index.html");
           user_pref("browser.newtabpage.enabled", true);
           user_pref("media.eme.enabled", true);
+          user_pref("network.http.referer.XOriginPolicy", 0);
         '';
       };
     };

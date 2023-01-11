@@ -63,9 +63,9 @@
       windowManager = {
         awesome = {
           enable = true;
-          luaModules = lib.attrValues {
-            # inherit (pkgs.luaPackages) lgi;
-          };
+          # luaModules = lib.attrValues {
+          #   inherit (pkgs.luaPackages) lgi;
+          # };
         };
       };
 
