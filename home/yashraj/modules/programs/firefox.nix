@@ -58,11 +58,11 @@
 
           // Arkenfox overrides
           user_pref('keyword.enabled', true);
+          user_pref("privacy.resistFingerprinting", false);
           user_pref('privacy.resistFingerprinting.letterboxing', false);
           user_pref('privacy.sanitize.sanitizeOnShutdown', false);
           user_pref('privacy.clearOnShutdown.offlineApps', false);
           user_pref("browser.startup.page", 3);
-          user_pref("browser.startup.homepage", "moz-extension://b2b767bc-408e-4254-ba65-a39168d8ee25/index.html");
           user_pref("browser.newtabpage.enabled", true);
           user_pref("media.eme.enabled", true);
           user_pref("network.http.referer.XOriginPolicy", 0);
