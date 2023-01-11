@@ -7,13 +7,12 @@
   boot.blacklistedKernelModules = ["nouveau"];
   # boot.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
 
-  environment = {
-    variables = {
-      # LIBVA_DRIVER_NAME = "iHD";
-      # VDPAU_DRIVER = "va_gl";
-      LIBVA_DRIVER_NAME = "nvidia";
-    };
-  };
+  # environment = {
+  #   variables = {
+  #     LIBVA_DRIVER_NAME = "nvidia";
+  #     VDPAU_DRIVER = "nvidia";
+  #   };
+  # };
 
   hardware = {
     nvidia = {
@@ -22,8 +21,8 @@
       powerManagement.enable = true;
     };
 
-    opengl = {
-      extraPackages = with pkgs; [nvidia-vaapi-driver];
-    };
+    # opengl = {
+    #   extraPackages = with pkgs; [nvidia-vaapi-driver];
+    # };
   };
 }

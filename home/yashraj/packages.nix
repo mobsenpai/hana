@@ -39,7 +39,7 @@ in {
     ffmpeg-full
     fzf
     # glib
-    glxinfo
+    # glxinfo
     # gnumake
     # gnuplot
     # gnused
