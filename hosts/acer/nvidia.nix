@@ -5,14 +5,15 @@
 }: {
   services.xserver.videoDrivers = ["nvidia"];
   boot.blacklistedKernelModules = ["nouveau"];
-  # boot.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
 
-  # environment = {
-  #   variables = {
-  #     LIBVA_DRIVER_NAME = "nvidia";
-  #     VDPAU_DRIVER = "nvidia";
-  #   };
-  # };
+  environment = {
+    variables = {
+      LIBVA_DRIVER_NAME = "nvidia";
+      VDPAU_DRIVER = "nvidia";
+      # only for nvidia 470
+      __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
+    };
+  };
 
   hardware = {
     nvidia = {
@@ -21,8 +22,8 @@
       powerManagement.enable = true;
     };
 
-    # opengl = {
-    #   extraPackages = with pkgs; [nvidia-vaapi-driver];
-    # };
+    opengl = {
+      extraPackages = with pkgs; [nvidia-vaapi-driver];
+    };
   };
 }

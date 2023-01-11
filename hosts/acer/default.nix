@@ -99,9 +99,9 @@
       extraPackages = with pkgs; [
         # intel-compute-runtime
         # intel-media-driver # iHD
-        # libva
-        # libvdpau
-        # libvdpau-va-gl
+        libva
+        libvdpau
+        libvdpau-va-gl
         # (vaapiIntel.override {enableHybridCodec = true;}) # i965 (older but works better for Firefox/Chromium)
         # vaapiVdpau
       ];
