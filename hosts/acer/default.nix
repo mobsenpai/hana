@@ -101,7 +101,7 @@
         # intel-media-driver # iHD
         libva
         libvdpau
-        libvdpau-va-gl
+        # libvdpau-va-gl
         # (vaapiIntel.override {enableHybridCodec = true;}) # i965 (older but works better for Firefox/Chromium)
         # vaapiVdpau
       ];
