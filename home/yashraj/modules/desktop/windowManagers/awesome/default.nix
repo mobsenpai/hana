@@ -5,6 +5,11 @@
   ...
 }: {
   home = {
+    packages = with pkgs; [
+      feh
+      volumeicon
+    ];
+
     sessionVariables = {
       BROWSER = "firefox";
       EDITOR = "nvim";

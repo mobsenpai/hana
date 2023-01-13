@@ -20,7 +20,6 @@ in {
     neofetch
     neovim
     htop
-    volumeicon
     killall
 
     # alsa-lib

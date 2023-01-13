@@ -42,16 +42,16 @@
     };
 
     # awesome modules
+    lain = {
+      url = "github:lcpz/lain";
+      flake = false;
+    };
+
     # bling = {
     #   type = "git";
     #   url = "https://github.com/BlingCorp/bling.git";
     #   flake = false;
     # };
-
-    lain = {
-      url = "github:lcpz/lain";
-      flake = false;
-    };
 
     # freedesktop = {
     #   type = "git";
