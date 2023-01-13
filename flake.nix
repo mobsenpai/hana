@@ -36,10 +36,10 @@
       flake = false;
     };
 
-    arkenfox = {
-      url = "github:arkenfox/user.js";
-      flake = false;
-    };
+    # arkenfox = {
+    #   url = "github:arkenfox/user.js";
+    #   flake = false;
+    # };
 
     # awesome modules
     lain = {
@@ -101,7 +101,7 @@
               // {
                 # Non Flakes
                 firefox-csshacks-src = firefox-csshacks;
-                arkenfox-src = arkenfox;
+                # arkenfox-src = arkenfox;
                 lain-src = lain;
               }
           )
