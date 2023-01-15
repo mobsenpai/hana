@@ -355,7 +355,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
             { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
-            s.mylayoutbox,
             s.mytaglist,
             separator,
             s.mypromptbox,
