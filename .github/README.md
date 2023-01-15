@@ -40,7 +40,7 @@ NixOS / Home-Manager / Flake
 <br>
 <br>
 
-<img src="https://i.imgur.com/zbty12A.png" alt="img" align="center" width="600px">
+<img src="https://i.imgur.com/yudCRzf.png" alt="img" align="center" width="600px">
 
 <br>
 
