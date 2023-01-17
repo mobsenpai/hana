@@ -1,4 +1,7 @@
--- rc.lua
+-- ░█▄█░█▀█░█▀▄░█▀▀░█▀▀░█▀█░█▀█░█▀█░▀█▀░▀░█▀▀░░░█▀█░█░█░█▀▀░█▀▀░█▀█░█▄█░█▀▀
+-- ░█░█░█░█░█▀▄░▀▀█░█▀▀░█░█░█▀█░█▀▀░░█░░░░▀▀█░░░█▀█░█▄█░█▀▀░▀▀█░█░█░█░█░█▀▀
+-- ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀▀▀░▀░▀░▀░▀░▀░░░▀▀▀░░░▀▀▀░░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
+
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -28,11 +31,17 @@ end)
 -- Default shell
 awful.util.shell = "sh"
 
--- Initialize Theme
+-- ░▀█▀░█░█░█▀▀░█▄█░█▀▀
+-- ░░█░░█▀█░█▀▀░█░█░█▀▀
+-- ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀
+
 local theme = "powerline"
 beautiful.init(gfs.get_configuration_dir() .. "themes/" .. theme .. "/theme.lua")
 
--- Import Configuration
+-- ░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀░█░█░█▀▄░█▀█░▀█▀░▀█▀░█▀█░█▀█░█▀▀
+-- ░█░░░█░█░█░█░█▀▀░░█░░█░█░█░█░█▀▄░█▀█░░█░░░█░░█░█░█░█░▀▀█
+-- ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
+
 require("themes/" .. theme .. "/configuration")
 
 -- Screen Tags
