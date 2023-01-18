@@ -63,10 +63,10 @@ in {
   home.pointerCursor = {
     name = "${
       if config.colorscheme.kind == "light"
-      then "Bibata-Modern-Classic"
-      else "Bibata-Modern-Ice"
+      then "phinger-cursors"
+      else "phinger-cursors-light"
     }";
-    package = pkgs.bibata-cursors;
+    package = pkgs.phinger-cursors;
     size = 24;
     gtk.enable = true;
   };
