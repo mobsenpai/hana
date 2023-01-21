@@ -4,9 +4,7 @@
   ...
 }: let
   inherit (inputs.nix-colors) colorSchemes;
-
   # Custom colorscheme list
-  # default-dark = (import ./default-dark.nix).colorscheme;
   gruvbox-medium = (import ./gruvbox-medium.nix).colorscheme;
 in {
   imports = [

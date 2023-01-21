@@ -114,7 +114,6 @@ NixOS / Home-Manager / Flake
 8. Stuff still in mind
 
 ```ocaml
-- Modules
 - Config changes as per requirement or mood
 - Systemd
 - Hyprland

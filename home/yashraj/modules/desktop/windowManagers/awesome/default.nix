@@ -13,33 +13,33 @@ in {
     Xft.autohint: false
     Xft.hintstyle: hintfull
     Xft.lcdfilter: lcddefault
-    *foreground: #${colors.base0F}
+    *foreground: #${colors.base07}
     *background: #${colors.base00}
     *.cursorColor:  #${colors.base05}
     ! black
     *color0: #${colors.base00}
-    *color8: #${colors.base08}
+    *color8: #${colors.base03}
     ! red
-    *color1: #${colors.base09D}
-    *color9: #${colors.base09}
+    *color1: #${colors.base08D}
+    *color9: #${colors.base08}
     ! green
-    *color2: #${colors.base0AD}
-    *color10: #${colors.base0A}
+    *color2: #${colors.base0BD}
+    *color10: #${colors.base0B}
     ! yellow
-    *color3: #${colors.base0BD}
-    *color11: #${colors.base0B}
+    *color3: #${colors.base0AD}
+    *color11: #${colors.base0A}
     ! blue
-    *color4: #${colors.base0CD}
-    *color12: #${colors.base0C}
+    *color4: #${colors.base0DD}
+    *color12: #${colors.base0D}
     ! magenta
-    *color5: #${colors.base0DD}
-    *color13: #${colors.base0D}
+    *color5: #${colors.base0ED}
+    *color13: #${colors.base0E}
     ! cyan
-    *color6: #${colors.base0ED}
-    *color14: #${colors.base0E}
+    *color6: #${colors.base0CD}
+    *color14: #${colors.base0C}
     ! white
-    *color7: #${colors.base07}
-    *color15: #${colors.base0F}
+    *color7: #${colors.base06}
+    *color15: #${colors.base07}
   '';
 
   home = {

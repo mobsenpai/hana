@@ -33,24 +33,24 @@ theme.lighter_bg = "#3c3836"
 theme.orange = "#d65d0e"
 theme.dark = "#1d2021"
 theme.light = "#3c3836"
-theme.xbackground = xrdb.background or "#131a21"
-theme.xforeground = xrdb.foreground or "#ffffff"
-theme.xcolor0 = xrdb.color0 or "#29343d"
-theme.xcolor1 = xrdb.color1 or "#f9929b"
-theme.xcolor2 = xrdb.color2 or "#7ed491"
-theme.xcolor3 = xrdb.color3 or "#fbdf90"
-theme.xcolor4 = xrdb.color4 or "#a3b8ef"
-theme.xcolor5 = xrdb.color5 or "#ccaced"
-theme.xcolor6 = xrdb.color6 or "#9ce5c0"
-theme.xcolor7 = xrdb.color7 or "#ffffff"
-theme.xcolor8 = xrdb.color8 or "#3b4b58"
-theme.xcolor9 = xrdb.color9 or "#fca2aa"
-theme.xcolor10 = xrdb.color10 or "#a5d4af"
-theme.xcolor11 = xrdb.color11 or "#fbeab9"
-theme.xcolor12 = xrdb.color12 or "#bac8ef"
-theme.xcolor13 = xrdb.color13 or "#d7c1ed"
-theme.xcolor14 = xrdb.color14 or "#c7e5d6"
-theme.xcolor15 = xrdb.color15 or "#eaeaea"
+theme.xbackground = xrdb.background or "#"
+theme.xforeground = xrdb.foreground or "#"
+theme.xcolor0 = xrdb.color0 or "#"
+theme.xcolor1 = xrdb.color1 or "#"
+theme.xcolor2 = xrdb.color2 or "#"
+theme.xcolor3 = xrdb.color3 or "#"
+theme.xcolor4 = xrdb.color4 or "#"
+theme.xcolor5 = xrdb.color5 or "#"
+theme.xcolor6 = xrdb.color6 or "#"
+theme.xcolor7 = xrdb.color7 or "#"
+theme.xcolor8 = xrdb.color8 or "#"
+theme.xcolor9 = xrdb.color9 or "#"
+theme.xcolor10 = xrdb.color10 or "#"
+theme.xcolor11 = xrdb.color11 or "#"
+theme.xcolor12 = xrdb.color12 or "#"
+theme.xcolor13 = xrdb.color13 or "#"
+theme.xcolor14 = xrdb.color14 or "#"
+theme.xcolor15 = xrdb.color15 or "#"
 
 -- Background Colors
 theme.bg_dark = theme.xcolor0
@@ -160,9 +160,8 @@ theme.menu_border_color = theme.xcolor8
 theme.menu_border_width = theme.border_width / 2
 
 -- Notification
-theme.notification_spacing = 19
-theme.notification_border_width = dpi(0)
--- theme.notification_icon_size = 70
+theme.notification_border_color = theme.xcolor8
+theme.notification_icon_size = dpi(70)
 
 -- Set different colors for urgent notifications.
 rnotification.connect_signal('request::rules', function()
