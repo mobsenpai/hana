@@ -138,8 +138,8 @@ end
 -- ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀▀▀░░▀░░▀▀▀
 
 -- Systray
-local systray = wibox.widget.systray()
-systray.base_size = beautiful.systray_icon_size
+local mysystray = wibox.widget.systray()
+mysystray.base_size = beautiful.systray_icon_size
 
 -- Clock
 local clockicon = wibox.widget.textbox()
@@ -398,8 +398,13 @@ screen.connect_signal(
                     memWibox,
                     cpuWibox,
                     clockWibox,
-                    separator,
-                    systray,
+                    {
+                        mysystray,
+                        top = dpi(3),
+                        left = dpi(5),
+                        right = dpi(5),
+                        widget = wibox.container.margin
+                    },
                     -- s.mylayoutbox,
                 }
             }
