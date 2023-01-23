@@ -52,6 +52,7 @@ in {
     libnotify
     # libsecret
     # libreoffice-fresh
+    luaPackages.lua
     # nodejs
     # pamixer
     # psmisc
