@@ -225,11 +225,6 @@ screen.connect_signal(
         awful.wallpaper {
             screen = s,
             widget = {
-                -- horizontal_fit_policy = "fit",
-                -- vertical_fit_policy = "fit",
-                -- image = beautiful.wallpaper,
-                -- widget = wibox.widget.imagebox
-
                 image = beautiful.wallpaper,
                 resize = true,
                 upscale = true,
