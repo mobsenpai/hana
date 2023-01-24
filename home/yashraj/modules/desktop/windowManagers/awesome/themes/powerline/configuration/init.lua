@@ -17,88 +17,12 @@ local naughty = require("naughty")
 local ruled = require("ruled")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 local dpi = require("beautiful.xresources").apply_dpi
-
 -- Theme specific
 local markup = lain.util.markup
 local separator = wibox.widget.textbox()
 separator:set_text(" ")
-
--- ░█░█░▀█▀
--- ░█░█░░█░
--- ░▀▀▀░▀▀▀
-
--- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
-
--- Default modkey.
-modkey = "Mod4"
-
--- Tag layout
--- Table of layouts to cover with awful.layout.inc, order matters.
-tag.connect_signal(
-    "request::default_layouts",
-    function()
-        awful.layout.append_default_layouts(
-            {
-                awful.layout.suit.tile,
-                awful.layout.suit.floating,
-                -- awful.layout.suit.tile.left,
-                -- awful.layout.suit.tile.bottom,
-                -- awful.layout.suit.tile.top,
-                -- awful.layout.suit.fair,
-                -- awful.layout.suit.fair.horizontal,
-                -- awful.layout.suit.spiral,
-                -- awful.layout.suit.spiral.dwindle,
-                -- awful.layout.suit.max,
-                awful.layout.suit.max.fullscreen,
-                -- awful.layout.suit.magnifier,
-                -- awful.layout.suit.corner.nw,
-            }
-        )
-    end
-)
-
--- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-    {"hotkeys", function()
-            hotkeys_popup.show_help(nil, awful.screen.focused())
-        end},
-    {"manual", terminal .. " -e man awesome"},
-    {"edit config", editor_cmd .. " " .. awesome.conffile},
-    {"restart", awesome.restart},
-    {"quit", function()
-            awesome.quit()
-        end}
-}
-
-mymainmenu =
-    awful.menu(
-    {
-        items = {
-            {"awesome", myawesomemenu, beautiful.awesome_icon},
-            {"open terminal", terminal}
-        }
-    }
-)
-
-mylauncher =
-    awful.widget.launcher(
-    {
-        image = beautiful.awesome_icon,
-        menu = mymainmenu
-    }
-)
-
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
 
 -- ░█▀▀░█░█░█▀█░█▀▀░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 -- ░█▀▀░█░█░█░█░█░░░░█░░░█░░█░█░█░█░▀▀█
@@ -132,6 +56,76 @@ local function run_once(cmd_arr)
         awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
     end
 end
+
+-- ░█░█░▀█▀
+-- ░█░█░░█░
+-- ░▀▀▀░▀▀▀
+
+-- Default applications
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "nano"
+editor_cmd = terminal .. " -e " .. editor
+browser = "firefox"
+filemanager = "pcmanfm"
+visual_editor = "code"
+
+-- Default modkey.
+modkey = "Mod4"
+
+-- Tag layout
+-- Table of layouts to cover with awful.layout.inc, order matters.
+tag.connect_signal(
+    "request::default_layouts",
+    function()
+        awful.layout.append_default_layouts(
+            {
+                awful.layout.suit.tile,
+                awful.layout.suit.floating,
+                -- awful.layout.suit.tile.left,
+                -- awful.layout.suit.tile.bottom,
+                -- awful.layout.suit.tile.top,
+                -- awful.layout.suit.fair,
+                -- awful.layout.suit.fair.horizontal,
+                -- awful.layout.suit.spiral,
+                -- awful.layout.suit.spiral.dwindle,
+                -- awful.layout.suit.max,
+                awful.layout.suit.max.fullscreen,
+                -- awful.layout.suit.magnifier,
+                -- awful.layout.suit.corner.nw,
+            }
+        )
+    end
+)
+
+-- {{{ Menu
+local menu = {}
+
+menu.awesome = {
+   { "Edit Config", editor_cmd .. " " .. awesome.conffile },
+   { "Edit Config (GUI)", visual_editor .. " " .. awesome.conffile },
+   { "Restart", awesome.restart },
+   { "Close Session", function () awesome.quit() end }
+}
+
+menu.mainmenu = awful.menu {
+   items = {
+    { "  Terminal", terminal },
+    { "  Explorer", filemanager },
+    { "  Browser", browser },
+    { "  Editor", editor_cmd },
+    { "󰨞  GUI Editor", visual_editor },
+    { "  AwesomeWM", menu.awesome },
+   }
+}
+
+mylauncher =
+    awful.widget.launcher(
+    {
+        image = beautiful.awesome_icon,
+        menu = menu.mainmenu
+    }
+)
+-- }}}
 
 -- ░█░█░▀█▀░█▀▄░█▀▀░█▀▀░▀█▀░█▀▀
 -- ░█▄█░░█░░█░█░█░█░█▀▀░░█░░▀▀█
@@ -231,9 +225,17 @@ screen.connect_signal(
         awful.wallpaper {
             screen = s,
             widget = {
-                horizontal_fit_policy = "fit",
-                vertical_fit_policy = "fit",
+                -- horizontal_fit_policy = "fit",
+                -- vertical_fit_policy = "fit",
+                -- image = beautiful.wallpaper,
+                -- widget = wibox.widget.imagebox
+
                 image = beautiful.wallpaper,
+                resize = true,
+                upscale = true,
+                valign = "center",
+                halign = "center",
+                horizontal_fit_policy = "fit",
                 widget = wibox.widget.imagebox
             }
         }
@@ -423,7 +425,7 @@ awful.mouse.append_global_mousebindings(
             {},
             3,
             function()
-                mymainmenu:toggle()
+                menu.mainmenu:toggle()
             end
         ),
         awful.button({}, 4, awful.tag.viewprev),
@@ -440,7 +442,7 @@ awful.keyboard.append_global_keybindings(
             {modkey},
             "w",
             function()
-                mymainmenu:show()
+                menu.mainmenu:show()
             end,
             {description = "show main menu", group = "awesome"}
         ),

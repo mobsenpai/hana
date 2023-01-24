@@ -4,7 +4,6 @@
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
-local rnotification = require("ruled.notification")
 local dpi = xresources.apply_dpi
 local xrdb = xresources.get_current_theme()
 local gears = require("gears")
@@ -162,14 +161,6 @@ theme.menu_border_width = theme.border_width / 2
 -- Notification
 theme.notification_border_color = theme.xcolor8
 theme.notification_icon_size = dpi(70)
-
--- Set different colors for urgent notifications.
-rnotification.connect_signal('request::rules', function()
-    rnotification.append_rule {
-        rule       = { urgency = 'critical' },
-        properties = { bg = '#ff0000', fg = '#ffffff' }
-    }
-end)
 
 return theme
 
