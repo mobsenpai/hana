@@ -21,15 +21,17 @@ require("awful.hotkeys_popup.keys")
 local dpi = require("beautiful.xresources").apply_dpi
 -- Theme specific
 local markup = lain.util.markup
-local separator = wibox.widget.textbox()
-separator:set_text(" ")
+local separator = {
+    left = dpi(10),
+    widget = wibox.container.margin
+}
 
 -- ░█▀▀░█░█░█▀█░█▀▀░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 -- ░█▀▀░█░█░█░█░█░░░░█░░░█░░█░█░█░█░▀▀█
 -- ░▀░░░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
 -- Module
-function markupBlocks(icon, wbox, bgcolor, fgcolor, wiboxMargin)
+function markupBlocks(icon, wbox, bgcolor, fgcolor)
     return {
         {
             {
@@ -40,8 +42,7 @@ function markupBlocks(icon, wbox, bgcolor, fgcolor, wiboxMargin)
             },
             layout = wibox.container.margin
         },
-        left = wiboxMargin,
-        right = wiboxMargin,
+        left = dpi(10),
         bottom = dpi(3),
         top = dpi(3),
         layout = wibox.container.margin
@@ -89,7 +90,7 @@ tag.connect_signal(
                 -- awful.layout.suit.spiral,
                 -- awful.layout.suit.spiral.dwindle,
                 -- awful.layout.suit.max,
-                awful.layout.suit.max.fullscreen,
+                awful.layout.suit.max.fullscreen
                 -- awful.layout.suit.magnifier,
                 -- awful.layout.suit.corner.nw,
             }
@@ -101,21 +102,27 @@ tag.connect_signal(
 local menu = {}
 
 menu.awesome = {
-   { "Edit Config", editor_cmd .. " " .. awesome.conffile },
-   { "Edit Config (GUI)", visual_editor .. " " .. awesome.conffile },
-   { "Restart", awesome.restart },
-   { "Close Session", function () awesome.quit() end }
+    {"Edit Config", editor_cmd .. " " .. awesome.conffile},
+    {"Edit Config (GUI)", visual_editor .. " " .. awesome.conffile},
+    {"Restart", awesome.restart},
+    {
+        "Close Session",
+        function()
+            awesome.quit()
+        end
+    }
 }
 
-menu.mainmenu = awful.menu {
-   items = {
-    { "  Terminal", terminal },
-    { "  Explorer", filemanager },
-    { "  Browser", browser },
-    { "  Editor", editor_cmd },
-    { "󰨞  GUI Editor", visual_editor },
-    { "  AwesomeWM", menu.awesome },
-   }
+menu.mainmenu =
+    awful.menu {
+    items = {
+        {"  Terminal", terminal},
+        {"  Explorer", filemanager},
+        {"  Browser", browser},
+        {"  Editor", editor_cmd},
+        {"󰨞  GUI Editor", visual_editor},
+        {"  AwesomeWM", menu.awesome}
+    }
 }
 
 mylauncher =
@@ -140,7 +147,7 @@ local clockicon = wibox.widget.textbox()
 clockicon:set_markup(markup.fontbg(beautiful.icon_font .. "11", beautiful.xcolor12, "  "))
 local mytextclock =
     wibox.widget.textclock(markup.fontfg(beautiful.icon_font .. "10", "#ffffff", " %a %b %d - %I:%M %p "))
-local clockWibox = makeWidget(clockicon, mytextclock, beautiful.xcolor4, beautiful.darker_bg, 5)
+local clockWibox = makeWidget(clockicon, mytextclock, beautiful.xcolor4, beautiful.darker_bg)
 
 -- CPU
 local cpuicon = wibox.widget.textbox()
@@ -149,11 +156,13 @@ local cpu =
     lain.widget.cpu(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(beautiful.icon_font .. "10", beautiful.xcolor3, " " .. cpu_now.usage .. "% "))
+            widget:set_markup(
+                markup.fontfg(beautiful.icon_font .. "10", beautiful.xcolor3, " " .. cpu_now.usage .. "% ")
+            )
         end
     }
 )
-local cpuWibox = makeWidget(cpuicon, cpu.widget, beautiful.lighter_bg, beautiful.darker_bg, 5)
+local cpuWibox = makeWidget(cpuicon, cpu.widget, beautiful.lighter_bg, beautiful.darker_bg)
 
 -- Net
 local neticon = wibox.widget.textbox()
@@ -172,7 +181,7 @@ local net =
         end
     }
 )
-local netWibox = makeWidget(neticon, net.widget, beautiful.lighter_bg, beautiful.darker_bg, 0, 0, 10)
+local netWibox = makeWidget(neticon, net.widget, beautiful.lighter_bg, beautiful.darker_bg)
 
 -- MEM
 local memicon = wibox.widget.textbox()
@@ -181,11 +190,13 @@ local mem =
     lain.widget.mem(
     {
         settings = function()
-            widget:set_markup(markup.fontfg(beautiful.icon_font .. "10", beautiful.darker_bg, " " .. mem_now.used .. " MB "))
+            widget:set_markup(
+                markup.fontfg(beautiful.icon_font .. "10", beautiful.darker_bg, " " .. mem_now.used .. " MB ")
+            )
         end
     }
 )
-local memWibox = makeWidget(memicon, mem.widget, beautiful.xcolor6, beautiful.darker_bg, 5)
+local memWibox = makeWidget(memicon, mem.widget, beautiful.xcolor6, beautiful.darker_bg)
 
 -- Weather widget
 local tempicon = wibox.widget.textbox()
@@ -204,17 +215,18 @@ local myWeather =
         end
     }
 )
-local weatherWibox = makeWidget(tempicon, myWeather, beautiful.lighter_bg, beautiful.darker_bg, 5)
+local weatherWibox = makeWidget(tempicon, myWeather, beautiful.lighter_bg, beautiful.darker_bg)
 
 -- Keyboard map indicator and switcher
 local keyboardText =
     wibox.widget {
     font = beautiful.icon_font .. "11",
-    markup = "<span background='" .. beautiful.xcolor13 .. "'" .. "foreground='" .. beautiful.darker_bg .. "'>   "  ..  "</span>",
+    markup = "<span background='" ..
+        beautiful.xcolor13 .. "'" .. "foreground='" .. beautiful.darker_bg .. "'>   " .. "</span>",
     widget = wibox.widget.textbox
 }
 beautiful.mykeyboardlayout = awful.widget.keyboardlayout()
-local keyboardWibox = makeWidget(keyboardText, beautiful.mykeyboardlayout, beautiful.xcolor5, beautiful.darker_bg, 5)
+local keyboardWibox = makeWidget(keyboardText, beautiful.mykeyboardlayout, beautiful.xcolor5, beautiful.darker_bg)
 
 -- ░█░█░█▀█░█░░░█░░░█▀█░█▀█░█▀█░█▀▀░█▀▄
 -- ░█▄█░█▀█░█░░░█░░░█▀▀░█▀█░█▀▀░█▀▀░█▀▄
@@ -246,8 +258,7 @@ screen.connect_signal(
         -- Create a promptbox for each screen
         s.mypromptbox = awful.widget.prompt()
 
-        -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-        -- We need one layoutbox per screen.
+        -- Create layoutbox widget
         s.mylayoutbox =
             awful.widget.layoutbox {
             screen = s,
@@ -337,7 +348,6 @@ screen.connect_signal(
             awful.widget.tasklist {
             screen = s,
             filter = awful.widget.tasklist.filter.currenttags,
-            -- filter  = awful.widget.tasklist.filter.focused,
             buttons = {
                 awful.button(
                     {},
@@ -371,39 +381,36 @@ screen.connect_signal(
         }
 
         -- Create the wibox
-        s.mywibox =
-            awful.wibar {
-            position = "top",
-            screen = s,
-            widget = {
-                layout = wibox.layout.align.horizontal,
+        s.mywibox = awful.wibar({position = beautiful.wibar_position, screen = s})
+
+        s.mywibox:setup {
+            layout = wibox.layout.align.horizontal,
+            expand = "none",
+            {
+                layout = wibox.layout.fixed.horizontal,
+                s.mytaglist,
+                s.mypromptbox,
+                separator,
+                s.mytasklist
+            },
+            {
+                layout = wibox.layout.fixed.horizontal,
+                keyboardWibox
+            },
+            {
+                weatherWibox,
+                memWibox,
+                cpuWibox,
+                clockWibox,
                 {
-                    -- Left widgets
-                    layout = wibox.layout.fixed.horizontal,
-                    -- mylauncher,
-                    s.mytaglist,
-                    separator,
-                    s.mypromptbox
+                    mysystray,
+                    top = dpi(3),
+                    bottom = dpi(3),
+                    left = dpi(10),
+                    right = dpi(5),
+                    widget = wibox.container.margin
                 },
-                s.mytasklist, -- Middle widget
-                {
-                    -- Right widgets
-                    layout = wibox.layout.fixed.horizontal,
-                    separator,
-                    keyboardWibox,
-                    weatherWibox,
-                    memWibox,
-                    cpuWibox,
-                    clockWibox,
-                    {
-                        mysystray,
-                        top = dpi(3),
-                        left = dpi(5),
-                        right = dpi(5),
-                        widget = wibox.container.margin
-                    },
-                    -- s.mylayoutbox,
-                }
+                layout = wibox.layout.fixed.horizontal
             }
         }
     end

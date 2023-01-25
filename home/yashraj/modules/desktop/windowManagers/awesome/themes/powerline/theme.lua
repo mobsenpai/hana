@@ -131,8 +131,6 @@ theme.useless_gap = dpi(8)
 
 -- Wibar
 theme.wibar_height = dpi(25)
-theme.wibar_margin = dpi(15)
-theme.wibar_spacing = dpi(15)
 theme.wibar_bg = theme.xcolor0
 theme.wibar_bg_secondary = theme.xbackground
 theme.wibar_position = "top"
