@@ -395,10 +395,10 @@ screen.connect_signal(
             },
             {
                 layout = wibox.layout.fixed.horizontal,
-                keyboardWibox
+                weatherWibox
             },
             {
-                weatherWibox,
+                keyboardWibox,
                 memWibox,
                 cpuWibox,
                 clockWibox,
