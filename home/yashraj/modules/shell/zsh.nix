@@ -11,6 +11,7 @@ in {
     enableCompletion = true;
     enableAutosuggestions = true;
     dotDir = ".config/zsh";
+    # defaultKeymap = "viins";
     history = {
       save = 10000;
       size = 10000;
@@ -213,7 +214,7 @@ in {
       }
 
       # Startup arguments
-      colorscript -r
+      nitch
     '';
 
     shellAliases = {

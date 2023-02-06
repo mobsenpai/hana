@@ -17,7 +17,7 @@ in {
     mpv-unwrapped
     pavucontrol
     pulseaudio
-    neofetch
+    nitch
     neovim
     htop
     killall

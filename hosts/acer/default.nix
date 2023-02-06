@@ -140,8 +140,10 @@
       # vulkan-tools
     ];
 
-    variables = {};
-    sessionVariables = {};
+    variables = {
+      # GDK_SCALE = "2";
+      # GDK_DPI_SCALE = "0.5";
+    };
   };
 
   system.stateVersion = lib.mkForce "22.11"; # DONT TOUCH THIS

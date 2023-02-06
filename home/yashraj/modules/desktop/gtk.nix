@@ -49,15 +49,6 @@ in {
     enable = true;
     platformTheme = "gtk";
     style = {name = "gtk2";};
-    # platformTheme = "gnome";
-    # style = {
-    #   package = pkgs.adwaita-qt;
-    #   name = "${
-    #     if config.colorscheme.kind == "light"
-    #     then "adwaita"
-    #     else "adwaita-dark"
-    #   }";
-    # };
   };
 
   home.pointerCursor = {
@@ -74,6 +65,6 @@ in {
   home.sessionVariables = {
     # Theming Related Variables
     GTK_THEME = "${config.colorscheme.slug}";
-    XCURSOR_SIZE = "24";
+    XCURSOR_SIZE = "${builtins.toString config.home.pointerCursor.size}";
   };
 }

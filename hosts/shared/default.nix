@@ -23,6 +23,7 @@
   environment = {
     binsh = "${pkgs.bash}/bin/bash";
     shells = with pkgs; [zsh];
+    pathsToLink = ["/share/zsh"];
 
     systemPackages = with pkgs; [
       curl
@@ -52,7 +53,6 @@
     variables = {
       EDITOR = "vim";
       BROWSER = "firefox";
-      # GDK_SCALE = "0.5";
     };
   };
 
