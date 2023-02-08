@@ -1,80 +1,84 @@
-{config, ...}: let
-  inherit (config.colorscheme) colors;
-in {
+{config, ...}: {
+  home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
+
   programs.starship = {
     enable = true;
+    enableZshIntegration = true;
     settings = {
-      add_newline = true;
+      scan_timeout = 10;
 
-      format = "$username$hostname$directory$git_branch$git_status$all";
-      right_format = "$status";
+      add_newline = true;
+      line_break.disabled = true;
+
+      format = "$directory$git_branch$git_metrics$git_commit$git_state$git_status$all";
 
       character = {
-        success_symbol = "[](#${colors.base0C})";
-        error_symbol = "[](#${colors.base0C})";
-        vicmd_symbol = "[](bold green)";
-      };
-
-      username = {
-        format = "[](fg:#${colors.base0C} bg:none)[ $user]($style)";
-        style_user = "fg:#${colors.base00} bg:#${colors.base0C}";
-        style_root = "fg:#${colors.base00} bg:#${colors.base0C}";
-        show_always = true;
-        disabled = false;
-      };
-
-      hostname = {
-        format = "[@$hostname ]($style)[](fg:#${colors.base0C} bg:none) ";
-        style = "fg:#${colors.base00} bg:#${colors.base0C}";
-        ssh_only = false;
-        disabled = false;
+        success_symbol = "[λ](green)";
+        error_symbol = "[λ](red)";
+        vimcmd_symbol = "[λ](green)";
       };
 
       directory = {
-        format = "[](fg:#${colors.base0C} bg:none)[ $path ]($style)[](fg:#${colors.base0C} bg:none) ";
-        style = "fg:#${colors.base00} bg:#${colors.base0C}";
-        truncation_length = 3;
-        disabled = false;
+        home_symbol = "home";
+        style = "cyan";
       };
 
-      status = {
-        format = "[$symbol]($style)";
-        symbol = "";
-        success_symbol = "";
-        style = "#${colors.base0C}";
-        disabled = false;
-      };
-
+      git_commit.tag_symbol = " tag ";
       git_branch = {
-        format = "[$symbol$branch]($style) ";
-        style = "bold red";
-        symbol = " ";
+        style = "purple";
+        symbol = "";
+      };
+
+      git_metrics = {
+        added_style = "bold yellow";
+        deleted_style = "bold red";
         disabled = false;
       };
 
-      git_status = {
-        format = "([\\[$all_status$ahead_behind\\]]($style)) ";
-        style = "bold red";
-        ahead = ">";
-        behind = "<";
-        diverged = "<>";
-        up_to_date = "";
-        untracked = "?";
-        stashed = "$";
-        modified = "!";
-        staged = "+";
-        renamed = "r";
-        deleted = "x";
-        disabled = false;
-      };
-
-      cmd_duration.disabled = true;
-
-      nix_shell.symbol = "[](blue) ";
-      python.symbol = "[](blue) ";
-      rust.symbol = "[](red) ";
-      lua.symbol = "[](blue) ";
-      package.symbol = "📦  ";
+      aws.symbol = "aws ";
+      bun.symbol = "bun ";
+      c.symbol = "C ";
+      cobol.symbol = "cobol ";
+      conda.symbol = "conda ";
+      crystal.symbol = "cr ";
+      cmake.symbol = "cmake ";
+      daml.symbol = "daml ";
+      dart.symbol = "dart ";
+      deno.symbol = "deno ";
+      dotnet.symbol = ".NET ";
+      directory.read_only = " ro";
+      docker_context.symbol = "docker ";
+      elixir.symbol = "exs ";
+      elm.symbol = "elm ";
+      golang.symbol = "go ";
+      guix_shell.symbol = "guix ";
+      hg_branch.symbol = "hg ";
+      java.symbol = "java ";
+      julia.symbol = "jl ";
+      kotlin.symbol = "kt ";
+      lua.symbol = "lua ";
+      memory_usage.symbol = "memory ";
+      meson.symbol = "meson ";
+      nim.symbol = "nim ";
+      nix_shell.symbol = "nix ";
+      ocaml.symbol = "ml ";
+      opa.symbol = "opa ";
+      nodejs.symbol = "nodejs ";
+      package.symbol = "pkg ";
+      perl.symbol = "pl ";
+      php.symbol = "php ";
+      pulumi.symbol = "pulumi ";
+      purescript.symbol = "purs ";
+      python.symbol = "py ";
+      raku.symbol = "raku ";
+      ruby.symbol = "rb ";
+      rust.symbol = "rs ";
+      scala.symbol = "scala ";
+      spack.symbol = "spack ";
+      sudo.symbol = "sudo ";
+      swift.symbol = "swift ";
+      terraform.symbol = "terraform ";
+      zig.symbol = "zig ";
     };
   };
 }

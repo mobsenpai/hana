@@ -2,19 +2,10 @@
   pkgs,
   config,
   ...
-}: let
-  mpv-unwrapped = pkgs.mpv-unwrapped.overrideAttrs (o: {
-    src = pkgs.fetchFromGitHub {
-      owner = "mpv-player";
-      repo = "mpv";
-      rev = "HEAD";
-      sha256 = "sha256-/JhOQWqI+6lmAPDV/iYC0X2RrdrAKllKA1Wfp3i2ecs=";
-    };
-  });
-in {
+}: {
   home.packages = with pkgs; [
     pcmanfm
-    mpv-unwrapped
+    # mpv-unwrapped
     pavucontrol
     pulseaudio
     nitch

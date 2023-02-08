@@ -4,20 +4,40 @@
   lib,
   ...
 }: {
-  home.packages = with pkgs; [
-    #duf
-    #du-dust
-    fd
-    #file
-    #joshuto
-    ranger
-    #ripgrep
-    #yt-dlp
-  ];
+  home.packages = lib.attrValues {
+    inherit
+      (pkgs)
+      #duf
+      
+      #du-dust
+      
+      # fd
+      
+      #file
+      
+      #joshuto
+      
+      ranger
+      #ripgrep
+      
+      #yt-dlp
+      
+      ;
+  };
+
+  services = {};
 
   programs = {
-    bat.enable = true;
     exa.enable = true;
+
+    bat = {
+      enable = true;
+      config = {
+        pager = "never";
+        style = "plain";
+        theme = "base16";
+      };
+    };
 
     fzf = {
       enable = true;

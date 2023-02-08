@@ -2,30 +2,37 @@
   pkgs,
   config,
   lib,
+  outputs,
   ...
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
-  users.mutableUsers = true;
+  users.mutableUsers = false;
   users.users.yashraj = {
-    description = "Yash Raj";
     isNormalUser = true;
     shell = pkgs.zsh;
+    description = "Yash Raj";
     initialPassword = "nixos";
     extraGroups =
       [
         "wheel"
-        "networkmanager"
+        # "networkmanager"
         "video"
         "audio"
-        "nix"
-        "systemd-journal"
+        # "nix"
+        # "systemd-journal"
       ]
       ++ ifTheyExist [
+        "network"
         "git"
         # "mysql"
         # "docker"
         # "libvirtd"
       ];
+
+    uid = 1000;
+    packages = [pkgs.home-manager];
   };
+
+  home-manager.users.rxyhn = import ../../../home/rxyhn/${config.networking.hostName};
 }

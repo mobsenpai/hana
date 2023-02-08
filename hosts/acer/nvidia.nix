@@ -23,7 +23,12 @@
     };
 
     opengl = {
-      extraPackages = with pkgs; [nvidia-vaapi-driver];
+      extraPackages = lib.attrValues {
+        inherit
+          (pkgs)
+          nvidia-vaapi-driver
+          ;
+      };
     };
   };
 }

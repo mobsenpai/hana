@@ -2,14 +2,36 @@
 {
   lib,
   pkgs,
+  inputs,
+  outputs,
   ...
 }: {
-  imports = [
-    ./fonts.nix
-    ./locale.nix
-    ./nix.nix
-    ./network.nix
-  ];
+  imports =
+    [
+      inputs.home-manager.nixosModules.home-manager
+      ./fonts.nix
+      ./locale.nix
+      ./nix.nix
+      ./networking.nix
+    ]
+    ++ (builtins.attrValues outputs.nixosModules);
+
+  home-manager = {
+    useUserPackages = true;
+    extraSpecialArgs = {inherit inputs outputs;};
+  };
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.default
+      inputs.nixpkgs-f2k.overlays.stdenvs
+    ];
+
+    config = {
+      allowUnfree = true;
+    };
+  };
+
   console = {
     # font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
     keyMap = "us";
@@ -17,7 +39,13 @@
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings.LC_TIME = "en_US.UTF-8";
     supportedLocales = ["en_US.UTF-8/UTF-8"];
+  };
+
+  time = {
+    timeZone = "Asia/Kolkata";
+    hardwareClockInLocalTime = true;
   };
 
   environment = {
@@ -25,29 +53,43 @@
     shells = with pkgs; [zsh];
     pathsToLink = ["/share/zsh"];
 
-    systemPackages = with pkgs; [
-      curl
-      # gcc
-      git
-      vim
-      # hddtemp
-      jq
-      # lm_sensors
-      # lz4
-      ntfs3g
-      # nvme-cli
-      # p7zip
-      # pciutils
-      unrar
-      unzip
-      wget
-      zip
-    ];
+    systemPackages = lib.attrValues {
+      inherit
+        (pkgs)
+        curl
+        # gcc
+        
+        git
+        vim
+        # hddtemp
+        
+        jq
+        # lm_sensors
+        
+        # lz4
+        
+        ntfs3g
+        # nvme-cli
+        
+        # p7zip
+        
+        # pciutils
+        
+        unrar
+        unzip
+        wget
+        zip
+        ffmpeg-full
+        fzf
+        man-pages
+        pavucontrol
+        pulseaudio
+        vim
+        ;
+    };
 
     loginShellInit = ''
       dbus-update-activation-environment --systemd DISPLAY
-      # eval $(gnome-keyring-daemon --start --components=ssh)
-      # eval $(ssh-agent)
     '';
 
     variables = {
@@ -58,6 +100,23 @@
 
   programs = {
     bash.promptInit = ''eval "$(${pkgs.starship}/bin/starship init bash)"'';
+
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        # stdenv.cc.cc
+        # openssl
+        curl
+        # glib
+        # util-linux
+        # glibc
+        # icu
+        # libunwind
+        # libuuid
+        # zlib
+        libsecret
+      ];
+    };
 
     # adb.enable = true;
     dconf.enable = true;
@@ -124,7 +183,10 @@
 
   systemd.user.services = {
     pipewire.wantedBy = ["default.target"];
-    pipewire-pulse.wantedBy = ["default.target"];
+    pipewire-pulse = {
+      path = [pkgs.pulseaudio];
+      wantedBy = ["default.target"];
+    };
   };
 
   security = {

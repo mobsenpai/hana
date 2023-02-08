@@ -1,26 +1,31 @@
 {
-  config,
+  inputs,
+  outputs,
   lib,
+  config,
   pkgs,
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./nvidia.nix
-
     # Shared configuration across all machines.
     ../shared
     ../shared/users/yashraj.nix
+
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./nvidia.nix
   ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
 
     initrd = {
       systemd.enable = true;
       supportedFilesystems = ["btrfs"];
     };
+
+    kernelModules = ["acpi_call"];
 
     kernelParams = [
       # "i915.force_probe=46a6"
@@ -49,36 +54,39 @@
   };
 
   networking = {
+    hostName = "acer";
     networkmanager.enable = true;
     useDHCP = false;
   };
 
   # Windows wants hardware clock in local time instead of UTC
-  time.hardwareClockInLocalTime = true;
+  # time.hardwareClockInLocalTime = true;
 
   services = {
     xserver = {
       enable = true;
+      displayManager = {
+        defaultSession = "none+awesome";
+        lightdm.enable = true;
+      };
+
+      dpi = 96;
+      exportConfiguration = true;
+      layout = "us";
 
       windowManager = {
         awesome = {
           enable = true;
+          package = inputs.nixpkgs-f2k.packages.${pkgs.system}.awesome-git;
           luaModules = lib.attrValues {
             inherit (pkgs.luaPackages) lgi;
           };
         };
       };
-
-      dpi = 96;
-
-      displayManager = {
-        defaultSession = "none+awesome";
-        lightdm.enable = true;
-      };
     };
 
     # btrfs.autoScrub.enable = true;
-    # acpid.enable = true;
+    acpid.enable = true;
     # thermald.enable = true;
     # upower.enable = true;
 
@@ -96,20 +104,20 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        # intel-compute-runtime
-        # intel-media-driver # iHD
-        libva
-        libvdpau
-        # libvdpau-va-gl
-        # (vaapiIntel.override {enableHybridCodec = true;}) # i965 (older but works better for Firefox/Chromium)
-        # vaapiVdpau
-      ];
+      # extraPackages = with pkgs; [
+      #   # intel-compute-runtime
+      #   # intel-media-driver # iHD
+      #   libva
+      #   libvdpau
+      #   # libvdpau-va-gl
+      #   # (vaapiIntel.override {enableHybridCodec = true;}) # i965 (older but works better for Firefox/Chromium)
+      #   # vaapiVdpau
+      # ];
     };
 
-    cpu.intel.updateMicrocode = true;
+    # cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
-    pulseaudio.enable = false;
+    # pulseaudio.enable = false;
 
     # bluetooth = {
     #   enable = true;
@@ -131,14 +139,24 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      libsForQt5.qtstyleplugins
-      # acpi
-      # brightnessctl
-      # libva-utils
-      # ocl-icd
-      # vulkan-tools
-    ];
+    systemPackages = lib.attrValues {
+      inherit
+        (pkgs)
+        # libsForQt5.qtstyleplugins
+        
+        acpi
+        # brightnessctl
+        
+        libva
+        libvdpau
+        # libva-utils
+        
+        # ocl-icd
+        
+        # vulkan-tools
+        
+        ;
+    };
 
     variables = {
       # GDK_SCALE = "2";
@@ -146,5 +164,6 @@
     };
   };
 
-  system.stateVersion = lib.mkForce "22.11"; # DONT TOUCH THIS
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "23.05"; # DONT TOUCH THIS
 }

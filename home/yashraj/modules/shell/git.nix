@@ -1,14 +1,20 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    # bfg-repo-cleaner
-    colordiff
-    # gist
-    # gitAndTools.git-absorb
-    # gitAndTools.gitui
-    # gitAndTools.git-machete
-    # gitAndTools.gh
-    # git-filter-repo
-  ];
+{
+  lib,
+  pkgs,
+  ...
+}: {
+  home.packages = lib.attrValues {
+    inherit
+      (pkgs)
+      # bfg-repo-cleaner
+      
+      colordiff
+      # gist
+      
+      # git-filter-repo
+      
+      ;
+  };
 
   programs.git = {
     enable = true;

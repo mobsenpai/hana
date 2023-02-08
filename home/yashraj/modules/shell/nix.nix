@@ -1,22 +1,38 @@
-{pkgs, ...}:
-# nix tooling
 {
+  lib,
+  pkgs,
+  ...
+}: {
   home = {
-    packages = with pkgs; [
-      alejandra
-      # deadnix
-      # nix-index
-      # statix
-    ];
+    packages = lib.attrValues {
+      inherit
+        (pkgs)
+        alejandra
+        # any-nix-shell
+        
+        # deadnix
+        
+        nix-index
+        # statix
+        
+        ;
+    };
 
     sessionVariables = {
       DIRENV_LOG_FORMAT = "";
     };
   };
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    enableZshIntegration = true;
+  programs = {
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
   };
 }
