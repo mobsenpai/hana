@@ -107,20 +107,21 @@
         background = true;
         background-frame = true;
         background-fixed = true;
-        background-exclude = [
-          "_GTK_FRAME_EXTENTS@:c"
-          "window_type = 'combo'"
-          "window_type = 'desktop'"
-          "window_type = 'dnd'"
-          "window_type = 'menu'"
-          "window_type = 'toolbar'"
-          "window_type = 'tooltip'"
-          "window_type = 'utility'"
-          "window_type = 'unknown'"
-          "class_g = 'firefox' && window_type != 'normal'"
-          "class_g = 'slop'"
-        ];
       };
+
+      blur-background-exclude = [
+        "_GTK_FRAME_EXTENTS@:c"
+        "window_type = 'combo'"
+        "window_type = 'desktop'"
+        "window_type = 'dnd'"
+        "window_type = 'menu'"
+        "window_type = 'toolbar'"
+        "window_type = 'tooltip'"
+        "window_type = 'utility'"
+        "window_type = 'unknown'"
+        "class_g = 'firefox' && window_type != 'normal'"
+        "class_g = 'slop'"
+      ];
 
       mark-wmwin-focused = true;
       mark-ovredir-focused = true;

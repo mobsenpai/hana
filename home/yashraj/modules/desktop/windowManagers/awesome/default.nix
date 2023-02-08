@@ -2,13 +2,12 @@
   config,
   pkgs,
   inputs,
-  osConfig,
+  # osConfig,
   ...
 }: let
   inherit (config.colorscheme) colors;
 in {
   xresources.extraConfig = ''
-    Xft.dpi: ${builtins.toString osConfig.services.xserver.dpi}
     Xft.antialias: true
     Xft.hinting: true
     Xft.rgba: rgb
