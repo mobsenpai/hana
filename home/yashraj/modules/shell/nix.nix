@@ -8,8 +8,7 @@
       inherit
         (pkgs)
         alejandra
-        # any-nix-shell
-        
+        any-nix-shell
         # deadnix
         
         nix-index

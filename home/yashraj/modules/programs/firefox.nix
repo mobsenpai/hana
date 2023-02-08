@@ -4,22 +4,12 @@
   ...
 }: {
   home.sessionVariables = {
-    # MOZ_USE_XINPUT2 = "1";
     # Required to use va-api with Firefox
     MOZ_DISABLE_RDD_SANDBOX = "1";
   };
 
   programs.firefox = {
     enable = true;
-    # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-    #   adnauseam
-    #   enhanced-github
-    #   enhancer-for-youtube
-    #   octotree
-    #   refined-github
-    #   stylus
-    #   ublock-origin
-    # ];
 
     profiles = {
       yashraj = {

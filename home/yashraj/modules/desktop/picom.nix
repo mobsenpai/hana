@@ -51,7 +51,6 @@
       "90:class_g = 'XTerm'"
       "90:class_g = 'Alacritty'"
       "90:class_g = 'kitty'"
-      "90:class_g = 'Code'"
     ];
 
     wintypes = {
@@ -95,18 +94,9 @@
       corner-radius = 15;
       rounded-corners-exclude = [
         "_PICOM_SHADOW@:32c = 0"
-        "class_g = 'awesome'"
-        "class_i = 'tray'"
-      ];
-
-      experimental-backends = true;
-
-      opacity-rule = [
-        "90:class_g = 'XTerm'"
-        "90:class_g = 'Alacritty'"
-        "90:class_g = 'kitty'"
-        "100:class_i = 'tray'"
-        "100:class_g = 'Code'"
+        "window_type = 'dock'"
+        "_NET_WM_STATE@:32a *= '_NET_WM_STATE_MAXIMIZED_VERT'"
+        "_NET_WM_STATE@:32a *= '_NET_WM_STATE_MAXIMIZED_HORZ'"
       ];
 
       blur = {
@@ -117,21 +107,20 @@
         background = true;
         background-frame = true;
         background-fixed = true;
+        background-exclude = [
+          "_GTK_FRAME_EXTENTS@:c"
+          "window_type = 'combo'"
+          "window_type = 'desktop'"
+          "window_type = 'dnd'"
+          "window_type = 'menu'"
+          "window_type = 'toolbar'"
+          "window_type = 'tooltip'"
+          "window_type = 'utility'"
+          "window_type = 'unknown'"
+          "class_g = 'firefox' && window_type != 'normal'"
+          "class_g = 'slop'"
+        ];
       };
-
-      blur-background-exclude = [
-        "_GTK_FRAME_EXTENTS@:c"
-        "window_type = 'combo'"
-        "window_type = 'desktop'"
-        "window_type = 'dnd'"
-        "window_type = 'menu'"
-        "window_type = 'toolbar'"
-        "window_type = 'tooltip'"
-        "window_type = 'utility'"
-        "window_type = 'unknown'"
-        "class_g = 'firefox' && window_type != 'normal'"
-        "class_g = 'slop'"
-      ];
 
       mark-wmwin-focused = true;
       mark-ovredir-focused = true;

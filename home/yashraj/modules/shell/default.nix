@@ -10,7 +10,6 @@
     ./git.nix
     ./nix.nix
     ./starship.nix
-    # ./transient-services.nix
     ./zsh.nix
   ];
 

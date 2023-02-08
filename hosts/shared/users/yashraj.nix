@@ -16,18 +16,12 @@ in {
     extraGroups =
       [
         "wheel"
-        # "networkmanager"
         "video"
         "audio"
-        # "nix"
-        # "systemd-journal"
       ]
       ++ ifTheyExist [
         "network"
         "git"
-        # "mysql"
-        # "docker"
-        # "libvirtd"
       ];
 
     uid = 1000;

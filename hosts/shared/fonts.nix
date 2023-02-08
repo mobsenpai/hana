@@ -11,7 +11,7 @@
         noto-fonts
         noto-fonts-cjk
         ;
-      nerdfonts = pkgs.nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode"];};
+      nerdfonts = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
     };
 
     fontconfig = {

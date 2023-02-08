@@ -118,7 +118,7 @@
         # libva-utils
         
         ;
-      inherit (pkgs.libsForQt5) qtstyleplugins;
+      qtstyleplugins = pkgs.libsForQt5.qtstyleplugins;
     };
 
     variables = {

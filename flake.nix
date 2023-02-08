@@ -5,59 +5,17 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
     nix-colors.url = "github:misterio77/nix-colors";
-    # nur.url = "github:nix-community/NUR";
-    # devshell.url = "github:numtide/devshell";
-    # flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # crane = {
-    #   url = "github:ipetkov/crane";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # rust-overlay = {
-    #   url = "github:oxalica/rust-overlay";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # nil = {
-    #   url = "github:oxalica/nil";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.rust-overlay.follows = "rust-overlay";
-    # };
-
     # Non Flakes
-    # firefox-csshacks = {
-    #   url = "github:MrOtherGuy/firefox-csshacks";
-    #   flake = false;
-    # };
-
-    # arkenfox = {
-    #   url = "github:arkenfox/user.js";
-    #   flake = false;
-    # };
-
     # awesome modules
     lain = {
       url = "github:lcpz/lain";
       flake = false;
     };
-
-    # bling = {
-    #   type = "git";
-    #   url = "https://github.com/BlingCorp/bling.git";
-    #   flake = false;
-    # };
-
-    # freedesktop = {
-    #   type = "git";
-    #   url = "https://github.com/lcpz/awesome-freedesktop.git";
-    #   flake = false;
-    # };
   };
 
   outputs = {
@@ -77,7 +35,7 @@
     devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs;});
 
     nixosConfigurations = {
-      # Laptop
+      # PC
       acer = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [./hosts/acer];
@@ -85,7 +43,7 @@
     };
 
     homeConfigurations = {
-      # Laptop
+      # PC
       "yashraj@acer" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
