@@ -31,10 +31,10 @@
     # };
 
     # Non Flakes
-    firefox-csshacks = {
-      url = "github:MrOtherGuy/firefox-csshacks";
-      flake = false;
-    };
+    # firefox-csshacks = {
+    #   url = "github:MrOtherGuy/firefox-csshacks";
+    #   flake = false;
+    # };
 
     # arkenfox = {
     #   url = "github:arkenfox/user.js";
@@ -89,7 +89,7 @@
       "yashraj@acer" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home/yashraj/acer];
+        modules = [./home/yashraj];
       };
     };
   };

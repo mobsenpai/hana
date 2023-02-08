@@ -1,4 +1,11 @@
 {
+  lib,
+  pkgs,
+  config,
+  inputs,
+  outputs,
+  ...
+}: {
   home = {
     username = "yashraj";
     homeDirectory = "/home/${config.home.username}";
@@ -24,7 +31,7 @@
     overlays = [
       outputs.overlays.default
       inputs.nixpkgs-f2k.overlays.stdenvs
-      inputs.nur.overlay
+      # inputs.nur.overlay
     ];
 
     config = {
