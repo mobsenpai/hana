@@ -60,7 +60,8 @@
         # gcc
         
         git
-        vim
+        # vim
+        
         # hddtemp
         
         jq
