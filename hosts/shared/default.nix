@@ -1,4 +1,3 @@
-# This file (and the global directory) holds config that i use on all hosts
 {
   lib,
   pkgs,
@@ -33,7 +32,6 @@
   };
 
   console = {
-    # font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
     keyMap = "us";
   };
 
@@ -57,35 +55,20 @@
       inherit
         (pkgs)
         curl
-        # gcc
-        
         git
-        # vim
-        
-        # hddtemp
-        
         jq
-        # lm_sensors
-        
-        # lz4
-        
+        libnotify
         ntfs3g
-        # nvme-cli
-        
-        # p7zip
-        
-        # pciutils
-        
         unrar
         unzip
+        vim
         wget
-        zip
         ffmpeg-full
         fzf
         man-pages
         pavucontrol
         pulseaudio
-        vim
+        zip
         ;
     };
 
@@ -105,16 +88,7 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        # stdenv.cc.cc
-        # openssl
         curl
-        # glib
-        # util-linux
-        # glibc
-        # icu
-        # libunwind
-        # libuuid
-        # zlib
         libsecret
       ];
     };
@@ -123,34 +97,12 @@
     dconf.enable = true;
     nm-applet.enable = true;
     seahorse.enable = true;
-
-    # gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
-
-    # npm = {
-    #   enable = true;
-    #   npmrc = ''
-    #     prefix = ''${HOME}/.npm
-    #     color = true
-    #   '';
-    # };
-
-    # java = {
-    #   enable = true;
-    #   package = pkgs.jre;
-    # };
   };
 
   services = {
     # blueman.enable = true;
     fwupd.enable = true;
     gvfs.enable = true;
-    # lorri.enable = true;
-    # udisks2.enable = true;
-    # printing.enable = true;
-    # fstrim.enable = true;
 
     dbus = {
       enable = true;

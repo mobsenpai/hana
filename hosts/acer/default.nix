@@ -11,7 +11,7 @@
     ../shared
     ../shared/users/yashraj.nix
 
-    # Include the results of the hardware scan.
+    # Specific configuration
     ./hardware-configuration.nix
     ./nvidia.nix
   ];
@@ -59,9 +59,6 @@
     useDHCP = false;
   };
 
-  # Windows wants hardware clock in local time instead of UTC
-  # time.hardwareClockInLocalTime = true;
-
   services = {
     xserver = {
       enable = true;
@@ -87,48 +84,21 @@
 
     # btrfs.autoScrub.enable = true;
     acpid.enable = true;
-    # thermald.enable = true;
-    # upower.enable = true;
-
-    # tlp = {
-    #   enable = true;
-    #   settings = {
-    #     START_CHARGE_THRESH_BAT0 = 0;
-    #     STOP_CHARGE_THRESH_BAT0 = 80;
-    #   };
-    # };
   };
 
   hardware = {
+    enableRedistributableFirmware = true;
+
     opengl = {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      # extraPackages = with pkgs; [
-      #   # intel-compute-runtime
-      #   # intel-media-driver # iHD
-      #   libva
-      #   libvdpau
-      #   # libvdpau-va-gl
-      #   # (vaapiIntel.override {enableHybridCodec = true;}) # i965 (older but works better for Firefox/Chromium)
-      #   # vaapiVdpau
-      # ];
     };
-
-    # cpu.intel.updateMicrocode = true;
-    enableRedistributableFirmware = true;
-    # pulseaudio.enable = false;
 
     # bluetooth = {
     #   enable = true;
     #   package = pkgs.bluez;
     # };
-  };
-
-  # compresses half the ram for use as swap
-  zramSwap = {
-    enable = true;
-    memoryPercent = 50;
   };
 
   xdg.portal = {
@@ -142,20 +112,13 @@
     systemPackages = lib.attrValues {
       inherit
         (pkgs)
-        # libsForQt5.qtstyleplugins
-        
         acpi
-        # brightnessctl
-        
         libva
         libvdpau
         # libva-utils
         
-        # ocl-icd
-        
-        # vulkan-tools
-        
         ;
+      inherit (pkgs.libsForQt5) qtstyleplugins;
     };
 
     variables = {
@@ -165,5 +128,5 @@
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05"; # DONT TOUCH THIS
+  system.stateVersion = "23.05";
 }

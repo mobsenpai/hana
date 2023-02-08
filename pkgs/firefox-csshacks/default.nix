@@ -1,13 +1,18 @@
 {
   lib,
   stdenv,
-  src,
+  fetchFromGitHub,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "firefox-csshacks";
-  version = "dev";
+  version = "master";
 
-  inherit src;
+  src = fetchFromGitHub {
+    repo = pname;
+    owner = "MrOtherGuy";
+    rev = "${version}";
+    sha256 = "sha256-Bl+73nBP49V3AKFtxuqYCx0TP21abeGUzWfx/2kybds=";
+  };
 
   dontConfigure = true;
   dontBuild = true;

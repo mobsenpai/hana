@@ -2,13 +2,12 @@
   config,
   pkgs,
   inputs,
-  osConfig,
+  # osConfig,
   ...
 }: let
   inherit (config.colorscheme) colors;
 in {
   xresources.extraConfig = ''
-    Xft.dpi: ${builtins.toString osConfig.services.xserver.dpi}
     Xft.antialias: true
     Xft.hinting: true
     Xft.rgba: rgb
@@ -56,11 +55,6 @@ in {
   '';
 
   home = {
-    packages = with pkgs; [
-      feh
-      volumeicon
-    ];
-
     sessionVariables = {
       BROWSER = "firefox";
       EDITOR = "nvim";
@@ -70,14 +64,13 @@ in {
       ".config/awesome/rc.lua".source = ./rc.lua;
       ".config/awesome/themes".source = ./themes;
       ".config/awesome/lain".source = inputs.lain.outPath;
-      # ".config/awesome/modules/bling".source = inputs.bling.outPath;
-      # ".config/awesome/modules/freedesktop".source = inputs.freedesktop.outPath;
     };
   };
 
   imports = [
     ../../gtk.nix
     ../../picom.nix
-    # ../../rofi.nix
   ];
 }
+# Xft.dpi: ${builtins.toString osConfig.services.xserver.dpi}
+
