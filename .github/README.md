@@ -96,16 +96,33 @@ NixOS / Home-Manager / Flake
    ```
 
 6. Install nixos from flake
+
    ```bash
-   $ nixos-install --flake github:MobSenpai/dotfiles#acer --impure
+   $ nixos-install --flake 'github:MobSenpai/dotfiles#acer'
    ```
+
    or
+
    ```bash
    $ cd
    $ git clone https://github.com/MobSenpai/dotfiles.git
    $ cd dotfiles
    $ nixos-install --flake .#acer
    ```
+
+7. Install the home manager configuration
+
+```bash
+ $ home-manager switch --flake 'github:yashraj/dotfiles#yashraj@acer'
+```
+
+or (if already have dotfiles locally)
+
+```bash
+$ cd dotfiles
+$ home-manager switch --flake .#yashraj@acer
+```
+
 7. Post install
 
 - After install check / match hardware-configuration.nix. Make sure or edit the disk/by-uuid to disk/by-label/ like it is in this repo for reproductable build.
