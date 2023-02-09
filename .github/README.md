@@ -1,4 +1,4 @@
-<!-- Yash Raj's dotfiles -->
+<!-- Mob's dotfiles -->
 <!-- https://github.com/MobSenpai/dotfiles -->
 
 [![NixOS](https://img.shields.io/badge/NixOS-unstable-informational.svg?style=flat-square&logo=nixos)](https://github.com/nixos/nixpkgs) [![AwesomeWM](https://img.shields.io/badge/AwesomeWM-master-blue.svg?style=flat-square&logo=lua)](https://github.com/awesomeWM/awesome)
