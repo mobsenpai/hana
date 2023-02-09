@@ -112,29 +112,29 @@ NixOS / Home-Manager / Flake
 
 7. Install the home manager configuration
 
-```bash
- $ home-manager switch --flake 'github:yashraj/dotfiles#yashraj@acer'
-```
+   ```bash
+   $ home-manager switch --flake 'github:yashraj/dotfiles#yashraj@acer'
+   ```
 
-or (if already have dotfiles locally)
+   or (if already have dotfiles locally)
 
-```bash
-$ cd dotfiles
-$ home-manager switch --flake .#yashraj@acer
-```
+   ```bash
+   $ cd dotfiles
+   $ home-manager switch --flake .#yashraj@acer
+   ```
 
-7. Post install
+8. Post install
 
-- After install check / match hardware-configuration.nix. Make sure or edit the disk/by-uuid to disk/by-label/ like it is in this repo for reproductable build.
-- passwd yashraj (`your username, must edit it in the repo for using your own name`)
+   - After install check / match hardware-configuration.nix. Make sure or edit the disk/by-uuid to disk/by-label/ like it is in this repo for reproductable build.
+   - passwd yashraj (`your username, must edit it in the repo for using your own name`)
 
-8. Stuff still in mind
+9. Stuff still in mind
 
-```ocaml
-- Config changes as per requirement or mood
-- Systemd
-- Hyprland
-```
+   ```ocaml
+   - Config changes as per requirement or mood
+   - Systemd
+   - Hyprland
+   ```
 
 <br>
 
