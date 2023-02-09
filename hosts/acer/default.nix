@@ -68,6 +68,7 @@
       };
 
       dpi = 96;
+
       exportConfiguration = true;
       layout = "us";
 

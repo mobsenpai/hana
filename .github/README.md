@@ -26,7 +26,7 @@ NixOS / Home-Manager / Flake
 
 <div>
 
-<img align="right" src="https://media.giphy.com/media/Y3ksQyRozoCYjMXBQc/giphy.gif" width="30%" />
+<img align="right" src="https://i.imgur.com/u0DsgEx.png" width="30%" />
 
 |                 |                        acer                         |
 | :-------------: | :-------------------------------------------------: |
@@ -40,7 +40,7 @@ NixOS / Home-Manager / Flake
 <br>
 <br>
 
-<img src="https://i.imgur.com/DQxqKZg.png" alt="img" align="center" width="600px">
+<img src="https://i.imgur.com/PRFVvCt.png" alt="img" align="center" width="600px">
 
 <br>
 

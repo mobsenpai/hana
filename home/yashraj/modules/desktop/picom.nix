@@ -99,6 +99,8 @@
         "_NET_WM_STATE@:32a *= '_NET_WM_STATE_MAXIMIZED_HORZ'"
       ];
 
+      experimental-backends = true;
+
       blur = {
         method = "dual_kawase";
         kernel = "11x11gaussian";

@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  # osConfig,
   ...
 }: let
   inherit (config.colorscheme) colors;
@@ -72,5 +71,3 @@ in {
     ../../picom.nix
   ];
 }
-# Xft.dpi: ${builtins.toString osConfig.services.xserver.dpi}
-

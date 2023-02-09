@@ -199,6 +199,8 @@ in {
            done
       fi
       }
+
+      nitch
     '';
 
     shellAliases = {
