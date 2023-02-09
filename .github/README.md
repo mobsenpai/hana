@@ -172,3 +172,34 @@ NixOS / Home-Manager / Flake
 </div>
 
 </div>
+
+## :bulb: <samp>Acknowledgements</samp>
+
+<table align="right">
+  <tr>
+    <th align="center">
+      <sup><sub>:warning: WARNING :warning:</sub></sup>
+    </th>
+  </tr>
+  <tr>
+    <td align="center">
+        <sup><sub><samp>It worked perfectly on my machine, but I can't guarantee it will work on your machine</samp></sub></sup>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution">
+        <sup><sub><samp>Powered by NixOS/Linux x86_64</samp></sub></sup>
+      </a>
+    </td>
+  </tr>
+</table>
+
+**Other dotfiles**
+
+- [rxyhn](https://github.com/rxyhn)
+- [JavaCafe01](https://github.com/JavaCafe01)
+- [raven2cz](https://github.com/raven2cz)
+- [fortuneteller2k/nix-config](https://github.com/fortuneteller2k/nix-config)
+
+</div>
