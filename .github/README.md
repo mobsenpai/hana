@@ -5,6 +5,10 @@
 
 [![NixOS_Check](https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml/badge.svg)](https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml) [![NixOS_Fmt](https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml/badge.svg)](https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml)
 
+<p align="center"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
+
+[![License](https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7)](https://github.com/MobSenpai/dotfiles/blob/main/LICENSE)
+
 <br>
 
 <div align="justify">
@@ -137,41 +141,6 @@ NixOS / Home-Manager / Flake
    ```
 
 <br>
-
-## :busts_in_silhouette: <samp>Info</samp>
-
-<table align="right">
-  <tr>
-    <th align="center">
-      <sup><sub>:warning:</sub></sup>
-    </th>
-  </tr>
-  <tr>
-    <td align="center">
-        <sup><sub><samp>If you stole something from here at least give us credits!</samp></sub></sup>
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <a href="https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution">
-        <sup><sub><samp>Powered by NixOS/Linux x86_64</samp></sub></sup>
-      </a>
-    </td>
-  </tr>
-</table>
-
-<div align="center">
-
-**Thanks to all these amazing people.**
-
-**[rxyhn](https://github.com/rxyhn) - [JavaCafe01](https://github.com/JavaCafe01) - [raven2cz](https://github.com/raven2cz)**
-
-<p align="center"><a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7"/></a></p>
-
-</div>
-
-</div>
 
 ## :bulb: <samp>Acknowledgements</samp>
 
