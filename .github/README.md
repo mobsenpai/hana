@@ -162,11 +162,11 @@ NixOS / Home-Manager / Flake
   </tr>
 </table>
 
-**Other dotfiles**
+**Thanks to all these amazing people**
 
 - [rxyhn](https://github.com/rxyhn)
 - [JavaCafe01](https://github.com/JavaCafe01)
 - [raven2cz](https://github.com/raven2cz)
-- [fortuneteller2k/nix-config](https://github.com/fortuneteller2k/nix-config)
+- [fortuneteller2k](https://github.com/fortuneteller2k)
 
 </div>
