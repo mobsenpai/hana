@@ -231,23 +231,19 @@ local keyboardWibox = makeWidget(keyboardText, beautiful.mykeyboardlayout, beaut
 -- ░█░█░█▀█░█░░░█░░░█▀█░█▀█░█▀█░█▀▀░█▀▄
 -- ░█▄█░█▀█░█░░░█░░░█▀▀░█▀█░█▀▀░█▀▀░█▀▄
 -- ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀░▀░▀░░░▀▀▀░▀░▀
-screen.connect_signal(
-    "request::wallpaper",
-    function(s)
-        awful.wallpaper {
-            screen = s,
-            widget = {
-                image = beautiful.wallpaper,
-                resize = true,
-                upscale = true,
-                valign = "center",
-                halign = "center",
-                horizontal_fit_policy = "fit",
-                widget = wibox.widget.imagebox
-            }
-        }
-    end
-)
+-- Single wallpaper
+awful.screen.connect_for_each_screen(function(s)
+	if beautiful.wallpaper then
+		local wallpaper = beautiful.wallpaper
+
+		if type(wallpaper) == "function" then
+			wallpaper = wallpaper(s)
+		end
+
+		gears.wallpaper.maximized(wallpaper, s, false, nil)
+	end
+end)
+
 
 -- ░█░█░▀█▀░█▀▄░█▀█░█▀▄
 -- ░█▄█░░█░░█▀▄░█▀█░█▀▄
