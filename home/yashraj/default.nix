@@ -16,6 +16,6 @@
     ./modules/programs/firefox.nix
     ./modules/programs/vscode.nix
     ./modules/programs/mpv.nix
-    ./modules/programs/flameshot.nix
+    ./modules/desktop/flameshot.nix
   ];
 }

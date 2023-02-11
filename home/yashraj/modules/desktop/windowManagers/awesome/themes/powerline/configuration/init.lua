@@ -436,6 +436,19 @@ awful.mouse.append_global_mousebindings(
 )
 -- }}}
 
+-- My Awesomewm keybinds
+awful.keyboard.append_global_keybindings(
+    {
+        -- Screen Shots/Vids
+        awful.key({}, "Print",
+                    function() awful.spawn("flameshot gui") end,
+                    {description = "flameshot gui", group = "awesome"}),
+        awful.key({"Shift"}, "Print", function()
+            awful.spawn("flameshot gui -d 2000")
+        end, {description = "flameshot gui with 2 second delay", group = "awesome"}),
+    }
+)
+
 -- General Awesome keys
 awful.keyboard.append_global_keybindings(
     {
