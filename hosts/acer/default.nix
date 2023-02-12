@@ -17,22 +17,19 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
-
     initrd = {
-      systemd.enable = true;
       supportedFilesystems = ["btrfs"];
+      systemd.enable = true;
     };
 
+    kernelPackages = pkgs.linuxPackages_latest;
+    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     kernelModules = ["acpi_call"];
 
     kernelParams = [
-      # "i915.force_probe=46a6"
-      # "i915.enable_psr=0"
-      # "i915.enable_guc=2"
       # "i8042.direct"
       # "i8042.dumbkbd"
+      # "i915.force_probe=46a6"
     ];
 
     loader = {
@@ -40,8 +37,6 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-
-      systemd-boot.enable = false;
 
       grub = {
         enable = true;
@@ -118,6 +113,7 @@
         libvdpau
         # libva-utils
         
+        ntfs3g
         ;
       qtstyleplugins = pkgs.libsForQt5.qtstyleplugins;
     };

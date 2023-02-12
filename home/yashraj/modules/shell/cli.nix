@@ -9,8 +9,6 @@
       (pkgs)
       #duf
       
-      #du-dust
-      
       # fd
       
       #file
