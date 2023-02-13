@@ -57,6 +57,7 @@
         curl
         git
         jq
+        killall
         libnotify
         ntfs3g
         unrar

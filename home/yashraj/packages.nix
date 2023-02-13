@@ -10,7 +10,6 @@
       nitch
       neovim
       htop
-      killall
       alsa-utils
       xdg-utils
       feh
