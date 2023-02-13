@@ -54,6 +54,7 @@
     systemPackages = lib.attrValues {
       inherit
         (pkgs)
+        alsa-utils
         curl
         git
         jq

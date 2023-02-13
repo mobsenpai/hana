@@ -121,6 +121,7 @@
     variables = {
       # GDK_SCALE = "2";
       # GDK_DPI_SCALE = "0.5";
+      QT_QPA_PLATFORMTHEME = "gtk2";
     };
   };
 

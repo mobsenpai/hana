@@ -69,5 +69,7 @@ in {
   imports = [
     ../../gtk.nix
     ../../picom.nix
+    ../../flameshot.nix
+    ../../rofi.nix
   ];
 }

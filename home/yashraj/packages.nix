@@ -10,8 +10,6 @@
       nitch
       neovim
       htop
-      alsa-utils
-      xdg-utils
       feh
       volumeicon
       ;

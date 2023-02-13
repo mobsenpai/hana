@@ -1,8 +1,7 @@
 {
   config,
-  outputs,
   pkgs,
-  lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -16,6 +15,5 @@
     ./modules/programs/firefox.nix
     ./modules/programs/vscode.nix
     ./modules/programs/mpv.nix
-    ./modules/desktop/flameshot.nix
   ];
 }
