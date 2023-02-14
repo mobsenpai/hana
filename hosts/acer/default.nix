@@ -115,7 +115,11 @@
         
         ntfs3g
         ;
-      qtstyleplugins = pkgs.libsForQt5.qtstyleplugins;
+
+      inherit
+        (pkgs.libsForQt5)
+        qtstyleplugins
+        ;
     };
 
     variables = {

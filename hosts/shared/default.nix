@@ -9,7 +9,6 @@
     [
       inputs.home-manager.nixosModules.home-manager
       ./fonts.nix
-      ./locale.nix
       ./nix.nix
       ./networking.nix
     ]
@@ -135,6 +134,8 @@
       '';
     };
   };
+
+  hardware.pulseaudio.enable = false;
 
   systemd.user.services = {
     pipewire.wantedBy = ["default.target"];
