@@ -12,6 +12,7 @@
       htop
       feh
       volumeicon
+      clipmenu
       ;
   };
 }

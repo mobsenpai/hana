@@ -470,6 +470,15 @@ awful.keyboard.append_global_keybindings(
                 awful.spawn("rofi -no-lazy-grab -show emoji -modi emoji")
             end,
             {description = "open emoji picker", group = "app"}
+        ),
+        --- Clipboard
+        awful.key(
+            {modkey},
+            "c",
+            function()
+                awful.spawn.with_shell("clipmenu")
+            end,
+            {description = "open clipboard", group = "app"}
         )
     }
 )
@@ -980,6 +989,6 @@ client.connect_signal(
 )
 
 -- Autostart applications
-run_once({"volumeicon", "picom"}) -- comma-separated entries
+run_once({"volumeicon", "picom", "clipmenud"}) -- comma-separated entries
 
 -- EOF ------------------------------------------------------------------------
