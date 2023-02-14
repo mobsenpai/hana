@@ -232,18 +232,19 @@ local keyboardWibox = makeWidget(keyboardText, beautiful.mykeyboardlayout, beaut
 -- ░█▄█░█▀█░█░░░█░░░█▀▀░█▀█░█▀▀░█▀▀░█▀▄
 -- ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀░▀░▀░░░▀▀▀░▀░▀
 -- Single wallpaper
-awful.screen.connect_for_each_screen(function(s)
-	if beautiful.wallpaper then
-		local wallpaper = beautiful.wallpaper
+awful.screen.connect_for_each_screen(
+    function(s)
+        if beautiful.wallpaper then
+            local wallpaper = beautiful.wallpaper
 
-		if type(wallpaper) == "function" then
-			wallpaper = wallpaper(s)
-		end
+            if type(wallpaper) == "function" then
+                wallpaper = wallpaper(s)
+            end
 
-		gears.wallpaper.maximized(wallpaper, s, false, nil)
-	end
-end)
-
+            gears.wallpaper.maximized(wallpaper, s, false, nil)
+        end
+    end
+)
 
 -- ░█░█░▀█▀░█▀▄░█▀█░█▀▄
 -- ░█▄█░░█░░█▀▄░█▀█░█▀▄
@@ -436,12 +437,40 @@ awful.mouse.append_global_mousebindings(
 awful.keyboard.append_global_keybindings(
     {
         -- Screen Shots/Vids
-        awful.key({}, "Print",
-                    function() awful.spawn("flameshot gui") end,
-                    {description = "flameshot gui", group = "awesome"}),
-        awful.key({"Shift"}, "Print", function()
-            awful.spawn("flameshot gui -d 2000")
-        end, {description = "flameshot gui with 2 second delay", group = "awesome"}),
+        awful.key(
+            {},
+            "Print",
+            function()
+                awful.spawn("flameshot gui")
+            end,
+            {description = "flameshot gui", group = "awesome"}
+        ),
+        awful.key(
+            {"Shift"},
+            "Print",
+            function()
+                awful.spawn("flameshot gui -d 2000")
+            end,
+            {description = "flameshot gui with 2 second delay", group = "awesome"}
+        ),
+        --- App launcher
+        awful.key(
+            {modkey},
+            "d",
+            function()
+                awful.spawn("rofi -no-lazy-grab -show drun -modi drun")
+            end,
+            {description = "open app launcher", group = "app"}
+        ),
+        --- Emoji picker
+        awful.key(
+            {modkey},
+            "e",
+            function()
+                awful.spawn("rofi -no-lazy-grab -show emoji -modi emoji")
+            end,
+            {description = "open emoji picker", group = "app"}
+        )
     }
 )
 
