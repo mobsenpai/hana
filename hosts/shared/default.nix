@@ -45,9 +45,9 @@
     hardwareClockInLocalTime = true;
   };
 
-  environment = {
-    binsh = "${pkgs.bash}/bin/bash";
-    shells = with pkgs; [zsh];
+  environment = with pkgs; {
+    binsh = lib.getExe bash;
+    shells = [zsh];
     pathsToLink = ["/share/zsh"];
 
     systemPackages = lib.attrValues {
@@ -74,7 +74,7 @@
     };
 
     loginShellInit = ''
-      dbus-update-activation-environment --systemd DISPLAY
+      dbus-update-activation-environment --all
     '';
 
     variables = {
@@ -84,7 +84,7 @@
   };
 
   programs = {
-    bash.promptInit = ''eval "$(${pkgs.starship}/bin/starship init bash)"'';
+    bash.promptInit = ''eval "$(${lib.getExe pkgs.starship} init bash)"'';
 
     nix-ld = {
       enable = true;

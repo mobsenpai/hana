@@ -1,11 +1,17 @@
 {
   config,
+  inputs,
+  lib,
   pkgs,
   ...
-}: {
+}: let
+  marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
+    visualstudioexptteam.vscodeintellicode
+  ];
+in {
   programs.vscode = {
     enable = true;
-
+    mutableExtensionsDir = true;
     extensions = with pkgs.vscode-extensions;
       [
         esbenp.prettier-vscode
@@ -15,70 +21,114 @@
         file-icons.file-icons
         kamadorueda.alejandra
       ]
-      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "vscodeintellicode";
-          publisher = "visualstudioexptteam";
-          version = "1.2.29";
-          sha256 = "Wl++d7mCOjgL7vmVVAKPQQgWRSFlqL4ry7v0wob1OyU=";
-        }
-      ];
+      ++ marketplace-extensions;
 
     userSettings = {
-      # "editor.fontWeight" = "bold";
-      "editor.tabSize" = 2;
-      "editor.letterSpacing" = 1.05;
-      "editor.lineHeight" = 20;
-      "problems.showCurrentInStatus" = true;
-      "editor.multiCursorModifier" = "ctrlCmd";
-      "editor.scrollbar.horizontal" = "hidden";
-      "prettier.singleQuote" = true;
-      "telemetry.telemetryLevel" = "off";
-      "[css]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-      "[html]"."editor.defaultFormatter" = "vscode.html-language-features";
-      "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-      "[jsonc]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-      "workbench.colorTheme" = "Gruvbox Dark Hard";
-      "workbench.iconTheme" = "file-icons";
-      "editor.cursorStyle" = "block";
-      "editor.fontFamily" = "'monospace', monospace";
-      # "editor.fontSize" = 13;
-      "editor.fontLigatures" = true;
-      "workbench.fontAliasing" = "antialiased";
-      "files.trimTrailingWhitespace" = true;
-      "terminal.integrated.fontFamily" = "'monospace', monospace";
-      # "window.titleBarStyle" = "custom";
-      "terminal.integrated.automationShell.linux" = "nix-shell";
-      "terminal.integrated.defaultProfile.linux" = "zsh";
-      "terminal.integrated.cursorBlinking" = true;
-      "terminal.integrated.enableBell" = false;
-      "editor.formatOnPaste" = true;
-      "editor.formatOnSave" = true;
-      "editor.formatOnType" = false;
-      "editor.minimap.enabled" = false;
-      "editor.minimap.renderCharacters" = false;
-      "editor.overviewRulerBorder" = false;
-      "editor.renderLineHighlight" = "all";
-      "editor.inlineSuggest.enabled" = true;
-      "editor.smoothScrolling" = true;
-      "editor.suggestSelection" = "first";
-      "editor.guides.indentation" = true;
-      "editor.guides.bracketPairs" = true;
-      "editor.bracketPairColorization.enabled" = true;
-      "window.nativeTabs" = true;
-      "window.restoreWindows" = "all";
-      "window.menuBarVisibility" = "toggle";
-      "workbench.panel.defaultLocation" = "right";
-      "workbench.editor.tabCloseButton" = "left";
-      "workbench.startupEditor" = "none";
-      "workbench.list.smoothScrolling" = true;
-      "security.workspace.trust.enabled" = false;
-      "explorer.confirmDelete" = false;
-      "breadcrumbs.enabled" = true;
-      # "git.autofetch" = true;
-      # "git.enableSmartCommit" = true;
-      # "git.enableCommitSigning" = true;
-      # "git.verboseCommit" = true;
+      breadcrumbs.enabled = false;
+      security.workspace.trust.enabled = false;
+      telemetry.telemetryLevel = "off";
+      prettier.singleQuote = true;
+
+      "[css]".editor.defaultFormatter = "esbenp.prettier-vscode";
+      "[html]".editor.defaultFormatter = "vscode.html-language-features";
+      "[javascript]".editor.defaultFormatter = "esbenp.prettier-vscode";
+      "[json]".editor.defaultFormatter = "esbenp.prettier-vscode";
+      "[jsonc]".editor.defaultFormatter = "esbenp.prettier-vscode";
+
+      editor = {
+        cursorBlinking = "smooth";
+        cursorStyle = "block";
+        cursorSmoothCaretAnimation = "on";
+        cursorWidth = 2;
+        editor.lineHeight = 20;
+        fontLigatures = true;
+        find.addExtraSpaceOnTop = false;
+        fontFamily = "'monospace', monospace";
+        # fontSize = 13;
+        formatOnSave = true;
+        inlayHints.enabled = "off";
+        inlineSuggest.enabled = true;
+        letterSpacing = 1.05;
+        largeFileOptimizations = false;
+        lineNumbers = "on";
+        linkedEditing = true;
+        minimap.enabled = false;
+        minimap.renderCharacters = false;
+        overviewRulerBorder = false;
+        quickSuggestions.strings = true;
+        renderWhitespace = "none";
+        renderLineHighlight = "all";
+        smoothScrolling = true;
+        suggest.showStatusBar = true;
+        scrollbar.horizontal = "hidden";
+        suggestSelection = "first";
+        tabSize = 2;
+
+        bracketPairColorization = {
+          enabled = true;
+          independentColorPoolPerBracketType = true;
+        };
+
+        codeActionsOnSave.source = {
+          organizeImports = true;
+        };
+
+        guides = {
+          bracketPairs = true;
+          indentation = true;
+        };
+      };
+
+      explorer = {
+        confirmDragAndDrop = false;
+        confirmDelete = true;
+      };
+
+      files = {
+        autoSave = "afterDelay";
+        eol = "\n";
+        insertFinalNewline = true;
+        trimTrailingWhitespace = true;
+
+        exclude = {
+          "**/.classpath" = true;
+          "**/.direnv" = true;
+          "**/.factorypath" = true;
+          "**/.git" = true;
+          "**/.project" = true;
+          "**/.settings" = true;
+        };
+      };
+
+      git = {
+        autofetch = true;
+        confirmSync = false;
+        enableSmartCommit = true;
+      };
+
+      terminal.integrated = {
+        cursorBlinking = true;
+        cursorStyle = "block";
+        cursorWidth = 2;
+        fontFamily = "'monospace', monospace";
+        # fontSize = 13;
+        smoothScrolling = true;
+      };
+
+      window = {
+        menuBarVisibility = "toggle";
+        nativeTabs = true;
+      };
+
+      workbench = {
+        colorTheme = "Gruvbox Dark Hard";
+        editor.tabCloseButton = "left";
+        fontAliasing = "antialiased";
+        iconTheme = "file-icons";
+        list.smoothScrolling = true;
+        panel.defaultLocation = "right";
+        smoothScrolling = true;
+      };
     };
   };
 }

@@ -98,7 +98,7 @@ in {
 
     initExtra = ''
       FZF_TAB_COMMAND=(
-        ${pkgs.fzf}/bin/fzf
+        ${lib.getExe pkgs.fzf}
         --ansi
         --expect='$continuous_trigger'
         --nth=2,3 --delimiter='\x00'
@@ -203,8 +203,7 @@ in {
       nitch
     '';
 
-    shellAliases = {
-      rebuild = "sudo nix-store --verify; pushd ~dotfiles && sudo nixos-rebuild switch --flake .# && notify-send \"Done\" && bat cache --build; popd";
+    shellAliases = with pkgs; {
       cleanup = "sudo nix-collect-garbage --delete-older-than 7d";
       bloat = "nix path-info -Sh /run/current-system";
       v = "nvim";
@@ -212,20 +211,20 @@ in {
       commit = "git add . && git commit -m";
       push = "git push";
       pull = "git pull";
-      ytmp3 = ''
-        ${pkgs.yt-dlp}/bin/yt-dlp -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"
-      '';
-      cat = "${pkgs.bat}/bin/bat --style=plain";
-      grep = "${pkgs.ripgrep}/bin/rg";
-      du = "${pkgs.du-dust}/bin/dust";
-      ps = "${pkgs.procs}/bin/procs";
-      rm = "${pkgs.trash-cli}/bin/trash-put";
       m = "mkdir -p";
       fcd = "cd $(find -type d | fzf)";
-      ls = "${pkgs.exa}/bin/exa --icons --group-directories-first";
-      la = "${pkgs.exa}/bin/exa -lah";
-      tree = "${pkgs.exa}/bin/exa --tree --icons";
-      http = "${pkgs.python3}/bin/python3 -m http.server";
+      grep = lib.getExe ripgrep;
+      du = lib.getExe du-dust;
+      ps = lib.getExe procs;
+      rm = lib.getExe trash-cli;
+      cat = "${lib.getExe bat} --style=plain";
+      l = "ls -lF --time-style=long-iso --icons";
+      la = "${lib.getExe exa} -lah --tree";
+      ls = "${lib.getExe exa} -h --git --icons --color=auto --group-directories-first -s extension";
+      tree = "${lib.getExe exa} --tree --icons --tree";
+      ytmp3 = ''
+        ${lib.getExe yt-dlp} -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"
+      '';
     };
 
     zplug = {

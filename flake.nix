@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
     nix-colors.url = "github:misterio77/nix-colors";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     home-manager = {
       url = "github:nix-community/home-manager";

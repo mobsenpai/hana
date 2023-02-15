@@ -476,7 +476,7 @@ awful.keyboard.append_global_keybindings(
             {modkey},
             "c",
             function()
-                awful.spawn.with_shell("clipmenu")
+                awful.spawn("clipmenu")
             end,
             {description = "open clipboard", group = "app"}
         )

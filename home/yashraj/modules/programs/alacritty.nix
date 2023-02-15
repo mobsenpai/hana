@@ -39,7 +39,7 @@ in {
         };
       };
 
-      cursor.style = "Beam";
+      cursor.style = "Block";
 
       colors = {
         primary = {
