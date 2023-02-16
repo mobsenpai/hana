@@ -29,38 +29,36 @@ in {
       size = 10;
     };
 
-    gtk3.extraConfig = {
-      gtk-xft-antialias = 1;
-      gtk-xft-hinting = 1;
-      gtk-xft-hintstyle = "hintslight";
-      gtk-xft-rgba = "rgb";
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
       gtk-decoration-layout = "menu:";
     };
 
-    gtk2.extraConfig = ''
-      gtk-xft-antialias=1
-      gtk-xft-hinting=1
-      gtk-xft-hintstyle="hintslight"
-      gtk-xft-rgba="rgb"
-    '';
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+      gtk-decoration-layout = "menu:";
+    };
   };
 
   qt.enable = true;
 
-  home.pointerCursor = {
-    name = "${
-      if config.colorscheme.kind == "light"
-      then "phinger-cursors"
-      else "phinger-cursors-light"
-    }";
-    package = pkgs.phinger-cursors;
-    size = 24;
-    gtk.enable = true;
-  };
+  home = {
+    pointerCursor = {
+      name = "${
+        if config.colorscheme.kind == "light"
+        then "phinger-cursors"
+        else "phinger-cursors-light"
+      }";
+      package = pkgs.phinger-cursors;
+      size = 24;
+      gtk.enable = true;
+      x11.enable = true;
+    };
 
-  home.sessionVariables = {
-    # Theming Related Variables
-    GTK_THEME = "${config.colorscheme.slug}";
-    XCURSOR_SIZE = "${builtins.toString config.home.pointerCursor.size}";
+    sessionVariables = {
+      # Theming Related Variables
+      GTK_THEME = "${config.colorscheme.slug}";
+      XCURSOR_SIZE = "${builtins.toString config.home.pointerCursor.size}";
+    };
   };
 }

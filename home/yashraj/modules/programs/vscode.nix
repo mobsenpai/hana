@@ -24,7 +24,6 @@ in {
       ++ marketplace-extensions;
 
     userSettings = {
-      breadcrumbs.enabled = false;
       security.workspace.trust.enabled = false;
       telemetry.telemetryLevel = "off";
       prettier.singleQuote = true;

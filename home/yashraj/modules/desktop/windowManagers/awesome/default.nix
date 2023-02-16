@@ -7,6 +7,7 @@
   inherit (config.colorscheme) colors;
 in {
   xresources.extraConfig = ''
+    Xft.dpi: 96
     Xft.antialias: true
     Xft.hinting: true
     Xft.rgba: rgb
@@ -14,9 +15,7 @@ in {
     Xft.hintstyle: hintfull
     Xft.lcdfilter: lcddefault
 
-    Xcursor.size: ${builtins.toString config.home.sessionVariables.XCURSOR_SIZE}
     *.cursorColor:  #${colors.base05}
-
     *background: #${colors.base00}
     *foreground: #${colors.base07}
 
