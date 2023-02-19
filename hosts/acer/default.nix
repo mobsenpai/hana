@@ -6,8 +6,13 @@
   pkgs,
   ...
 }: {
+  disabledModules = [
+    # Disable the default Awesome WM module
+    "services/x11/window-managers/awesome.nix"
+  ];
+
   imports = [
-    # Shared configuration across all machines.
+    # Shared configuration across all machines
     ../shared
     ../shared/users/yashraj.nix
 
@@ -25,7 +30,6 @@
     kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     kernelModules = ["acpi_call"];
-
     kernelParams = [
       # "i8042.direct"
       # "i8042.dumbkbd"
@@ -55,28 +59,28 @@
   };
 
   services = {
-    xserver = {
-      enable = true;
-      displayManager = {
-        defaultSession = "none+awesome";
-        lightdm.enable = true;
-      };
+    # xserver = {
+    #   enable = true;
+    #   displayManager = {
+    #     defaultSession = "none+awesome";
+    #     lightdm.enable = true;
+    #   };
 
-      dpi = 96;
+    #   dpi = 96;
 
-      exportConfiguration = true;
-      layout = "us";
+    #   # xkbOptions = "caps:escape";
+    #   exportConfiguration = true;
 
-      windowManager = {
-        awesome = {
-          enable = true;
-          package = inputs.nixpkgs-f2k.packages.${pkgs.system}.awesome-git;
-          luaModules = lib.attrValues {
-            inherit (pkgs.luaPackages) lgi;
-          };
-        };
-      };
-    };
+    #   windowManager = {
+    #     awesome = {
+    #       enable = true;
+    #       package = inputs.nixpkgs-f2k.packages.${pkgs.system}.awesome-git;
+    #       luaModules = lib.attrValues {
+    #         inherit (pkgs.luaPackages) lgi;
+    #       };
+    #     };
+    #   };
+    # };
 
     # btrfs.autoScrub.enable = true;
     acpid.enable = true;
@@ -129,6 +133,9 @@
       CM_LAUNCHER = "rofi";
     };
   };
+
+  # Use custom Awesome WM module
+  services.xserver.windowManager.awesome.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
