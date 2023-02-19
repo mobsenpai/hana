@@ -7,7 +7,7 @@
   inherit (config.colorscheme) colors;
 in {
   xresources.extraConfig = ''
-    Xft.dpi: ${builtins.toString config.servies.xserver.dpi}
+    Xft.dpi: 96
     Xft.antialias: true
     Xft.hinting: true
     Xft.rgba: rgb

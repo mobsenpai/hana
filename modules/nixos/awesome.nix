@@ -29,22 +29,6 @@ with lib; let
       # luaposix
       
       ;
-
-    # fzy = pkgs.callPackage ({
-    #   luajit,
-    #   fetchFromGitHub,
-    # }:
-    #   luajit.pkgs.buildLuarocksPackage rec {
-    #     pname = "fzy";
-    #     version = "scm-1";
-    #     src = fetchFromGitHub {
-    #       owner = "swarn";
-    #       repo = pname;
-    #       rev = "0afc7bfaef9c8e6c3882069c7bf3d6548efa788e";
-    #       hash = "sha256-WfHPRN2fC3qYLuHpJHoOzh7DnY7xZdCp8bN6kEKc7W8=";
-    #     };
-    #     propagatedBuildInputs = [luajit];
-    #   }) {};
   };
 in {
   options = {
@@ -80,46 +64,10 @@ in {
       inherit
         (pkgs)
         awesome-git-luajit
-        #   maim
-        
-        #   lxrandr
-        
-        #   nemo-qml-plugin-dbus
-        
-        #   redshift
-        
-        #   sox
-        
-        #   xclip
-        
-        #   xdotool
-        
-        #   xsel
-        
-        #   ;
-        
-        # inherit
-        
-        #   (pkgs.cinnamon)
-        
-        #   nemo
-        
-        #   ;
-        
-        # inherit
-        
-        #   (pkgs.gnome3)
-        
-        #   dconf-editor
-        
-        #   ;
-        
-        # inherit
-        
-        #   (pkgs.xfce)
-        
-        #   xfce4-clipman-plugin
-        
+        pcmanfm
+        feh
+        volumeicon
+        clipmenu
         ;
     };
   };

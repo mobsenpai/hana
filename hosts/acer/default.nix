@@ -59,31 +59,8 @@
   };
 
   services = {
-    # xserver = {
-    #   enable = true;
-    #   displayManager = {
-    #     defaultSession = "none+awesome";
-    #     lightdm.enable = true;
-    #   };
-
-    #   dpi = 96;
-
-    #   # xkbOptions = "caps:escape";
-    #   exportConfiguration = true;
-
-    #   windowManager = {
-    #     awesome = {
-    #       enable = true;
-    #       package = inputs.nixpkgs-f2k.packages.${pkgs.system}.awesome-git;
-    #       luaModules = lib.attrValues {
-    #         inherit (pkgs.luaPackages) lgi;
-    #       };
-    #     };
-    #   };
-    # };
-
-    # btrfs.autoScrub.enable = true;
     acpid.enable = true;
+    # btrfs.autoScrub.enable = true;
   };
 
   hardware = {
