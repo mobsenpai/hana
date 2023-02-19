@@ -538,14 +538,14 @@ awful.keyboard.append_global_keybindings(
             {},
             "XF86AudioRaiseVolume",
             function()
-                awful.util.spawn("amixer -D pipewire sset Master 4%+", false)
+                awful.util.spawn("amixer -D pipewire sset Master 5%+", false)
             end
         ),
         awful.key(
             {},
             "XF86AudioLowerVolume",
             function()
-                awful.util.spawn("amixer -D pipewire sset Master 4%-", false)
+                awful.util.spawn("amixer -D pipewire sset Master 5%-", false)
             end
         ),
         awful.key(
