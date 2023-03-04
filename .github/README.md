@@ -1,11 +1,17 @@
 <!-- Mob's dotfiles -->
 <!-- https://github.com/MobSenpai/dotfiles -->
 
-[![NixOS](https://img.shields.io/badge/NixOS-unstable-informational.svg?style=flat-square&logo=nixos)](https://github.com/nixos/nixpkgs) [![AwesomeWM](https://img.shields.io/badge/AwesomeWM-master-blue.svg?style=flat-square&logo=lua)](https://github.com/awesomeWM/awesome)
+<p align="center">
+<a href="https://github.com/nixos/nixpkgs"><img src="https://img.shields.io/badge/NixOS-unstable-informational.svg?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"></a> <a href="https://awesomewm.org"><img src="https://img.shields.io/static/v1?label=AwesomeWM&message=master&style=flat&logo=awesomewm&colorA=24273A&colorB=8AADF4&logoColor=CAD3F5"/></a>
+</p>
 
-[![NixOS_Check](https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml/badge.svg)](https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml) [![NixOS_Fmt](https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml/badge.svg)](https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml)
+<p align="center">
+<a href="https://github.com/MobSenapi/dotfiles/actions/workflows/check.yml"><img src="https://github.com/MobSenapi/dotfiles/actions/workflows/check.yml/badge.svg"></a> <a href="https://github.com/MobSenapi/dotfiles/actions/workflows/fmt.yml"><img src="https://github.com/MobSenapi/dotfiles/actions/workflows/fmt.yml/badge.svg"/></a>
+</p>
 
-[![License](https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=cdd6f4&colorA=1e1e2e&colorB=cba6f7)](https://github.com/MobSenpai/dotfiles/blob/main/.github/LICENSE)
+<p align="center">
+<a href="https://github.com/MobSenapi/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"/></a>
+</p>
 
 <br>
 
@@ -16,19 +22,23 @@
 Mob's Dotfiles
 ```
 
+<br>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" width="500px" alt="NixOS logo"/>
+</p>
+
+<br>
+
 ```ocaml
 NixOS / Home-Manager / Flake
 ```
 
 </div>
 
-## :snowflake: <samp>Information</samp>
-
 <br>
 
-<div>
-
-<img align="right" src="https://i.imgur.com/u0DsgEx.png" width="30%" />
+## :snowflake: <samp>Information</samp>
 
 |                 |                        acer                         |
 | :-------------: | :-------------------------------------------------: |
@@ -40,10 +50,6 @@ NixOS / Home-Manager / Flake
 |      Shell      |             [Zsh](https://www.zsh.org/)             |
 
 <br>
-<br>
-
-<img src="https://i.imgur.com/PRFVvCt.png" alt="img" align="center" width="600px">
-
 <br>
 
 ## :wrench: <samp>Installation</samp>
@@ -138,6 +144,7 @@ NixOS / Home-Manager / Flake
    - Hyprland
    ```
 
+<br>
 <br>
 
 ## :bulb: <samp>Acknowledgements</samp>
