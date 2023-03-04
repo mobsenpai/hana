@@ -6,11 +6,11 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/MobSenapi/dotfiles/actions/workflows/check.yml"><img src="https://github.com/MobSenapi/dotfiles/actions/workflows/check.yml/badge.svg"></a> <a href="https://github.com/MobSenapi/dotfiles/actions/workflows/fmt.yml"><img src="https://github.com/MobSenapi/dotfiles/actions/workflows/fmt.yml/badge.svg"/></a>
+<a href="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml/badge.svg"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml/badge.svg"/></a>
 </p>
 
 <p align="center">
-<a href="https://github.com/MobSenapi/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"/></a>
+<a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"/></a>
 </p>
 
 <br>
