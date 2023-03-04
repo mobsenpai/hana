@@ -54,6 +54,10 @@ NixOS / Home-Manager / Flake
 
 ## :wrench: <samp>Installation</samp>
 
+I highly recommend creating your own configurations based on these dotfiles. Use this repository as a reference to customize your setup according to your preferences and requirements. Please note that these dotfiles were created for my specific hardware configuration, so use them at your own risk.
+
+But anyway… let's move on to the installation process!
+
 1. Download minimal iso
 
 2. Boot into the installer.
