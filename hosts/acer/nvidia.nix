@@ -19,6 +19,7 @@
   hardware = {
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+      forceFullCompositionPipeline = true;
       modesetting.enable = true;
       powerManagement.enable = true;
     };
