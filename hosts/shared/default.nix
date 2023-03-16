@@ -72,6 +72,7 @@
         man-pages
         pavucontrol
         pulseaudio
+        p7zip
         zip
         ;
     };

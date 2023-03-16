@@ -39,10 +39,13 @@
         # };
 
         extraConfig = ''
+          user_pref("datareporting.healthreport.uploadEnabled", false);
           user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
           user_pref("browser.compactmode.show", true);
           user_pref("browser.uidensity", 1);
           user_pref("browser.startup.homepage", "https://mobsenpai.github.io/firefoxstartpage/");
+          user_pref("network.trr.mode", 2);
+          user_pref("network.trr.uri", "9.9.9.9");
         '';
       };
     };
