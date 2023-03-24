@@ -45,7 +45,7 @@ NixOS / Home-Manager / Flake
 |       OS        |             [NixOS](https://nixos.org/)             |
 | WM / Compositor |  [AwesomeWM](https://github.com/awesomeWM/awesome)  |
 |    Terminal     | [Alacritty](https://github.com/alacritty/alacritty) |
-|     Editor      |    [Vscode](https://github.com/microsoft/vscode)    |
+|     Editor      |  [Vscodium](https://github.com/VSCodium/vscodium)   |
 |  File Manager   |     [Pcmanfm](https://github.com/lxde/pcmanfm)      |
 |      Shell      |             [Zsh](https://www.zsh.org/)             |
 
