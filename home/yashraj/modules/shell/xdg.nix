@@ -23,12 +23,12 @@ with lib; let
 
     "audio/*" = ["mpv.desktop"];
     "video/*" = ["mpv.dekstop"];
-    "image/*" = ["imv.desktop"];
+    "image/*" = ["feh.desktop"];
+    "inode/directory" = ["pcmanfm.desktop"];
     "application/json" = browser;
-    "application/pdf" = ["org.pwmt.zathura.desktop.desktop"];
+    "application/pdf" = browser;
     "x-scheme-handler/discord" = ["discordcanary.desktop"];
     "x-scheme-handler/spotify" = ["spotify.desktop"];
-    "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
   };
 in {
   home.packages = with pkgs; [xdg-utils];
