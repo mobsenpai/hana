@@ -28,10 +28,6 @@ Mob's Dotfiles
   <img src="https://i.imgur.com/MVPskYa.png" width="500px" alt="NixOS logo"/>
 </p>
 
-<p align="center">
-  <img src="https://i.imgur.com/FMqOgYO.png" width="500px" alt="Screenshot"/>
-</p>
-
 <br>
 
 ```ocaml
@@ -52,6 +48,10 @@ NixOS / Home-Manager / Flake
 |     Editor      |  [Vscodium](https://github.com/VSCodium/vscodium)   |
 |  File Manager   |     [Pcmanfm](https://github.com/lxde/pcmanfm)      |
 |      Shell      |             [Zsh](https://www.zsh.org/)             |
+
+<p align="center">
+  <img src="https://i.imgur.com/FMqOgYO.png" width="500px" alt="Screenshot"/>
+</p>
 
 <br>
 <br>
