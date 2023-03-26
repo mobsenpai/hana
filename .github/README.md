@@ -34,6 +34,10 @@ Mob's Dotfiles
 NixOS / Home-Manager / Flake
 ```
 
+<p align="center">
+  <img src="https://i.imgur.com/FMqOgYO.png" alt="Screenshot"/>
+</p>
+
 </div>
 
 <br>
@@ -48,10 +52,6 @@ NixOS / Home-Manager / Flake
 |     Editor      |  [Vscodium](https://github.com/VSCodium/vscodium)   |
 |  File Manager   |     [Pcmanfm](https://github.com/lxde/pcmanfm)      |
 |      Shell      |             [Zsh](https://www.zsh.org/)             |
-
-<p align="center">
-  <img src="https://i.imgur.com/FMqOgYO.png" alt="Screenshot"/>
-</p>
 
 <br>
 <br>
