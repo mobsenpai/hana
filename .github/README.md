@@ -25,7 +25,7 @@ Mob's Dotfiles
 <br>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" width="500px" alt="NixOS logo"/>
+  <img src="https://i.imgur.com/xz5vOoW.png" width="500px" alt="NixOS logo"/>
 </p>
 
 <br>
