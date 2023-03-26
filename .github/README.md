@@ -50,7 +50,7 @@ NixOS / Home-Manager / Flake
 |      Shell      |             [Zsh](https://www.zsh.org/)             |
 
 <p align="center">
-  <img src="https://i.imgur.com/FMqOgYO.png" width="500px" alt="Screenshot"/>
+  <img src="https://i.imgur.com/FMqOgYO.png" alt="Screenshot"/>
 </p>
 
 <br>
