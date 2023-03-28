@@ -76,8 +76,8 @@
       frame-opacity = 1.0;
       inactive-opacity-override = false;
       focus-exclude = [
-        "class_g = 'Peek'"
         "class_g = 'Cairo-clock'"
+        "class_g = 'Peek'"
         "window_type = 'notification'"
         "window_type = 'combo'"
         "window_type = 'desktop'"
