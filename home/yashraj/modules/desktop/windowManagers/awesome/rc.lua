@@ -35,14 +35,16 @@ awful.util.shell = "sh"
 -- ░░█░░█▀█░█▀▀░█░█░█▀▀
 -- ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀
 
-local theme = "powerline"
-beautiful.init(gfs.get_configuration_dir() .. "themes/" .. theme .. "/theme.lua")
+-- local theme = "powerline"
+-- beautiful.init(gfs.get_configuration_dir() .. "themes/" .. theme .. "/theme.lua")
+beautiful.init(gfs.get_configuration_dir() .. "/theme.lua")
 
 -- ░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀░█░█░█▀▄░█▀█░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 -- ░█░░░█░█░█░█░█▀▀░░█░░█░█░█░█░█▀▄░█▀█░░█░░░█░░█░█░█░█░▀▀█
 -- ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
-require("themes/" .. theme .. "/configuration")
+-- require("themes/" .. theme .. "/configuration")
+require("init.lua")
 
 -- Screen Tags
 screen.connect_signal("request::desktop_decoration", function(s)
