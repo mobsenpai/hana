@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (config.colorscheme) colors;
+  # theme = "default";
 in {
   xresources.extraConfig = ''
     Xft.dpi: 96
@@ -61,11 +62,13 @@ in {
     file = {
       # ".config/awesome/rc.lua".source = ./rc.lua;
       # ".config/awesome/themes".source = ./themes;
-      ".config/awesome/lain".source = inputs.lain.outPath;
+      # ".config/awesome/lain".source = inputs.lain.outPath;
 
       # new configs
       ".config/awesome/".source = ./default;
-      ".config/awesome/rc.lua".source = ./rc.lua;
+      # ".config/awesome/init.lua".source = ./default/init.lua;
+      # ".config/awesome/theme.lua".source = ./default/theme.lua;
+      # ".config/awesome/rc.lua".source = ./rc.lua;
     };
   };
 

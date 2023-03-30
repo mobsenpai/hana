@@ -44,7 +44,7 @@ beautiful.init(gfs.get_configuration_dir() .. "/theme.lua")
 -- ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
 -- require("themes/" .. theme .. "/configuration")
-require("init.lua")
+dofile(gfs.get_configuration_dir() .."/init.lua")
 
 -- Screen Tags
 screen.connect_signal("request::desktop_decoration", function(s)
