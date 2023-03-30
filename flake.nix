@@ -13,10 +13,10 @@
     };
     # Non Flakes
     # awesome modules
-    lain = {
-      url = "github:lcpz/lain";
-      flake = false;
-    };
+    # bling = {
+    #   url = "github:BlingCorp/bling";
+    #   flake = false;
+    # };
   };
 
   outputs = {

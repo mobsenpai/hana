@@ -8,7 +8,6 @@ local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
--- local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -19,36 +18,13 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 local dpi = require("beautiful.xresources").apply_dpi
--- Theme specific
-local separator = {
-    left = dpi(10),
-    widget = wibox.container.margin
-}
+-- Weather
+local filesystem = gears.filesystem
+local json = require("modules.json")
 
 -- ░█▀▀░█░█░█▀█░█▀▀░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 -- ░█▀▀░█░█░█░█░█░░░░█░░░█░░█░█░█░█░▀▀█
 -- ░▀░░░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
-
--- Module
-function markupBlocks(icon, wbox, bgcolor, fgcolor)
-    return {
-        {
-            {
-                wibox.container.margin(wibox.widget {icon, wbox, layout = wibox.layout.align.horizontal}),
-                fg = fgcolor,
-                bg = bgcolor,
-                widget = wibox.container.background
-            },
-            layout = wibox.container.margin
-        },
-        left = dpi(10),
-        bottom = dpi(3),
-        top = dpi(3),
-        layout = wibox.container.margin
-    }
-end
-
-local makeWidget = markupBlocks
 
 -- Autostart
 local function run_once(cmd_arr)
@@ -97,7 +73,7 @@ tag.connect_signal(
     end
 )
 
--- {{{ Menu
+-- {{ Menu
 local menu = {}
 
 menu.awesome = {
@@ -131,7 +107,7 @@ mylauncher =
         menu = menu.mainmenu
     }
 )
--- }}}
+-- }}
 
 -- ░█░█░▀█▀░█▀▄░█▀▀░█▀▀░▀█▀░█▀▀
 -- ░█▄█░░█░░█░█░█░█░█▀▀░░█░░▀▀█
@@ -141,46 +117,107 @@ mylauncher =
 local mysystray = wibox.widget.systray()
 mysystray.base_size = beautiful.systray_icon_size
 
---{{ check after check bling weather
--- Provides:
--- signal::ram
---      used (integer - mega bytes)
---      total (integer - mega bytes)
--- local awful = require("awful")
+--{{ Memory widget
+memory_widget = wibox.widget({
+    {
+        {
+            {
+                id = "icon",
+                text = "  ",
+                font = beautiful.icon_font .. "10",
+                widget = wibox.widget.textbox,
+            },
+            bg = beautiful.xcolor14,
+            fg = beautiful.darker_bg,
+            widget = wibox.widget.background,
+        },
+        {
+            id = "text",
+            text = "",
+            font = beautiful.icon_font .. "10",
+            widget = wibox.widget.textbox,
+        },
+        spacing = dpi(10),
+        layout = wibox.layout.fixed.horizontal,
+    },
+    fg = beautiful.darker_bg,
+    bg = beautiful.xcolor6,
+    widget = wibox.container.background,
+})
 
 local update_interval = 20
--- Returns the used amount of ram in percentage
--- TODO output of free is affected by system language. The following command
--- works for any language:
--- free -m | sed -n '2p' | awk '{printf "%d available out of %d\n", $7, $2}'
 local ram_script = [[
   sh -c "
   free -m | grep 'Mem:' | awk '{printf \"%d@@%d@\", $7, $2}'
   "]]
 
 -- Periodically get ram info
-
-memWidget = awful.widget.watch(ram_script, update_interval, function(widget, stdout)
+awful.widget.watch(ram_script, update_interval, function(widget, stdout)
     local available = stdout:match('(.*)@@')
     local total = stdout:match('@@(.*)@')
     local used = tonumber(total) - tonumber(available)
-    -- awesome.emit_signal("signal::ram", used, total)
-    widget:set_markup("<span font='" .. beautiful.icon_font .. "10'" .. "background='" .. beautiful.xcolor14 .. "'foreground='" .. beautiful.darker_bg .. "'>  " .."</span>" .. "<span font='" .. beautiful.icon_font .. "10'" .. "background='" .. beautiful.xcolor6 .. "'foreground='" .. beautiful.darker_bg .. "'> " .. used .." MB </span>")
+    -- weather_widget attach
+    local usage = memory_widget:get_children_by_id("text")[1]
+    memory_widget:emit_signal("widget::redraw_needed")
+    usage:set_text(used .. " MB ")
 end)
 
-
---}} note the font size also increases the bar height so make one font only, fontbold?
-
---{{ clock
-clockWidget = awful.widget.textclock("<span font='" .. beautiful.icon_font .. "10'" .. "background='" .. beautiful.xcolor12 .. "'foreground='" .. beautiful.darker_bg .. "'>  " .."</span>" .. "<span font='" .. beautiful.icon_font .. "10'" .. "background='" .. beautiful.xcolor4 .. "'foreground='#ffffff'> %a %b %d - %I:%M %p </span>")
-
+--{{ Clock widget
+    clock_widget = wibox.widget({
+        {
+            {
+                {
+                    id = "icon",
+                    text = "  ",
+                    font = beautiful.icon_font .. "10",
+                    widget = wibox.widget.textbox,
+                },
+                bg = beautiful.xcolor12,
+                fg = beautiful.darker_bg,
+                widget = wibox.widget.background,
+            },
+            {
+                id = "text",
+                format = "%a %b %d - %I:%M %p ",
+                font = beautiful.icon_font .. "10",
+                widget = wibox.widget.textclock,
+            },
+            spacing = dpi(10),
+            layout = wibox.layout.fixed.horizontal,
+        },
+        fg = "#ffffff",
+        bg = beautiful.xcolor4,
+        widget = wibox.container.background,
+    })
 -- }}
 
---{{ cpu
--- Provides:
--- signal::cpu
---      used percentage (integer)
--- local awful = require("awful")
+--{{ CPU widget
+cpu_widget = wibox.widget({
+    {
+        {
+            {
+                id = "icon",
+                text = "  ",
+                font = beautiful.icon_font .. "12",
+                widget = wibox.widget.textbox,
+            },
+            bg = beautiful.xcolor11,
+            fg = beautiful.darker_bg,
+            widget = wibox.widget.background,
+        },
+        {
+            id = "text",
+            text = "",
+            font = beautiful.icon_font .. "10",
+            widget = wibox.widget.textbox,
+        },
+        spacing = dpi(10),
+        layout = wibox.layout.fixed.horizontal,
+    },
+    fg = beautiful.xcolor3,
+    bg = beautiful.lighter_bg,
+    widget = wibox.container.background,
+})
 
 local update_interval = 5
 local cpu_idle_script = [[
@@ -189,183 +226,53 @@ local cpu_idle_script = [[
   "]]
 
 -- Periodically get cpu info
-cpuWidget = awful.widget.watch(cpu_idle_script, update_interval, function(widget, stdout)
-    -- local cpu_idle = stdout:match('+(.*)%.%d...(.*)%(')
+awful.widget.watch(cpu_idle_script, update_interval, function(widget, stdout)
     local cpu_idle = stdout
     cpu_idle = string.gsub(cpu_idle, '^%s*(.-)%s*$', '%1')
     local used = 100 - tonumber(cpu_idle)
-    -- awesome.emit_signal("signal::cpu", 100 - tonumber(cpu_idle))
-    widget:set_markup("<span font='" .. beautiful.icon_font .. "10'" .. "background='" .. beautiful.xcolor11 .. "'foreground='" .. beautiful.darker_bg .. "'>  " .."</span>" .. "<span font='" .. beautiful.icon_font .. "10'" .. "background='" .. beautiful.lighter_bg .. "'foreground='" .. beautiful.xcolor3 .. "'> " .. used .."% </span>")
+    -- cpu_widget attach
+    local usage = cpu_widget:get_children_by_id("text")[1]
+    cpu_widget:emit_signal("widget::redraw_needed")
+    usage:set_text(used .. "% ")
 end)
-
 -- }}
 
--- {{ weather
--- local awful = require("awful")
--- local wibox = require("wibox")
--- local gears = require("gears")
--- local beautiful = require("beautiful")
--- local dpi = beautiful.xresources.apply_dpi
-local filesystem = gears.filesystem
-local json = require("modules.json")
--- local user_vars = require("user_variables")
-local icon_dir = filesystem.get_configuration_dir() .. "ui/panels/info-panel/weather/icons/"
-
---- Weather Widget
---- ~~~~~~~~~~~~~~
-
+-- {{ Weather widget
 local GET_FORECAST_CMD = [[bash -c "curl -s --show-error -X GET '%s'"]]
 
-local icon_map = {
-	["01d"] = "weather-clear-sky",
-	["02d"] = "weather-few-clouds",
-	["03d"] = "weather-clouds",
-	["04d"] = "weather-few-clouds",
-	["09d"] = "weather-showers-scattered",
-	["10d"] = "weather-showers",
-	["11d"] = "weather-strom",
-	["13d"] = "weather-snow",
-	["50d"] = "weather-fog",
-	["01n"] = "weather-clear-night",
-	["02n"] = "weather-few-clouds-night",
-	["03n"] = "weather-clouds-night",
-	["04n"] = "weather-clouds-night",
-	["09n"] = "weather-showers-scattered",
-	["10n"] = "weather-showers",
-	["11n"] = "weather-strom",
-	["13n"] = "weather-snow",
-	["50n"] = "weather-fog",
-}
-
 local current_weather_widget = wibox.widget({
-	{
-		{
-			id = "icon",
-			image = icon_dir .. "weather-showers.svg",
-			resize = true,
-			forced_height = dpi(42),
-			forced_width = dpi(42),
-			widget = wibox.widget.imagebox,
-		},
-		{
-			{
-				{
-					id = "description",
-					text = "Mostly cloudy",
-					font = beautiful.font_name .. "Bold 10",
-					widget = wibox.widget.textbox,
-				},
-				{
-					id = "humidity",
-					text = "Humidity: 80%",
-					font = beautiful.font_name .. "Light 9",
-					widget = wibox.widget.textbox,
-				},
-				layout = wibox.layout.fixed.vertical,
-			},
-			widget = wibox.container.place,
-		},
-		spacing = dpi(10),
-		layout = wibox.layout.fixed.horizontal,
-	},
-	nil,
-	{
-		{
-			{
-				id = "tempareture_current",
-				markup = "20<sup><span>°</span></sup>",
-				align = "right",
-				font = beautiful.font_name .. "Bold 16",
-				widget = wibox.widget.textbox,
-			},
-			{
-				id = "feels_like",
-				markup = "Feels like: 19<sup><span>°</span></sup>",
-				font = beautiful.font_name .. "Light 8",
-				widget = wibox.widget.textbox,
-			},
-			spacing = dpi(-6),
-			layout = wibox.layout.fixed.vertical,
-		},
-		widget = wibox.container.place,
-	},
-	layout = wibox.layout.align.horizontal,
-})
-
-local hourly_widget = function()
-	local widget = wibox.widget({
-		{
-			{
-				id = "time",
-				text = "12PM",
-				font = beautiful.font_name .. "Light 9",
-				widget = wibox.widget.textbox,
-			},
-			widget = wibox.container.place,
-		},
-		{
-			{
-				id = "icon",
-				image = icon_dir .. "weather-clear-sky.svg",
-				resize = true,
-				forced_height = dpi(16),
-				forced_width = dpi(16),
-				widget = wibox.widget.imagebox,
-			},
-			widget = wibox.container.place,
-		},
-		{
-			{
-				id = "tempareture",
-				markup = "1<sup><span>°</span></sup>",
-				font = beautiful.font_name .. "Light 9",
-				widget = wibox.widget.textbox,
-			},
-			widget = wibox.container.place,
-		},
-		spacing = dpi(6),
-		layout = wibox.layout.fixed.vertical,
-	})
-
-	widget.update = function(result)
-		local time = widget:get_children_by_id("time")[1]
-		local icon = widget:get_children_by_id("icon")[1]
-		local temp = widget:get_children_by_id("tempareture")[1]
-		temp:set_markup(math.floor(result.temp) .. "<sup><span>°</span></sup>")
-		time:set_text(os.date("%I%p", tonumber(result.dt)))
-		icon.image = icon_dir .. icon_map[result.weather[1].icon] .. ".svg"
-		icon:emit_signal("widget::redraw_needed")
-	end
-	return widget
-end
-
-local hourly_widget_1 = hourly_widget()
-local hourly_widget_2 = hourly_widget()
-local hourly_widget_3 = hourly_widget()
-local hourly_widget_4 = hourly_widget()
-local hourly_widget_5 = hourly_widget()
-local hourly_widget_6 = hourly_widget()
-
-local weather_widget = wibox.widget({
-	{
-		text = "Weather",
-		font = beautiful.font_name .. "Bold 16",
-		align = "center",
-		widget = wibox.widget.textbox,
-	},
-	current_weather_widget,
-	{
-		hourly_widget_1,
-		hourly_widget_2,
-		hourly_widget_3,
-		hourly_widget_4,
-		hourly_widget_5,
-		hourly_widget_6,
-		spacing = dpi(10),
-		layout = wibox.layout.flex.horizontal,
-	},
-	spacing = dpi(10),
-	layout = wibox.layout.fixed.vertical,
+    {
+        {
+            {
+                id = "icon",
+                text = "  ",
+                font = beautiful.icon_font .. "10",
+                widget = wibox.widget.textbox,
+            },
+            bg = beautiful.xcolor10,
+            fg = beautiful.darker_bg,
+            widget = wibox.widget.background,
+        },
+        {
+            id = "description",
+            text = "Mostly cloudy,",
+            font = beautiful.icon_font .. "10",
+            widget = wibox.widget.textbox,
+        },
+        nil,
+        {
+            id = "tempareture_current",
+            markup = "20<sup><span>°</span></sup><span>C </span>",
+            align = "right",
+            font = beautiful.icon_font .. "10",
+            widget = wibox.widget.textbox,
+        },
+        spacing = dpi(10),
+        layout = wibox.layout.fixed.horizontal,
+    },
+    fg = beautiful.xcolor2,
+    bg = beautiful.lighter_bg,
+    widget = wibox.container.background
 })
 
 local api_key = "d1b3b6a81db867259446b0863d5f9108"
@@ -373,9 +280,6 @@ local coordinates = {
     "25.6", --- lat
     "85.1167", --- lon
 }
-
-local show_hourly_forecast = true
-local show_daily_forecast = true
 local units = "metric"
 
 local url = (
@@ -389,55 +293,20 @@ local url = (
 	.. "&units="
 	.. units
 	.. "&exclude=minutely"
-	.. (show_hourly_forecast == false and ",hourly" or "")
-	.. (show_daily_forecast == false and ",daily" or "")
 )
 
 awful.widget.watch(string.format(GET_FORECAST_CMD, url), 600, function(_, stdout, stderr)
 	if stderr == "" then
 		local result = json.decode(stdout)
 		-- Current weather setup
-		local icon = current_weather_widget:get_children_by_id("icon")[1]
 		local description = current_weather_widget:get_children_by_id("description")[1]
-		local humidity = current_weather_widget:get_children_by_id("humidity")[1]
 		local temp_current = current_weather_widget:get_children_by_id("tempareture_current")[1]
-		local feels_like = current_weather_widget:get_children_by_id("feels_like")[1]
-		icon.image = icon_dir .. icon_map[result.current.weather[1].icon] .. ".svg"
-		icon:emit_signal("widget::redraw_needed")
-		description:set_text(result.current.weather[1].description:gsub("^%l", string.upper))
-		humidity:set_text("Humidity: " .. result.current.humidity .. "%")
-		temp_current:set_markup(math.floor(result.current.temp) .. "<sup><span>°</span></sup>")
-		feels_like:set_markup("Feels like: " .. math.floor(result.current.feels_like) .. "<sup><span>°</span></sup>")
-		-- Hourly widget setup
-		hourly_widget_1.update(result.hourly[1])
-		hourly_widget_2.update(result.hourly[2])
-		hourly_widget_3.update(result.hourly[3])
-		hourly_widget_4.update(result.hourly[4])
-		hourly_widget_5.update(result.hourly[5])
-		hourly_widget_6.update(result.hourly[6])
+        current_weather_widget:emit_signal("widget::redraw_needed")
+		description:set_text(result.current.weather[1].description:gsub("^%l", string.upper) .. ",")
+		temp_current:set_markup(math.floor(result.current.temp) .. "<sup><span>°</span></sup><span>C </span>")
 	end
 end)
 -- }}
-
-
--- Weather widget
--- local tempicon = wibox.widget.textbox()
--- tempicon:set_markup(markup.fontbg(beautiful.icon_font .. "12", beautiful.xcolor10, "  "))
--- local myWeather =
---     lain.widget.weather(
---     {
---         APPID = "d1b3b6a81db867259446b0863d5f9108",
---         city_id = 1260086,
---         settings = function()
---             descr = weather_now["weather"][1]["description"]:lower()
---             units = math.floor(weather_now["main"]["temp"])
---             widget:set_markup(
---                 markup.fontfg(beautiful.icon_font .. "10", beautiful.xcolor2, " " .. descr .. ", " .. units .. "°C ")
---             )
---         end
---     }
--- )
--- local weatherWibox = makeWidget(tempicon, myWeather, beautiful.lighter_bg, beautiful.darker_bg)
 
 -- -- Keyboard map indicator and switcher
 -- local keyboardText =
@@ -603,41 +472,36 @@ screen.connect_signal(
         s.mywibox = awful.wibar({position = beautiful.wibar_position, screen = s})
 
         s.mywibox:setup {
+            {
             layout = wibox.layout.align.horizontal,
             expand = "none",
-            {
-                layout = wibox.layout.fixed.horizontal,
-                s.mytaglist,
-                s.mypromptbox,
-                separator,
-                s.mytasklist
-            },
-            {
-                layout = wibox.layout.fixed.horizontal,
-                -- weatherWibox,
-                current_weather_widget
-            },
-            {
-                -- keyboardWibox,
-                memWidget,
-                separator,
-                -- memWibox,
-                cpuWidget,
-                separator,
-                -- cpuWibox,
-                clockWidget,
-                separator,
-                -- clockWibox,
                 {
-                    mysystray,
-                    top = dpi(3),
-                    bottom = dpi(3),
-                    -- left = dpi(10),
-                    right = dpi(5),
-                    widget = wibox.container.margin
+                    spacing = dpi(10),
+                    layout = wibox.layout.fixed.horizontal,
+                    s.mytaglist,
+                    s.mypromptbox,
+                    -- separator,
+                    s.mytasklist
                 },
-                layout = wibox.layout.fixed.horizontal
-            }
+                {
+                    spacing = dpi(10),
+                    layout = wibox.layout.fixed.horizontal,
+                    current_weather_widget,
+                },
+                {
+                    spacing = dpi(10),
+                    layout = wibox.layout.fixed.horizontal,
+                    memory_widget,
+                    cpu_widget,
+                    clock_widget,
+                    mysystray,
+                }
+            },
+            top = dpi(3),
+            bottom = dpi(3),
+            left = dpi(3),
+            right = dpi(3),
+            layout = wibox.container.margin,
         }
     end
 )

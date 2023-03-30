@@ -62,7 +62,6 @@ in {
     file = {
       # ".config/awesome/rc.lua".source = ./rc.lua;
       # ".config/awesome/themes".source = ./themes;
-      # ".config/awesome/lain".source = inputs.lain.outPath;
 
       # new configs
       ".config/awesome/".source = ./default;

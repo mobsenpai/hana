@@ -161,22 +161,6 @@
         "type": "github"
       }
     },
-    "lain": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1673554968,
-        "narHash": "sha256-MH/aiYfcO3lrcuNbnIu4QHqPq25LwzTprOhEJUJBJ7I=",
-        "owner": "lcpz",
-        "repo": "lain",
-        "rev": "88f5a8abd2649b348ffec433a24a263b37f122c0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lcpz",
-        "repo": "lain",
-        "type": "github"
-      }
-    },
     "nix-colors": {
       "inputs": {
         "base16-schemes": "base16-schemes",
@@ -345,7 +329,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "lain": "lain",
         "nix-colors": "nix-colors",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_2",
