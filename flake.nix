@@ -13,10 +13,10 @@
     };
     # Non Flakes
     # awesome modules
-    bling = {
-      url = "github:BlingCorp/bling";
-      flake = false;
-    };
+    # bling = {
+    #   url = "github:BlingCorp/bling";
+    #   flake = false;
+    # };
   };
 
   outputs = {

@@ -181,7 +181,5 @@ But anyway… let's move on to the installation process!
 
 - [rxyhn](https://github.com/rxyhn)
 - [JavaCafe01](https://github.com/JavaCafe01)
-- [raven2cz](https://github.com/raven2cz)
-- [fortuneteller2k](https://github.com/fortuneteller2k)
 
 </div>

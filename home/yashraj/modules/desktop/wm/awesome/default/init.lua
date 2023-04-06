@@ -1223,6 +1223,6 @@ client.connect_signal(
 )
 
 -- Autostart applications
-run_once({"picom", "clipmenud"}) -- comma-separated entries
+run_once({"picom", "clipmenud", "xss-lock -- betterlockscreen -l"}) -- comma-separated entries
 
 -- EOF ------------------------------------------------------------------------
