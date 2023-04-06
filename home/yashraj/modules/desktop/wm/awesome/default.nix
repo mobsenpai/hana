@@ -60,13 +60,6 @@ in {
     };
 
     file = {
-      # ".config/awesome/".source = ./default;
-      # new
-      # ".config/awesome/config".source = ./. + "/${theme}";
-      # ".config/awesome/modules/bling".source = inputs.bling.outPath;
-      # modules in outside config or not plus how to source?
-      # neww
-
       # Setup
       ".config/awesome/configuration/".source = ./. + "/${theme}";
       ".config/awesome/rc.lua".source = ./rc.lua;
