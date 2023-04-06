@@ -70,6 +70,7 @@
         ffmpeg-full
         fzf
         man-pages
+        pamixer
         pavucontrol
         pulseaudio
         p7zip

@@ -69,6 +69,7 @@ theme.fg_minimize = theme.xcolor8
 --- ░▀▀▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░░▀░░▀▀▀
 
 -- Borders
+theme.border_radius = dpi(15)
 theme.border_width = dpi(3)
 theme.oof_border_width = dpi(0)
 theme.border_normal = theme.xcolor0

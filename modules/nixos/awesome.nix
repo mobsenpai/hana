@@ -66,7 +66,6 @@ in {
         awesome-git-luajit
         pcmanfm
         feh
-        volumeicon
         clipmenu
         ;
     };

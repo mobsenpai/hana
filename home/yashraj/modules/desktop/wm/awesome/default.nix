@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (config.colorscheme) colors;
-  # theme = "default";
+  theme = "default";
 in {
   xresources.extraConfig = ''
     Xft.dpi: 96
@@ -60,14 +60,19 @@ in {
     };
 
     file = {
-      # ".config/awesome/rc.lua".source = ./rc.lua;
-      # ".config/awesome/themes".source = ./themes;
+      # ".config/awesome/".source = ./default;
+      # new
+      # ".config/awesome/config".source = ./. + "/${theme}";
+      # ".config/awesome/modules/bling".source = inputs.bling.outPath;
+      # modules in outside config or not plus how to source?
+      # neww
 
-      # new configs
-      ".config/awesome/".source = ./default;
-      # ".config/awesome/init.lua".source = ./default/init.lua;
-      # ".config/awesome/theme.lua".source = ./default/theme.lua;
-      # ".config/awesome/rc.lua".source = ./rc.lua;
+      # Setup
+      ".config/awesome/configuration/".source = ./. + "/${theme}";
+      ".config/awesome/rc.lua".source = ./rc.lua;
+
+      # Modules
+      ".config/awesome/module/json.lua".source = ./modules/json.lua;
     };
   };
 

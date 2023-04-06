@@ -308,16 +308,175 @@ awful.widget.watch(string.format(GET_FORECAST_CMD, url), 600, function(_, stdout
 end)
 -- }}
 
--- -- Keyboard map indicator and switcher
--- local keyboardText =
---     wibox.widget {
---     font = beautiful.icon_font .. "11",
---     markup = "<span background='" ..
---         beautiful.xcolor13 .. "'" .. "foreground='" .. beautiful.darker_bg .. "'>   " .. "</span>",
---     widget = wibox.widget.textbox
--- }
--- beautiful.mykeyboardlayout = awful.widget.keyboardlayout()
--- local keyboardWibox = makeWidget(keyboardText, beautiful.mykeyboardlayout, beautiful.xcolor5, beautiful.darker_bg)
+-- {{Volume osd
+-- Provides:
+-- signal::volume
+--      percentage (integer)
+--      muted (boolean)
+-- needs pamixer installed
+
+local volume_old = -1
+local muted_old = -1
+local function emit_volume_info()
+    -- Get volume info of the currently active sink
+    awful.spawn.easy_async_with_shell(
+        'echo -n $(pamixer --get-mute); echo "_$(pamixer --get-volume)"',
+        function(stdout)
+
+            local bool = string.match(stdout, "(.-)_")
+            local volume = string.match(stdout, "%d+")
+            local muted_int = -1
+            if bool == "true" then muted_int = 1 else muted_int = 0 end
+            local volume_int = tonumber(volume)
+
+            -- Only send signal if there was a change
+            -- We need this since we use `pactl subscribe` to detect
+            -- volume events. These are not only triggered when the
+            -- user adjusts the volume through a keybind, but also
+            -- through `pavucontrol` or even without user intervention,
+            -- when a media file starts playing.
+            if volume_int ~= volume_old or muted_int ~= muted_old then
+                awesome.emit_signal("signal::volume", volume_int, muted_int)
+                volume_old = volume_int
+                muted_old = muted_int
+            end
+        end)
+end
+
+-- Run once to initialize widgets
+emit_volume_info()
+
+-- Sleeps until pactl detects an event (volume up/down/toggle mute)
+local volume_script = [[
+    bash -c "
+    LANG=C pactl subscribe 2> /dev/null | grep --line-buffered \"Event 'change' on sink #\"
+    "]]
+
+-- Kill old pactl subscribe processes
+awful.spawn.easy_async({
+    "pkill", "--full", "--uid", os.getenv("USER"), "^pactl subscribe"
+}, function()
+    -- Run emit_volume_info() with each line printed
+    awful.spawn.with_line_callback(volume_script, {
+        stdout = function(line) emit_volume_info() end
+    })
+end)
+
+local width = dpi(50)
+local height = dpi(300)
+
+local volume_icon = wibox.widget {
+    markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b></b></span>",
+    align = 'center',
+    valign = 'center',
+    font = beautiful.font_name .. '20',
+    widget = wibox.widget.textbox
+}
+
+local volume_adjust = awful.popup({
+    type = "notification",
+    maximum_width = width,
+    maximum_height = height,
+    visible = false,
+    ontop = true,
+    widget = wibox.container.background,
+    bg = "#00000000",
+    placement = function(c)
+        awful.placement.right(c, {margins = {right = 10}})
+    end
+})
+
+local volume_bar = wibox.widget {
+    bar_shape = gears.shape.rounded_rect,
+    shape = gears.shape.rounded_rect,
+    background_color = beautiful.lighter_bg,
+    color = beautiful.xcolor4,
+    max_value = 100,
+    value = 0,
+    widget = wibox.widget.progressbar
+}
+
+local volume_ratio = wibox.widget {
+    layout = wibox.layout.ratio.vertical,
+    {
+        {volume_bar, direction = "east", widget = wibox.container.rotate},
+        top = dpi(20),
+        left = dpi(20),
+        right = dpi(20),
+        widget = wibox.container.margin
+    },
+    volume_icon,
+    nil
+}
+
+volume_ratio:adjust_ratio(2, 0.72, 0.28, 0)
+
+local rrect = function(radius)
+    return function(cr, width, height)
+        gears.shape.rounded_rect(cr, width, height, radius)
+    end
+end
+
+volume_adjust.widget = wibox.widget {
+    volume_ratio,
+    shape = rrect(beautiful.border_radius / 2),
+    border_width = beautiful.widget_border_width,
+    border_color = beautiful.widget_border_color,
+    bg = beautiful.xbackground,
+    widget = wibox.container.background
+}
+
+-- create a 3 second timer to hide the volume adjust
+-- component whenever the timer is started
+local hide_volume_adjust = gears.timer {
+    timeout = 3,
+    autostart = true,
+    callback = function()
+        volume_adjust.visible = false
+        volume_bar.mouse_enter = false
+    end
+}
+
+awesome.connect_signal("signal::volume", function(vol, muted)
+    volume_bar.value = vol
+
+    if muted == 1 or vol == 0 then
+        volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 ..
+                                 "'><b>ﳌ</b></span>"
+    else
+        volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 ..
+                                 "'><b></b></span>"
+    end
+
+    if volume_adjust.visible then
+        hide_volume_adjust:again()
+    else
+        volume_adjust.visible = true
+        hide_volume_adjust:start()
+    end
+
+end)
+-- }}
+
+-- {{
+-- Hover function
+function add_hover_cursor(w, hover_cursor)
+    local original_cursor = "left_ptr"
+
+    w:connect_signal("mouse::enter", function()
+        local w = _G.mouse.current_wibox
+        if w then w.cursor = hover_cursor end
+    end)
+
+    w:connect_signal("mouse::leave", function()
+        local w = _G.mouse.current_wibox
+        if w then w.cursor = original_cursor end
+    end)
+end
+
+-- Usage
+-- add_hover_cursor(cpu_widget, "hand2")
+-- }}
 
 -- ░█░█░█▀█░█░░░█░░░█▀█░█▀█░█▀█░█▀▀░█▀▄
 -- ░█▄█░█▀█░█░░░█░░░█▀▀░█▀█░█▀▀░█▀▀░█▀▄
@@ -480,7 +639,6 @@ screen.connect_signal(
                     layout = wibox.layout.fixed.horizontal,
                     s.mytaglist,
                     s.mypromptbox,
-                    -- separator,
                     s.mytasklist
                 },
                 {
@@ -627,27 +785,17 @@ awful.keyboard.append_global_keybindings(
             end,
             {description = "show the menubar", group = "launcher"}
         ),
-        awful.key(
-            {},
-            "XF86AudioRaiseVolume",
-            function()
-                awful.util.spawn("amixer -D pipewire sset Master 5%+", false)
-            end
-        ),
-        awful.key(
-            {},
-            "XF86AudioLowerVolume",
-            function()
-                awful.util.spawn("amixer -D pipewire sset Master 5%-", false)
-            end
-        ),
-        awful.key(
-            {},
-            "XF86AudioMute",
-            function()
-                awful.util.spawn("amixer -D pipewire sset Master toggle", false)
-            end
-        )
+        -- {{
+            -- Volume control
+            awful.key({}, "XF86AudioRaiseVolume",
+            function() awful.spawn("pamixer -i 3") end,
+            {description = "increase volume", group = "awesome"}),
+            awful.key({}, "XF86AudioLowerVolume",
+            function() awful.spawn("pamixer -d 3") end,
+            {description = "decrease volume", group = "awesome"}),
+            awful.key({}, "XF86AudioMute", function() awful.spawn("pamixer -t") end,
+            {description = "mute volume", group = "awesome"}),
+        -- }}
     }
 )
 
@@ -1028,30 +1176,23 @@ ruled.client.connect_signal(
         ruled.client.append_rule {
             id = "floating",
             rule_any = {
-                instance = {"copyq", "pinentry"},
+                instance = {"music", },
                 class = {
                     "Arandr",
-                    "Blueman-manager",
-                    "Gpick",
-                    "Kruler",
                     "Sxiv",
-                    "Tor Browser",
                     "Wpa_gui",
-                    "veromix",
-                    "xtightvncviewer"
+
                 },
                 -- Note that the name property shown in xprop might be set slightly after creation of the client
                 -- and the name shown there might not match defined rules here.
                 name = {
-                    "Event Tester" -- xev.
+                    "Friends List",
                 },
                 role = {
-                    "AlarmWindow", -- Thunderbird's calendar.
-                    "ConfigManager", -- Thunderbird's about:config.
-                    "pop-up" -- e.g. Google Chrome's (detached) Developer Tools.
+                    "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
                 }
             },
-            properties = {floating = true}
+            properties = {floating = true, placement = awful.placement.centered}
         }
     end
 )
@@ -1082,6 +1223,6 @@ client.connect_signal(
 )
 
 -- Autostart applications
-run_once({"volumeicon", "picom", "clipmenud"}) -- comma-separated entries
+run_once({"picom", "clipmenud"}) -- comma-separated entries
 
 -- EOF ------------------------------------------------------------------------

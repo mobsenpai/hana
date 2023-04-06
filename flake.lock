@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "bling": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1678166432,
+        "narHash": "sha256-V3ZAWhDH2b1n3G3ZMpH1k9yZFQm1wsAfAX4+eKciOKk=",
+        "owner": "BlingCorp",
+        "repo": "bling",
+        "rev": "677917056d118d02feaa5c21ecf5a50375ef123d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BlingCorp",
+        "repo": "bling",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -328,6 +344,7 @@
     },
     "root": {
       "inputs": {
+        "bling": "bling",
         "home-manager": "home-manager",
         "nix-colors": "nix-colors",
         "nix-vscode-extensions": "nix-vscode-extensions",
