@@ -25,7 +25,7 @@ Mob's Dotfiles
 <br>
 
 <p align="center">
-  <img src="https://i.imgur.com/rlKXxTD.png" width="500px" alt="OS banner"/>
+  <img src="https://i.imgur.com/3eCVWGT.png" width="500px" alt="OS banner"/>
 </p>
 
 <br>
