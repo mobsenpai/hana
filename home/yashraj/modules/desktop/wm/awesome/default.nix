@@ -72,7 +72,7 @@ in {
       ".config/awesome/rc.lua".source = ./rc.lua;
 
       # Modules
-      ".config/awesome/module/json.lua".source = ./modules/json.lua;
+      ".config/awesome/module/json.lua".source = ./module/json.lua;
     };
   };
 

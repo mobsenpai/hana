@@ -20,7 +20,7 @@ require("awful.hotkeys_popup.keys")
 local dpi = require("beautiful.xresources").apply_dpi
 -- Weather
 local filesystem = gears.filesystem
-local json = require("modules.json")
+local json = require("module.json")
 
 -- ░█▀▀░█░█░█▀█░█▀▀░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 -- ░█▀▀░█░█░█░█░█░░░░█░░░█░░█░█░█░█░▀▀█
