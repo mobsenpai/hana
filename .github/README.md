@@ -25,7 +25,7 @@ Mob's Dotfiles
 <br>
 
 <p align="center">
-  <img src="https://i.imgur.com/MVPskYa.png" width="500px" alt="NixOS logo"/>
+  <img src="https://i.imgur.com/rlKXxTD.png" width="500px" alt="OS banner"/>
 </p>
 
 <br>
@@ -35,7 +35,7 @@ NixOS / Home-Manager / Flake
 ```
 
 <p align="center">
-  <img src="https://i.imgur.com/FMqOgYO.png" alt="Screenshot"/>
+  <img src="https://i.imgur.com/x64MHiq.png" alt="Screenshot"/>
 </p>
 
 </div>
