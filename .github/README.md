@@ -147,8 +147,6 @@ But anyway… let's move on to the installation process!
 9. Stuff still in mind
 
    ```ocaml
-   - Config changes as per requirement or mood
-   - Systemd
    - Hyprland
    ```
 
