@@ -144,12 +144,6 @@ But anyway… let's move on to the installation process!
    - After install check / match hardware-configuration.nix. Make sure or edit the disk/by-uuid to disk/by-label/ like it is in this repo for reproductable build.
    - passwd yashraj (`your username, must edit it in the repo for using your own name`)
 
-9. Stuff still in mind
-
-   ```ocaml
-   - Hyprland
-   ```
-
 <br>
 <br>
 
