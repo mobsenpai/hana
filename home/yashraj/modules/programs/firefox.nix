@@ -80,8 +80,8 @@
         };
 
         userChrome = ''
-          @import "${pkgs.firefox-csshacks}/share/firefox-csshacks/chrome/tabs_on_bottom.css";
-          @import "${pkgs.firefox-csshacks}/share/firefox-csshacks/chrome/combined_favicon_and_tab_close_button.css";
+          @import "${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css";
+          @import "${pkgs.firefox-csshacks}/chrome/combined_favicon_and_tab_close_button.css";
         '';
 
         userContent = ''

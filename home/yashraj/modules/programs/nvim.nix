@@ -8,6 +8,6 @@
   };
 
   home.file = {
-    ".config/nvim/".source = "${pkgs.nvchad}/share/nvchad";
+    ".config/nvim/".source = "${pkgs.nvchad}";
   };
 }

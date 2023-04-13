@@ -19,8 +19,8 @@ stdenv.mkDerivation rec {
   doCheck = false;
 
   installPhase = ''
-    mkdir -p $out/share/firefox-csshacks
-    cp -r $src/* $out/share/firefox-csshacks
+    mkdir $out
+    cp -r * "$out/"
   '';
 
   meta = with lib; {

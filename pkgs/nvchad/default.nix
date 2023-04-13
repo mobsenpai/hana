@@ -21,9 +21,10 @@ in
     doCheck = false;
 
     installPhase = ''
-      mkdir -p $out/share/nvchad
-      cp -r $src/* $out/share/nvchad
-      cp -r ${custom}/* "$out/share/nvchad/lua/custom/"
+      mkdir $out
+      cp -r * "$out/"
+      mkdir -p "$out/lua/custom"
+      cp -r ${custom}/* "$out/lua/custom/"
     '';
 
     meta = with lib; {
