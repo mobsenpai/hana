@@ -68,6 +68,7 @@
         vim
         wget
         ffmpeg-full
+        gcc
         fzf
         man-pages
         pamixer

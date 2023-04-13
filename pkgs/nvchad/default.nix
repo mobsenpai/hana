@@ -7,13 +7,13 @@
 in
   stdenv.mkDerivation rec {
     pname = "NvChad";
-    version = "v2.0";
+    version = "2.0.0";
 
     src = fetchFromGitHub {
       repo = pname;
       owner = "NvChad";
-      rev = "${version}";
-      sha256 = "sha256-B7KX+o1wNGhq7cqUb6WWaocrk1/h81jl8HLI9JDlME0=";
+      rev = "refs/heads/v2.0";
+      sha256 = "sha256-7c2DmZe7olC7575syftoiF0DfmIVox9rPDgy0Qj/uV8=";
     };
 
     dontConfigure = true;
