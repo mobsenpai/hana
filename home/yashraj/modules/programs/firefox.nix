@@ -25,6 +25,7 @@
       yashraj = {
         id = 0;
         search = {
+          force = true;
           default = "SearXNG";
           engines = {
             "SearXNG" = {

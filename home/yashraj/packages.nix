@@ -7,7 +7,6 @@
     inherit
       (pkgs)
       nitch
-      neovim
       htop
       betterlockscreen
       xss-lock

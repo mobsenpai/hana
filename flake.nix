@@ -11,8 +11,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # Non Flakes
-    # awesome modules
     # bling = {
     #   url = "github:BlingCorp/bling";
     #   flake = false;

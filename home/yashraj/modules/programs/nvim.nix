@@ -1,5 +1,13 @@
-{}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  programs.neovim = {
+    enable = true;
+  };
+
   home.file = {
-    ".config/nvim".source = import pkgs.nvchad;
+    ".config/nvim/".source = "${pkgs.nvchad}/share/nvchad";
   };
 }
