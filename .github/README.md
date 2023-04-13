@@ -49,7 +49,7 @@ NixOS / Home-Manager / Flake
 |       OS        |             [NixOS](https://nixos.org/)             |
 | WM / Compositor |  [AwesomeWM](https://github.com/awesomeWM/awesome)  |
 |    Terminal     | [Alacritty](https://github.com/alacritty/alacritty) |
-|     Editor      |  [Vscodium](https://github.com/VSCodium/vscodium)   |
+|     Editor      | [Neovim](https://github.com/neovim/neovim) + [Vscodium](https://github.com/VSCodium/vscodium)   |
 |  File Manager   |     [Pcmanfm](https://github.com/lxde/pcmanfm)      |
 |      Shell      |             [Zsh](https://www.zsh.org/)             |
 
