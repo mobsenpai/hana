@@ -97,6 +97,7 @@
         "window_type = 'dock'"
         "_NET_WM_STATE@:32a *= '_NET_WM_STATE_MAXIMIZED_VERT'"
         "_NET_WM_STATE@:32a *= '_NET_WM_STATE_MAXIMIZED_HORZ'"
+        "class_g = 'Rofi'"
       ];
 
       experimental-backends = true;

@@ -118,32 +118,35 @@ local mysystray = wibox.widget.systray()
 mysystray.base_size = beautiful.systray_icon_size
 
 --{{ Memory widget
-memory_widget = wibox.widget({
+memory_widget =
+    wibox.widget(
     {
         {
             {
-                id = "icon",
-                text = "  ",
-                font = beautiful.icon_font .. "10",
-                widget = wibox.widget.textbox,
+                {
+                    id = "icon",
+                    text = "  ",
+                    font = beautiful.icon_font .. "10",
+                    widget = wibox.widget.textbox
+                },
+                bg = beautiful.xcolor14,
+                fg = beautiful.darker_bg,
+                widget = wibox.widget.background
             },
-            bg = beautiful.xcolor14,
-            fg = beautiful.darker_bg,
-            widget = wibox.widget.background,
+            {
+                id = "text",
+                text = "",
+                font = beautiful.icon_font .. "10",
+                widget = wibox.widget.textbox
+            },
+            spacing = dpi(10),
+            layout = wibox.layout.fixed.horizontal
         },
-        {
-            id = "text",
-            text = "",
-            font = beautiful.icon_font .. "10",
-            widget = wibox.widget.textbox,
-        },
-        spacing = dpi(10),
-        layout = wibox.layout.fixed.horizontal,
-    },
-    fg = beautiful.darker_bg,
-    bg = beautiful.xcolor6,
-    widget = wibox.container.background,
-})
+        fg = beautiful.darker_bg,
+        bg = beautiful.xcolor6,
+        widget = wibox.container.background
+    }
+)
 
 local update_interval = 20
 local ram_script = [[
@@ -152,72 +155,82 @@ local ram_script = [[
   "]]
 
 -- Periodically get ram info
-awful.widget.watch(ram_script, update_interval, function(widget, stdout)
-    local available = stdout:match('(.*)@@')
-    local total = stdout:match('@@(.*)@')
-    local used = tonumber(total) - tonumber(available)
-    -- weather_widget attach
-    local usage = memory_widget:get_children_by_id("text")[1]
-    memory_widget:emit_signal("widget::redraw_needed")
-    usage:set_text(used .. " MB ")
-end)
+awful.widget.watch(
+    ram_script,
+    update_interval,
+    function(widget, stdout)
+        local available = stdout:match("(.*)@@")
+        local total = stdout:match("@@(.*)@")
+        local used = tonumber(total) - tonumber(available)
+        -- weather_widget attach
+        local usage = memory_widget:get_children_by_id("text")[1]
+        memory_widget:emit_signal("widget::redraw_needed")
+        usage:set_text(used .. " MB ")
+    end
+)
 
 --{{ Clock widget
-    clock_widget = wibox.widget({
+clock_widget =
+    wibox.widget(
+    {
         {
             {
                 {
                     id = "icon",
                     text = "  ",
                     font = beautiful.icon_font .. "10",
-                    widget = wibox.widget.textbox,
+                    widget = wibox.widget.textbox
                 },
                 bg = beautiful.xcolor12,
                 fg = beautiful.darker_bg,
-                widget = wibox.widget.background,
+                widget = wibox.widget.background
             },
             {
                 id = "text",
                 format = "%a %b %d - %I:%M %p ",
                 font = beautiful.icon_font .. "10",
-                widget = wibox.widget.textclock,
+                widget = wibox.widget.textclock
             },
             spacing = dpi(10),
-            layout = wibox.layout.fixed.horizontal,
+            layout = wibox.layout.fixed.horizontal
         },
         fg = "#ffffff",
         bg = beautiful.xcolor4,
-        widget = wibox.container.background,
-    })
+        widget = wibox.container.background
+    }
+)
 -- }}
 
 --{{ CPU widget
-cpu_widget = wibox.widget({
+cpu_widget =
+    wibox.widget(
     {
         {
             {
-                id = "icon",
-                text = "  ",
-                font = beautiful.icon_font .. "12",
-                widget = wibox.widget.textbox,
+                {
+                    id = "icon",
+                    text = "  ",
+                    font = beautiful.icon_font .. "12",
+                    widget = wibox.widget.textbox
+                },
+                bg = beautiful.xcolor11,
+                fg = beautiful.darker_bg,
+                widget = wibox.widget.background
             },
-            bg = beautiful.xcolor11,
-            fg = beautiful.darker_bg,
-            widget = wibox.widget.background,
+            {
+                id = "text",
+                text = "",
+                font = beautiful.icon_font .. "10",
+                widget = wibox.widget.textbox
+            },
+            spacing = dpi(10),
+            layout = wibox.layout.fixed.horizontal
         },
-        {
-            id = "text",
-            text = "",
-            font = beautiful.icon_font .. "10",
-            widget = wibox.widget.textbox,
-        },
-        spacing = dpi(10),
-        layout = wibox.layout.fixed.horizontal,
-    },
-    fg = beautiful.xcolor3,
-    bg = beautiful.lighter_bg,
-    widget = wibox.container.background,
-})
+        fg = beautiful.xcolor3,
+        bg = beautiful.lighter_bg,
+        widget = wibox.container.background
+    }
+)
 
 local update_interval = 5
 local cpu_idle_script = [[
@@ -226,86 +239,89 @@ local cpu_idle_script = [[
   "]]
 
 -- Periodically get cpu info
-awful.widget.watch(cpu_idle_script, update_interval, function(widget, stdout)
-    local cpu_idle = stdout
-    cpu_idle = string.gsub(cpu_idle, '^%s*(.-)%s*$', '%1')
-    local used = 100 - tonumber(cpu_idle)
-    -- cpu_widget attach
-    local usage = cpu_widget:get_children_by_id("text")[1]
-    cpu_widget:emit_signal("widget::redraw_needed")
-    usage:set_text(used .. "% ")
-end)
+awful.widget.watch(
+    cpu_idle_script,
+    update_interval,
+    function(widget, stdout)
+        local cpu_idle = stdout
+        cpu_idle = string.gsub(cpu_idle, "^%s*(.-)%s*$", "%1")
+        local used = 100 - tonumber(cpu_idle)
+        -- cpu_widget attach
+        local usage = cpu_widget:get_children_by_id("text")[1]
+        cpu_widget:emit_signal("widget::redraw_needed")
+        usage:set_text(used .. "% ")
+    end
+)
 -- }}
 
 -- {{ Weather widget
 local GET_FORECAST_CMD = [[bash -c "curl -s --show-error -X GET '%s'"]]
 
-local current_weather_widget = wibox.widget({
+local current_weather_widget =
+    wibox.widget(
     {
         {
             {
-                id = "icon",
-                text = "  ",
-                font = beautiful.icon_font .. "10",
-                widget = wibox.widget.textbox,
+                {
+                    id = "icon",
+                    text = "  ",
+                    font = beautiful.icon_font .. "10",
+                    widget = wibox.widget.textbox
+                },
+                bg = beautiful.xcolor10,
+                fg = beautiful.darker_bg,
+                widget = wibox.widget.background
             },
-            bg = beautiful.xcolor10,
-            fg = beautiful.darker_bg,
-            widget = wibox.widget.background,
+            {
+                id = "description",
+                text = "Mostly cloudy,",
+                font = beautiful.icon_font .. "10",
+                widget = wibox.widget.textbox
+            },
+            nil,
+            {
+                id = "tempareture_current",
+                markup = "20<sup><span>°</span></sup><span>C </span>",
+                align = "right",
+                font = beautiful.icon_font .. "10",
+                widget = wibox.widget.textbox
+            },
+            spacing = dpi(10),
+            layout = wibox.layout.fixed.horizontal
         },
-        {
-            id = "description",
-            text = "Mostly cloudy,",
-            font = beautiful.icon_font .. "10",
-            widget = wibox.widget.textbox,
-        },
-        nil,
-        {
-            id = "tempareture_current",
-            markup = "20<sup><span>°</span></sup><span>C </span>",
-            align = "right",
-            font = beautiful.icon_font .. "10",
-            widget = wibox.widget.textbox,
-        },
-        spacing = dpi(10),
-        layout = wibox.layout.fixed.horizontal,
-    },
-    fg = beautiful.xcolor2,
-    bg = beautiful.lighter_bg,
-    widget = wibox.container.background
-})
+        fg = beautiful.xcolor2,
+        bg = beautiful.lighter_bg,
+        widget = wibox.container.background
+    }
+)
 
 local api_key = "d1b3b6a81db867259446b0863d5f9108"
 local coordinates = {
     "25.6", --- lat
-    "85.1167", --- lon
+    "85.1167" --- lon
 }
 local units = "metric"
 
-local url = (
-	"https://api.openweathermap.org/data/2.5/onecall"
-	.. "?lat="
-	.. coordinates[1]
-	.. "&lon="
-	.. coordinates[2]
-	.. "&appid="
-	.. api_key
-	.. "&units="
-	.. units
-	.. "&exclude=minutely"
-)
+local url =
+    ("https://api.openweathermap.org/data/2.5/onecall" ..
+    "?lat=" ..
+        coordinates[1] .. "&lon=" .. coordinates[2] .. "&appid=" .. api_key .. "&units=" .. units .. "&exclude=minutely")
 
-awful.widget.watch(string.format(GET_FORECAST_CMD, url), 600, function(_, stdout, stderr)
-	if stderr == "" then
-		local result = json.decode(stdout)
-		-- Current weather setup
-		local description = current_weather_widget:get_children_by_id("description")[1]
-		local temp_current = current_weather_widget:get_children_by_id("tempareture_current")[1]
-        current_weather_widget:emit_signal("widget::redraw_needed")
-		description:set_text(result.current.weather[1].description:gsub("^%l", string.upper) .. ",")
-		temp_current:set_markup(math.floor(result.current.temp) .. "<sup><span>°</span></sup><span>C </span>")
-	end
-end)
+awful.widget.watch(
+    string.format(GET_FORECAST_CMD, url),
+    600,
+    function(_, stdout, stderr)
+        if stderr == "" then
+            local result = json.decode(stdout)
+            -- Current weather setup
+            local description = current_weather_widget:get_children_by_id("description")[1]
+            local temp_current = current_weather_widget:get_children_by_id("tempareture_current")[1]
+            current_weather_widget:emit_signal("widget::redraw_needed")
+            description:set_text(result.current.weather[1].description:gsub("^%l", string.upper) .. ",")
+            temp_current:set_markup(math.floor(result.current.temp) .. "<sup><span>°</span></sup><span>C </span>")
+        end
+    end
+)
 -- }}
 
 -- {{Volume osd
@@ -322,11 +338,14 @@ local function emit_volume_info()
     awful.spawn.easy_async_with_shell(
         'echo -n $(pamixer --get-mute); echo "_$(pamixer --get-volume)"',
         function(stdout)
-
             local bool = string.match(stdout, "(.-)_")
             local volume = string.match(stdout, "%d+")
             local muted_int = -1
-            if bool == "true" then muted_int = 1 else muted_int = 0 end
+            if bool == "true" then
+                muted_int = 1
+            else
+                muted_int = 0
+            end
             local volume_int = tonumber(volume)
 
             -- Only send signal if there was a change
@@ -340,53 +359,72 @@ local function emit_volume_info()
                 volume_old = volume_int
                 muted_old = muted_int
             end
-        end)
+        end
+    )
 end
 
 -- Run once to initialize widgets
 emit_volume_info()
 
 -- Sleeps until pactl detects an event (volume up/down/toggle mute)
-local volume_script = [[
+local volume_script =
+    [[
     bash -c "
     LANG=C pactl subscribe 2> /dev/null | grep --line-buffered \"Event 'change' on sink #\"
     "]]
 
 -- Kill old pactl subscribe processes
-awful.spawn.easy_async({
-    "pkill", "--full", "--uid", os.getenv("USER"), "^pactl subscribe"
-}, function()
-    -- Run emit_volume_info() with each line printed
-    awful.spawn.with_line_callback(volume_script, {
-        stdout = function(line) emit_volume_info() end
-    })
-end)
+awful.spawn.easy_async(
+    {
+        "pkill",
+        "--full",
+        "--uid",
+        os.getenv("USER"),
+        "^pactl subscribe"
+    },
+    function()
+        -- Run emit_volume_info() with each line printed
+        awful.spawn.with_line_callback(
+            volume_script,
+            {
+                stdout = function(line)
+                    emit_volume_info()
+                end
+            }
+        )
+    end
+)
 
 local width = dpi(50)
 local height = dpi(300)
 
-local volume_icon = wibox.widget {
+local volume_icon =
+    wibox.widget {
     markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b></b></span>",
-    align = 'center',
-    valign = 'center',
-    font = beautiful.font_name .. '20',
+    align = "center",
+    valign = "center",
+    font = beautiful.font_name .. "20",
     widget = wibox.widget.textbox
 }
 
-local volume_adjust = awful.popup({
-    type = "notification",
-    maximum_width = width,
-    maximum_height = height,
-    visible = false,
-    ontop = true,
-    widget = wibox.container.background,
-    bg = "#00000000",
-    placement = function(c)
-        awful.placement.right(c, {margins = {right = 10}})
-    end
-})
+local volume_adjust =
+    awful.popup(
+    {
+        type = "notification",
+        maximum_width = width,
+        maximum_height = height,
+        visible = false,
+        ontop = true,
+        widget = wibox.container.background,
+        bg = "#00000000",
+        placement = function(c)
+            awful.placement.right(c, {margins = {right = 10}})
+        end
+    }
+)
 
-local volume_bar = wibox.widget {
+local volume_bar =
+    wibox.widget {
     bar_shape = gears.shape.rounded_rect,
     shape = gears.shape.rounded_rect,
     background_color = beautiful.lighter_bg,
@@ -396,7 +434,8 @@ local volume_bar = wibox.widget {
     widget = wibox.widget.progressbar
 }
 
-local volume_ratio = wibox.widget {
+local volume_ratio =
+    wibox.widget {
     layout = wibox.layout.ratio.vertical,
     {
         {volume_bar, direction = "east", widget = wibox.container.rotate},
@@ -417,7 +456,8 @@ local rrect = function(radius)
     end
 end
 
-volume_adjust.widget = wibox.widget {
+volume_adjust.widget =
+    wibox.widget {
     volume_ratio,
     shape = rrect(beautiful.border_radius / 2),
     border_width = beautiful.widget_border_width,
@@ -428,7 +468,8 @@ volume_adjust.widget = wibox.widget {
 
 -- create a 3 second timer to hide the volume adjust
 -- component whenever the timer is started
-local hide_volume_adjust = gears.timer {
+local hide_volume_adjust =
+    gears.timer {
     timeout = 3,
     autostart = true,
     callback = function()
@@ -437,25 +478,25 @@ local hide_volume_adjust = gears.timer {
     end
 }
 
-awesome.connect_signal("signal::volume", function(vol, muted)
-    volume_bar.value = vol
+awesome.connect_signal(
+    "signal::volume",
+    function(vol, muted)
+        volume_bar.value = vol
 
-    if muted == 1 or vol == 0 then
-        volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 ..
-                                 "'><b>ﳌ</b></span>"
-    else
-        volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 ..
-                                 "'><b></b></span>"
+        if muted == 1 or vol == 0 then
+            volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b>ﳌ</b></span>"
+        else
+            volume_icon.markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b></b></span>"
+        end
+
+        if volume_adjust.visible then
+            hide_volume_adjust:again()
+        else
+            volume_adjust.visible = true
+            hide_volume_adjust:start()
+        end
     end
-
-    if volume_adjust.visible then
-        hide_volume_adjust:again()
-    else
-        volume_adjust.visible = true
-        hide_volume_adjust:start()
-    end
-
-end)
+)
 -- }}
 
 -- {{
@@ -463,15 +504,25 @@ end)
 function add_hover_cursor(w, hover_cursor)
     local original_cursor = "left_ptr"
 
-    w:connect_signal("mouse::enter", function()
-        local w = _G.mouse.current_wibox
-        if w then w.cursor = hover_cursor end
-    end)
+    w:connect_signal(
+        "mouse::enter",
+        function()
+            local w = _G.mouse.current_wibox
+            if w then
+                w.cursor = hover_cursor
+            end
+        end
+    )
 
-    w:connect_signal("mouse::leave", function()
-        local w = _G.mouse.current_wibox
-        if w then w.cursor = original_cursor end
-    end)
+    w:connect_signal(
+        "mouse::leave",
+        function()
+            local w = _G.mouse.current_wibox
+            if w then
+                w.cursor = original_cursor
+            end
+        end
+    )
 end
 
 -- Usage
@@ -632,8 +683,8 @@ screen.connect_signal(
 
         s.mywibox:setup {
             {
-            layout = wibox.layout.align.horizontal,
-            expand = "none",
+                layout = wibox.layout.align.horizontal,
+                expand = "none",
                 {
                     spacing = dpi(10),
                     layout = wibox.layout.fixed.horizontal,
@@ -644,7 +695,7 @@ screen.connect_signal(
                 {
                     spacing = dpi(10),
                     layout = wibox.layout.fixed.horizontal,
-                    current_weather_widget,
+                    current_weather_widget
                 },
                 {
                     spacing = dpi(10),
@@ -652,14 +703,14 @@ screen.connect_signal(
                     memory_widget,
                     cpu_widget,
                     clock_widget,
-                    mysystray,
+                    mysystray
                 }
             },
             top = dpi(3),
             bottom = dpi(3),
             left = dpi(3),
             right = dpi(3),
-            layout = wibox.container.margin,
+            layout = wibox.container.margin
         }
     end
 )
@@ -786,15 +837,31 @@ awful.keyboard.append_global_keybindings(
             {description = "show the menubar", group = "launcher"}
         ),
         -- {{
-            -- Volume control
-            awful.key({}, "XF86AudioRaiseVolume",
-            function() awful.spawn("pamixer -i 3") end,
-            {description = "increase volume", group = "awesome"}),
-            awful.key({}, "XF86AudioLowerVolume",
-            function() awful.spawn("pamixer -d 3") end,
-            {description = "decrease volume", group = "awesome"}),
-            awful.key({}, "XF86AudioMute", function() awful.spawn("pamixer -t") end,
-            {description = "mute volume", group = "awesome"}),
+        -- Volume control
+        awful.key(
+            {},
+            "XF86AudioRaiseVolume",
+            function()
+                awful.spawn("pamixer -i 3")
+            end,
+            {description = "increase volume", group = "awesome"}
+        ),
+        awful.key(
+            {},
+            "XF86AudioLowerVolume",
+            function()
+                awful.spawn("pamixer -d 3")
+            end,
+            {description = "decrease volume", group = "awesome"}
+        ),
+        awful.key(
+            {},
+            "XF86AudioMute",
+            function()
+                awful.spawn("pamixer -t")
+            end,
+            {description = "mute volume", group = "awesome"}
+        )
         -- }}
     }
 )
@@ -1176,20 +1243,19 @@ ruled.client.connect_signal(
         ruled.client.append_rule {
             id = "floating",
             rule_any = {
-                instance = {"music", },
+                instance = {"music"},
                 class = {
                     "Arandr",
                     "Sxiv",
-                    "Wpa_gui",
-
+                    "Wpa_gui"
                 },
                 -- Note that the name property shown in xprop might be set slightly after creation of the client
                 -- and the name shown there might not match defined rules here.
                 name = {
-                    "Friends List",
+                    "Friends List"
                 },
                 role = {
-                    "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+                    "pop-up" -- e.g. Google Chrome's (detached) Developer Tools.
                 }
             },
             properties = {floating = true, placement = awful.placement.centered}
