@@ -529,6 +529,10 @@ end
 -- add_hover_cursor(cpu_widget, "hand2")
 -- }}
 
+-- {{
+    require("module.lockscreen")
+-- }}
+
 -- ░█░█░█▀█░█░░░█░░░█▀█░█▀█░█▀█░█▀▀░█▀▄
 -- ░█▄█░█▀█░█░░░█░░░█▀▀░█▀█░█▀▀░█▀▀░█▀▄
 -- ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀░▀░▀░░░▀▀▀░▀░▀
@@ -781,7 +785,40 @@ awful.keyboard.append_global_keybindings(
                 awful.spawn("clipmenu")
             end,
             {description = "open clipboard", group = "app"}
-        )
+        ),
+        -- {{
+        -- Volume control
+        awful.key(
+            {},
+            "XF86AudioRaiseVolume",
+            function()
+                awful.spawn("pamixer -i 3")
+            end,
+            {description = "increase volume", group = "awesome"}
+        ),
+        awful.key(
+            {},
+            "XF86AudioLowerVolume",
+            function()
+                awful.spawn("pamixer -d 3")
+            end,
+            {description = "decrease volume", group = "awesome"}
+        ),
+        awful.key(
+            {},
+            "XF86AudioMute",
+            function()
+                awful.spawn("pamixer -t")
+            end,
+            {description = "mute volume", group = "awesome"}
+        ),
+        -- }}
+        -- {{
+        	--- Lockscreen
+        -- awful.key({ mod, alt }, "l", function()
+        -- 	lock_screen_show()
+        -- end, { description = "lock screen", group = "hotkeys" })
+        -- }}
     }
 )
 
@@ -835,34 +872,7 @@ awful.keyboard.append_global_keybindings(
                 menubar.show()
             end,
             {description = "show the menubar", group = "launcher"}
-        ),
-        -- {{
-        -- Volume control
-        awful.key(
-            {},
-            "XF86AudioRaiseVolume",
-            function()
-                awful.spawn("pamixer -i 3")
-            end,
-            {description = "increase volume", group = "awesome"}
-        ),
-        awful.key(
-            {},
-            "XF86AudioLowerVolume",
-            function()
-                awful.spawn("pamixer -d 3")
-            end,
-            {description = "decrease volume", group = "awesome"}
-        ),
-        awful.key(
-            {},
-            "XF86AudioMute",
-            function()
-                awful.spawn("pamixer -t")
-            end,
-            {description = "mute volume", group = "awesome"}
         )
-        -- }}
     }
 )
 

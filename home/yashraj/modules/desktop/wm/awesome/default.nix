@@ -66,6 +66,7 @@ in {
 
       # Modules
       ".config/awesome/module/json.lua".source = ./module/json.lua;
+      ".config/awesome/module/lockscreen/".source = ./module/lockscreen;
     };
   };
 
