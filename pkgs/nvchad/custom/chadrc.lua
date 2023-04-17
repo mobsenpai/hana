@@ -9,6 +9,10 @@ M.ui = {
     theme = "default",
     separator_style = "block",
   },
+
+  nvdash = {
+    load_on_startup = true,
+  },
 }
 
 M.plugins = "custom.plugins"

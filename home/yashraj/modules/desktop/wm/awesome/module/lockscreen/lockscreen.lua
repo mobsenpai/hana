@@ -4,17 +4,12 @@ local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local wibox = require("wibox")
-local helpers = require("helpers")
 local lock_screen = require("module.lockscreen")
-
--- {{
-  -- Helpers
--- }}
 
 --- Word Clock Lock Screen
 --- ~~~~~~~~~~~~~~~~~~~~~~
 
-local lock_screen_symbol = ""
+local lock_screen_symbol = ""
 local lock_screen_fail_symbol = ""
 local lock_animation_icon = wibox.widget({
 	--- Set forced size to prevent flickering when the icon rotates
@@ -39,10 +34,18 @@ awful.screen.connect_for_each_screen(function(s)
 	if s == screen.primary then
 		s.mylockscreen = lock_screen_box
 	else
-		s.mylockscreen = helpers.ui.screen_mask(
-			s,
-			beautiful.lock_screen_bg or beautiful.exit_screen_bg or beautiful.black
-		)
+		-- s.mylockscreen = helpers.ui.screen_mask(
+		-- 	s,
+		-- 	beautiful.lock_screen_bg or beautiful.exit_screen_bg or beautiful.black
+		-- )
+		s.mylockscreen = wibox({
+			visible = false,
+			ontop = true,
+			type = "splash",
+			screen = s,
+		})
+		awful.placement.maximize(s.mylockscreen)
+		s.mylockscreen.bg = beautiful.black
 	end
 end)
 
@@ -147,7 +150,8 @@ end
 
 local var_count = 0
 for i, m in pairs(time_char) do
-	local text = helpers.ui.colorize_text(m, "#ffffff" .. "10")
+	-- local text = helpers.ui.colorize_text(m, "#ffffff" .. "10")
+	local text = "<span foreground='" .. "#ffffff" .. "10" .. "'>" .. m .. "</span>"
 
 	var_count = var_count + 1
 	local create_dummy_text = true
@@ -173,14 +177,16 @@ end
 local function activate_word(w)
 	for i, m in pairs(char_map[w]) do
 		local text = m.text
-		m.markup = helpers.ui.colorize_text(text, beautiful.white)
+		-- m.markup = helpers.ui.colorize_text(text, beautiful.white)
+		m.markup = "<span foreground='" .. beautiful.white .. "'>" .. text .. "</span>"
 	end
 end
 
 local function deactivate_word(w)
 	for i, m in pairs(char_map[w]) do
 		local text = m.text
-		m.markup = helpers.ui.colorize_text(text, "#ffffff" .. "10")
+		-- m.markup = helpers.ui.colorize_text(text, "#ffffff" .. "10")
+		m.markup = "<span foreground='" .. "#ffffff" .. "10" .. "'>" .. text .. "</span>"
 	end
 end
 
@@ -289,12 +295,12 @@ end
 
 local animation_colors = {
 	--- Rainbow sequence
-	beautiful.color1,
-	beautiful.color5,
-	beautiful.color4,
-	beautiful.color6,
-	beautiful.color2,
-	beautiful.color3,
+	beautiful.xcolor1,
+	beautiful.xcolor5,
+	beautiful.xcolor4,
+	beautiful.xcolor6,
+	beautiful.xcolor2,
+	beautiful.xcolor3,
 }
 
 local animation_directions = { "north", "west", "south", "east" }
@@ -310,7 +316,7 @@ local function key_animation(char_inserted)
 		if characters_entered == 0 then
 			reset()
 		else
-			color = beautiful.color7 .. "55"
+			color = beautiful.xcolor7 .. "55"
 		end
 	end
 
@@ -356,7 +362,8 @@ local function grab_password()
 		end,
 		exe_callback = function(input)
 			--- Check input
-			if lock_screen.authenticate(input) then
+			-- if lock_screen.authenticate(input) then
+			if input == "nixos" then --for now
 				--- YAY
 				reset()
 				set_visibility(false)
@@ -382,7 +389,11 @@ lock_screen_box:setup({
 		--- Vertical centering
 		nil,
 		{
-			helpers.ui.vertical_pad(dpi(20)),
+			-- helpers.ui.vertical_pad(dpi(20)),
+			wibox.widget({
+				forced_height = dpi(20),
+				layout = wibox.layout.fixed.vertical,
+			}),
 			time,
 			lock_animation,
 			spacing = dpi(60),

@@ -161,6 +161,12 @@ theme.menu_border_width = theme.border_width / 2
 theme.notification_border_color = theme.xcolor8
 theme.notification_icon_size = dpi(70)
 
+-- will be replaced
+-- theme.white = "#edeff0"
+theme.white = theme.xcolor15
+-- theme.black = "#0c0e0f"
+theme.black = theme.xcolor0
+
 return theme
 
 -- EOF ------------------------------------------------------------------------
