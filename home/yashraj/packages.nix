@@ -8,7 +8,6 @@
       (pkgs)
       nitch
       htop
-      betterlockscreen
       xss-lock
       ;
   };

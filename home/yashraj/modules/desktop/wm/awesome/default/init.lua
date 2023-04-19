@@ -1400,6 +1400,6 @@ client.connect_signal(
 )
 
 -- Autostart applications
-run_once({"picom", "clipmenud", "xss-lock -- betterlockscreen -l"}) -- comma-separated entries
-
+-- run_once({'picom', 'clipmenud', 'xss-lock -- awesome-client "lock_screen_show()"',}) -- comma-separated entries
+run_once({"picom", "clipmenud", "xss-lock -- awesome-client 'lock_screen_show()'",}) -- comma-separated entries
 -- EOF ------------------------------------------------------------------------
