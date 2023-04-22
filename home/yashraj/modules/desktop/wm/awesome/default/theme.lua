@@ -27,11 +27,6 @@ theme.font_taglist = theme.font_name .. "Bold 8"
 -- ░█░░░█░█░█░░░█░█░█▀▄░▀▀█
 -- ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
-theme.darker_bg = "#1d2021"
-theme.lighter_bg = "#3c3836"
-theme.orange = "#d65d0e"
-theme.dark = "#1d2021"
-theme.light = "#3c3836"
 theme.xbackground = xrdb.background or "#"
 theme.xforeground = xrdb.foreground or "#"
 theme.xcolor0 = xrdb.color0 or "#"
@@ -50,6 +45,14 @@ theme.xcolor12 = xrdb.color12 or "#"
 theme.xcolor13 = xrdb.color13 or "#"
 theme.xcolor14 = xrdb.color14 or "#"
 theme.xcolor15 = xrdb.color15 or "#"
+
+theme.white = theme.xcolor15
+theme.black = theme.xcolor0
+theme.darker_bg = "#1d2021"
+theme.lighter_bg = "#3c3836"
+theme.orange = "#d65d0e"
+theme.dark = "#1d2021"
+theme.light = "#3c3836"
 
 -- Background Colors
 theme.bg_dark = theme.xcolor0
@@ -118,12 +121,13 @@ theme.titlebar_enabled = false
 -- Menu
 theme.menu_font = theme.font
 theme.menu_bg_focus = theme.xcolor4 .. 70
-theme.menu_fg_focus = theme.xcolor5
+theme.menu_fg_focus = theme.xcolor7
 theme.menu_bg_normal = theme.xbackground
 theme.menu_fg_normal = theme.xcolor7
--- theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() ..  "theme/icons/submenu.png"
-theme.menu_height = dpi(20)
-theme.menu_width = dpi(130)
+theme.menu_submenu = ">  "
+theme.menu_submenu_icon = theme.submenu
+theme.menu_height = dpi(30)
+theme.menu_width = dpi(150)
 theme.menu_border_color = theme.xcolor8
 theme.menu_border_width = theme.border_width / 2
 
@@ -145,27 +149,9 @@ theme.systray_max_rows = 1
 -- Recolor Layout icons
 theme = theme_assets.recolor_layout(theme, theme.xforeground)
 
--- Menu
-theme.menu_font = theme.font
-theme.menu_bg_focus = theme.xcolor4 .. 70
-theme.menu_fg_focus = theme.xcolor7
-theme.menu_bg_normal = theme.xbackground
-theme.menu_fg_normal = theme.xcolor7
--- theme.menu_submenu_icon = gears.filesystem.get_configuration_dir() .. "theme/icons/submenu.png"
-theme.menu_height = dpi(20)
-theme.menu_width = dpi(130)
-theme.menu_border_color = theme.xcolor8
-theme.menu_border_width = theme.border_width / 2
-
 -- Notification
 theme.notification_border_color = theme.xcolor8
 theme.notification_icon_size = dpi(70)
-
--- will be replaced
--- theme.white = "#edeff0"
-theme.white = theme.xcolor15
--- theme.black = "#0c0e0f"
-theme.black = theme.xcolor0
 
 return theme
 

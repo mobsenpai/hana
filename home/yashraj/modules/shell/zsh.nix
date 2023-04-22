@@ -200,7 +200,7 @@ in {
       fi
       }
 
-      nitch
+      pfetch
     '';
 
     shellAliases = with pkgs; {

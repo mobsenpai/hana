@@ -6,7 +6,7 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
-      nitch
+      pfetch
       htop
       xss-lock
       ;
