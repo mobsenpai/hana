@@ -35,7 +35,7 @@ NixOS / Home-Manager / Flake
 ```
 
 <p align="center">
-  <img src="https://i.imgur.com/x64MHiq.png" alt="Screenshot"/>
+  <img src="https://i.imgur.com/4WexR1S.png" alt="Screenshot"/>
 </p>
 
 </div>
