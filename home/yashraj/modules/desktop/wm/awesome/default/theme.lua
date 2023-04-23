@@ -21,7 +21,6 @@ theme.wallpaper = "/home/yashraj/Pictures/wall.png"
 theme.font_name = "JetBrainsMono Nerd Font "
 theme.font = theme.font_name .. "Bold 9"
 theme.icon_font = theme.font_name .. "Bold "
-theme.font_taglist = theme.font_name .. "Bold 8"
 
 -- ░█▀▀░█▀█░█░░░█▀█░█▀▄░█▀▀
 -- ░█░░░█░█░█░░░█░█░█▀▄░▀▀█
@@ -46,13 +45,12 @@ theme.xcolor13 = xrdb.color13 or "#"
 theme.xcolor14 = xrdb.color14 or "#"
 theme.xcolor15 = xrdb.color15 or "#"
 
-theme.white = theme.xcolor15
-theme.black = theme.xcolor0
 theme.darker_bg = "#1d2021"
 theme.lighter_bg = "#3c3836"
 theme.orange = "#d65d0e"
 theme.dark = "#1d2021"
 theme.light = "#3c3836"
+theme.transparent = "#00000000"
 
 -- Background Colors
 theme.bg_dark = theme.xcolor0

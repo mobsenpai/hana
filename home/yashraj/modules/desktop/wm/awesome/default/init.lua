@@ -34,6 +34,9 @@ end
 
 -- {{
 -- Hover function
+-- Usage:
+-- add_hover_cursor(cpu_widget, "hand2")
+
 function add_hover_cursor(w, hover_cursor)
     local original_cursor = "left_ptr"
 
@@ -57,9 +60,6 @@ function add_hover_cursor(w, hover_cursor)
         end
     )
 end
-
--- Usage
--- add_hover_cursor(cpu_widget, "hand2")
 -- }}
 
 -- new shape (rounded rectangle)
@@ -82,7 +82,6 @@ filemanager = "pcmanfm"
 visual_editor = "code"
 
 -- Main key shortcuts
--- use these shortcuts in all keybinds
 mod = "Mod4"
 alt = "Mod1"
 ctrl = "Control"
@@ -103,9 +102,9 @@ tag.connect_signal(
                 -- awful.layout.suit.fair,
                 -- awful.layout.suit.fair.horizontal,
                 -- awful.layout.suit.spiral,
-                -- awful.layout.suit.spiral.dwindle,
-                -- awful.layout.suit.max,
-                awful.layout.suit.max.fullscreen
+                awful.layout.suit.spiral.dwindle,
+                awful.layout.suit.max,
+                -- awful.layout.suit.max.fullscreen
                 -- awful.layout.suit.magnifier,
                 -- awful.layout.suit.corner.nw,
             }
@@ -140,6 +139,7 @@ menu.mainmenu =
     }
 }
 
+-- Icon menu launcher
 mylauncher =
     awful.widget.launcher(
     {
@@ -579,15 +579,15 @@ screen.connect_signal(
                 widget = wibox.widget(
                     {
                         {layout_list, margins = dpi(24), widget = wibox.container.margin},
-                        bg = beautiful.black,
-                        -- shape = rrect(beautiful.border_radius),
+                        bg = beautiful.xcolor4,
+                        shape = rrect(beautiful.border_radius),
                         widget = wibox.container.background
                     }
                 ),
                 placement = awful.placement.centered,
                 ontop = true,
                 visible = false,
-                bg = beautiful.black .. "00"
+                bg = beautiful.xcolor4 .. "00"
             }
         )
 
@@ -623,7 +623,7 @@ screen.connect_signal(
                 end,
                 export_keybindings = true,
                 stop_event = "release",
-                stop_key = {"Escape", "Super_L", "Super_R", "Mod4"},
+                stop_key = {"Escape", "Super_L", "Super_R", mod},
                 keybindings = {
                     {
                         {mod, shift},
@@ -852,8 +852,8 @@ awful.mouse.append_global_mousebindings(
                 menu.mainmenu:toggle()
             end
         ),
-        awful.button({}, 4, awful.tag.viewprev),
-        awful.button({}, 5, awful.tag.viewnext)
+        -- awful.button({}, 4, awful.tag.viewprev),
+        -- awful.button({}, 5, awful.tag.viewnext)
     }
 )
 -- }}
@@ -871,7 +871,7 @@ awful.keyboard.append_global_keybindings(
             {description = "flameshot gui", group = "awesome"}
         ),
         awful.key(
-            {"Shift"},
+            {shift},
             "Print",
             function()
                 awful.spawn("flameshot gui -d 2000")
@@ -958,8 +958,8 @@ awful.keyboard.append_global_keybindings(
             end,
             {description = "show main menu", group = "awesome"}
         ),
-        awful.key({mod, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
-        awful.key({mod, "Shift"}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
+        awful.key({mod, ctrl}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
+        awful.key({mod, shift}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
         awful.key(
             {mod},
             "x",
@@ -1040,7 +1040,7 @@ awful.keyboard.append_global_keybindings(
             {description = "go back", group = "client"}
         ),
         awful.key(
-            {mod, "Control"},
+            {mod, ctrl},
             "j",
             function()
                 awful.screen.focus_relative(1)
@@ -1048,7 +1048,7 @@ awful.keyboard.append_global_keybindings(
             {description = "focus the next screen", group = "screen"}
         ),
         awful.key(
-            {mod, "Control"},
+            {mod, ctrl},
             "k",
             function()
                 awful.screen.focus_relative(-1)
@@ -1056,7 +1056,7 @@ awful.keyboard.append_global_keybindings(
             {description = "focus the previous screen", group = "screen"}
         ),
         awful.key(
-            {mod, "Control"},
+            {mod, ctrl},
             "n",
             function()
                 local c = awful.client.restore()
@@ -1074,7 +1074,7 @@ awful.keyboard.append_global_keybindings(
 awful.keyboard.append_global_keybindings(
     {
         awful.key(
-            {mod, "Shift"},
+            {mod, shift},
             "j",
             function()
                 awful.client.swap.byidx(1)
@@ -1082,7 +1082,7 @@ awful.keyboard.append_global_keybindings(
             {description = "swap with next client by index", group = "client"}
         ),
         awful.key(
-            {mod, "Shift"},
+            {mod, shift},
             "k",
             function()
                 awful.client.swap.byidx(-1)
@@ -1107,7 +1107,7 @@ awful.keyboard.append_global_keybindings(
             {description = "decrease master width factor", group = "layout"}
         ),
         awful.key(
-            {mod, "Shift"},
+            {mod, shift},
             "h",
             function()
                 awful.tag.incnmaster(1, nil, true)
@@ -1115,7 +1115,7 @@ awful.keyboard.append_global_keybindings(
             {description = "increase the number of master clients", group = "layout"}
         ),
         awful.key(
-            {mod, "Shift"},
+            {mod, shift},
             "l",
             function()
                 awful.tag.incnmaster(-1, nil, true)
@@ -1123,7 +1123,7 @@ awful.keyboard.append_global_keybindings(
             {description = "decrease the number of master clients", group = "layout"}
         ),
         awful.key(
-            {mod, "Control"},
+            {mod, ctrl},
             "h",
             function()
                 awful.tag.incncol(1, nil, true)
@@ -1131,7 +1131,7 @@ awful.keyboard.append_global_keybindings(
             {description = "increase the number of columns", group = "layout"}
         ),
         awful.key(
-            {mod, "Control"},
+            {mod, ctrl},
             "l",
             function()
                 awful.tag.incncol(-1, nil, true)
@@ -1147,7 +1147,7 @@ awful.keyboard.append_global_keybindings(
             {description = "select next", group = "layout"}
         ),
         awful.key(
-            {mod, "Shift"},
+            {mod, shift},
             "space",
             function()
                 awful.layout.inc(-1)
@@ -1173,7 +1173,7 @@ awful.keyboard.append_global_keybindings(
             end
         },
         awful.key {
-            modifiers = {mod, "Control"},
+            modifiers = {mod, ctrl},
             keygroup = "numrow",
             description = "toggle tag",
             group = "tag",
@@ -1186,7 +1186,7 @@ awful.keyboard.append_global_keybindings(
             end
         },
         awful.key {
-            modifiers = {mod, "Shift"},
+            modifiers = {mod, shift},
             keygroup = "numrow",
             description = "move focused client to tag",
             group = "tag",
@@ -1200,7 +1200,7 @@ awful.keyboard.append_global_keybindings(
             end
         },
         awful.key {
-            modifiers = {mod, "Control", "Shift"},
+            modifiers = {mod, ctrl, shift},
             keygroup = "numrow",
             description = "toggle focused client on tag",
             group = "tag",
@@ -1282,13 +1282,13 @@ client.connect_signal(
                     {description = "close", group = "client"}
                 ),
                 awful.key(
-                    {mod, "Control"},
+                    {mod, ctrl},
                     "space",
                     awful.client.floating.toggle,
                     {description = "toggle floating", group = "client"}
                 ),
                 awful.key(
-                    {mod, "Control"},
+                    {mod, ctrl},
                     "Return",
                     function(c)
                         c:swap(awful.client.getmaster())
@@ -1331,7 +1331,7 @@ client.connect_signal(
                     {description = "(un)maximize", group = "client"}
                 ),
                 awful.key(
-                    {mod, "Control"},
+                    {mod, ctrl},
                     "m",
                     function(c)
                         c.maximized_vertical = not c.maximized_vertical
@@ -1340,7 +1340,7 @@ client.connect_signal(
                     {description = "(un)maximize vertically", group = "client"}
                 ),
                 awful.key(
-                    {mod, "Shift"},
+                    {mod, shift},
                     "m",
                     function(c)
                         c.maximized_horizontal = not c.maximized_horizontal

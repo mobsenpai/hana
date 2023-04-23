@@ -27,17 +27,13 @@ lock_screen_box = wibox({ visible = false, ontop = true, type = "splash", screen
 awful.placement.maximize(lock_screen_box)
 
 lock_screen_box.bg = beautiful.transparent
-lock_screen_box.fg = beautiful.white
+lock_screen_box.fg = beautiful.xcolor15
 
 --- Add lockscreen to each screen
 awful.screen.connect_for_each_screen(function(s)
 	if s == screen.primary then
 		s.mylockscreen = lock_screen_box
 	else
-		-- s.mylockscreen = helpers.ui.screen_mask(
-		-- 	s,
-		-- 	beautiful.lock_screen_bg or beautiful.exit_screen_bg or beautiful.black
-		-- )
 		s.mylockscreen = wibox({
 			visible = false,
 			ontop = true,
@@ -45,7 +41,7 @@ awful.screen.connect_for_each_screen(function(s)
 			screen = s,
 		})
 		awful.placement.maximize(s.mylockscreen)
-		s.mylockscreen.bg = beautiful.black
+		s.mylockscreen.bg = beautiful.xcolor0
 	end
 end)
 
@@ -150,7 +146,6 @@ end
 
 local var_count = 0
 for i, m in pairs(time_char) do
-	-- local text = helpers.ui.colorize_text(m, "#ffffff" .. "10")
 	local text = "<span foreground='" .. "#ffffff" .. "10" .. "'>" .. m .. "</span>"
 
 	var_count = var_count + 1
@@ -177,15 +172,13 @@ end
 local function activate_word(w)
 	for i, m in pairs(char_map[w]) do
 		local text = m.text
-		-- m.markup = helpers.ui.colorize_text(text, beautiful.white)
-		m.markup = "<span foreground='" .. beautiful.white .. "'>" .. text .. "</span>"
+		m.markup = "<span foreground='" .. beautiful.xcolor15 .. "'>" .. text .. "</span>"
 	end
 end
 
 local function deactivate_word(w)
 	for i, m in pairs(char_map[w]) do
 		local text = m.text
-		-- m.markup = helpers.ui.colorize_text(text, "#ffffff" .. "10")
 		m.markup = "<span foreground='" .. "#ffffff" .. "10" .. "'>" .. text .. "</span>"
 	end
 end
