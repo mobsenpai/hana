@@ -9,10 +9,13 @@ local b = null_ls.builtins
 local sources = {
 
   -- Lua
-  b.formatting.lua_format,
+  b.formatting.stylua,
 
-  -- ni
-  b.formatting.nixpkgs_fmt,
+  -- Nix
+  b.formatting.alejandra,
+
+  -- JS
+  b.formatting.prettier,
 }
 
 null_ls.setup {

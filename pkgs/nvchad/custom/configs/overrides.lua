@@ -2,6 +2,9 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
+    "html",
+    "css",
+    "javascript",
     "lua",
     "nix",
   },
@@ -10,6 +13,11 @@ M.treesitter = {
     disable = {
       "python"
     },
+  },
+}
+
+M.mason = {
+  ensure_installed = {
   },
 }
 

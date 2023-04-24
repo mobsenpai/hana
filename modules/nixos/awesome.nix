@@ -67,6 +67,8 @@ in {
         pcmanfm
         feh
         clipmenu
+        xclip
+        xss-lock
         ;
     };
   };

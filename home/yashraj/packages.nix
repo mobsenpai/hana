@@ -8,7 +8,24 @@
       (pkgs)
       pfetch
       htop
-      xss-lock
+      # lsp
+      
+      nil
+      # formatters
+      
+      stylua
+      ;
+
+    inherit
+      (pkgs.luaPackages)
+      lua
+      ;
+
+    inherit
+      (pkgs.nodePackages_latest)
+      prettier
+      vscode-langservers-extracted
+      typescript-language-server
       ;
   };
 }

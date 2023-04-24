@@ -6,6 +6,7 @@
   outputs,
   ...
 }: {
+  # Home manager config
   home = {
     username = "yashraj";
     homeDirectory = "/home/${config.home.username}";

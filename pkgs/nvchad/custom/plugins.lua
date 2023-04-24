@@ -22,7 +22,11 @@ local plugins = {
     end,
   },
 
-  -- override plugin configs
+  -- Override plugin configs
+  {
+    "williamboman/mason.nvim",
+    opts = overrides.mason
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",
@@ -33,6 +37,8 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
+
+  -- Install plugins
 }
 
 return plugins
