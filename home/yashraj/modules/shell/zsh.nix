@@ -53,7 +53,9 @@ in {
       zmodload zsh/complist
       compinit -i
       _comp_options+=(globdots)
+
       autoload -Uz colors && colors
+
       bindkey -M menuselect 'h' vi-backward-char
       bindkey -M menuselect 'k' vi-up-line-or-history
       bindkey -M menuselect 'l' vi-forward-char
@@ -107,13 +109,16 @@ in {
         '--query=$query'
         '--header-lines=$#headers'
       )
+
       zstyle ':fzf-tab:*' command $FZF_TAB_COMMAND
       zstyle ':fzf-tab:*' switch-group ',' '.'
       zstyle ':fzf-tab:complete:_zlua:*' query-string input
       zstyle ':fzf-tab:complete:*:*' fzf-preview 'preview.sh $realpath'
+
       ZSH_AUTOSUGGEST_USE_ASYNC="true"
       ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp root line)
       ZSH_HIGHLIGHT_MAXLENGTH=512
+
       while read -r option
       do
         setopt $option
@@ -145,6 +150,7 @@ in {
       PUSHD_SILENT
       SHARE_HISTORY
       EOF
+
       while read -r option
       do
         unsetopt $option
@@ -153,10 +159,13 @@ in {
       HIST_BEEP
       MENU_COMPLETE
       EOF
+
       any-nix-shell zsh --info-right | source /dev/stdin
+
       function run() {
         nix run nixpkgs#$@
       }
+
       function extract() {
         if [ -z "$1" ]; then
            # display usage if no parameters given
@@ -218,7 +227,7 @@ in {
       ps = lib.getExe procs;
       rm = lib.getExe trash-cli;
       cat = "${lib.getExe bat} --style=plain";
-      l = "ls -lF --time-style=long-iso --icons";
+      l = "${lib.getExe exa} -lF --time-style=long-iso --icons";
       la = "${lib.getExe exa} -lah --tree";
       ls = "${lib.getExe exa} -h --git --icons --color=auto --group-directories-first -s extension";
       tree = "${lib.getExe exa} --tree --icons --tree";
