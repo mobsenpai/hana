@@ -17,3 +17,4 @@ end
 
 return lock_screen
 -- NOTE : PAM is not working for me right now
+-- Wait for sometime after unlocking after sleep
