@@ -42,16 +42,6 @@ require("awful.autofocus")
 -- Default notification library
 local naughty = require("naughty")
 
--- Apps
-apps = {
-	file_manager = function()
-		awful.spawn(user.file_manager, { floating = true })
-	end,
-	browser = function()
-		awful.spawn(user.browser, { switchtogat = true })
-	end,
-}
-
 -- Load theme
 beautiful.init(gfs.get_configuration_dir() .. "configuration/" .. "theme.lua")
 
@@ -67,10 +57,34 @@ end)
 
 -- Features
 -- ===================================================================
--- Keybinds and mousebinds
-local keys = require("keys")
 -- Load helper functions
 local helpers = require("helpers")
+-- Apps
+apps = {
+	browser = function()
+		awful.spawn(user.browser, { switchtotag = true })
+	end,
+	file_manager = function()
+		awful.spawn(user.file_manager, { floating = true })
+	end,
+	term_filemanager = function()
+		helpers.run_or_raise({ instance = 'ranger' }, false, user.terminal .. " --class ranger -e ranger")
+	end,
+	editor = function()
+		helpers.run_or_raise({ instance = 'editor' }, false, user.editor, { switchtotag = true })
+	end,
+	visual_editor = function()
+		helpers.run_or_raise({ class = 'VSCodium' }, false, user.visual_editor, { switchtotag = true })
+	end,
+	volume = function()
+		helpers.run_or_raise({ class = 'Pavucontrol' }, true, "pavucontrol")
+	end,
+	process_monitor = function()
+		helpers.run_or_raise({ instance = 'htop' }, false, user.terminal .. " --class htop -e htop", { switchtotag = true })
+	end
+}
+-- Keybinds and mousebinds
+local keys = require("keys")
 -- Lock screen
 -- Make sure to install lua-pam as described in the README or configure your
 -- custom password in the 'user' section above

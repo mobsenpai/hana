@@ -14,34 +14,21 @@ local keys = {}
 -- =============================================
 local menu = {}
 menu.awesome = {
-	{
-		"Hotkeys",
-		function()
-			return false, hotkeys_popup.show_help
-		end,
-	},
-	{ "Manual", user.terminal .. " -e man awesome" },
-	{
-		"Edit config",
-		string.format("%s -e %s %s", user.terminal, user.terminal .. " -e " .. user.editor, awesome.conffile),
-	},
-	{ "Restart", awesome.restart },
-	{
-		"Quit",
-		function()
-			awesome.quit()
-		end,
-	},
+	{ "Hotkeys",     function() return false, hotkeys_popup.show_help end },
+	{ "Manual",      user.terminal .. " -e man awesome" },
+	{ "Edit config", string.format("%s -e %s %s", user.terminal, user.terminal .. " -e " .. user.editor, awesome.conffile) },
+	{ "Restart",     function() awesome.restart() end },
+	{ "Quit",        function() awesome.quit() end },
 }
 
 menu.mainmenu = awful.menu({
 	items = {
-		{ "  Terminal", user.terminal },
-		{ "  Explorer", user.file_manager },
-		{ "  Browser", user.browser },
-		{ "  Editor", user.terminal .. " -e " .. user.editor },
+		{ "  Terminal",    user.terminal },
+		{ "  Explorer",    user.file_manager },
+		{ "  Browser",     user.browser },
+		{ "  Editor",      user.terminal .. " -e " .. user.editor },
 		{ "󰨞  GUI Editor", user.visual_editor },
-		{ "  AwesomeWM", menu.awesome },
+		{ "  AwesomeWM",   menu.awesome },
 	},
 })
 -- =============================================
@@ -140,6 +127,13 @@ keys.globalkeys = gears.table.join(
 			end
 		end,
 	}),
+	-- Tag switcher
+	awful.key({ mod }, "Tab", function()
+		awful.tag.viewnext()
+	end, { description = "next tag", group = "client" }),
+	awful.key({ mod, shift }, "Tab", function()
+		awful.tag.viewprev()
+	end, { description = "prev tag", group = "client" }),
 
 	-- Focus client by direction (hjkl keys)
 	awful.key({ mod }, "j", function()
@@ -169,11 +163,6 @@ keys.globalkeys = gears.table.join(
 		awful.client.focus.bydirection("right")
 	end, { description = "focus right", group = "client" }),
 
-	-- Window switcher
-	awful.key({ mod }, "Tab", function()
-		window_switcher_show(awful.screen.focused())
-	end, { description = "activate window switcher", group = "client" }),
-
 	-- Urgent or Undo:
 	-- Jump to urgent client or (if there is no such client) go back
 	-- to the last tag
@@ -202,17 +191,19 @@ keys.globalkeys = gears.table.join(
 	end, { description = "spawn floating terminal", group = "launcher" }),
 
 	-- Reload Awesome
-	awful.key({ mod, shift }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
+	awful.key({ mod, shift }, "r", function() awesome.restart() end, { description = "reload awesome", group = "awesome" }),
 
 	-- Quit Awesome
 	awful.key({ mod, shift }, "q", function()
 		awesome.quit()
 	end, { description = "quit awesome", group = "awesome" }),
 	awful.key({ mod, shift }, "x", function()
-		exit_screen_show()
+		awesome.quit()
+		-- exit_screen_show()
 	end, { description = "quit awesome", group = "awesome" }),
 	awful.key({}, "XF86PowerOff", function()
-		exit_screen_show()
+		awesome.quit()
+		-- exit_screen_show()
 	end, { description = "quit awesome", group = "awesome" }),
 
 	-- Resize focused client or layout factor
@@ -288,24 +279,31 @@ keys.globalkeys = gears.table.join(
 	end, { description = "lock screen", group = "hotkeys" }),
 
 	-- Apps
-	-- Spawn file manager
-	awful.key({ mod }, "F2", apps.file_manager, { description = "file manager", group = "launcher" }),
-	awful.key({ mod }, "F3", apps.browser, { description = "web browser", group = "launcher" }),
-	awful.key({ mod }, "F4", apps.file_manager, { description = "file manager", group = "launcher" }),
-	awful.key({ mod }, "F5", apps.file_manager, { description = "file manager", group = "launcher" }),
-	awful.key({ mod }, "F6", apps.file_manager, { description = "file manager", group = "launcher" }),
+	-- Spawn browser
+	awful.key({ mod }, "F2", apps.browser, { description = "web browser", group = "launcher" }),
+	-- Spawn gui file manager
+	awful.key({ mod }, "F3", apps.file_manager, { description = "file manager", group = "launcher" }),
+	-- Terminal file manager
+	awful.key({ mod }, "F4", apps.term_filemanager, { description = "file manager", group = "launcher" }),
+	-- Primary editor
+	awful.key({ mod }, "F5", apps.editor, { description = "editor", group = "launcher" }),
+	-- Gui editor
+	awful.key({ mod }, "F6", apps.visual_editor, { description = "visual editor", group = "launcher" }),
+	-- Add more
 	awful.key({ mod }, "F7", apps.file_manager, { description = "file manager", group = "launcher" }),
 	awful.key({ mod }, "F8", apps.file_manager, { description = "file manager", group = "launcher" }),
 	awful.key({ mod }, "F9", apps.file_manager, { description = "file manager", group = "launcher" }),
 	awful.key({ mod }, "F10", apps.file_manager, { description = "file manager", group = "launcher" }),
-	awful.key({ mod }, "F11", apps.file_manager, { description = "file manager", group = "launcher" }),
-	awful.key({ mod }, "F12", apps.file_manager, { description = "file manager", group = "launcher" })
+	-- Volume control
+	awful.key({ mod }, "F11", apps.volume, { description = "volume control", group = "launcher" }),
+	-- Process monitor
+	awful.key({ mod }, "F12", apps.process_monitor, { description = "process monitor", group = "launcher" })
 )
 
 -- Client related bindings
 -- =============================================
 keys.clientkeys = gears.table.join(
-	-- Swap by direction
+-- Swap by direction
 	awful.key({ mod, shift }, "j", function()
 		awful.client.swap.bydirection("down")
 	end),
