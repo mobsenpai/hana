@@ -16,7 +16,7 @@ user = {
 	visual_editor = "codium",
 	openweathermap_key = "d1b3b6a81db867259446b0863d5f9108",
 	openweathermap_city_id = {
-		"25.6", --- lat
+		"25.6",  --- lat
 		"85.1167", --- lon
 	},
 	openweathermap_weather_units = "metric",
@@ -686,8 +686,8 @@ end)
 
 -- Startup apps
 -- ===================================================================
--- Windowless processes
-awful.spawn.once({ "picom &", "clipmenud &" })
+-- Spawn once
+awful.spawn.once({})
 -- Suspend + lockscreen
 awful.spawn.with_shell("xss-lock -- awesome-client 'lock_screen_show()'", false)
 

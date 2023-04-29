@@ -77,5 +77,6 @@ in {
     ../../picom.nix
     ../../flameshot.nix
     ../../rofi.nix
+    ../../clipmenu.nix
   ];
 }
