@@ -12,11 +12,11 @@ user = {
 	scratchpad_terminal = "alacritty --class scratchpad -e tmux",
 	editor = os.getenv("EDITOR") or "nano",
 	browser = "firefox",
-	filemanager = "pcmanfm",
+	file_manager = "pcmanfm",
 	visual_editor = "codium",
 	openweathermap_key = "d1b3b6a81db867259446b0863d5f9108",
 	openweathermap_city_id = {
-		"25.6",  --- lat
+		"25.6", --- lat
 		"85.1167", --- lon
 	},
 	openweathermap_weather_units = "metric",
@@ -41,6 +41,16 @@ local awful = require("awful")
 require("awful.autofocus")
 -- Default notification library
 local naughty = require("naughty")
+
+-- Apps
+apps = {
+	file_manager = function()
+		awful.spawn(user.file_manager, { floating = true })
+	end,
+	browser = function()
+		awful.spawn(user.browser, { switchtogat = true })
+	end,
+}
 
 -- Load theme
 beautiful.init(gfs.get_configuration_dir() .. "configuration/" .. "theme.lua")
