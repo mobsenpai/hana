@@ -89,14 +89,12 @@ theme.taglist_bg_occupied = theme.wibar_bg
 theme.taglist_fg_occupied = theme.fg_normal
 theme.taglist_bg_empty = theme.wibar_bg
 theme.taglist_fg_empty = theme.lighter_bg
-theme.taglist_bg_urgent = theme.color1 .. '55'
+theme.taglist_bg_urgent = theme.color1 .. "55"
 theme.taglist_fg_urgent = theme.color1
 theme.taglist_disable_icon = true
 theme.taglist_spacing = dpi(0)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-  taglist_square_size, theme.fg_normal)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-  taglist_square_size, theme.fg_normal)
+theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
+theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
 
 -- Tasklist
 -- ===================================================================
