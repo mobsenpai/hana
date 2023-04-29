@@ -69,6 +69,7 @@ in {
         clipmenu
         xclip
         xss-lock
+        tmux
         ;
     };
   };

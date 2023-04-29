@@ -21,6 +21,7 @@ in {
         jdinhlife.gruvbox
         file-icons.file-icons
         kamadorueda.alejandra
+        sumneko.lua
       ]
       ++ marketplace-extensions;
 

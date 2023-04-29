@@ -8,8 +8,10 @@
       (pkgs)
       pfetch
       htop
+      playerctl
       # lsp
       
+      lua-language-server
       nil
       # formatters
       

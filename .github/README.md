@@ -44,14 +44,14 @@ NixOS / Home-Manager / Flake
 
 ## :snowflake: <samp>Information</samp>
 
-|                 |                        acer                         |
-| :-------------: | :-------------------------------------------------: |
-|       OS        |             [NixOS](https://nixos.org/)             |
-| WM / Compositor |  [AwesomeWM](https://github.com/awesomeWM/awesome)  |
-|    Terminal     | [Alacritty](https://github.com/alacritty/alacritty) |
-|     Editor      | [Neovim](https://github.com/neovim/neovim) + [Vscodium](https://github.com/VSCodium/vscodium)   |
-|  File Manager   |     [Pcmanfm](https://github.com/lxde/pcmanfm)      |
-|      Shell      |             [Zsh](https://www.zsh.org/)             |
+|                 |                                             acer                                              |
+| :-------------: | :-------------------------------------------------------------------------------------------: |
+|       OS        |                                  [NixOS](https://nixos.org/)                                  |
+| WM / Compositor |                       [AwesomeWM](https://github.com/awesomeWM/awesome)                       |
+|    Terminal     |                      [Alacritty](https://github.com/alacritty/alacritty)                      |
+|     Editor      | [Neovim](https://github.com/neovim/neovim) + [Vscodium](https://github.com/VSCodium/vscodium) |
+|  File Manager   |                          [Pcmanfm](https://github.com/lxde/pcmanfm)                           |
+|      Shell      |                                  [Zsh](https://www.zsh.org/)                                  |
 
 <br>
 <br>
@@ -174,5 +174,6 @@ But anyway… let's move on to the installation process!
 - [rxyhn](https://github.com/rxyhn)
 - [JavaCafe01](https://github.com/JavaCafe01)
 - [siduck](https://github.com/siduck)
+- [elenapan](https://github.com/elenapan)
 
 </div>

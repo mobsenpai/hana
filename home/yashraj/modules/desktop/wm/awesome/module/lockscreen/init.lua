@@ -1,20 +1,33 @@
+local awful = require("awful")
 local gfs = require("gears.filesystem")
 
 local lock_screen = {}
 
-local config_dir = gfs.get_configuration_dir()
-package.cpath = package.cpath .. ";" .. config_dir .. "module/lockscreen/lib/?.so;"
+local lua_pam_path = gfs.get_configuration_dir() .. "module/lockscren/lib/liblua_pam.so"
 
 lock_screen.init = function()
-	-- local pam = require("liblua_pam")
-	-- lock_screen.authenticate = function(password)
-	-- 	return pam.auth_current_user(password)
-	-- 	--- return password == "nixos"
-	-- end
-	require("module.lockscreen.lockscreen")
+	-- Initialize authentication method based on whether lua-pam has been
+	-- installed or not
+	awful.spawn.easy_async_with_shell("stat " .. lua_pam_path .. " >/dev/null 2>&1", function(_, __, ___, exitcode)
+		if exitcode == 0 then
+			local pam = require("liblua_pam")
+			-- lua-pam was installed.
+			-- Authenticate with PAM
+			lock_screen.authenticate = function(password)
+				return pam.auth_current_user(password)
+			end
+		else
+			-- lua-pam was NOT installed.
+			-- Authenticate with user.lock_screen_custom_password
+			lock_screen.authenticate = function(password)
+				return password == user.lock_screen_custom_password
+			end
+		end
+
+		-- Load the lock_screen element
+		require("module.lockscreen.lockscreen")
+	end)
 end
 
-
 return lock_screen
--- NOTE : PAM is not working for me right now
--- Wait for sometime after unlocking after sleep
+-- Note: Wait for sometime after unlocking after sleep

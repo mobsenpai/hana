@@ -27,7 +27,7 @@ lock_screen_box = wibox({ visible = false, ontop = true, type = "splash", screen
 awful.placement.maximize(lock_screen_box)
 
 lock_screen_box.bg = beautiful.transparent
-lock_screen_box.fg = beautiful.xcolor15
+lock_screen_box.fg = beautiful.color15
 
 --- Add lockscreen to each screen
 awful.screen.connect_for_each_screen(function(s)
@@ -41,7 +41,7 @@ awful.screen.connect_for_each_screen(function(s)
 			screen = s,
 		})
 		awful.placement.maximize(s.mylockscreen)
-		s.mylockscreen.bg = beautiful.xcolor0
+		s.mylockscreen.bg = beautiful.color0
 	end
 end)
 
@@ -54,7 +54,7 @@ end
 --- Word Clock
 --- ~~~~~~~~~
 local char =
-	"I T L I S A S A M P M A C Q U A R T E R D C T W E N T Y F I V E X H A L F S T E N F T O P A S T E R U N I N E O N E S I X T H R E E F O U R F I V E T W O E I G H T E L E V E N S E V E N T W E L V E T E N S E O C L O C K"
+"I T L I S A S A M P M A C Q U A R T E R D C T W E N T Y F I V E X H A L F S T E N F T O P A S T E R U N I N E O N E S I X T H R E E F O U R F I V E T W O E I G H T E L E V E N S E V E N T W E L V E T E N S E O C L O C K"
 
 local pos_map = {
 	["it"] = { 1, 2 },
@@ -172,7 +172,7 @@ end
 local function activate_word(w)
 	for i, m in pairs(char_map[w]) do
 		local text = m.text
-		m.markup = "<span foreground='" .. beautiful.xcolor15 .. "'>" .. text .. "</span>"
+		m.markup = "<span foreground='" .. beautiful.color15 .. "'>" .. text .. "</span>"
 	end
 end
 
@@ -288,12 +288,12 @@ end
 
 local animation_colors = {
 	--- Rainbow sequence
-	beautiful.xcolor1,
-	beautiful.xcolor5,
-	beautiful.xcolor4,
-	beautiful.xcolor6,
-	beautiful.xcolor2,
-	beautiful.xcolor3,
+	beautiful.color1,
+	beautiful.color5,
+	beautiful.color4,
+	beautiful.color6,
+	beautiful.color2,
+	beautiful.color3,
 }
 
 local animation_directions = { "north", "west", "south", "east" }
@@ -309,7 +309,7 @@ local function key_animation(char_inserted)
 		if characters_entered == 0 then
 			reset()
 		else
-			color = beautiful.xcolor7 .. "55"
+			color = beautiful.color7 .. "55"
 		end
 	end
 
@@ -355,8 +355,7 @@ local function grab_password()
 		end,
 		exe_callback = function(input)
 			--- Check input
-			-- if lock_screen.authenticate(input) then
-			if input == "nixos" then --for now
+			if lock_screen.authenticate(input) then
 				--- YAY
 				reset()
 				set_visibility(false)
