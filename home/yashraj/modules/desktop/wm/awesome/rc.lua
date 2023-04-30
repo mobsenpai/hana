@@ -86,13 +86,13 @@ apps = {
 }
 -- Keybinds and mousebinds
 local keys = require("keys")
+-- Confuguration folder
+require("configuration")
 -- Lock screen
 -- Make sure to install lua-pam as described in the README or configure your
 -- custom password in the 'user' section above
 local lock_screen = require("module.lockscreen")
 lock_screen.init()
--- Confuguration folder
-require("configuration")
 
 -- Get screen geometry
 -- I am using a single screen setup and I assume that screen geometry will not
