@@ -287,7 +287,7 @@ keys.globalkeys = gears.table.join(
 	-- Spawn gui file manager
 	awful.key({ mod }, "F3", apps.file_manager, { description = "file manager", group = "launcher" }),
 	-- Terminal file manager
-	awful.key({ mod }, "F4", apps.term_filemanager, { description = "file manager", group = "launcher" }),
+	awful.key({ mod }, "F4", apps.term_filemanager, { description = "term filemanager", group = "launcher" }),
 	-- Primary editor
 	awful.key({ mod }, "F5", apps.editor, { description = "editor", group = "launcher" }),
 	-- Gui editor

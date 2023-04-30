@@ -71,7 +71,8 @@ apps = {
 		helpers.run_or_raise({ instance = 'ranger' }, false, user.terminal .. " --class ranger -e ranger")
 	end,
 	editor = function()
-		helpers.run_or_raise({ instance = 'editor' }, false, user.editor, { switchtotag = true })
+		helpers.run_or_raise({ instance = 'editor' }, false, user.terminal .. " --class editor  -e " .. user.editor,
+			{ switchtotag = true })
 	end,
 	visual_editor = function()
 		helpers.run_or_raise({ class = 'VSCodium' }, false, user.visual_editor, { switchtotag = true })

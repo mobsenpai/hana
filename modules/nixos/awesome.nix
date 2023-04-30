@@ -22,12 +22,9 @@ with lib; let
     inherit
       (pkgs.luajitPackages)
       lgi
-      # ldbus
-      
-      # luadbi-mysql
-      
-      # luaposix
-      
+      ldbus
+      luadbi-mysql
+      luaposix
       ;
   };
 in {
