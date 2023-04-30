@@ -210,11 +210,72 @@ awful.widget.watch(string.format(GET_FORECAST_CMD, url), 600, function(_, stdout
 end)
 -- =============================================
 
+-- Playerctl widget
+-- =============================================
+local playerctl_widget = wibox.widget({
+	{
+		{
+			{
+				id = "icon",
+				text = " 󰎈 ",
+				font = beautiful.icon_font .. "11",
+				widget = wibox.widget.textbox,
+			},
+			bg = beautiful.color13,
+			fg = beautiful.darker_bg,
+			widget = wibox.widget.background,
+		},
+		{
+			id = "text",
+			text = "---",
+			font = beautiful.icon_font .. "10",
+			align = "center",
+			forced_width = dpi(100),
+			widget = wibox.widget.textbox,
+		},
+		spacing = dpi(10),
+		layout = wibox.layout.fixed.horizontal,
+	},
+	fg = beautiful.color13,
+	bg = beautiful.lighter_bg,
+	widget = wibox.container.background,
+})
+
+-- Get playerctl output
+local function emit_info(playerctl_output)
+	local artist = playerctl_output:match('artist_start(.*)title_start')
+	local title = playerctl_output:match('title_start(.*)status_start')
+	-- Use the lower case of status
+	local status = playerctl_output:match('status_start(.*)'):lower()
+	status = string.gsub(status, '^%s*(.-)%s*$', '%1')
+	-- playerctl_widget attach
+	local song = playerctl_widget:get_children_by_id("text")[1]
+	if status == "stopped" then
+		song:set_text("---")
+	else
+		song:set_text(title .. " ")
+	end
+end
+
+-- Sleeps until spotify changes state (pause/play/next/prev)
+local spotify_script = [[
+  sh -c '
+    playerctl metadata --format 'artist_start{{artist}}title_start{{title}}status_start{{status}}' --follow
+  ']]
+
+-- Kill old playerctl process
+awful.spawn.easy_async_with_shell("ps x | grep \"playerctl metadata\" | grep -v grep | awk '{print $1}' | xargs kill",
+	function()
+		-- Emit song info with each line printed
+		awful.spawn.with_line_callback(spotify_script, {
+			stdout = function(line)
+				emit_info(line)
+			end
+		})
+	end)
+-- =============================================
+
 -- Volume osd
--- Provides:
--- signal::volume
---      percentage (integer)
---      muted (boolean)
 -- needs pamixer installed
 -- =============================================
 local volume_old = -1
@@ -358,7 +419,7 @@ awesome.connect_signal("signal::volume", function(vol, muted)
 end)
 -- =============================================
 
--- Layout list
+-- Layout list osd
 -- =============================================
 screen.connect_signal("request::desktop_decoration", function(s)
 	local layout_list = awful.widget.layoutlist({
@@ -514,11 +575,12 @@ awful.screen.connect_for_each_screen(function(s)
 			{
 				spacing = dpi(10),
 				layout = wibox.layout.fixed.horizontal,
-				current_weather_widget,
+				playerctl_widget,
 			},
 			{
 				spacing = dpi(10),
 				layout = wibox.layout.fixed.horizontal,
+				current_weather_widget,
 				memory_widget,
 				cpu_widget,
 				clock_widget,

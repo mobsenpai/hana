@@ -41,7 +41,7 @@ awful.screen.connect_for_each_screen(function(s)
 			screen = s,
 		})
 		awful.placement.maximize(s.mylockscreen)
-		s.mylockscreen.bg = beautiful.color0
+		s.mylockscreen.bg = beautiful.background
 	end
 end)
 

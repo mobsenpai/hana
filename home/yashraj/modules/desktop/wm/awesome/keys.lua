@@ -277,6 +277,9 @@ keys.globalkeys = gears.table.join(
 	awful.key({ mod, alt }, "l", function()
 		lock_screen_show()
 	end, { description = "lock screen", group = "hotkeys" }),
+	-- Hotkeys list
+	awful.key({ mod }, "F1", function() hotkeys_popup.show_help() end,
+		{ description = "show help", group = "awesome" }),
 
 	-- Apps
 	-- Spawn browser

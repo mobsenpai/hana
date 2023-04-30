@@ -28,39 +28,45 @@ theme.icon_font = theme.font_name .. "Bold "
 
 theme.background = xrdb.background or "#"
 theme.foreground = xrdb.foreground or "#"
+-- Black
 theme.color0 = xrdb.color0 or "#"
-theme.color1 = xrdb.color1 or "#"
-theme.color2 = xrdb.color2 or "#"
-theme.color3 = xrdb.color3 or "#"
-theme.color4 = xrdb.color4 or "#"
-theme.color5 = xrdb.color5 or "#"
-theme.color6 = xrdb.color6 or "#"
-theme.color7 = xrdb.color7 or "#"
 theme.color8 = xrdb.color8 or "#"
+-- Red
+theme.color1 = xrdb.color1 or "#"
 theme.color9 = xrdb.color9 or "#"
+-- Green
+theme.color2 = xrdb.color2 or "#"
 theme.color10 = xrdb.color10 or "#"
+-- Yellow
+theme.color3 = xrdb.color3 or "#"
 theme.color11 = xrdb.color11 or "#"
+-- Blue
+theme.color4 = xrdb.color4 or "#"
 theme.color12 = xrdb.color12 or "#"
+-- Magenta
+theme.color5 = xrdb.color5 or "#"
 theme.color13 = xrdb.color13 or "#"
+-- Cyan
+theme.color6 = xrdb.color6 or "#"
 theme.color14 = xrdb.color14 or "#"
+-- White
+theme.color7 = xrdb.color7 or "#"
 theme.color15 = xrdb.color15 or "#"
 
-theme.darker_bg = "#1d2021"
-theme.lighter_bg = "#3c3836"
-theme.orange = "#d65d0e"
-theme.dark = "#1d2021"
-theme.light = "#3c3836"
+-- Special
 theme.transparent = "#00000000"
+theme.lighter_bg = "#3c3836"
+theme.darker_bg = "#1d2021"
+theme.orange = "#d65d0e"
 
 -- Background Colors
-theme.bg_dark = theme.color0
 theme.bg_normal = theme.background
 theme.bg_focus = theme.color0
 theme.bg_urgent = theme.color8
 theme.bg_minimize = theme.color8
 
 -- Foreground Colors
-theme.fg_normal = theme.color7
+theme.fg_normal = theme.foreground
 theme.fg_focus = theme.color5
 theme.fg_urgent = theme.color3
 theme.fg_minimize = theme.color8
@@ -84,7 +90,7 @@ local taglist_square_size = dpi(0)
 theme.taglist_font = theme.font_taglist
 theme.taglist_bg = theme.wibar_bg
 theme.taglist_bg_focus = theme.orange
-theme.taglist_fg_focus = theme.dark
+theme.taglist_fg_focus = theme.darker_bg
 theme.taglist_bg_occupied = theme.wibar_bg
 theme.taglist_fg_occupied = theme.fg_normal
 theme.taglist_bg_empty = theme.wibar_bg
@@ -150,10 +156,10 @@ theme.wibar_border_radius = dpi(0)
 
 -- Systray
 -- ===================================================================
-theme.bg_systray = theme.color0
+theme.bg_systray = theme.wibar_bg
 
 -- Notifications
--- Note: Some of these options are ignored by my custom notification widget
+-- Note: Some of these options are ignored by a custom notification widget
 -- ===================================================================
 theme.notification_position = "top_right"
 theme.notification_border_width = dpi(0)
@@ -175,10 +181,12 @@ theme.notification_icon_size = dpi(60)
 -- Misc
 -- ===================================================================
 -- Recolor Layout icons
--- theme = theme_assets.recolor_layout(theme, theme.foreground)
+theme = theme_assets.recolor_layout(theme, theme.foreground)
+theme.layoutlist_shape_selected = gears.shape.rounded_rect
+theme.layoutlist_bg_selected = theme.color3
 
 -- Edge snap
--- theme.snap_shape = gears.shape.rectangle
+theme.snap_shape = gears.shape.rounded_rect
 theme.snap_bg = theme.lighter_bg
 theme.snap_border_width = theme.border_width
 
