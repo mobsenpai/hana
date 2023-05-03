@@ -602,14 +602,6 @@ end)
 -- ░█░█░█▀▀░░█░░░█░░█░█░█░█░▀▀█
 -- ░▀▀▀░▀░░░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
--- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal(
---     "mouse::enter",
---     function(c)
---         c:activate {context = "mouse_enter", raise = false}
---     end
--- )
-
 -- Keys should load without these lines but idk it just not in my case
 root.keys(keys.globalkeys)
 root.buttons(keys.desktopbuttons)

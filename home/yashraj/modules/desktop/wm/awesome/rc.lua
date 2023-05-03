@@ -230,6 +230,14 @@ awful.rules.rules = {
 			maximized_vertical = false,
 			placement = floating_client_placement,
 		},
+		callback = function(c)
+			-- Enable sloppy focus
+			c:connect_signal(
+				"mouse::enter", function()
+					c:activate { context = "mouse_enter", raise = false }
+				end
+			)
+		end,
 	},
 
 	-- Floating clients
