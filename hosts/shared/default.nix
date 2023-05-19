@@ -100,6 +100,7 @@
       ];
     };
 
+    zsh.enable = true;
     # adb.enable = true;
     dconf.enable = true;
     nm-applet.enable = true;
