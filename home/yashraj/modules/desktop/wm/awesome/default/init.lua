@@ -71,7 +71,7 @@ local clock_widget = wibox.widget({
 		{
 			{
 				id = "icon",
-				text = "  ",
+				text = " 󰃰 ",
 				font = beautiful.icon_font .. "10",
 				widget = wibox.widget.textbox,
 			},
@@ -101,7 +101,7 @@ local cpu_widget = wibox.widget({
 		{
 			{
 				id = "icon",
-				text = "  ",
+				text = " 󰍛 ",
 				font = beautiful.icon_font .. "12",
 				widget = wibox.widget.textbox,
 			},
@@ -405,9 +405,9 @@ awesome.connect_signal("signal::volume", function(vol, muted)
 	volume_bar.value = vol
 
 	if muted == 1 or vol == 0 then
-		volume_icon.markup = "<span foreground='" .. beautiful.color4 .. "'><b>ﳌ</b></span>"
+		volume_icon.markup = "<span foreground='" .. beautiful.color4 .. "'><b>󰟎</b></span>"
 	else
-		volume_icon.markup = "<span foreground='" .. beautiful.color4 .. "'><b></b></span>"
+		volume_icon.markup = "<span foreground='" .. beautiful.color4 .. "'><b>󰋋</b></span>"
 	end
 
 	if volume_adjust.visible then
