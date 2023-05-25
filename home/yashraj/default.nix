@@ -18,6 +18,7 @@
       ./modules/programs/vscode.nix
       ./modules/programs/mpv.nix
       ./modules/programs/nvim.nix
+      ./modules/programs/neofetch.nix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

@@ -209,7 +209,7 @@ in {
       fi
       }
 
-      pfetch
+      neofetch
     '';
 
     shellAliases = with pkgs; {

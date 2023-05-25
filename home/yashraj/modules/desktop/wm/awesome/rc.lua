@@ -229,15 +229,7 @@ awful.rules.rules = {
 			maximized_horizontal = false,
 			maximized_vertical = false,
 			placement = floating_client_placement,
-		},
-		callback = function(c)
-			-- Enable sloppy focus
-			c:connect_signal(
-				"mouse::enter", function()
-					c:activate { context = "mouse_enter", raise = false }
-				end
-			)
-		end,
+		}
 	},
 
 	-- Floating clients
@@ -680,6 +672,12 @@ awful.tag.attached_connect_signal(s, "property::selected", function()
 	end
 end)
 
+-- Enable sloppy focus, so that focus follows mouse.
+-- client.connect_signal("mouse::enter", function(c)
+-- 	c:activate { context = "mouse_enter", raise = false }
+-- end
+-- )
+
 -- Raise focused clients automatically
 client.connect_signal("focus", function(c)
 	c:raise()
@@ -687,10 +685,10 @@ end)
 
 -- Focus all urgent clients automatically
 -- client.connect_signal("property::urgent", function(c)
---     if c.urgent then
---         c.minimized = false
---         c:jump_to()
---     end
+-- 	if c.urgent then
+-- 		c.minimized = false
+-- 		c:jump_to()
+-- 	end
 -- end)
 
 -- Disable ontop when the client is not floating, and restore ontop if needed

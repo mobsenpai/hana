@@ -6,14 +6,18 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
-      pfetch
+      neofetch
       htop
       playerctl
       # lsp
       
+      # ===================================================================
+      
       lua-language-server
       nil
       # formatters
+      
+      # ===================================================================
       
       stylua
       ;
