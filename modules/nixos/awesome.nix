@@ -22,9 +22,12 @@ with lib; let
     inherit
       (pkgs.luajitPackages)
       lgi
-      ldbus
-      luadbi-mysql
-      luaposix
+      # ldbus
+      
+      # luadbi-mysql
+      
+      # luaposix
+      
       ;
   };
 in {
@@ -37,9 +40,7 @@ in {
   config = mkIf cfg.enable {
     services.xserver = {
       enable = true;
-      dpi = 96;
       exportConfiguration = true;
-      # xkbOptions = "caps:escape";
 
       displayManager = {
         defaultSession = "none+awesome";
@@ -61,11 +62,15 @@ in {
       inherit
         (pkgs)
         awesome-git-luajit
-        pcmanfm
         feh
+        pcmanfm
+        networkmanagerapplet
+        clipmenu
+        flameshot
+        picom
+        tmux
         xclip
         xss-lock
-        tmux
         ;
     };
   };

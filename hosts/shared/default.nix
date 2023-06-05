@@ -58,23 +58,30 @@
         (pkgs)
         alsa-utils
         curl
+        dbus
+        dconf
+        ffmpeg-full
+        fzf
+        gcc
         git
+        glib
         jq
         killall
         libnotify
+        libsecret
+        man-pages
+        neofetch
         ntfs3g
+        p7zip
+        pamixer
+        pavucontrol
+        playerctl
+        pulseaudio
         unrar
         unzip
         vim
         wget
-        ffmpeg-full
-        gcc
-        fzf
-        man-pages
-        pamixer
-        pavucontrol
-        pulseaudio
-        p7zip
+        zathura
         zip
         ;
     };
@@ -90,7 +97,9 @@
   };
 
   programs = {
+    # adb.enable = true;
     bash.promptInit = ''eval "$(${lib.getExe pkgs.starship} init bash)"'';
+    dconf.enable = true;
 
     nix-ld = {
       enable = true;
@@ -100,15 +109,13 @@
       ];
     };
 
-    zsh.enable = true;
-    # adb.enable = true;
-    dconf.enable = true;
-    nm-applet.enable = true;
     seahorse.enable = true;
+    zsh.enable = true;
   };
 
   services = {
     # blueman.enable = true;
+    fstrim.enable = true;
     fwupd.enable = true;
     gvfs.enable = true;
 
@@ -153,13 +160,35 @@
   };
 
   security = {
-    rtkit.enable = true;
     apparmor = {
       enable = true;
       killUnconfinedConfinables = true;
       packages = [pkgs.apparmor-profiles];
     };
-    pam = {};
+
+    pam = {
+      loginLimits = [
+        {
+          domain = "@wheel";
+          item = "nofile";
+          type = "soft";
+          value = "524288";
+        }
+        {
+          domain = "@wheel";
+          item = "nofile";
+          type = "hard";
+          value = "1048576";
+        }
+      ];
+
+      services = {
+        lightdm.enableGnomeKeyring = true;
+        login.enableGnomeKeyring = true;
+      };
+    };
+
     polkit.enable = true;
+    rtkit.enable = true;
   };
 }

@@ -6,9 +6,7 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
-      neofetch
       htop
-      playerctl
       cava
       cbonsai
       # lsp

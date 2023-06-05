@@ -60,6 +60,12 @@
   services = {
     acpid.enable = true;
     # btrfs.autoScrub.enable = true;
+
+    xserver = {
+      dpi = 96;
+
+      # xkbOptions = "caps:escape";
+    };
   };
 
   hardware = {
@@ -93,7 +99,6 @@
         libvdpau
         # libva-utils
         
-        ntfs3g
         ;
 
       inherit
