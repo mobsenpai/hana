@@ -80,6 +80,7 @@
         unrar
         unzip
         vim
+        vlc
         wget
         zathura
         zip

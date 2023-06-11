@@ -21,12 +21,12 @@ with lib; let
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
 
-    "audio/*" = ["mpv.desktop"];
-    "video/*" = ["mpv.dekstop"];
+    "audio/*" = ["vlc.desktop"];
+    "video/*" = ["vlc.dekstop"];
     "image/*" = ["feh.desktop"];
     "inode/directory" = ["pcmanfm.desktop"];
     "application/json" = browser;
-    "application/pdf" = browser;
+    "application/pdf" = ["org.pwmt.zathura.desktop.desktop"];
     "x-scheme-handler/discord" = ["discordcanary.desktop"];
     "x-scheme-handler/spotify" = ["spotify.desktop"];
   };
