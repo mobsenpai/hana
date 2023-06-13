@@ -708,9 +708,7 @@ end)
 -- Startup apps
 -- ===================================================================
 -- Spawn once
-awful.spawn.once("picom", false)
-awful.spawn.once("nm-applet", false)
-awful.spawn.once("clipmenud", false)
+-- awful.spawn.once("command", false)
 -- Suspend + lockscreen
 awful.spawn.with_shell("xss-lock -- awesome-client 'lock_screen_show()'", false)
 

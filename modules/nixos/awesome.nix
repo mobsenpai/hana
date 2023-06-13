@@ -64,14 +64,11 @@ in {
         awesome-git-luajit
         feh
         pcmanfm
-        networkmanagerapplet
-        clipmenu
-        flameshot
-        picom
         tmux
-        xclip
         xss-lock
         ;
     };
   };
 }
+# Note: this only installs stuff so no need to comment other wm's when installing another wm's
+

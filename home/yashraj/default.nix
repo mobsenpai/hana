@@ -28,3 +28,5 @@
     playerctld.enable = true;
   };
 }
+# Note: Here other wm's should be commented before adding more wm's configs
+

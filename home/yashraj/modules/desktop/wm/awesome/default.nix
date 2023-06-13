@@ -75,13 +75,9 @@ in {
   imports = [
     ../../gtk.nix
     ../../picom.nix
-    # ../../flameshot.nix
     ../../rofi.nix
-    # ../../misc.nix
+    ../../flameshot.nix
+    ../../clipmenu.nix
+    ../../nm-applet.nix
   ];
 }
-# Note to self: I don't think xresources and variables should be here it should be in seperate files only import and create file stuff should be here.
-# Also I have commented stuff like picom, flameshot, clipmenu services, and added as autostart in awesomewm's rc.lua for multiple wm/desktop setups. This also needs some thought.
-# Another idea can be to make seperate users for different wm/desktop
-# I am waiting for javacafe or rxyhn to add multiple wm/desktop
-
