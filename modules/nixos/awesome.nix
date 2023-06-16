@@ -65,6 +65,7 @@ in {
         feh
         pcmanfm
         tmux
+        xclip
         xss-lock
         ;
     };
