@@ -20,13 +20,6 @@
       ./modules/programs/neofetch.nix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
-
-  # Shared configs across users
-  systemd.user.startServices = "sd-switch";
-
-  services = {
-    playerctld.enable = true;
-  };
 }
 # Note: Here other wm's should be commented before adding more wm's configs
 

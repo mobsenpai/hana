@@ -7,26 +7,37 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
-      #duf
-      
-      # fd
-      
-      #file
-      
-      #joshuto
-      
+      coreutils
+      curl
+      du-dust
+      file
+      joshuto
+      jq
+      killall
+      man-pages
+      man-pages-posix
+      neofetch
+      procs
       ranger
-      #ripgrep
-      
-      #yt-dlp
-      
+      ripgrep
+      trash-cli
+      tree
+      unrar
+      unzip
+      util-linux
+      wget
+      zip
+      yt-dlp
       ;
   };
 
-  services = {};
+  services = {
+    playerctld.enable = true;
+  };
 
   programs = {
     exa.enable = true;
+    man.enable = true;
 
     bat = {
       enable = true;

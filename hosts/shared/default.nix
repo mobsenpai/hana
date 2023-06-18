@@ -57,20 +57,16 @@
       inherit
         (pkgs)
         alsa-utils
-        curl
+        # blueman
+        
         dbus
         dconf
         ffmpeg-full
-        fzf
         gcc
         git
         glib
-        jq
-        killall
         libnotify
         libsecret
-        man-pages
-        neofetch
         ntfs3g
         p7zip
         pamixer
@@ -81,9 +77,9 @@
         unzip
         vim
         vlc
+        tree
         wget
         zathura
-        zip
         ;
     };
 

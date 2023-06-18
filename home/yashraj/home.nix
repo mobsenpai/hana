@@ -6,14 +6,8 @@
   outputs,
   ...
 }: {
-  # Home manager config
-  home = {
-    username = "yashraj";
-    homeDirectory = "/home/${config.home.username}";
-    stateVersion = "23.05";
-  };
+  systemd.user.startServices = "sd-switch";
 
-  # disable manuals as nmd fails to build often
   manual = {
     html.enable = false;
     json.enable = false;
@@ -40,6 +34,11 @@
     };
   };
 
-  # let HM manage itself when in standalone mode
   programs.home-manager.enable = true;
+
+  home = {
+    username = "yashraj";
+    homeDirectory = "/home/${config.home.username}";
+    stateVersion = "23.05";
+  };
 }
