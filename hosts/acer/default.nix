@@ -97,8 +97,7 @@
         acpi
         libva
         libvdpau
-        # libva-utils
-        
+        libva-utils
         ;
 
       inherit
