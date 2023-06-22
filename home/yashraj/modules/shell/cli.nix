@@ -7,6 +7,7 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
+      btop
       coreutils
       curl
       du-dust

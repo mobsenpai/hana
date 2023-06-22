@@ -19,9 +19,9 @@ in {
       name = "${
         if config.colorscheme.kind == "light"
         then "Adwaita"
-        else "Adwaita"
+        else "gruvbox-plus"
       }";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.gruvbox-icons;
     };
 
     font = {

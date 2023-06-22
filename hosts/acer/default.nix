@@ -31,9 +31,9 @@
     extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     kernelModules = ["acpi_call"];
     kernelParams = [
-      # "i8042.direct"
-      # "i8042.dumbkbd"
-      # "i915.force_probe=46a6"
+      "i8042.direct"
+      "i8042.dumbkbd"
+      "i915.force_probe=46a6"
     ];
 
     loader = {
@@ -59,11 +59,10 @@
 
   services = {
     acpid.enable = true;
-    # btrfs.autoScrub.enable = true;
+    btrfs.autoScrub.enable = true;
 
     xserver = {
       dpi = 96;
-
       # xkbOptions = "caps:escape";
     };
   };

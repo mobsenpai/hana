@@ -6,7 +6,6 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
-      htop
       cava
       cbonsai
       # lsp

@@ -10,7 +10,7 @@
 
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox.override {
+    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
       extraPolicies = {
         DisableFirefoxStudies = true;
         DisablePocket = true;
@@ -18,6 +18,11 @@
         NoDefaultBookmarks = true;
         OfferToSaveLogins = false;
         PasswordManagerEnabled = false;
+        Homepage = {"URL" = "https://mobsenpai.github.io/_traichu";};
+        DNSOverHTTPS = {
+          "Enabled" = true;
+          "ProviderURL" = "https://dns.quad9.net/dns-query";
+        };
       };
     };
 
@@ -62,6 +67,7 @@
             };
           };
         };
+
         settings = {
           "general.smoothScroll" = true;
           "gfx.canvas.accelerated" = true;
@@ -75,19 +81,16 @@
           "widget.use-xdg-desktop-portal" = true;
         };
 
-        userChrome = ''
-        '';
+        # userChrome = ''
+        # '';
 
-        userContent = ''
-        '';
+        # userContent = ''
+        # '';
 
         extraConfig = ''
           user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
           user_pref("browser.compactmode.show", true);
           user_pref("browser.uidensity", 1);
-          user_pref("browser.startup.homepage", "https://mobsenpai.github.io/_traichu/");
-          user_pref("network.trr.mode", 2);
-          user_pref("network.trr.uri", "https://dns.quad9.net/dns-query");
         '';
       };
     };

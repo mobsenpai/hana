@@ -1,31 +1,28 @@
 {
   lib,
   stdenv,
-  fetchurl,
+  fetchzip,
   ...
 }:
 stdenv.mkDerivation rec {
   pname = "gruvbox-plus-icon-pack";
-  version = "master";
+  version = "4.0";
 
-  src = fetchurl {
-    url = "https://github.com/SylEleuth/gruvbox-plus-icon-pack/releases/download/v${version}/gruvbox-plus-icon-pack-${version}.zip";
-    sha256 = "";
+  src = fetchzip {
+    url = "https://github.com/SylEleuth/${pname}/releases/download/v${version}/${pname}-${version}.zip";
+    sha256 = "sha256-EiAu3SFhMXTI6raCuyIdOtoe0g4Pfcsk8H+I6b2jQZw=";
   };
-
-  sourceRoot = ".";
 
   installPhase = ''
     runHook preInstall
-    mkdir -p $out/share/icons
-    cp -r ./gruvbox-icons-* $out/share/icons
+    mkdir -p $out/share/icons/gruvbox-plus
+    cp -r * $out/share/icons/gruvbox-plus
     runHook postInstall
   '';
 
   meta = with lib; {
-    description = "Open source macOS Cursors";
-    homepage = "https://github.com/ful1e5/apple_cursor";
+    description = "Gruvbox icons";
+    homepage = "https://github.com/SylEleuth/gruvbox-plus-icon-pack";
     license = licenses.gpl3;
-    platforms = platforms.unix;
   };
 }

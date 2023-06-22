@@ -494,6 +494,7 @@ awful.rules.rules = {
 			class = {
 				"firefox",
 				"Nightly",
+				"Vivaldi-stable",
 			},
 		},
 		except_any = {
@@ -504,6 +505,17 @@ awful.rules.rules = {
 		properties = { screen = 1, tag = awful.screen.focused().tags[1] },
 	},
 
+	-- Editing
+	{
+		rule_any = {
+			class = {
+				"^editor$",
+				"VSCodium",
+			},
+		},
+		properties = { screen = 1, tag = awful.screen.focused().tags[2] },
+	},
+
 	-- Games
 	{
 		rule_any = {
@@ -512,7 +524,7 @@ awful.rules.rules = {
 			},
 			instance = {},
 		},
-		properties = { screen = 1, tag = awful.screen.focused().tags[2] },
+		properties = { screen = 1, tag = awful.screen.focused().tags[3] },
 	},
 
 	-- Chatting
@@ -523,17 +535,6 @@ awful.rules.rules = {
 				"Signal",
 				"Slack",
 				"zoom",
-			},
-		},
-		properties = { screen = 1, tag = awful.screen.focused().tags[3] },
-	},
-
-	-- Editing
-	{
-		rule_any = {
-			class = {
-				"^editor$",
-				"VSCodium",
 			},
 		},
 		properties = { screen = 1, tag = awful.screen.focused().tags[4] },

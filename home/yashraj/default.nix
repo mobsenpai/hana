@@ -15,6 +15,7 @@
       ./modules/desktop/wm/awesome
       ./modules/programs/alacritty.nix
       ./modules/programs/firefox.nix
+      ./modules/programs/vivaldi.nix
       ./modules/programs/vscode.nix
       ./modules/programs/nvim.nix
       ./modules/programs/neofetch.nix
