@@ -84,6 +84,7 @@ apps = {
 		helpers.run_or_raise({ instance = 'htop' }, false, user.terminal .. " --class htop -e htop", { switchtotag = true })
 	end
 }
+
 -- Keybinds and mousebinds
 local keys = require("keys")
 -- Confuguration folder
@@ -377,7 +378,7 @@ awful.rules.rules = {
 	{
 		rule_any = {
 			class = {
-				"pcmanfm",
+				"Pcmanfm",
 				"Nemo",
 				"Thunar",
 			},
