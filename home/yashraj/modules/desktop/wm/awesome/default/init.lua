@@ -602,10 +602,6 @@ end)
 -- ░█░█░█▀▀░░█░░░█░░█░█░█░█░▀▀█
 -- ░▀▀▀░▀░░░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
--- Keys should load without these lines but idk it just not in my case
-root.keys(keys.globalkeys)
-root.buttons(keys.desktopbuttons)
-
 -- Autostart applications
 -- awful.spawn.once({},false)
 -- EOF ------------------------------------------------------------------------

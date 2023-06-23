@@ -26,11 +26,6 @@ user = {
 -- initialization
 -- =============================================
 local beautiful = require("beautiful")
--- Make global key shortcuts
-mod = "Mod4"
-alt = "Mod1"
-ctrl = "Control"
-shift = "Shift"
 -- Make dpi function global
 dpi = beautiful.xresources.apply_dpi
 
@@ -85,10 +80,14 @@ apps = {
 	end
 }
 
--- Keybinds and mousebinds
-local keys = require("keys")
 -- Confuguration folder
 require("configuration")
+
+-- Keybinds and mousebinds
+local keys = require("keys")
+root.keys(keys.globalkeys)
+root.buttons(keys.desktopbuttons)
+
 -- Lock screen
 -- Make sure to install lua-pam as described in the README or configure your
 -- custom password in the 'user' section above

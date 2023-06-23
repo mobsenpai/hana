@@ -9,6 +9,10 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local naughty = require("naughty")
 local helpers = require("helpers")
 local keys = {}
+mod = "Mod4"
+alt = "Mod1"
+ctrl = "Control"
+shift = "Shift"
 
 -- Menu
 -- =============================================
@@ -468,11 +472,6 @@ keys.taglist_buttons = gears.table.join(
 		awful.tag.viewnext(t.screen)
 	end)
 )
-
--- Set root (desktop) keys
--- =============================================
-root.keys(keys.globalkeys)
-root.buttons(keys.desktopbuttons)
 
 return keys
 -- EOF ------------------------------------------------------------------------
