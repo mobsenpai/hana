@@ -7,7 +7,7 @@
 
   # Modifies existing packages
   modifications = final: prev: {
-    awesome-luajit-git = inputs.nixpkgs-f2k.packages.${prev.system}.awesome-luajit-git;
+    awesome = inputs.nixpkgs-f2k.packages.${prev.system}.awesome-git;
     picom = inputs.nixpkgs-f2k.packages.${prev.system}.picom-git;
   };
 in {

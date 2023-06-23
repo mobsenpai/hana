@@ -6,10 +6,10 @@
   pkgs,
   ...
 }: {
-  disabledModules = [
-    # Disable the default Awesome WM module
-    "services/x11/window-managers/awesome.nix"
-  ];
+  # disabledModules = [
+  #   # Disable the default Awesome WM module
+  #   "services/x11/window-managers/awesome.nix"
+  # ];
 
   imports = [
     # Shared configuration across all machines
@@ -62,7 +62,13 @@
     btrfs.autoScrub.enable = true;
 
     xserver = {
+      enable = true;
+      exportConfiguration = true;
       dpi = 96;
+
+      displayManager = {
+        lightdm.enable = true;
+      };
       # xkbOptions = "caps:escape";
     };
   };

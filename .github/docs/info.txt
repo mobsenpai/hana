@@ -1,4 +1,0 @@
-1. This is only for backup and personal documentations and stuff. You are free to delete this directory.
-2. Home manager is both as nixos module and standalone
-  Use as nixos module -> It will be build with nixos-rebuild
-  Use as standalone -> To update the home config when not on nix system with home-manager switch
