@@ -5,7 +5,7 @@
   ...
 }:
 with lib; let
-  browser = ["firefox.desktop"];
+  browser = ["vivaldi-stable.desktop"];
   associations = {
     "application/x-extension-htm" = browser;
     "application/x-extension-html" = browser;

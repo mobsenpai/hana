@@ -55,8 +55,8 @@ in {
 
   home = {
     sessionVariables = {
-      BROWSER = "firefox";
       EDITOR = "nvim";
+      BROWSER = "vivaldi-stable";
     };
 
     file = {
