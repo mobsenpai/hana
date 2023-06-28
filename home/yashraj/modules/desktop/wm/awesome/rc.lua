@@ -250,6 +250,7 @@ awful.rules.rules = {
 			name = {
 				"Event Tester", -- xev
 				"MetaMask Notification",
+				"Picture in picture",
 			},
 			role = {
 				"AlarmWindow",

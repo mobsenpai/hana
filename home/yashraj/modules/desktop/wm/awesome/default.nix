@@ -8,7 +8,6 @@
   theme = "default";
 in {
   xresources.extraConfig = ''
-    Xft.dpi: 96
     Xft.antialias: true
     Xft.hinting: true
     Xft.rgba: rgb
