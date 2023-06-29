@@ -85,8 +85,6 @@ require("configuration")
 
 -- Keybinds and mousebinds
 local keys = require("keys")
-root.keys(keys.globalkeys)
-root.buttons(keys.desktopbuttons)
 
 -- Lock screen
 -- Make sure to install lua-pam as described in the README or configure your
@@ -108,7 +106,7 @@ awful.layout.layouts = {
 	awful.layout.suit.floating,
 	awful.layout.suit.max,
 	--awful.layout.suit.spiral,
-	awful.layout.suit.spiral.dwindle,
+	--awful.layout.suit.spiral.dwindle,
 	--awful.layout.suit.tile.top,
 	--awful.layout.suit.fair,
 	--awful.layout.suit.fair.horizontal,

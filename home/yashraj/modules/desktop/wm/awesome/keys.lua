@@ -131,6 +131,25 @@ keys.globalkeys = gears.table.join(
 			end
 		end,
 	}),
+	awful.key({
+		modifiers = { mod },
+		key = "space",
+		description = "select next",
+		group = "layout",
+		on_press = function()
+			awful.layout.inc(1)
+		end,
+	}),
+	awful.key({
+		modifiers = { mod, shift },
+		key = "space",
+		description = "select previous",
+		group = "layout",
+		on_press = function()
+			awful.layout.inc(-1)
+		end,
+	}),
+
 	-- Tag switcher
 	awful.key({ mod }, "Tab", function()
 		awful.tag.viewnext()
@@ -152,6 +171,14 @@ keys.globalkeys = gears.table.join(
 	awful.key({ mod }, "l", function()
 		awful.client.focus.bydirection("right")
 	end, { description = "focus right", group = "client" }),
+
+	-- Focus client by index (cycle through clients)
+	awful.key({ mod }, "z", function()
+		awful.client.focus.byidx(1)
+	end, { description = "focus next by index", group = "client" }),
+	awful.key({ mod, shift }, "z", function()
+		awful.client.focus.byidx(-1)
+	end, { description = "focus next by index", group = "client" }),
 
 	-- Focus client by direction (arrow keys)
 	awful.key({ mod }, "Down", function()
@@ -267,23 +294,31 @@ keys.globalkeys = gears.table.join(
 	awful.key({ mod, shift }, "c", function()
 		awful.spawn("clipmenu")
 	end, { description = "clipboard", group = "app" }),
-	-- Volume control
-	awful.key({}, "XF86AudioRaiseVolume", function()
-		awful.spawn("pamixer -i 3", false)
-	end, { description = "increase volume", group = "awesome" }),
-	awful.key({}, "XF86AudioLowerVolume", function()
-		awful.spawn("pamixer -d 3", false)
-	end, { description = "decrease volume", group = "awesome" }),
-	awful.key({}, "XF86AudioMute", function()
-		awful.spawn("pamixer -t", false)
-	end, { description = "mute volume", group = "awesome" }),
+	-- Hotkeys list
+	awful.key({ mod }, "F1", function() hotkeys_popup.show_help() end,
+		{ description = "show help", group = "awesome" }),
+
+	-- Volume Control with volume keys
+	awful.key({}, "XF86AudioMute",
+		function()
+			helpers.volume_control(0)
+		end,
+		{ description = "(un)mute volume", group = "volume" }),
+	awful.key({}, "XF86AudioLowerVolume",
+		function()
+			helpers.volume_control(-5)
+		end,
+		{ description = "lower volume", group = "volume" }),
+	awful.key({}, "XF86AudioRaiseVolume",
+		function()
+			helpers.volume_control(5)
+		end,
+		{ description = "raise volume", group = "volume" }),
+
 	-- Lockscreen
 	awful.key({ mod, alt }, "l", function()
 		lock_screen_show()
 	end, { description = "lock screen", group = "hotkeys" }),
-	-- Hotkeys list
-	awful.key({ mod }, "F1", function() hotkeys_popup.show_help() end,
-		{ description = "show help", group = "awesome" }),
 
 	-- Apps
 	-- Spawn browser
@@ -355,6 +390,18 @@ keys.clientkeys = gears.table.join(
 			awful.client.floating.toggle()
 		end
 	end, { description = "toggle floating", group = "client" }),
+
+	-- Set master
+	awful.key({ mod, ctrl }, "Return", function(c) c:swap(awful.client.getmaster()) end,
+		{ description = "move to master", group = "client" }),
+
+	-- P for pin: keep on top OR sticky
+	-- On top
+	awful.key({ mod, shift }, "p", function(c) c.ontop = not c.ontop end,
+		{ description = "toggle keep on top", group = "client" }),
+	-- Sticky
+	awful.key({ mod, ctrl }, "p", function(c) c.sticky = not c.sticky end,
+		{ description = "toggle sticky", group = "client" }),
 
 	-- Minimize
 	awful.key({ mod }, "n", function(c)
@@ -472,6 +519,9 @@ keys.taglist_buttons = gears.table.join(
 		awful.tag.viewnext(t.screen)
 	end)
 )
+
+root.keys(keys.globalkeys)
+root.buttons(keys.desktopbuttons)
 
 return keys
 -- EOF ------------------------------------------------------------------------
