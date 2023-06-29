@@ -131,24 +131,13 @@ keys.globalkeys = gears.table.join(
 			end
 		end,
 	}),
-	awful.key({
-		modifiers = { mod },
-		key = "space",
-		description = "select next",
-		group = "layout",
-		on_press = function()
-			awful.layout.inc(1)
-		end,
-	}),
-	awful.key({
-		modifiers = { mod, shift },
-		key = "space",
-		description = "select previous",
-		group = "layout",
-		on_press = function()
-			awful.layout.inc(-1)
-		end,
-	}),
+	awful.key({ mod }, "space", function()
+		awful.layout.inc(1)
+	end, { description = "next layout", group = "tag" }),
+	awful.key({ mod, shift }, "space", function()
+		awful.layout.inc(-1)
+	end, { description = "previous layout", group = "tag" }
+	),
 
 	-- Tag switcher
 	awful.key({ mod }, "Tab", function()
