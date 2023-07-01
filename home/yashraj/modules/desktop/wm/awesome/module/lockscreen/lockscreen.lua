@@ -381,7 +381,6 @@ lock_screen_box:setup({
 		--- Vertical centering
 		nil,
 		{
-			-- helpers.ui.vertical_pad(dpi(20)),
 			wibox.widget({
 				forced_height = dpi(20),
 				layout = wibox.layout.fixed.vertical,

@@ -332,11 +332,8 @@ awful.spawn.easy_async({
 	})
 end)
 
-local width = dpi(50)
-local height = dpi(300)
-
 local volume_icon = wibox.widget({
-	markup = "<span foreground='" .. beautiful.color4 .. "'><b></b></span>",
+	markup = "<span foreground='" .. beautiful.color4 .. "'><b>󰋋</b></span>",
 	align = "center",
 	valign = "center",
 	font = beautiful.font_name .. "20",
@@ -345,12 +342,12 @@ local volume_icon = wibox.widget({
 
 local volume_adjust = awful.popup({
 	type = "notification",
-	maximum_width = width,
-	maximum_height = height,
+	maximum_width = dpi(50),
+	maximum_height = dpi(300),
 	visible = false,
 	ontop = true,
 	widget = wibox.container.background,
-	bg = "#00000000",
+	bg = beautiful.transparent,
 	placement = function(c)
 		awful.placement.right(c, { margins = { right = 10 } })
 	end,

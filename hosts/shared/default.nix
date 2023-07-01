@@ -137,13 +137,6 @@
       pulse.enable = true;
       jack.enable = true;
     };
-
-    logind = {
-      extraConfig = ''
-        HandlePowerKey=suspend-then-hibernate
-        HibernateDelaySec=3600
-      '';
-    };
   };
 
   hardware.pulseaudio.enable = false;

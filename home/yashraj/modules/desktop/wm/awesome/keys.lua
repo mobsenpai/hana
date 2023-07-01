@@ -56,11 +56,6 @@ keys.desktopbuttons = gears.table.join(
 	awful.button({}, 3, function()
 		menu.mainmenu:toggle()
 	end),
-	-- awful.button({ }, 3, function()
-	--     if app_drawer_show then
-	--         app_drawer_show()
-	--     end
-	-- end),
 
 	-- Middle button - Toggle dashboard
 	-- awful.button({ }, 2, function()
@@ -483,7 +478,6 @@ keys.tasklist_buttons = gears.table.join(
 keys.taglist_buttons = gears.table.join(
 	awful.button({}, 1, function(t)
 		t:view_only()
-		-- helpers.tag_back_and_forth(t.index)
 	end),
 	awful.button({ mod }, 1, function(t)
 		if client.focus then
