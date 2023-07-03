@@ -61,15 +61,15 @@ theme.orange = "#d65d0e"
 
 -- Background Colors
 theme.bg_normal = theme.background
-theme.bg_focus = theme.color0
-theme.bg_urgent = theme.color8
-theme.bg_minimize = theme.color8
+theme.bg_focus = theme.color4 .. 70
+theme.bg_urgent = theme.color3
+theme.bg_minimize = theme.background .. 55
 
 -- Foreground Colors
 theme.fg_normal = theme.foreground
-theme.fg_focus = theme.color5
-theme.fg_urgent = theme.color3
-theme.fg_minimize = theme.color8
+theme.fg_focus = theme.color7
+theme.fg_urgent = theme.color1
+theme.fg_minimize = theme.foreground .. 55
 
 --- ░█░█░▀█▀░░░█▀▀░█░░░█▀▀░█▄█░█▀▀░█▀█░▀█▀░█▀▀
 --- ░█░█░░█░░░░█▀▀░█░░░█▀▀░█░█░█▀▀░█░█░░█░░▀▀█
@@ -111,11 +111,11 @@ theme.tasklist_bg_focus = theme.color0
 theme.tasklist_fg_focus = theme.color2
 theme.tasklist_bg_normal = theme.color0
 theme.tasklist_fg_normal = theme.foreground
-theme.tasklist_bg_minimize = theme.color0 .. 55
-theme.tasklist_fg_minimize = theme.foreground .. 55
+theme.tasklist_bg_minimize = theme.bg_minimize
+theme.tasklist_fg_minimize = theme.fg_minimize
 theme.tasklist_disable_task_name = false
-theme.tasklist_bg_urgent = theme.color0
-theme.tasklist_fg_urgent = theme.color1
+theme.tasklist_bg_urgent = theme.bg_urgent
+theme.tasklist_fg_urgent = theme.fg_urgent
 theme.tasklist_align = "center"
 
 --- Titlebar
@@ -127,10 +127,10 @@ theme.titlebar_enabled = false
 -- ===================================================================
 theme.menu_height = dpi(30)
 theme.menu_width = dpi(150)
-theme.menu_bg_normal = theme.background
-theme.menu_fg_normal = theme.color7
-theme.menu_bg_focus = theme.color4 .. 70
-theme.menu_fg_focus = theme.color7
+theme.menu_bg_normal = theme.bg_normal
+theme.menu_fg_normal = theme.fg_normal
+theme.menu_bg_focus = theme.bg_focus
+theme.menu_fg_focus = theme.fg_focus
 -- theme.menu_font = theme.font
 theme.menu_border_width = theme.border_width / 2
 theme.menu_border_color = theme.color8
@@ -148,7 +148,7 @@ theme.wibar_position = "top"
 theme.wibar_height = dpi(25)
 theme.wibar_bg = theme.color0
 -- theme.wibar_fg =
---theme.wibar_opacity = 0.7
+--theme.wibar_opacity =
 -- theme.wibar_border_color =
 theme.wibar_border_width = dpi(0)
 theme.wibar_border_radius = dpi(0)

@@ -92,6 +92,9 @@ local keys = require("keys")
 local lock_screen = require("module.lockscreen")
 lock_screen.init()
 
+-- Window switcher
+require("module.window_switcher").enable()
+
 -- Get screen geometry
 -- I am using a single screen setup and I assume that screen geometry will not
 -- change during the session.
@@ -673,10 +676,10 @@ awful.tag.attached_connect_signal(s, "property::selected", function()
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal("mouse::enter", function(c)
--- 	c:activate { context = "mouse_enter", raise = false }
--- end
--- )
+client.connect_signal("mouse::enter", function(c)
+	c:activate { context = "mouse_enter", raise = false }
+end
+)
 
 -- Raise focused clients automatically
 client.connect_signal("focus", function(c)

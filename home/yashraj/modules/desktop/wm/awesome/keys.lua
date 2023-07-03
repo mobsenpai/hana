@@ -8,6 +8,7 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local naughty = require("naughty")
 local helpers = require("helpers")
+
 local keys = {}
 mod = "Mod4"
 alt = "Mod1"
@@ -364,7 +365,8 @@ keys.clientkeys = gears.table.join(
 
 	-- Switch clients
 	awful.key({ alt }, "Tab", function()
-		awful.client.focus.byidx(1)
+		awesome.emit_signal("window_switcher::turn_on")
+		-- awful.client.focus.byidx(1)
 	end, { description = "focus next by index", group = "client" }),
 
 	-- Toggle floating

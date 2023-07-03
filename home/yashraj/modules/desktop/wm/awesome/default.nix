@@ -60,14 +60,15 @@ in {
 
     file = {
       # Setup
-      ".config/awesome/configuration/".source = ./. + "/${theme}";
+      ".config/awesome/configuration".source = ./. + "/${theme}";
       ".config/awesome/rc.lua".source = ./rc.lua;
       ".config/awesome/helpers.lua".source = ./helpers.lua;
       ".config/awesome/keys.lua".source = ./keys.lua;
 
       # Modules
       ".config/awesome/module/json.lua".source = ./module/json.lua;
-      ".config/awesome/module/lockscreen/".source = ./module/lockscreen;
+      ".config/awesome/module/lockscreen".source = ./module/lockscreen;
+      ".config/awesome/module/window_switcher.lua".source = ./module/window_switcher.lua;
     };
   };
 
