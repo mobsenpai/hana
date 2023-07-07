@@ -69,19 +69,23 @@ keys.desktopbuttons = gears.table.join(
 	-- awful.button({ }, 4, awful.tag.viewprev),
 	-- awful.button({ }, 5, awful.tag.viewnext),
 
-	-- Side buttons - Minimize and restore minimized client
-	awful.button({}, 8, function()
-		if client.focus ~= nil then
-			client.focus.minimized = true
-		end
-	end),
-	awful.button({}, 9, function()
-		local c = awful.client.restore()
-		-- Focus restored client
-		if c then
-			client.focus = c
-		end
-	end)
+	-- Side buttons - Control volume
+	awful.button({}, 8, function() helpers.volume_control(-5) end),
+	awful.button({}, 9, function() helpers.volume_control(5) end)
+
+-- Side buttons - Minimize and restore minimized client
+-- awful.button({}, 8, function()
+-- 	if client.focus ~= nil then
+-- 		client.focus.minimized = true
+-- 	end
+-- end),
+-- awful.button({}, 9, function()
+-- 	local c = awful.client.restore()
+-- 	-- Focus restored client
+-- 	if c then
+-- 		client.focus = c
+-- 	end
+-- end)
 )
 
 -- Global bindings
