@@ -126,7 +126,11 @@ But anyway… let's move on to the installation process!
    $ nixos-install --flake .#acer
    ```
 
-7. Install the home manager configuration
+7. Reboot, login as root, and change the password for your user using passwd
+
+8. Log in as normal user
+
+9. Install the home manager configuration
 
    ```bash
    $ home-manager switch --flake 'github:yashraj/dotfiles#yashraj@acer'
@@ -138,11 +142,6 @@ But anyway… let's move on to the installation process!
    $ cd dotfiles
    $ home-manager switch --flake .#yashraj@acer
    ```
-
-8. Post install
-
-   - After install check / match hardware-configuration.nix. Make sure or edit the disk/by-uuid to disk/by-label/ like it is in this repo for reproductable build.
-   - passwd yashraj (`your username, must edit it in the repo for using your own name`)
 
 <br>
 <br>
