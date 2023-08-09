@@ -13,7 +13,7 @@ in
       repo = pname;
       owner = "NvChad";
       rev = "refs/heads/v2.0";
-      sha256 = "sha256-vLe8wZQBTLFNEXZqV0wFF/gwMqltpX2XaNMwjwGG71";
+      sha256 = "sha256-ZlOOw8xjtpL72pQPKDufuY/fHIPMwDPh68xo1EDp3DY=";
     };
 
     dontConfigure = true;
