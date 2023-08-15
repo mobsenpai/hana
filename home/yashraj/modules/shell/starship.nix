@@ -3,7 +3,7 @@
 
   programs.starship = {
     enable = true;
-    enableZshIntegration = true;
+    enableBashIntegration = true;
     settings = {
       scan_timeout = 10;
 

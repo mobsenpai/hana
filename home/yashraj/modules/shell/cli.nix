@@ -51,17 +51,17 @@
 
     fzf = {
       enable = true;
-      enableZshIntegration = true;
+      enableBashIntegration = true;
     };
 
     zoxide = {
       enable = true;
-      enableZshIntegration = true;
+      enableBashIntegration = true;
     };
 
     dircolors = {
       enable = true;
-      enableZshIntegration = true;
+      enableBashIntegration = true;
     };
   };
 }

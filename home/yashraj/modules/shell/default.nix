@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./xdg.nix
-    ./zsh.nix
+    ./bash.nix
     ./starship.nix
     ./cli.nix
     ./git.nix

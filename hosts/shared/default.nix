@@ -50,8 +50,7 @@
 
   environment = with pkgs; {
     binsh = lib.getExe bash;
-    shells = [zsh];
-    pathsToLink = ["/share/zsh"];
+    shells = [bash];
 
     systemPackages = lib.attrValues {
       inherit
@@ -95,7 +94,6 @@
 
   programs = {
     # adb.enable = true;
-    bash.promptInit = ''eval "$(${lib.getExe pkgs.starship} init bash)"'';
     dconf.enable = true;
 
     nix-ld = {
@@ -107,7 +105,6 @@
     };
 
     seahorse.enable = true;
-    zsh.enable = true;
   };
 
   services = {

@@ -51,7 +51,7 @@ NixOS / Home-Manager / Flake
 |    Terminal     |                      [Alacritty](https://github.com/alacritty/alacritty)                      |
 |     Editor      | [Neovim](https://github.com/neovim/neovim) + [Vscodium](https://github.com/VSCodium/vscodium) |
 |  File Manager   |                          [Pcmanfm](https://github.com/lxde/pcmanfm)                           |
-|      Shell      |                                  [Zsh](https://www.zsh.org/)                                  |
+|      Shell      |                          [Bash](https://www.gnu.org/software/bash/)                           |
 
 <br>
 <br>

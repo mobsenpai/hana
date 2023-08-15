@@ -8,7 +8,8 @@
       inherit
         (pkgs)
         alejandra
-        any-nix-shell
+        # any-nix-shell
+        
         # deadnix
         
         nix-index
@@ -25,12 +26,12 @@
   programs = {
     nix-index = {
       enable = true;
-      enableZshIntegration = true;
+      enableBashIntegration = true;
     };
 
     direnv = {
       enable = true;
-      enableZshIntegration = true;
+      enableBashIntegration = true;
       nix-direnv.enable = true;
     };
   };

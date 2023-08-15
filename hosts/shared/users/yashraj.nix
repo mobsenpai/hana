@@ -11,7 +11,7 @@ in {
     initialPassword = "nixos";
     isNormalUser = true;
     uid = 1000;
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     extraGroups =
       [
         "wheel"
