@@ -143,6 +143,8 @@ But anyway… let's move on to the installation process!
    $ home-manager switch --flake .#yashraj@acer
    ```
 
+10. Check wiki for more info
+
 <br>
 <br>
 
