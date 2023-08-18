@@ -62,7 +62,6 @@ awful.widget.watch(ram_script, update_interval, function(widget, stdout)
 	memory_widget:emit_signal("widget::redraw_needed")
 	usage:set_text(used .. " MB ")
 end)
--- =============================================
 
 -- Clock widget
 -- =============================================
@@ -92,7 +91,6 @@ local clock_widget = wibox.widget({
 	bg = beautiful.color4,
 	widget = wibox.container.background,
 })
--- =============================================
 
 -- CPU widget
 -- =============================================
@@ -139,7 +137,6 @@ awful.widget.watch(cpu_idle_script, update_interval, function(widget, stdout)
 	cpu_widget:emit_signal("widget::redraw_needed")
 	usage:set_text(used .. "% ")
 end)
--- =============================================
 
 -- Weather widget
 -- =============================================
@@ -208,7 +205,6 @@ awful.widget.watch(string.format(GET_FORECAST_CMD, url), 600, function(_, stdout
 		temp_current:set_markup(math.floor(result.current.temp) .. "<sup><span>°</span></sup><span>C </span>")
 	end
 end)
--- =============================================
 
 -- Playerctl widget
 -- =============================================
@@ -273,7 +269,6 @@ awful.spawn.easy_async_with_shell("ps x | grep \"playerctl metadata\" | grep -v 
 			end
 		})
 	end)
--- =============================================
 
 -- Volume osd
 -- needs pamixer installed
@@ -414,7 +409,6 @@ awesome.connect_signal("signal::volume", function(vol, muted)
 		hide_volume_adjust:start()
 	end
 end)
--- =============================================
 
 -- ░█░█░▀█▀░█▀▄░█▀█░█▀▄
 -- ░█▄█░░█░░█▀▄░█▀█░█▀▄
@@ -495,13 +489,149 @@ awful.screen.connect_for_each_screen(function(s)
 	})
 
 	-- Place bar at the bottom and add margins
-	awful.placement.top(s.mywibox, { margins = beautiful.screen_margin })
+	awful.placement.top(s.mywibox, { margins = beautiful.screen_margin * 0 }) -- I don't want margin so I added "*0"
 end)
 
 -- ░█▀█░█▀█░▀█▀░▀█▀░█▀█░█▀█░█▀▀
 -- ░█░█░█▀▀░░█░░░█░░█░█░█░█░▀▀█
 -- ░▀▀▀░▀░░░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
+-- Notification settings
+-- =============================================
+naughty.config.defaults.title = "System Notification"
+
+-- Timeouts
+naughty.config.defaults.timeout = 5
+naughty.config.presets.low.timeout = 2
+naughty.config.presets.critical.timeout = 0
+
+-- Notification layout
+if beautiful.notification_border_radius > 0 then
+	beautiful.notification_shape = helpers.rrect(beautiful.notification_border_radius)
+end
+
+naughty.connect_signal("request::display", function(n)
+	local actions = wibox.widget {
+		notification = n,
+		base_layout = wibox.widget {
+			spacing = dpi(5),
+			layout = wibox.layout.flex.horizontal
+		},
+		widget_template = {
+			{
+				{
+					{
+						font = beautiful.font_name .. "Bold 11",
+						markup = "<span foreground='" .. beautiful.color4 .. "'>" .. " " .. "</span>",
+						widget = wibox.widget.textbox
+					},
+					{
+						id = 'text_role',
+						font = beautiful.notification_font,
+						widget = wibox.widget.textbox
+					},
+					forced_height = dpi(35),
+					layout = wibox.layout.fixed.horizontal
+				},
+				widget = wibox.container.place
+			},
+			strategy = "min",
+			width = dpi(60),
+			widget = wibox.container.constraint,
+		},
+		style = {
+			underline_normal = false,
+			underline_selected = true
+		},
+		widget = naughty.list.actions
+	}
+
+	naughty.layout.box {
+		notification = n,
+		shape = helpers.rrect(beautiful.notification_border_radius),
+		border_width = beautiful.notification_border_width,
+		border_color = beautiful.notification_border_color,
+		position = beautiful.notification_position,
+		widget_template = {
+			{
+				{
+					{
+						{
+							naughty.widget.icon,
+							{
+								{
+									nil,
+									{
+										{
+											align = "left",
+											font = beautiful.notification_font,
+											markup = "<b>" .. n.title .. "</b>",
+											widget = wibox.widget.textbox,
+										},
+										{
+											align = "left",
+											widget = naughty.widget.message,
+										},
+										layout = wibox.layout.fixed.vertical
+									},
+									expand = "none",
+									layout = wibox.layout.align.vertical
+								},
+								left = n.icon and beautiful.notification_padding or 0,
+								widget = wibox.container.margin,
+							},
+							layout = wibox.layout.align.horizontal
+						},
+						{
+							wibox.widget {
+								forced_height = dpi(10),
+								layout = wibox.layout.fixed.vertical
+							},
+							{
+								nil,
+								actions,
+								expand = "none",
+								layout = wibox.layout.align.horizontal
+							},
+							visible = n.actions and #n.actions > 0,
+							layout = wibox.layout.fixed.vertical
+						},
+						layout = wibox.layout.fixed.vertical
+					},
+					margins = beautiful.notification_padding,
+					widget = wibox.container.margin,
+				},
+				strategy = "min",
+				width = beautiful.notification_min_width or dpi(150),
+				widget = wibox.container.constraint,
+			},
+			strategy = "max",
+			width = beautiful.notification_max_width or dpi(300),
+			height = beautiful.notification_max_height or dpi(150),
+			widget = wibox.container.constraint,
+		}
+	}
+end)
+
+-- Handle notification icon
+naughty.connect_signal("request::icon", function(n, context, hints)
+	-- Handle other contexts here
+	if context ~= "app_icon" then return end
+
+	-- Use XDG icon
+	local path = menubar.utils.lookup_icon(hints.app_icon) or menubar.utils.lookup_icon(hints.app_icon:lower())
+
+	if path then
+		n.icon = path
+	end
+end)
+
+-- Use XDG icon
+naughty.connect_signal("request::action_icon", function(a, context, hints)
+	a.icon = menubar.utils.lookup_icon(hints.id)
+end)
+
 -- Autostart applications
+-- =============================================
 -- awful.spawn.once({},false)
 -- EOF ------------------------------------------------------------------------

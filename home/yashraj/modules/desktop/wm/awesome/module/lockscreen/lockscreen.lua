@@ -381,10 +381,10 @@ lock_screen_box:setup({
 		--- Vertical centering
 		nil,
 		{
-			wibox.widget({
+			wibox.widget {
 				forced_height = dpi(20),
 				layout = wibox.layout.fixed.vertical,
-			}),
+			},
 			time,
 			lock_animation,
 			spacing = dpi(60),

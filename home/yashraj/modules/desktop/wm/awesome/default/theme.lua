@@ -140,44 +140,42 @@ theme.menu_submenu_icon = nil
 -- Gaps
 -- ===================================================================
 theme.useless_gap = dpi(8)
-theme.screen_margin = dpi(0)
+theme.screen_margin = dpi(3)
 
 -- Wibar
 -- ===================================================================
 theme.wibar_position = "top"
 theme.wibar_height = dpi(25)
 theme.wibar_bg = theme.color0
--- theme.wibar_fg =
---theme.wibar_opacity =
--- theme.wibar_border_color =
+-- theme.wibar_fg = theme.color7
+--theme.wibar_opacity = 0.7
+theme.wibar_border_color = theme.color0
 theme.wibar_border_width = dpi(0)
 theme.wibar_border_radius = dpi(0)
--- theme.wibar_width = dpi()
+-- theme.wibar_width = dpi(565)
 
 -- Systray
 -- ===================================================================
 theme.bg_systray = theme.wibar_bg
 
 -- Notifications
--- Note: Some of these options are ignored by a custom notification widget (if any)
 -- ===================================================================
 theme.notification_font = theme.font
 theme.notification_bg = theme.background
 theme.notification_fg = theme.foreground
-theme.notification_border_width = dpi(0)
+theme.notification_border_width = dpi(2)
 theme.notification_border_color = theme.color8
 theme.notification_opacity = 1
-theme.notification_margin = dpi(16)
-theme.notification_width = dpi(300)
-theme.notification_height = dpi(80)
-theme.notification_icon_size = dpi(60)
--- variables for custom widget
--- theme.notification_position = "top_right"
--- theme.notification_border_radius = theme.border_radius
--- theme.notification_crit_bg = theme.background
--- theme.notification_crit_fg = theme.color1
--- theme.notification_padding = theme.screen_margin * 2
--- theme.notification_spacing = theme.screen_margin * 2
+theme.notification_margin = dpi(15)
+-- theme.notification_width = dpi(300)
+-- theme.notification_height = dpi(80)
+theme.notification_icon_size = dpi(50)
+theme.notification_position = "top_right"
+theme.notification_border_radius = theme.border_radius
+theme.notification_crit_bg = theme.color1
+theme.notification_crit_fg = theme.color0
+theme.notification_padding = theme.screen_margin * 2
+theme.notification_spacing = theme.screen_margin * 2
 
 -- Misc
 -- ===================================================================
@@ -190,6 +188,9 @@ theme.layoutlist_bg_selected = theme.color3
 theme.snap_shape = gears.shape.rounded_rect
 theme.snap_bg = theme.lighter_bg
 theme.snap_border_width = theme.border_width
+
+-- Hotkeys popup
+theme.hotkeys_modifiers_fg = theme.color12
 
 return theme
 -- EOF ------------------------------------------------------------------------

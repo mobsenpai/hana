@@ -618,7 +618,6 @@ awful.rules.rules = {
 
 -- Signals
 -- =============================================
-
 if beautiful.border_width > 0 then
 	client.connect_signal("focus", function(c)
 		c.border_color = beautiful.border_focus
