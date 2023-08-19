@@ -45,11 +45,18 @@
 
     homeConfigurations = {
       # PC
-      "yashraj@acer" = home-manager.lib.homeManagerConfiguration {
+      "yuki@acer" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home/yashraj];
+        modules = [./home/yashraj/yuki];
       };
+
+      # Add more modules
+      # "name@acer" = home-manager.lib.homeManagerConfiguration {
+      #   pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      #   extraSpecialArgs = {inherit inputs outputs;};
+      #   modules = [./home/yashraj/name];
+      # };
     };
   };
 }

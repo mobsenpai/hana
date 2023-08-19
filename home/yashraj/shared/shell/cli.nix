@@ -32,10 +32,6 @@
       ;
   };
 
-  services = {
-    playerctld.enable = true;
-  };
-
   programs = {
     exa.enable = true;
     man.enable = true;

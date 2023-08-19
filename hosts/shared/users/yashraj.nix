@@ -28,5 +28,6 @@ in {
     packages = [pkgs.home-manager];
   };
 
-  home-manager.users.yashraj = import ../../../home/yashraj;
+  # home-manager.users.yashraj = import ../../../home/yashraj/${config.networking.hostName};
+  home-manager.users.yashraj = import ../../../home/yashraj/yuki;
 }

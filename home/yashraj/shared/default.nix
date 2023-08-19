@@ -6,6 +6,14 @@
   outputs,
   ...
 }: {
+  imports =
+    [
+      ./colorschemes
+      ./pkgs
+      ./shell
+    ]
+    ++ (builtins.attrValues outputs.homeManagerModules);
+
   systemd.user.startServices = "sd-switch";
 
   manual = {
