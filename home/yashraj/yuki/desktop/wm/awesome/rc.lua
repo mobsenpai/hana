@@ -151,7 +151,7 @@ awful.screen.connect_for_each_screen(function(s)
 	set_wallpaper(s)
 end)
 
---   Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
 -- Tags
@@ -632,7 +632,6 @@ awful.mouse.resize.set_mode("live")
 
 -- Restore geometry for floating clients
 -- (for example after swapping from tiling mode to floating mode)
--- ==============================================================
 tag.connect_signal("property::layout", function(t)
 	for k, c in ipairs(t:clients()) do
 		if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
@@ -656,8 +655,6 @@ client.connect_signal("property::geometry", function(c)
 	end
 end)
 
--- ==============================================================
--- ==============================================================
 -- When switching to a tag with urgent clients, raise them.
 -- This fixes the issue (visual mismatch) where after switching to
 -- a tag which includes an urgent client, the urgent client is
@@ -681,17 +678,17 @@ end
 )
 
 -- Raise focused clients automatically
-client.connect_signal("focus", function(c)
-	c:raise()
-end)
+-- client.connect_signal("focus", function(c)
+-- 	c:raise()
+-- end)
 
 -- Focus all urgent clients automatically
--- client.connect_signal("property::urgent", function(c)
--- 	if c.urgent then
--- 		c.minimized = false
--- 		c:jump_to()
--- 	end
--- end)
+client.connect_signal("property::urgent", function(c)
+	if c.urgent then
+		c.minimized = false
+		c:jump_to()
+	end
+end)
 
 -- Disable ontop when the client is not floating, and restore ontop if needed
 -- when the client is floating again

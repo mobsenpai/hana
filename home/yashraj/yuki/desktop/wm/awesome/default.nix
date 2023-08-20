@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (config.colorscheme) colors;
-  theme = "default";
+  theme = "gruva";
 in {
   xresources.extraConfig = ''
     Xft.antialias: true

@@ -503,7 +503,7 @@ naughty.config.defaults.title = "System Notification"
 -- Timeouts
 naughty.config.defaults.timeout = 5
 naughty.config.presets.low.timeout = 2
-naughty.config.presets.critical.timeout = 0
+naughty.config.presets.critical.timeout = 12
 
 -- Notification layout
 if beautiful.notification_border_radius > 0 then
@@ -511,12 +511,12 @@ if beautiful.notification_border_radius > 0 then
 end
 
 naughty.connect_signal("request::display", function(n)
-	local actions = wibox.widget {
+	local actions = wibox.widget({
 		notification = n,
-		base_layout = wibox.widget {
+		base_layout = wibox.widget({
 			spacing = dpi(5),
 			layout = wibox.layout.flex.horizontal
-		},
+		}),
 		widget_template = {
 			{
 				{
@@ -544,10 +544,12 @@ naughty.connect_signal("request::display", function(n)
 			underline_selected = true
 		},
 		widget = naughty.list.actions
-	}
+	})
 
 	naughty.layout.box {
 		notification = n,
+		type = "notification",
+		cursor = "hand2",
 		shape = helpers.rrect(beautiful.notification_border_radius),
 		border_width = beautiful.notification_border_width,
 		border_color = beautiful.notification_border_color,
@@ -570,7 +572,9 @@ naughty.connect_signal("request::display", function(n)
 										},
 										{
 											align = "left",
-											widget = naughty.widget.message,
+											font = beautiful.notification_font,
+											text = n.message,
+											widget = wibox.widget.textbox,
 										},
 										layout = wibox.layout.fixed.vertical
 									},
@@ -583,10 +587,10 @@ naughty.connect_signal("request::display", function(n)
 							layout = wibox.layout.align.horizontal
 						},
 						{
-							wibox.widget {
+							wibox.widget({
 								forced_height = dpi(10),
 								layout = wibox.layout.fixed.vertical
-							},
+							}),
 							{
 								nil,
 								actions,

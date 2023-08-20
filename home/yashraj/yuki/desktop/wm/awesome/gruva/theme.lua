@@ -172,8 +172,8 @@ theme.notification_margin = dpi(15)
 theme.notification_icon_size = dpi(50)
 theme.notification_position = "top_right"
 theme.notification_border_radius = theme.border_radius
-theme.notification_crit_bg = theme.color1
-theme.notification_crit_fg = theme.color0
+-- theme.notification_crit_bg = theme.color1
+-- theme.notification_crit_fg = theme.color0
 theme.notification_padding = theme.screen_margin * 2
 theme.notification_spacing = theme.screen_margin * 2
 
