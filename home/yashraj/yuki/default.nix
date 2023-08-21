@@ -14,6 +14,8 @@
     ../shared/programs/neofetch.nix
 
     # Specific configuration
-    ./desktop/wm/awesome
+    ./desktop
+    ./services
+    ./X
   ];
 }

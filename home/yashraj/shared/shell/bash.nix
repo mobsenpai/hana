@@ -68,7 +68,7 @@ in {
       cat = "${lib.getExe bat} --style=plain";
       l = "${lib.getExe exa} -lF --time-style=long-iso --icons";
       la = "${lib.getExe exa} -lah --tree";
-      ls = "${lib.getExe exa} -h --git --icons --color=auto --group-directories-first -s extension";
+      ls = "${lib.getExe exa} -ah --git --icons --color=auto --group-directories-first -s extension";
       tree = "${lib.getExe exa} --tree --icons --tree";
       ytmp3 = ''
         ${lib.getExe yt-dlp} -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"
