@@ -6,6 +6,10 @@
 }: let
   inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
 in {
+  imports = [
+    ./rofi.nix
+  ];
+
   gtk = {
     enable = true;
     theme = {
