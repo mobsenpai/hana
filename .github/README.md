@@ -25,7 +25,7 @@ Mob's Dotfiles
 <br>
 
 <p align="center">
-  <img src="https://i.imgur.com/vhlm6uN.png" width="500px" alt="OS banner"/>
+  <img src="https://i.imgur.com/3eCVWGT.png" width="500px" alt="OS banner"/>
 </p>
 
 <br>
@@ -35,7 +35,7 @@ NixOS / Home-Manager / Flake
 ```
 
 <p align="center">
-  <img src="https://i.imgur.com/rH9zwkJ.png" alt="Screenshot"/>
+  <img src="https://i.imgur.com/vhlm6uN.png" alt="Screenshot"/>
 </p>
 
 </div>
@@ -143,7 +143,7 @@ But anyway… let's move on to the installation process!
    $ home-manager switch --flake .#yashraj@acer
    ```
 
-10. Check wiki for more info. Also AwesomeWM config is moved to another repositiry: MobSenpai/sugoi
+10. Check wiki for more info. AwesomeWM config has moved to <a href="https://github.com/MobSenpai/sugoi.git">MobSenpai/sugoi</a>
 
 <br>
 <br>
