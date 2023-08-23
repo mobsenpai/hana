@@ -25,7 +25,7 @@ Mob's Dotfiles
 <br>
 
 <p align="center">
-  <img src="https://i.imgur.com/3eCVWGT.png" width="500px" alt="OS banner"/>
+  <img src="https://i.imgur.com/vhlm6uN.png" width="500px" alt="OS banner"/>
 </p>
 
 <br>
@@ -143,7 +143,7 @@ But anyway… let's move on to the installation process!
    $ home-manager switch --flake .#yashraj@acer
    ```
 
-10. Check wiki for more info
+10. Check wiki for more info. Also AwesomeWM config is moved to another repositiry: MobSenpai/sugoi
 
 <br>
 <br>
