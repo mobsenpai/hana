@@ -88,7 +88,7 @@
         focus-exclude = [
           "class_g = 'Cairo-clock'"
           "class_g = 'Peek'"
-          "window_type = 'notification'"
+          "class_g = 'slop'"
           "window_type = 'combo'"
           "window_type = 'desktop'"
           "window_type = 'dialog'"
@@ -106,7 +106,6 @@
           "window_type = 'dock'"
           "_NET_WM_STATE@:32a *= '_NET_WM_STATE_MAXIMIZED_VERT'"
           "_NET_WM_STATE@:32a *= '_NET_WM_STATE_MAXIMIZED_HORZ'"
-          "class_g = 'Rofi'"
         ];
         experimental-backends = true;
         blur = {
