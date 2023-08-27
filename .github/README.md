@@ -133,14 +133,14 @@ But anyway… let's move on to the installation process!
 9. Install the home manager configuration
 
    ```bash
-   $ home-manager switch --flake 'github:yashraj/dotfiles#yashraj@acer'
+   $ home-manager switch --flake 'github:yashraj/dotfiles#yuki@acer'
    ```
 
    or (if already have dotfiles locally)
 
    ```bash
    $ cd dotfiles
-   $ home-manager switch --flake .#yashraj@acer
+   $ home-manager switch --flake .#yuki@acer
    ```
 
 10. Check wiki for more info. AwesomeWM config has moved to <a href="https://github.com/MobSenpai/sugoi.git">MobSenpai/sugoi</a>
