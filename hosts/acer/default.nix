@@ -42,12 +42,13 @@
         efiSysMountPoint = "/boot";
       };
 
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        gfxmodeEfi = "1366x768";
-      };
+      # grub = {
+      #   enable = true;
+      #   device = "nodev";
+      #   efiSupport = true;
+      #   gfxmodeEfi = "1366x768";
+      # };
+      systemd-boot.enable = true;
     };
   };
 
