@@ -54,6 +54,7 @@ in {
     shellAliases = with pkgs; {
       cleanup = "sudo nix-collect-garbage --delete-older-than 7d";
       bloat = "nix path-info -Sh /run/current-system";
+      dev = "nix develop $HOME/.setup";
       v = "nvim";
       g = "git";
       commit = "git add . && git commit -m";
