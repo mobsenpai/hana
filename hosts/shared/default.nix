@@ -87,7 +87,7 @@
     '';
 
     variables = {
-      EDITOR = "nvim";
+      EDITOR = "vim";
       BROWSER = "vivaldi";
     };
   };

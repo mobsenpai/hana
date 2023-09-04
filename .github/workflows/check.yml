@@ -14,5 +14,6 @@ jobs:
           install_url: https://nixos.org/nix/install
           extra_nix_config: |
             auto-optimise-store = true
+            allowUnfree = true
             experimental-features = nix-command flakes
       - run: nix flake check
