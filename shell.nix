@@ -19,6 +19,17 @@
       home-manager
       git
       nodejs
+      lua
+
+      # language servers
+      lua-language-server
+      nil
+      nodePackages.vscode-langservers-extracted
+      nodePackages.typescript-language-server
+
+      # formatter
+      stylua
+      nodePackages.prettier
     ];
   };
 }
