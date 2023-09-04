@@ -8,6 +8,6 @@
       (pkgs)
       cava
       cbonsai
-    ;
+      ;
   };
 }
