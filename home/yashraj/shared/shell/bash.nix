@@ -10,9 +10,22 @@ in {
     enable = true;
 
     initExtra = ''
+      # General
+      # =============================================
+      # if not running interactively, don't do anything
+      [[ $- != *i* ]] && return
+
+      export HISTCONTROL=ignoreboth:erasedups
+
+      # ignore upper and lowercase when TAB completion
       bind "set completion-ignore-case on"
 
-      # shopt
+      # set title
+      PROMPT_COMMAND='echo -ne "\033]0;$(basename "$(pwd)")\007"'
+
+      # Completions
+      # =============================================
+      set -o vi
       shopt -s autocd # change to named directory
       shopt -s cdspell # autocorrects cd misspellings
       shopt -s cmdhist # save multi-line commands in history as single line
@@ -20,7 +33,8 @@ in {
       shopt -s histappend # do not overwrite history
       shopt -s expand_aliases # expand aliases
 
-      # ex = EXtractor for all kinds of archives
+      # ex = Extractor for all kinds of archives
+      # =============================================
       # usage: ex <file>
       ex ()
       {
@@ -47,7 +61,8 @@ in {
         fi
       }
 
-      # reporting tools - install when not installed
+      # Reporting tools
+      # =============================================
       neofetch
     '';
 

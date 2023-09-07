@@ -66,6 +66,7 @@
         glib
         libnotify
         libsecret
+        mpv
         ntfs3g
         p7zip
         pamixer
@@ -75,7 +76,6 @@
         unrar
         unzip
         vim
-        vlc
         tree
         wget
         zathura

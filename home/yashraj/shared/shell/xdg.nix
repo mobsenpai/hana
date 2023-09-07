@@ -21,8 +21,8 @@ with lib; let
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
 
-    "audio/*" = ["vlc.desktop"];
-    "video/*" = ["vlc.dekstop"];
+    "audio/*" = ["mpv.desktop"];
+    "video/*" = ["mpv.dekstop"];
     "image/*" = ["feh.desktop"];
     "inode/directory" = ["pcmanfm.desktop"];
     "application/json" = browser;

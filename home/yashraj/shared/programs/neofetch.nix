@@ -436,6 +436,7 @@
     # mocp
     # mopidy
     # mpd
+    # mpv
     # muine
     # netease-cloud-music
     # olivia
@@ -455,7 +456,7 @@
     # xmms2d
     # xnoise
     # yarock
-    music_player="mpd"
+    music_player="mpv"
 
     # Format to display song information.
     #
