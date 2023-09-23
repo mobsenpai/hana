@@ -16,5 +16,3 @@ jobs:
             auto-optimise-store = true
             experimental-features = nix-command flakes
       - run: nix flake check --impure
-        env:
-          NIXPKGS_ALLOW_UNFREE: "1"
