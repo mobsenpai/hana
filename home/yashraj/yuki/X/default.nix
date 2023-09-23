@@ -1,48 +1,41 @@
 {config, ...}: let
   inherit (config.colorscheme) colors;
 in {
-  xresources.extraConfig = ''
-    Xft.antialias: true
-    Xft.hinting: true
-    Xft.rgba: rgb
-    Xft.autohint: false
-    Xft.hintstyle: hintfull
-    Xft.lcdfilter: lcddefault
-
-    *.cursorColor:  #${colors.base05}
-    *background: #${colors.base00}
-    *foreground: #${colors.base07}
+  xresources.extraConfig = with colors; ''
+    ! special
+    *background: #${base00}
+    *foreground: #${base05}
 
     ! black
-    *color0: #${colors.base00}
-    *color8: #${colors.base03}
+    *color0: #${base00}
+    *color8: #${base03}
 
     ! red
-    *color1: #${colors.base08D}
-    *color9: #${colors.base08}
+    *color1: #${base08}
+    *color9: #${base08}
 
     ! green
-    *color2: #${colors.base0BD}
-    *color10: #${colors.base0B}
+    *color2: #${base0B}
+    *color10: #${base0B}
 
     ! yellow
-    *color3: #${colors.base0AD}
-    *color11: #${colors.base0A}
+    *color3: #${base0A}
+    *color11: #${base0A}
 
     ! blue
-    *color4: #${colors.base0DD}
-    *color12: #${colors.base0D}
+    *color4: #${base0D}
+    *color12: #${base0D}
 
     ! magenta
-    *color5: #${colors.base0ED}
-    *color13: #${colors.base0E}
+    *color5: #${base0E}
+    *color13: #${base0E}
 
     ! cyan
-    *color6: #${colors.base0CD}
-    *color14: #${colors.base0C}
+    *color6: #${base0C}
+    *color14: #${base0C}
 
     ! white
-    *color7: #${colors.base06}
-    *color15: #${colors.base07}
+    *color7: #${base05}
+    *color15: #${base07}
   '';
 }

@@ -8,30 +8,22 @@
 in {
   programs.bash = {
     enable = true;
+    historyControl = ["erasedups" "ignorespace"];
+    shellOptions = [
+      "autocd"
+      "cdspell"
+      "cmdhist"
+      "dotglob"
+      "histappend"
+      "expand_aliases"
+    ];
 
     initExtra = ''
       # General
       # =============================================
-      # if not running interactively, don't do anything
-      [[ $- != *i* ]] && return
-
-      export HISTCONTROL=ignoreboth:erasedups
-
+      set -o vi
       # ignore upper and lowercase when TAB completion
       bind "set completion-ignore-case on"
-
-      # set title
-      PROMPT_COMMAND='echo -ne "\033]0;$(basename "$(pwd)")\007"'
-
-      # Completions
-      # =============================================
-      set -o vi
-      shopt -s autocd # change to named directory
-      shopt -s cdspell # autocorrects cd misspellings
-      shopt -s cmdhist # save multi-line commands in history as single line
-      shopt -s dotglob
-      shopt -s histappend # do not overwrite history
-      shopt -s expand_aliases # expand aliases
 
       # ex = Extractor for all kinds of archives
       # =============================================
@@ -70,6 +62,7 @@ in {
       cleanup = "sudo nix-collect-garbage --delete-older-than 7d";
       bloat = "nix path-info -Sh /run/current-system";
       dev = "nix develop $HOME/.setup";
+      c = "clear";
       v = "nvim";
       g = "git";
       commit = "git add . && git commit -m";
@@ -77,18 +70,20 @@ in {
       pull = "git pull";
       m = "mkdir -p";
       fcd = "cd $(find -type d | fzf)";
+      fm = lib.getExe ranger;
       grep = lib.getExe ripgrep;
       du = lib.getExe du-dust;
       ps = lib.getExe procs;
       rm = lib.getExe trash-cli;
-      cat = "${lib.getExe bat} --style=plain";
-      l = "${lib.getExe exa} -lF --time-style=long-iso --icons";
-      la = "${lib.getExe exa} -lah --tree";
-      ls = "${lib.getExe exa} -ah --git --icons --color=auto --group-directories-first -s extension";
-      tree = "${lib.getExe exa} --tree --icons --tree";
+      cat = "${lib.getExe bat} --color always --style=plain";
+      l = "${lib.getExe eza} -lF --time-style=long-iso --icons";
+      la = "${lib.getExe eza} -lah --tree";
+      ls = "${lib.getExe eza} -ah --git --icons --color=auto --group-directories-first -s extension";
+      tree = "${lib.getExe eza} --tree --icons --tree";
       ytmp3 = ''
         ${lib.getExe yt-dlp} -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"
       '';
+      sl = "ls";
     };
   };
 }

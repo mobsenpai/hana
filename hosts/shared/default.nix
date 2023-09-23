@@ -94,6 +94,7 @@
 
   programs = {
     # adb.enable = true;
+    bash.promptInit = ''eval "$(${lib.getExe pkgs.starship} init bash)"'';
     dconf.enable = true;
 
     nix-ld = {

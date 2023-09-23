@@ -31,14 +31,14 @@ in {
         window-format = "{w} · {c} · {t}";
       };
 
-      "*" = {
+      "*" = with colors; {
         font = "monospace bold 8";
-        background = mkLiteral "#${colors.base00}ff";
-        background-alt = mkLiteral "#${colors.base01}ff";
-        foreground = mkLiteral "#${colors.base06}ff";
-        selected = mkLiteral "#${colors.base0D}ff";
-        active = mkLiteral "#${colors.base0B}ff";
-        urgent = mkLiteral "#${colors.base08}ff";
+        background = mkLiteral "#${base00}ff";
+        background-alt = mkLiteral "#${base01}ff";
+        foreground = mkLiteral "#${base05}ff";
+        selected = mkLiteral "#${base0D}ff";
+        active = mkLiteral "#${base0B}ff";
+        urgent = mkLiteral "#${base08}ff";
 
         border-colour = mkLiteral "var(selected)";
         handle-colour = mkLiteral "var(selected)";

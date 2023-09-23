@@ -7,12 +7,11 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
-      btop
+      gotop
       coreutils
       curl
       du-dust
       file
-      joshuto
       jq
       killall
       man-pages
@@ -33,7 +32,7 @@
   };
 
   programs = {
-    exa.enable = true;
+    eza.enable = true;
     man.enable = true;
 
     bat = {

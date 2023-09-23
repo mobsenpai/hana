@@ -17,9 +17,9 @@ in {
     environment.systemPackages = lib.attrValues {
       inherit
         (pkgs)
+        brightnessctl
         feh
         pcmanfm
-        tmux
         xclip
         xss-lock
         ;

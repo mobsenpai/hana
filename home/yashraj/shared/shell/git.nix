@@ -19,9 +19,9 @@
     enable = true;
     lfs.enable = true;
     userName = "MobSenpai";
-    userEmail = "iamyashraj@proton.me";
+    userEmail = "github.onstage144@passinbox.com";
     # signing = {
-    #   key = "F01BC62D2BAE2122";
+    #   key = "AAAAAAAAAAAAAAAA";
     #   signByDefault = true;
     # };
 
@@ -34,6 +34,7 @@
       diff.colorMoved = "default";
       merge.conflictstyle = "diff3";
       delta = {
+        syntax-theme = "base16";
         line-numbers = true;
       };
     };

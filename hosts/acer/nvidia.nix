@@ -6,6 +6,7 @@
 }: {
   services.xserver.videoDrivers = ["nvidia"];
   boot.blacklistedKernelModules = ["nouveau"];
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   environment = {
     variables = {

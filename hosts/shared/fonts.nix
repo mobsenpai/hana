@@ -4,7 +4,7 @@
   ...
 }: {
   fonts = {
-    fonts = lib.attrValues {
+    packages = lib.attrValues {
       inherit
         (pkgs)
         noto-fonts-emoji
@@ -19,17 +19,19 @@
       antialias = true;
       hinting = {
         enable = true;
-        autohint = true;
-        style = "hintfull";
+        autohint = false;
+        style = "full";
+      };
+      subpixel = {
+        lcdfilter = "default";
+        rgba = "rgb";
       };
 
-      subpixel.lcdfilter = "default";
-
       defaultFonts = {
-        emoji = ["Noto Color Emoji"];
+        serif = ["Noto Serif"];
+        sansSerif = ["Noto Sans"];
         monospace = ["JetBrainsMono Nerd Font"];
-        sansSerif = ["Noto Sans" "Noto Color Emoji"];
-        serif = ["Noto Serif" "Noto Color Emoji"];
+        emoji = ["Noto Color Emoji"];
       };
     };
   };
