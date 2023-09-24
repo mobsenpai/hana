@@ -112,7 +112,7 @@ in {
       };
 
       workbench = {
-        colorTheme = "Gruvbox Dark Hard";
+        colorTheme = "Gruvbox Dark Medium";
         editor.tabCloseButton = "left";
         fontAliasing = "antialiased";
         iconTheme = "file-icons";
