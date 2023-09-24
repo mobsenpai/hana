@@ -35,7 +35,7 @@ NixOS / Home-Manager / Flake
 ```
 
 <p align="center">
-  <img src="https://i.imgur.com/vhlm6uN.png" alt="Screenshot"/>
+  <img src="https://i.imgur.com/16RObqJ.png" alt="Screenshot"/>
 </p>
 
 </div>
@@ -48,8 +48,8 @@ NixOS / Home-Manager / Flake
 | :-------------: | :-------------------------------------------------------------------------------------------: |
 |       OS        |                                  [NixOS](https://nixos.org/)                                  |
 | WM / Compositor |                       [AwesomeWM](https://github.com/awesomeWM/awesome)                       |
-|    Terminal     |                      [Alacritty](https://github.com/alacritty/alacritty)                      |
-|     Editor      | [Neovim](https://github.com/neovim/neovim) + [Vscodium](https://github.com/VSCodium/vscodium) |
+|    Terminal     |                         [Kitty](https://github.com/kovidgoyal/kitty)                          |
+|     Editor      | [Nvchad](https://github.com/NvChad/NvChad) + [Vscodium](https://github.com/VSCodium/vscodium) |
 |  File Manager   |                          [Pcmanfm](https://github.com/lxde/pcmanfm)                           |
 |      Shell      |                          [Bash](https://www.gnu.org/software/bash/)                           |
 
