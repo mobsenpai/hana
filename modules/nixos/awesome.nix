@@ -22,6 +22,7 @@ in {
         pcmanfm
         xclip
         xss-lock
+        xlockmore
         ;
     };
   };

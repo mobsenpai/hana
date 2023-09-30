@@ -41,13 +41,6 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-
-      # grub = {
-      #   enable = true;
-      #   device = "nodev";
-      #   efiSupport = true;
-      #   gfxmodeEfi = "1366x768";
-      # };
       systemd-boot.enable = true;
     };
   };
@@ -70,7 +63,6 @@
       displayManager = {
         lightdm.enable = true;
       };
-      # xkbOptions = "caps:escape";
     };
   };
 
