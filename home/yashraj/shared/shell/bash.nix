@@ -18,7 +18,7 @@ in {
       "expand_aliases"
     ];
 
-    initExtra = ''
+    initExtra = with pkgs; ''
       # General
       # =============================================
       set -o vi
@@ -28,8 +28,7 @@ in {
       # ex = Extractor for all kinds of archives
       # =============================================
       # usage: ex <file>
-      ex ()
-      {
+      ex() {
         if [ -f $1 ] ; then
           case $1 in
             *.tar.bz2)   tar xjf $1   ;;
@@ -53,37 +52,70 @@ in {
         fi
       }
 
+      # Build functions = hbuild, build
+      # =============================================
+      # usage : build
+      build() {
+        host=$(hostname -f)
+        sudo nixos-rebuild switch --flake ~/.setup#$host
+      }
+      # usage: hbuild <config>
+      hbuild() {
+        host=$(hostname -f)
+        home-manager switch --flake ~/.setup#$@'@'$host
+      }
+
+      # Install functions = install, shell, run...
+      # =============================================
+      # usage: install <package>
+      install() {
+        nix-env -iA nixos.$@
+      }
+      uninstall(){
+        nix-env --uninstall $@
+      }
+      list() {
+        nix-env -q
+      }
+      # usage: tempin <package>
+      shell() {
+        nix shell nixpkgs#$@
+      }
+      # usage: run <package>
+      run() {
+        nix run nixpkgs#$@
+      }
+
       # Reporting tools
       # =============================================
-      neofetch
+      ${lib.getExe neofetch}
     '';
 
     shellAliases = with pkgs; {
       cleanup = "sudo nix-collect-garbage --delete-older-than 7d";
       bloat = "nix path-info -Sh /run/current-system";
       dev = "nix develop $HOME/.setup";
-      c = "clear";
-      v = "nvim";
-      g = "git";
-      commit = "git add . && git commit -m";
-      push = "git push";
-      pull = "git pull";
-      m = "mkdir -p";
-      fcd = "cd $(find -type d | fzf)";
-      fm = lib.getExe ranger;
-      grep = lib.getExe ripgrep;
-      du = lib.getExe du-dust;
-      ps = lib.getExe procs;
-      rm = lib.getExe trash-cli;
-      cat = "${lib.getExe bat} --color always --style=plain";
       l = "${lib.getExe eza} -lF --time-style=long-iso --icons";
       la = "${lib.getExe eza} -lah --tree";
       ls = "${lib.getExe eza} -ah --git --icons --color=auto --group-directories-first -s extension";
+      sl = "ls";
       tree = "${lib.getExe eza} --tree --icons --tree";
+      c = "clear";
+      rm = lib.getExe trash-cli;
+      m = "mkdir -p";
+      v = lib.getExe neovim;
+      g = lib.getExe git;
+      fm = lib.getExe ranger;
+      grep = lib.getExe ripgrep;
+      cat = "${lib.getExe bat} --color always --style=plain";
+      du = lib.getExe du-dust;
+      ps = lib.getExe procs;
+      commit = "${lib.getExe git} add . && ${lib.getExe git} commit -m";
+      push = "${lib.getExe git} push";
+      pull = "${lib.getExe git} pull";
       ytmp3 = ''
         ${lib.getExe yt-dlp} -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"
       '';
-      sl = "ls";
     };
   };
 }
