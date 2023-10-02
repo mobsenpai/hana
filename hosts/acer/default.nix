@@ -106,8 +106,6 @@
 
     variables = {
       QT_QPA_PLATFORMTHEME = "gtk2";
-      CM_LAUNCHER = "rofi";
-      CM_SELECTIONS = "clipboard";
     };
   };
 

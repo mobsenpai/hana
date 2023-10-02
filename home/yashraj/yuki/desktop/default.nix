@@ -63,6 +63,10 @@ in {
       # Theming Related Variables
       GTK_THEME = "${config.colorscheme.slug}";
       XCURSOR_SIZE = "${builtins.toString config.home.pointerCursor.size}";
+      # Defaults apps
+      EDITOR = "nvim";
+      BROWSER = "vivaldi";
+      TERMINAL = "kitty";
     };
   };
 }

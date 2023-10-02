@@ -1,6 +1,9 @@
 {
   services = {
-    clipmenu.enable = true;
+    clipmenu = {
+      enable = true;
+      launcher = "rofi";
+    };
 
     flameshot = {
       enable = true;
