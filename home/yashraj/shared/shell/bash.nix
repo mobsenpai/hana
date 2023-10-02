@@ -29,7 +29,7 @@ in {
       # fix ctrl+l not working when using vim keybinds
       bind -m vi-command 'Control-l: clear-screen'
       bind -m vi-insert 'Control-l: clear-screen'
-      
+
       # ex = Extractor for all kinds of archives
       # =============================================
       # usage: ex <file>
