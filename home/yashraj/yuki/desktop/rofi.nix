@@ -12,27 +12,21 @@ in {
     };
 
     theme = let
-      # Use `mkLiteral` for string-like values that should show without
-      # quotes, e.g.:
-      # {
-      #   foo = "abc"; =&gt; foo: "abc";
-      #   bar = mkLiteral "abc"; =&gt; bar: abc;
-      # };
       inherit (config.lib.formats.rasi) mkLiteral;
     in {
       "configuration" = {
-        modi = "drun,run,filebrowser";
+        modi = "drun,combi,emoji";
         show-icons = false;
-        display-drun = "drun";
-        display-run = "run";
-        display-filebrowser = "files";
-        display-window = "windows";
-        drun-display-format = "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+        display-drun = ">";
+        display-combi = ">";
+        display-emoji = ">";
+        display-clipboard = ">";
+        drun-display-format = "{name}";
         window-format = "{w} · {c} · {t}";
       };
 
       "*" = with colors; {
-        font = "monospace bold 8";
+        font = "monospace bold ${builtins.toString config.gtk.font.size}";
         background = mkLiteral "#${base00}ff";
         background-alt = mkLiteral "#${base01}ff";
         foreground = mkLiteral "#${base05}ff";
@@ -45,7 +39,7 @@ in {
         background-colour = mkLiteral "var(background)";
         foreground-colour = mkLiteral "var(foreground)";
         alternate-background = mkLiteral "var(background-alt)";
-        normal-background = mkLiteral "var(background)";
+        normal-background = mkLiteral "var(background-alt)";
         normal-foreground = mkLiteral "var(foreground)";
         urgent-background = mkLiteral "var(urgent)";
         urgent-foreground = mkLiteral "var(background)";
@@ -57,7 +51,7 @@ in {
         selected-urgent-foreground = mkLiteral "var(background)";
         selected-active-background = mkLiteral "var(urgent)";
         selected-active-foreground = mkLiteral "var(background)";
-        alternate-normal-background = mkLiteral "var(background)";
+        alternate-normal-background = mkLiteral "var(background-alt)";
         alternate-normal-foreground = mkLiteral "var(foreground)";
         alternate-urgent-background = mkLiteral "var(urgent)";
         alternate-urgent-foreground = mkLiteral "var(background)";
@@ -65,93 +59,74 @@ in {
         alternate-active-foreground = mkLiteral "var(background)";
       };
 
-      /*
-      ****----- Main Window -----****
-      */
+      # Main window
       "window" = {
-        /*
-        properties for window widget
-        */
         "transparency" = "real";
         "location" = mkLiteral "center";
         "anchor" = mkLiteral "center";
         "fullscreen" = mkLiteral "false";
-        "width" = mkLiteral "1000px";
+        "width" = mkLiteral "420px";
         "x-offset" = mkLiteral "0px";
         "y-offset" = mkLiteral "0px";
 
-        /*
-        properties for all widgets
-        */
+        # properties for all widgets
         "enabled" = mkLiteral "true";
         "margin" = mkLiteral "0px";
         "padding" = mkLiteral "0px";
-        "border" = mkLiteral "0px solid";
+        "border" = mkLiteral "2px solid";
         "border-radius" = mkLiteral "0px";
         "border-color" = mkLiteral "@border-colour";
         "cursor" = "default";
         "background-color" = mkLiteral "@background-colour";
       };
 
-      /*
-      ****----- Main Box -----****
-      */
+      # Main box
       "mainbox" = {
         "enabled" = mkLiteral "true";
         "spacing" = mkLiteral "10px";
         "margin" = mkLiteral "0px";
-        "padding" = mkLiteral "40px";
+        "padding" = mkLiteral "10px";
         "border" = mkLiteral "0px solid";
         "border-radius" = mkLiteral "0px 0px 0px 0px";
         "border-color" = mkLiteral "@border-colour";
         "background-color" = mkLiteral "transparent";
-        "children" = mkLiteral "[ inputbar, message, listview, mode-switcher ]";
+        "children" = mkLiteral "[ inputbar, listview]";
       };
 
-      /*
-      ****----- Inputbar -----****
-      */
+      # Inputbar
       "inputbar" = {
         "enabled" = mkLiteral "true";
         "spacing" = mkLiteral "10px";
         "margin" = mkLiteral "0px";
-        "padding" = mkLiteral "0px 5px";
+        "padding" = mkLiteral "0px 0px 6px 0px";
         "border" = mkLiteral "0px";
         "border-radius" = mkLiteral "0px";
         "border-color" = mkLiteral "@border-colour";
         "background-color" = mkLiteral "@background-colour";
         "text-color" = mkLiteral "@foreground-colour";
-        "children" = mkLiteral "[ prompt, textbox-prompt-colon, entry ]";
+        "children" = mkLiteral "[ prompt, entry ]";
       };
-
       "prompt" = {
         "enabled" = mkLiteral "true";
-        "background-color" = mkLiteral "inherit";
-        "text-color" = mkLiteral "inherit";
-      };
-      "textbox-prompt-colon" = {
-        "enabled" = mkLiteral "true";
-        "expand" = mkLiteral "false";
-        "str" = ":";
-        "background-color" = mkLiteral "inherit";
+        "background-color" = mkLiteral "@background-alt";
+        "padding" = mkLiteral "2px 14px 4px 14px";
         "text-color" = mkLiteral "inherit";
       };
       "entry" = {
         "enabled" = mkLiteral "true";
+        "margin" = mkLiteral "8px 0px 0px 14px";
         "background-color" = mkLiteral "inherit";
         "text-color" = mkLiteral "inherit";
         "cursor" = mkLiteral "text";
-        "placeholder" = "search...";
+        "placeholder" = "Search...";
         "placeholder-color" = mkLiteral "inherit";
       };
 
-      /*
-      ****----- Listview -----****
-      */
+      # Listview
       "listview" = {
         "enabled" = mkLiteral "true";
-        "columns" = mkLiteral "3";
-        "lines" = mkLiteral "10";
+        "columns" = mkLiteral "1";
+        "lines" = mkLiteral "7";
         "cycle" = mkLiteral "true";
         "dynamic" = mkLiteral "true";
         "scrollbar" = mkLiteral "false";
@@ -160,7 +135,7 @@ in {
         "fixed-height" = mkLiteral "true";
         "fixed-columns" = mkLiteral "true";
 
-        "spacing" = mkLiteral "0px";
+        "spacing" = mkLiteral "10px";
         "margin" = mkLiteral "0px";
         "padding" = mkLiteral "0px";
         "border" = mkLiteral "0px solid";
@@ -170,21 +145,13 @@ in {
         "text-color" = mkLiteral "@foreground-colour";
         "cursor" = "default";
       };
-      "scrollbar" = {
-        "handle-width" = mkLiteral "5px ";
-        "handle-color" = mkLiteral "@handle-colour";
-        "border-radius" = mkLiteral "0px";
-        "background-color" = mkLiteral "@alternate-background";
-      };
 
-      /*
-      ****----- Elements -----****
-      */
+      # Element
       "element" = {
         "enabled" = mkLiteral "true";
         "spacing" = mkLiteral "10px";
         "margin" = mkLiteral "0px";
-        "padding" = mkLiteral "5px";
+        "padding" = mkLiteral "12px";
         "border" = mkLiteral "0px solid";
         "border-radius" = mkLiteral "0px";
         "border-color" = mkLiteral "@border-colour";
@@ -205,8 +172,8 @@ in {
         "text-color" = mkLiteral "var(active-foreground)";
       };
       "element selected.normal" = {
-        "background-color" = mkLiteral "var(selected-normal-foreground)";
-        "text-color" = mkLiteral "var(selected-normal-background)";
+        "background-color" = mkLiteral "var(selected-normal-background)";
+        "text-color" = mkLiteral "var(selected-normal-foreground)";
       };
       "element selected.urgent" = {
         "background-color" = mkLiteral "var(selected-urgent-background)";
@@ -241,70 +208,6 @@ in {
         "cursor" = mkLiteral "inherit";
         "vertical-align" = mkLiteral "0.5";
         "horizontal-align" = mkLiteral "0.0";
-      };
-
-      /*
-      ****----- Mode Switcher -----****
-      */
-      "mode-switcher" = {
-        "enabled" = mkLiteral "true";
-        "spacing" = mkLiteral "0px";
-        "margin" = mkLiteral "0px";
-        "padding" = mkLiteral "0px";
-        "border" = mkLiteral "0px solid";
-        "border-radius" = mkLiteral "0px";
-        "border-color" = mkLiteral "@border-colour";
-        "background-color" = mkLiteral "transparent";
-        "text-color" = mkLiteral "@foreground-colour";
-      };
-      "button" = {
-        "padding" = mkLiteral "5px";
-        "border" = mkLiteral "0px solid";
-        "border-radius" = mkLiteral "0px";
-        "border-color" = mkLiteral "@border-colour";
-        "background-color" = mkLiteral "@background-colour";
-        "text-color" = mkLiteral "inherit";
-        "cursor" = mkLiteral "pointer";
-      };
-      "button selected" = {
-        "background-color" = mkLiteral "var(alternate-background)";
-        "text-color" = mkLiteral "var(selected-normal-background)";
-      };
-
-      /*
-      ****----- Message -----****
-      */
-      "message" = {
-        "enabled" = mkLiteral "true";
-        "margin" = mkLiteral "0px";
-        "padding" = mkLiteral "0px";
-        "border" = mkLiteral "0px solid";
-        "border-radius" = mkLiteral "0px 0px 0px 0px";
-        "border-color" = mkLiteral "@border-colour";
-        "background-color" = mkLiteral "transparent";
-        "text-color" = mkLiteral "@foreground-colour";
-      };
-      "textbox" = {
-        "padding" = mkLiteral "5px";
-        "border" = mkLiteral "0px solid";
-        "border-radius" = mkLiteral "0px";
-        "border-color" = mkLiteral "@border-colour";
-        "background-color" = mkLiteral "@background-colour";
-        "text-color" = mkLiteral "@border-colour";
-        "vertical-align" = mkLiteral "0.5";
-        "horizontal-align" = mkLiteral "0.0";
-        "highlight" = mkLiteral "none";
-        "placeholder-color" = mkLiteral "@foreground-colour";
-        "blink" = mkLiteral "true";
-        "markup" = mkLiteral "true";
-      };
-      "error-message" = {
-        "padding" = mkLiteral "20px";
-        "border" = mkLiteral "0px solid";
-        "border-radius" = mkLiteral "0px";
-        "border-color" = mkLiteral "@border-colour";
-        "background-color" = mkLiteral "@background-colour";
-        "text-color" = mkLiteral "@foreground-colour";
       };
     };
   };
