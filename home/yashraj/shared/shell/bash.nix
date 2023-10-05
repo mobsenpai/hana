@@ -6,7 +6,7 @@
 }: let
   inherit (config.colorscheme) colors;
 in {
-  programs.bash = {
+  programs.bash = with pkgs; {
     enable = true;
     historyControl = ["erasedups" "ignorespace"];
     shellOptions = [
@@ -18,7 +18,7 @@ in {
       "expand_aliases"
     ];
 
-    initExtra = with pkgs; ''
+    initExtra = with colors; ''
       # General
       # =============================================
       # ignore upper and lowercase when TAB completion
@@ -29,6 +29,30 @@ in {
       # fix ctrl+l not working when using vim keybinds
       bind -m vi-command 'Control-l: clear-screen'
       bind -m vi-insert 'Control-l: clear-screen'
+
+      # fzf
+      export FZF_DEFAULT_OPTS="
+        --color fg:#${base05}
+        --color fg+:#${base07}
+        --color bg:#${base00}
+        --color bg+:#${base01}
+        --color hl:#${base0D}
+        --color hl+:#${base0D}
+        --color info:#${base0A}
+        --color marker:#${base0C}
+        --color prompt:#${base0A}
+        --color spinner:#${base0C}
+        --color pointer:#${base0C}
+        --color header:#${base0D}
+        --color preview-fg:#${base0D}
+        --color preview-bg:#${base01}
+        --color gutter:#${base01}
+        --color border:#${base01}
+        --border
+        --prompt 'λ '
+        --pointer ''
+        --marker ''
+      "
 
       # ex = Extractor for all kinds of archives
       # =============================================
@@ -57,49 +81,16 @@ in {
         fi
       }
 
-      # Build functions = hbuild, build
-      # =============================================
-      # usage : build
-      build() {
-        host=$(hostname -f)
-        sudo nixos-rebuild switch --flake ~/.setup#$host
-      }
-      # usage: hbuild <config>
-      hbuild() {
-        host=$(hostname -f)
-        home-manager switch --flake ~/.setup#$@'@'$host
-      }
-
-      # Install functions = install, shell, run...
-      # =============================================
-      # usage: install <package>
-      install() {
-        nix-env -iA nixos.$@
-      }
-      uninstall(){
-        nix-env --uninstall $@
-      }
-      list() {
-        nix-env -q
-      }
-      # usage: tempin <package>
-      shell() {
-        nix shell nixpkgs#$@
-      }
-      # usage: run <package>
-      run() {
-        nix run nixpkgs#$@
-      }
-
       # Reporting tools
       # =============================================
-      ${lib.getExe neofetch}
+      # ${lib.getExe neofetch}
+      ${lib.getExe bunnyfetch}
     '';
 
-    shellAliases = with pkgs; {
+    shellAliases = {
       cleanup = "sudo nix-collect-garbage --delete-older-than 7d";
       bloat = "nix path-info -Sh /run/current-system";
-      dev = "nix develop $HOME/.setup";
+      dev = "nix develop";
       l = "${lib.getExe eza} -lF --time-style=long-iso --icons";
       la = "${lib.getExe eza} -lah --tree";
       ls = "${lib.getExe eza} -ah --git --icons --color=auto --group-directories-first -s extension";
@@ -108,11 +99,12 @@ in {
       c = "clear";
       rm = lib.getExe trash-cli;
       m = "mkdir -p";
+      fcd = "cd $(find -type d | ${lib.getExe fzf})";
       v = lib.getExe neovim;
       g = lib.getExe git;
-      fm = lib.getExe ranger;
+      fm = "${lib.getExe fzf} --preview 'preview.sh {}'";
       grep = lib.getExe ripgrep;
-      cat = "${lib.getExe bat} --color always --style=plain";
+      cat = "${lib.getExe bat} --color=always --style=plain";
       du = lib.getExe du-dust;
       ps = lib.getExe procs;
       commit = "${lib.getExe git} add . && ${lib.getExe git} commit -m";

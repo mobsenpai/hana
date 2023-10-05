@@ -11,8 +11,6 @@
     ../shared/programs/vivaldi.nix
     ../shared/programs/vscode.nix
     ../shared/programs/nvim.nix
-    ../shared/programs/neofetch.nix
-    ../shared/programs/ranger.nix
 
     # Specific configuration
     ./desktop

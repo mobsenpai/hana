@@ -23,9 +23,9 @@ in {
       name = "${
         if config.colorscheme.kind == "light"
         then "Adwaita"
-        else "gruvbox-plus"
+        else "Gruvbox-Plus-Dark"
       }";
-      package = pkgs.gruvbox-icons;
+      package = pkgs.gruvbox-icon-theme;
     };
 
     font = {
@@ -66,7 +66,6 @@ in {
       # Defaults apps
       EDITOR = "nvim";
       BROWSER = "vivaldi";
-      TERMINAL = "kitty";
     };
   };
 }

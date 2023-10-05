@@ -8,6 +8,7 @@
       (pkgs)
       cava
       cbonsai
+      cmatrix
       ;
   };
 }

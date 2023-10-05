@@ -7,18 +7,19 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
-      gotop
+      bunnyfetch
+      catimg
       coreutils
       curl
       du-dust
       file
+      gotop
       jq
       killall
       man-pages
       man-pages-posix
       neofetch
       procs
-      ranger
       ripgrep
       trash-cli
       tree

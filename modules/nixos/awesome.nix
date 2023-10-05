@@ -23,6 +23,8 @@ in {
         xclip
         xss-lock
         xlockmore
+        scrot
+        gscreenshot
         ;
     };
   };

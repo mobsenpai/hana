@@ -15,13 +15,13 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-    mkdir -p $out/share/icons/gruvbox-plus
-    cp -r * $out/share/icons/gruvbox-plus
+    mkdir -p $out/share/icons/Gruvbox-Plus-Dark
+    cp -r * $out/share/icons/Gruvbox-Plus-Dark
     runHook postInstall
   '';
 
   meta = with lib; {
-    description = "Gruvbox icons";
+    description = "Gruvbox Plus icon pack for Linux desktops based on Gruvbox color theme";
     homepage = "https://github.com/SylEleuth/gruvbox-plus-icon-pack";
     license = licenses.gpl3;
   };

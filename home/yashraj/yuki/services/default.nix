@@ -5,17 +5,6 @@
       launcher = "rofi";
     };
 
-    flameshot = {
-      enable = true;
-
-      settings = {
-        General = {
-          disabledTrayIcon = true;
-          showStartupLaunchMessage = false;
-        };
-      };
-    };
-
     network-manager-applet.enable = true;
 
     picom = {

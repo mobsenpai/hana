@@ -61,6 +61,7 @@
         dbus
         dconf
         ffmpeg-full
+        galculator
         gcc
         git
         glib
@@ -78,6 +79,7 @@
         vim
         tree
         wget
+        xarchiver
         zathura
         ;
     };
