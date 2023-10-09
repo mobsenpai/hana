@@ -6,10 +6,11 @@
   pkgs,
   ...
 }: {
-  # disabledModules = [
-  #   # Disable the default Awesome WM module
-  #   "services/x11/window-managers/awesome.nix"
-  # ];
+  disabledModules = [
+    # Disable the default modules
+    # "services/x11/window-managers/awesome.nix"
+    # "programs/hyprland.nix"
+  ];
 
   imports = [
     # Shared configuration across all machines
@@ -18,7 +19,6 @@
 
     # Specific configuration
     ./hardware-configuration.nix
-    ./nvidia.nix
   ];
 
   boot = {
@@ -61,7 +61,7 @@
       dpi = 96;
 
       displayManager = {
-        lightdm.enable = true;
+        sddm.enable = true;
       };
     };
   };
@@ -109,8 +109,9 @@
     };
   };
 
-  # Use custom Awesome WM module
+  # Use custom modules
   services.xserver.windowManager.awesome.enable = true;
+  programs.hyprland.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
