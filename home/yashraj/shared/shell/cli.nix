@@ -7,13 +7,15 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
+      bc
+      bottom
       bunnyfetch
       catimg
       coreutils
       curl
       du-dust
+      fd
       file
-      gotop
       jq
       killall
       man-pages

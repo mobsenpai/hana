@@ -3,13 +3,12 @@
   pkgs,
   ...
 }: let
-  inherit (config) colorscheme;
-  inherit (colorscheme) colors;
+  inherit (config.colorscheme) colors;
 in {
   programs.wezterm = {
     enable = true;
     colorSchemes = {
-      "${colorscheme.slug}" = with colors; {
+      "${config.colorscheme.slug}" = with colors; {
         foreground = "${base05}";
         background = "${base00}";
         cursor_bg = "${base05}";
@@ -63,8 +62,6 @@ in {
       };
     };
     extraConfig = ''
-          local wezterm = require("wezterm")
-
       function font_with_fallback(name, params)
           local names = { name, "emoji" }
           return wezterm.font_with_fallback(names, params)
@@ -151,7 +148,7 @@ in {
           front_end = "WebGpu",
           enable_wayland = true,
           check_for_updates = false,
-          color_scheme = "${colorscheme.slug}",
+          color_scheme = "${config.colorscheme.slug}",
           window_padding = { left = "30pt", right = "30pt", top = "30pt", bottom = "30pt" },
           inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
           enable_tab_bar = true,

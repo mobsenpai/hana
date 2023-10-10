@@ -11,12 +11,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Non Flakes
-    # bling = {
-    #   url = "github:BlingCorp/bling";
-    #   flake = false;
-    # };
   };
 
   outputs = {
@@ -44,19 +38,19 @@
     };
 
     homeConfigurations = {
-      # PC
+      # PC | awesomewm
       "yuki@acer" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [./home/yashraj/yuki];
       };
 
-      # Add more modules
-      # "name@acer" = home-manager.lib.homeManagerConfiguration {
-      #   pkgs = nixpkgs.legacyPackages."x86_64-linux";
-      #   extraSpecialArgs = {inherit inputs outputs;};
-      #   modules = [./home/yashraj/name];
-      # };
+      #PC | hyprland
+      "sakura@acer" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./home/yashraj/sakura];
+      };
     };
   };
 }

@@ -7,6 +7,8 @@
 }: let
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
     visualstudioexptteam.vscodeintellicode
+    johnnymorganz.stylua
+    golf1052.base16-generator
   ];
 in {
   programs.vscode = {
@@ -29,12 +31,16 @@ in {
       security.workspace.trust.enabled = false;
       telemetry.telemetryLevel = "off";
       prettier.singleQuote = true;
+      stylua.styluaPath = lib.getExe pkgs.stylua;
+      nix.serverPath = lib.getExe pkgs.nil;
 
       "[css]".editor.defaultFormatter = "esbenp.prettier-vscode";
       "[html]".editor.defaultFormatter = "vscode.html-language-features";
       "[javascript]".editor.defaultFormatter = "esbenp.prettier-vscode";
       "[json]".editor.defaultFormatter = "esbenp.prettier-vscode";
       "[jsonc]".editor.defaultFormatter = "esbenp.prettier-vscode";
+      "[lua]".editor.defaultFormatter = "johnnymorganz.stylua";
+      "[nix]".editor.defaultFormatter = "kamadorueda.alejandra";
 
       editor = {
         cursorBlinking = "smooth";
@@ -45,7 +51,6 @@ in {
         fontLigatures = true;
         find.addExtraSpaceOnTop = false;
         fontFamily = "'monospace', monospace";
-        # fontSize = 13;
         formatOnSave = true;
         inlayHints.enabled = "off";
         inlineSuggest.enabled = true;
@@ -102,7 +107,6 @@ in {
         cursorStyle = "block";
         cursorWidth = 2;
         fontFamily = "'monospace', monospace";
-        # fontSize = 13;
         smoothScrolling = true;
       };
 
@@ -112,7 +116,7 @@ in {
       };
 
       workbench = {
-        colorTheme = "Gruvbox Dark Medium";
+        colorTheme = "Base16 ${config.colorscheme.name}";
         editor.tabCloseButton = "left";
         fontAliasing = "antialiased";
         iconTheme = "file-icons";
@@ -120,6 +124,10 @@ in {
         panel.defaultLocation = "right";
         smoothScrolling = true;
       };
+
+      "base16.generator.activatedThemes" = [
+        "base16-${config.colorscheme.slug}"
+      ];
     };
   };
 }

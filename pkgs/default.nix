@@ -1,4 +1,3 @@
 {pkgs ? import <nixpkgs> {}}: {
-  nvchad = pkgs.callPackage ./nvchad {};
-  gruvbox-icon-theme = pkgs.callPackage ./gruvbox-icon-theme {};
+  gruvbox-plus-icon-pack = pkgs.callPackage ./gruvbox-plus-icon-pack {};
 }
