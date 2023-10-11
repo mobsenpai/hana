@@ -84,9 +84,9 @@
         ;
     };
 
-    loginShellInit = ''
-      dbus-update-activation-environment --all
-    '';
+    # loginShellInit = ''
+    #   dbus-update-activation-environment --all
+    # '';
 
     variables = {
       EDITOR = "vim";

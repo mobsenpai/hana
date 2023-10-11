@@ -32,8 +32,8 @@ in {
 
       # fzf
       export FZF_DEFAULT_OPTS="
-        --color fg:#${base05}
-        --color fg+:#${base07}
+        --color fg:#${base04}
+        --color fg+:#${base06}
         --color bg:#${base00}
         --color bg+:#${base01}
         --color hl:#${base0D}
@@ -46,7 +46,7 @@ in {
         --color header:#${base0D}
         --color preview-fg:#${base0D}
         --color preview-bg:#${base01}
-        --color gutter:#${base01}
+        --color gutter:#${base00}
         --color border:#${base01}
         --border
         --prompt 'λ '

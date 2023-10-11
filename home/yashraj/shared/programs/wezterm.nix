@@ -87,7 +87,7 @@ in {
                   font = font_with_fallback(font_name, { bold = true })
               }
           },
-          font_size = 10.0,
+          font_size = ${builtins.toString config.gtk.font.size},
           line_height = 1.0,
           default_cursor_style = "SteadyUnderline",
 

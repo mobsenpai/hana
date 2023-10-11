@@ -11,8 +11,26 @@ in {
     environment.systemPackages = lib.attrValues {
       inherit
         (pkgs)
-        waybar
-        dunst
+        # waybar
+        
+        # dunst
+        
+        # slurp
+        
+        # grim
+        
+        # # grimblast
+        
+        # wl-clipboard
+        
+        # cliphist
+        
+        # swayosd
+        
+        # imv
+        
+        # gtklock
+        
         ;
     };
   };

@@ -9,7 +9,7 @@ in {
     enable = true;
     font = {
       name = "monospace";
-      size = 10;
+      size = config.gtk.font.size;
     };
     settings = with colors; {
       scrollback_lines = 2000;

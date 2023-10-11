@@ -115,6 +115,10 @@ in {
         nativeTabs = true;
       };
 
+      base16.generator.activatedThemes = [
+        "base16-${config.colorscheme.slug}"
+      ];
+
       workbench = {
         colorTheme = "Base16 ${config.colorscheme.name}";
         editor.tabCloseButton = "left";
@@ -124,10 +128,6 @@ in {
         panel.defaultLocation = "right";
         smoothScrolling = true;
       };
-
-      "base16.generator.activatedThemes" = [
-        "base16-${config.colorscheme.slug}"
-      ];
     };
   };
 }

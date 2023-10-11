@@ -28,20 +28,16 @@
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
-    kernelModules = ["acpi_call"];
-    kernelParams = [
-      "i8042.direct"
-      "i8042.dumbkbd"
-      "i915.force_probe=46a6"
-    ];
 
     loader = {
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        # consoleMode = "max";
+      };
     };
   };
 
@@ -52,9 +48,6 @@
   };
 
   services = {
-    acpid.enable = true;
-    btrfs.autoScrub.enable = true;
-
     xserver = {
       enable = true;
       exportConfiguration = true;
@@ -88,26 +81,11 @@
     ];
   };
 
-  environment = {
-    systemPackages = lib.attrValues {
-      inherit
-        (pkgs)
-        acpi
-        libva
-        libvdpau
-        libva-utils
-        ;
-
-      inherit
-        (pkgs.libsForQt5)
-        qtstyleplugins
-        ;
-    };
-
-    variables = {
-      QT_QPA_PLATFORMTHEME = "gtk2";
-    };
-  };
+  # Fix for qt6 plugins
+  # TODO: maybe upstream this?
+  # environment.profileRelativeSessionVariables = {
+  #   QT_PLUGIN_PATH = ["/lib/qt-6/plugins"];
+  # };
 
   # Use custom modules
   services.xserver.windowManager.awesome.enable = true;

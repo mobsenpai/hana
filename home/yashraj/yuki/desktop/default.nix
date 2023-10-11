@@ -13,7 +13,7 @@ in {
   gtk = {
     enable = true;
     theme = {
-      name = "${config.colorscheme.name}";
+      name = "${config.colorscheme.slug}";
       package = gtkThemeFromScheme {
         scheme = config.colorscheme;
       };
@@ -26,6 +26,17 @@ in {
         else "Gruvbox-Plus-Dark"
       }";
       package = pkgs.gruvbox-plus-icon-pack;
+    };
+
+    # TODO: issue on github
+    cursorTheme = {
+      name = "${
+        if config.colorscheme.kind == "light"
+        then "phinger-cursors"
+        else "phinger-cursors-light"
+      }";
+      package = pkgs.phinger-cursors;
+      size = 24;
     };
 
     font = {
@@ -44,26 +55,29 @@ in {
     };
   };
 
-  qt.enable = true;
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    style = {
+      name = "gtk2";
+      package = pkgs.qt6Packages.qt6gtk2;
+    };
+  };
 
   home = {
-    pointerCursor = {
-      name = "${
-        if config.colorscheme.kind == "light"
-        then "phinger-cursors"
-        else "phinger-cursors-light"
-      }";
-      package = pkgs.phinger-cursors;
-      size = 24;
-      gtk.enable = true;
-      x11.enable = true;
-    };
+    # pointerCursor = {
+    #   name = "${
+    #     if config.colorscheme.kind == "light"
+    #     then "phinger-cursors"
+    #     else "phinger-cursors-light"
+    #   }";
+    #   package = pkgs.phinger-cursors;
+    #   size = 24;
+    #   gtk.enable = true;
+    #   x11.enable = true;
+    # };
 
     sessionVariables = {
-      # Theming Related Variables
-      GTK_THEME = "${config.colorscheme.slug}";
-      XCURSOR_SIZE = "${builtins.toString config.home.pointerCursor.size}";
-      # Defaults apps
       EDITOR = "nvim";
       BROWSER = "vivaldi";
     };
