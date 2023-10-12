@@ -7,7 +7,8 @@
   ...
 }: {
   disabledModules = [
-    # Disable the default modules
+    # TODO: Disable the default modules
+    # Only use the configuration provided in modules/...
     # "services/x11/window-managers/awesome.nix"
     # "programs/hyprland.nix"
   ];
@@ -19,6 +20,8 @@
 
     # Specific configuration
     ./hardware-configuration.nix
+    # TODO: add gpu configuration
+    # ./gpu.nix | nvidia, amd, etc
   ];
 
   boot = {
@@ -36,7 +39,7 @@
       };
       systemd-boot = {
         enable = true;
-        # consoleMode = "max";
+        consoleMode = "max";
       };
     };
   };
@@ -68,6 +71,7 @@
       driSupport32Bit = true;
     };
 
+    # TODO: bluetooth enable (if supported)
     # bluetooth = {
     #   enable = true;
     #   package = pkgs.bluez;

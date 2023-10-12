@@ -8,7 +8,8 @@
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
     visualstudioexptteam.vscodeintellicode
     johnnymorganz.stylua
-    golf1052.base16-generator
+    # TODO: this extension does not work when installed from here
+    # golf1052.base16-generator
   ];
 in {
   programs.vscode = {

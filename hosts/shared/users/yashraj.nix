@@ -28,6 +28,6 @@ in {
     packages = [pkgs.home-manager];
   };
 
-  # home-manager.users.yashraj = import ../../../home/yashraj/${config.networking.hostName};
+  # Default configuration | awesomewm
   home-manager.users.yashraj = import ../../../home/yashraj/yuki;
 }

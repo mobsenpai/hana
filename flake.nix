@@ -38,7 +38,7 @@
     };
 
     homeConfigurations = {
-      # PC | awesomewm
+      # PC - default | awesomewm
       "yuki@acer" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
@@ -46,11 +46,11 @@
       };
 
       #PC | hyprland
-      # "sakura@acer" = home-manager.lib.homeManagerConfiguration {
-      #   pkgs = nixpkgs.legacyPackages."x86_64-linux";
-      #   extraSpecialArgs = {inherit inputs outputs;};
-      #   modules = [./home/yashraj/sakura];
-      # };
+      "sakura@acer" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./home/yashraj/sakura];
+      };
     };
   };
 }

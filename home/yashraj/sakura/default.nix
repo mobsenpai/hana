@@ -15,6 +15,6 @@
 
     # Specific configuration
     ./desktop
-    ./services
+    # ./services
   ];
 }

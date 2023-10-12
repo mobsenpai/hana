@@ -41,9 +41,7 @@
       warn-dirty = false;
     };
 
-    # TODO: wait for this to get fixed upstream
     package = pkgs.nixUnstable;
-    # package = pkgs.nixVersions.nix_2_17;
 
     gc = {
       automatic = true;

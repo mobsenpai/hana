@@ -56,8 +56,7 @@
       inherit
         (pkgs)
         alsa-utils
-        # blueman
-        
+        blueman
         dbus
         dconf
         ffmpeg-full
@@ -84,17 +83,13 @@
         ;
     };
 
-    # loginShellInit = ''
-    #   dbus-update-activation-environment --all
-    # '';
-
     variables = {
       EDITOR = "vim";
     };
   };
 
   programs = {
-    # adb.enable = true;
+    adb.enable = true;
     bash.promptInit = ''eval "$(${lib.getExe pkgs.starship} init bash)"'';
     dconf.enable = true;
 
@@ -102,7 +97,16 @@
       enable = true;
       libraries = with pkgs; [
         curl
+        glib
+        glibc
+        icu
+        libunwind
+        libuuid
         libsecret
+        openssl
+        stdenv.cc.cc
+        util-linux
+        zlib
       ];
     };
 
@@ -110,20 +114,21 @@
   };
 
   services = {
-    # blueman.enable = true;
+    blueman.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
     gvfs.enable = true;
 
     dbus = {
       enable = true;
-      packages = with pkgs; [dconf gcr];
+      packages = with pkgs; [dconf];
     };
 
     gnome = {
       glib-networking.enable = true;
       gnome-keyring.enable = true;
     };
+
     udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
     pipewire = {

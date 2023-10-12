@@ -36,6 +36,8 @@
 
   programs = {
     eza.enable = true;
+    # TODO: gpg setup
+    # gpg.enable = true;
     man.enable = true;
 
     bat = {

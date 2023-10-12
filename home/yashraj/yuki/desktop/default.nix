@@ -65,18 +65,6 @@ in {
   };
 
   home = {
-    # pointerCursor = {
-    #   name = "${
-    #     if config.colorscheme.kind == "light"
-    #     then "phinger-cursors"
-    #     else "phinger-cursors-light"
-    #   }";
-    #   package = pkgs.phinger-cursors;
-    #   size = 24;
-    #   gtk.enable = true;
-    #   x11.enable = true;
-    # };
-
     sessionVariables = {
       EDITOR = "nvim";
       BROWSER = "vivaldi";
