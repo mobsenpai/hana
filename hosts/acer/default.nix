@@ -83,6 +83,8 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
+    # TODO: required for screen sharing in wayland
+    wlr.enable = true;
   };
 
   # Fix for qt6 plugins
