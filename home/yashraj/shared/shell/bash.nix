@@ -83,8 +83,7 @@ in {
 
       # Reporting tools
       # =============================================
-      # ${lib.getExe neofetch}
-      ${lib.getExe bunnyfetch}
+      ${lib.getExe neofetch}
     '';
 
     shellAliases = {
