@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: let
+  inherit (config) colorscheme;
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
     visualstudioexptteam.vscodeintellicode
     johnnymorganz.stylua
@@ -117,11 +118,11 @@ in {
       };
 
       base16.generator.activatedThemes = [
-        "base16-${config.colorscheme.slug}"
+        "base16-${colorscheme.slug}"
       ];
 
       workbench = {
-        colorTheme = "Base16 ${config.colorscheme.name}";
+        colorTheme = "Base16 ${colorscheme.name}";
         editor.tabCloseButton = "left";
         fontAliasing = "antialiased";
         iconTheme = "file-icons";

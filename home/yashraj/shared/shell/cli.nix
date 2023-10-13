@@ -65,5 +65,4 @@
   };
 
   # TODO: neofetch config
-  # home.file.".config/neofetch".text = {};
 }

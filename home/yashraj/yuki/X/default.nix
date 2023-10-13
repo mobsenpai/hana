@@ -1,8 +1,8 @@
 {config, ...}: let
-  inherit (config.colorscheme) colors;
+  inherit (config) colorscheme;
 in {
   # TODO: xft settings are use by some apps instead of fontconfig
-  xresources.extraConfig = with colors; ''
+  xresources.extraConfig = with colorscheme.colors; ''
     Xft.antialias: true
     Xft.hinting: true
     Xft.rgba: rgb

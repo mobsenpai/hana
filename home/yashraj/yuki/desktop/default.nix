@@ -4,6 +4,7 @@
   config,
   ...
 }: let
+  inherit (config) colorscheme;
   inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
 in {
   imports = [
@@ -13,15 +14,15 @@ in {
   gtk = {
     enable = true;
     theme = {
-      name = "${config.colorscheme.slug}";
+      name = "${colorscheme.slug}";
       package = gtkThemeFromScheme {
-        scheme = config.colorscheme;
+        scheme = colorscheme;
       };
     };
 
     iconTheme = {
       name = "${
-        if config.colorscheme.kind == "light"
+        if colorscheme.kind == "light"
         then "Adwaita"
         else "Gruvbox-Plus-Dark"
       }";
@@ -31,7 +32,7 @@ in {
     # TODO: issue on github
     cursorTheme = {
       name = "${
-        if config.colorscheme.kind == "light"
+        if colorscheme.kind == "light"
         then "phinger-cursors"
         else "phinger-cursors-light"
       }";
@@ -66,7 +67,7 @@ in {
 
   home = {
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "hx";
       BROWSER = "vivaldi";
     };
   };

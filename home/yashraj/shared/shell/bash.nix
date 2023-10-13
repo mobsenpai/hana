@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) colors;
+  inherit (config) colorscheme;
 in {
   programs.bash = with pkgs; {
     enable = true;
@@ -18,7 +18,7 @@ in {
       "expand_aliases"
     ];
 
-    initExtra = with colors; ''
+    initExtra = with colorscheme.colors; ''
       # General
       # =============================================
       # ignore upper and lowercase when TAB completion
