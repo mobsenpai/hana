@@ -83,15 +83,8 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
-    # TODO: required for screen sharing in wayland
     wlr.enable = true;
   };
-
-  # Fix for qt6 plugins
-  # TODO: maybe upstream this?
-  # environment.profileRelativeSessionVariables = {
-  #   QT_PLUGIN_PATH = ["/lib/qt-6/plugins"];
-  # };
 
   # Use custom modules
   services.xserver.windowManager.awesome.enable = true;

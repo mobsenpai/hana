@@ -10,7 +10,7 @@
     visualstudioexptteam.vscodeintellicode
     johnnymorganz.stylua
     # TODO: this extension does not work when installed from here
-    # golf1052.base16-generator
+    golf1052.base16-generator
   ];
 in {
   programs.vscode = {
@@ -22,7 +22,6 @@ in {
         esbenp.prettier-vscode
         christian-kohler.path-intellisense
         bbenoist.nix
-        jdinhlife.gruvbox
         file-icons.file-icons
         kamadorueda.alejandra
         sumneko.lua

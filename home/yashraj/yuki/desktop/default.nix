@@ -29,17 +29,6 @@ in {
       package = pkgs.gruvbox-plus-icon-pack;
     };
 
-    # TODO: issue on github
-    cursorTheme = {
-      name = "${
-        if colorscheme.kind == "light"
-        then "phinger-cursors"
-        else "phinger-cursors-light"
-      }";
-      package = pkgs.phinger-cursors;
-      size = 24;
-    };
-
     font = {
       name = "monospace";
       size = 10;
@@ -65,10 +54,8 @@ in {
     };
   };
 
-  home = {
-    sessionVariables = {
-      EDITOR = "hx";
-      BROWSER = "vivaldi";
-    };
+  home.sessionVariables = {
+    EDITOR = "hx";
+    BROWSER = "vivaldi";
   };
 }
