@@ -9,6 +9,7 @@
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
     visualstudioexptteam.vscodeintellicode
     johnnymorganz.stylua
+    sndst00m.markdown-github-dark-pack
     # TODO: this extension does not work when installed from here
     golf1052.base16-generator
   ];

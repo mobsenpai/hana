@@ -64,6 +64,7 @@
         gcc
         git
         glib
+        imagemagick
         libnotify
         libsecret
         mpv

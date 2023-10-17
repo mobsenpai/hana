@@ -99,7 +99,7 @@ in {
       rm = lib.getExe trash-cli;
       m = "mkdir -p";
       fcd = "cd $(find -type d | ${lib.getExe fzf})";
-      v = lib.getExe neovim;
+      v = lib.getExe vim;
       g = lib.getExe git;
       fm = "${lib.getExe fzf} --preview 'preview.sh {}'";
       grep = lib.getExe ripgrep;

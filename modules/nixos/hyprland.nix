@@ -11,27 +11,21 @@ in {
     environment.systemPackages = lib.attrValues {
       inherit
         (pkgs)
-        # waybar
-        
-        # dunst
-        
-        # slurp
-        
-        # grim
-        
-        # # grimblast
-        
-        # wl-clipboard
-        
-        # cliphist
-        
-        # swayosd
-        
-        # imv
-        
-        # gtklock
-        
+        brightnessctl
+        wl-clipboard
+        grim
+        slurp
+        swappy
+        dunst
+        gtklock
+        waybar
+        swayosd
+        imv
         ;
+    };
+
+    programs = {
+      xwayland.enable = false;
     };
   };
 }

@@ -15,7 +15,6 @@
 
     # Specific configuration
     ./desktop
-    # TODO: setup services
-    # ./services
+    ./services
   ];
 }
