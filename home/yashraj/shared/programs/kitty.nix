@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) colors;
+  inherit (config) colorscheme;
 in {
   programs.kitty = {
     enable = true;
@@ -11,7 +11,7 @@ in {
       name = "monospace";
       size = config.gtk.font.size;
     };
-    settings = with colors; {
+    settings = with colorscheme.colors; {
       scrollback_lines = 2000;
       window_padding_width = 7;
       foreground = "#${base05}";

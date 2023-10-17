@@ -5,11 +5,13 @@
   pkgs,
   ...
 }: let
+  inherit (config) colorscheme;
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
     visualstudioexptteam.vscodeintellicode
     johnnymorganz.stylua
+    sndst00m.markdown-github-dark-pack
     # TODO: this extension does not work when installed from here
-    # golf1052.base16-generator
+    golf1052.base16-generator
   ];
 in {
   programs.vscode = {
@@ -21,7 +23,6 @@ in {
         esbenp.prettier-vscode
         christian-kohler.path-intellisense
         bbenoist.nix
-        jdinhlife.gruvbox
         file-icons.file-icons
         kamadorueda.alejandra
         sumneko.lua
@@ -117,11 +118,11 @@ in {
       };
 
       base16.generator.activatedThemes = [
-        "base16-${config.colorscheme.slug}"
+        "base16-${colorscheme.slug}"
       ];
 
       workbench = {
-        colorTheme = "Base16 ${config.colorscheme.name}";
+        colorTheme = "Base16 ${colorscheme.name}";
         editor.tabCloseButton = "left";
         fontAliasing = "antialiased";
         iconTheme = "file-icons";

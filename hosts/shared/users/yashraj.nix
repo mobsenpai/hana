@@ -29,5 +29,6 @@ in {
   };
 
   # Default configuration | awesomewm
-  home-manager.users.yashraj = import ../../../home/yashraj/yuki;
+  # TODO: uncomment this to build home manager alogn with nixos-rebuild
+  # home-manager.users.yashraj = import ../../../home/yashraj/yuki;
 }

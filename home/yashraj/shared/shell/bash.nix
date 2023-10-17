@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) colors;
+  inherit (config) colorscheme;
 in {
   programs.bash = with pkgs; {
     enable = true;
@@ -18,7 +18,7 @@ in {
       "expand_aliases"
     ];
 
-    initExtra = with colors; ''
+    initExtra = with colorscheme.colors; ''
       # General
       # =============================================
       # ignore upper and lowercase when TAB completion
@@ -83,8 +83,7 @@ in {
 
       # Reporting tools
       # =============================================
-      # ${lib.getExe neofetch}
-      ${lib.getExe bunnyfetch}
+      ${lib.getExe neofetch}
     '';
 
     shellAliases = {
@@ -100,7 +99,7 @@ in {
       rm = lib.getExe trash-cli;
       m = "mkdir -p";
       fcd = "cd $(find -type d | ${lib.getExe fzf})";
-      v = lib.getExe neovim;
+      v = lib.getExe vim;
       g = lib.getExe git;
       fm = "${lib.getExe fzf} --preview 'preview.sh {}'";
       grep = lib.getExe ripgrep;

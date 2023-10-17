@@ -9,7 +9,6 @@
       (pkgs)
       bc
       bottom
-      bunnyfetch
       catimg
       coreutils
       curl
@@ -64,4 +63,6 @@
       enableBashIntegration = true;
     };
   };
+
+  # TODO: neofetch config
 }

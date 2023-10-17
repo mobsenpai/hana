@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) colors;
+  inherit (config) colorscheme;
 in {
   programs.rofi = {
     enable = true;
@@ -25,7 +25,7 @@ in {
         window-format = "{w} · {c} · {t}";
       };
 
-      "*" = with colors; {
+      "*" = with colorscheme.colors; {
         font = "monospace bold ${builtins.toString config.gtk.font.size}";
         background = mkLiteral "#${base00}ff";
         background-alt = mkLiteral "#${base01}ff";

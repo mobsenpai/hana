@@ -3,12 +3,12 @@
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) colors;
+  inherit (config) colorscheme;
 in {
   programs.wezterm = {
     enable = true;
     colorSchemes = {
-      "${config.colorscheme.slug}" = with colors; {
+      "${colorscheme.slug}" = with colorscheme.colors; {
         foreground = "${base05}";
         background = "${base00}";
         cursor_bg = "${base05}";
@@ -148,7 +148,7 @@ in {
           front_end = "WebGpu",
           enable_wayland = true,
           check_for_updates = false,
-          color_scheme = "${config.colorscheme.slug}",
+          color_scheme = "${colorscheme.slug}",
           window_padding = { left = "30pt", right = "30pt", top = "30pt", bottom = "30pt" },
           inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
           enable_tab_bar = true,

@@ -1,7 +1,7 @@
 {config, ...}: let
-  inherit (config.colorscheme) colors;
+  inherit (config) colorscheme;
 in {
-  xresources.extraConfig = with colors; ''
+  xresources.extraConfig = with colorscheme.colors; ''
     ! special
     *background: #${base00}
     *foreground: #${base05}

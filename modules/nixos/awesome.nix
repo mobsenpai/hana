@@ -17,14 +17,16 @@ in {
     environment.systemPackages = lib.attrValues {
       inherit
         (pkgs)
-        brightnessctl
+        inotify-tools
+        light
+        # brightnessctl
+        
         feh
         pcmanfm
         xclip
-        xss-lock
-        xlockmore
-        scrot
-        gscreenshot
+        maim
+        slop
+        swappy
         ;
     };
   };
