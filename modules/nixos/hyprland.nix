@@ -11,7 +11,8 @@ in {
     environment.systemPackages = lib.attrValues {
       inherit
         (pkgs)
-        brightnessctl
+        # brightnessctl
+        
         wl-clipboard
         grim
         slurp

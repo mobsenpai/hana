@@ -51,6 +51,8 @@
   };
 
   services = {
+    # acpid.enable = true;
+
     xserver = {
       enable = true;
       exportConfiguration = true;

@@ -17,9 +17,9 @@ in {
     environment.systemPackages = lib.attrValues {
       inherit
         (pkgs)
-        inotify-tools
-        light
-        # brightnessctl
+        # inotify-tools
+        
+        # light
         
         feh
         pcmanfm
