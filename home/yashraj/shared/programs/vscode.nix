@@ -10,8 +10,10 @@
     visualstudioexptteam.vscodeintellicode
     johnnymorganz.stylua
     sndst00m.markdown-github-dark-pack
-    # TODO: this extension does not work when installed from here
+    # TODO: Not working extensions
+    # use nix4vscode
     golf1052.base16-generator
+    codeium.codeium
   ];
 in {
   programs.vscode = {

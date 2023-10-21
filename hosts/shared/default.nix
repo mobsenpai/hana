@@ -178,8 +178,8 @@
       ];
 
       services = {
-        lightdm.enableGnomeKeyring = true;
-        login.enableGnomeKeyring = true;
+        sddm.enableGnomeKeyring = true;
+        gtklock = {};
       };
     };
 
