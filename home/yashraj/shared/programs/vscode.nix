@@ -47,8 +47,8 @@ in {
       "[nix]".editor.defaultFormatter = "kamadorueda.alejandra";
 
       editor = {
-        cursorBlinking = "smooth";
-        cursorStyle = "block";
+        cursorBlinking = "solid";
+        # cursorStyle = "underline";
         cursorSmoothCaretAnimation = "on";
         cursorWidth = 2;
         editor.lineHeight = 20;
@@ -107,8 +107,8 @@ in {
       };
 
       terminal.integrated = {
-        cursorBlinking = true;
-        cursorStyle = "block";
+        cursorBlinking = false;
+        cursorStyle = "underline";
         cursorWidth = 2;
         fontFamily = "'monospace', monospace";
         smoothScrolling = true;
