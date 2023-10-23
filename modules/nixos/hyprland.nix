@@ -17,6 +17,7 @@ in {
         grim
         slurp
         swappy
+        swaybg
         dunst
         gtklock
         waybar
