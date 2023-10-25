@@ -17,7 +17,8 @@ in {
         grim
         slurp
         swappy
-        dunst
+        swaybg
+        swaynotificationcenter
         gtklock
         waybar
         swayosd
