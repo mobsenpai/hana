@@ -48,7 +48,7 @@ in {
 
       editor = {
         cursorBlinking = "solid";
-        # cursorStyle = "underline";
+        cursorStyle = "underline";
         cursorSmoothCaretAnimation = "on";
         cursorWidth = 2;
         editor.lineHeight = 20;
