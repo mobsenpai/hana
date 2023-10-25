@@ -28,6 +28,6 @@ in {
     packages = [pkgs.home-manager];
   };
 
-  # Default configuration | awesomewm
-  home-manager.users.yashraj = import ../../../home/yashraj/yuki;
+  # Default configuration | hyprland
+  home-manager.users.yashraj = import ../../../home/yashraj/haru;
 }
