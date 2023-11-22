@@ -1,8 +1,5 @@
 {
   inputs,
-  outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
@@ -36,12 +33,6 @@
         gdm.enable = true;
       };
     };
-  };
-
-  hardware = {
-    enableRedistributableFirmware = true;
-
-    bluetooth.enable = true;
   };
 
   programs.hyprland.enable = true;

@@ -1,7 +1,7 @@
 {
+  lib,
   config,
   pkgs,
-  lib,
   ...
 }: {
   home.packages = lib.attrValues {

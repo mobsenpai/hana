@@ -1,5 +1,6 @@
 {
   inputs,
+  outputs,
   lib,
   config,
   pkgs,
@@ -55,7 +56,12 @@
   # Select internationalisation properties
   i18n.defaultLocale = "en_IN";
 
-  hardware.pulseaudio.enable = false;
+  hardware = {
+    bluetooth.enable = true;
+    enableRedistributableFirmware = true;
+    pulseaudio.enable = false;
+  };
+
   services = {
     # Enable MTP
     gvfs.enable = true;
