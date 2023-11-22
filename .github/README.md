@@ -34,24 +34,19 @@ Mob's Dotfiles
 NixOS / Home-Manager / Flake
 ```
 
-<p align="center">
-  <img src="https://i.imgur.com/16RObqJ.png" alt="Screenshot"/>
-</p>
-
 </div>
 
 <br>
 
 ## :snowflake: <samp>Information</samp>
 
-|                 |                                             acer                                              |
-| :-------------: | :-------------------------------------------------------------------------------------------: |
-|       OS        |                                  [NixOS](https://nixos.org/)                                  |
-| WM / Compositor |                       [AwesomeWM](https://github.com/awesomeWM/awesome)                       |
-|    Terminal     |                         [Wezterm](https://github.com/wez/wezterm)                             |
-|     Editor      | [Nvchad](https://github.com/NvChad/NvChad) + [Vscodium](https://github.com/VSCodium/vscodium) |
-|  File Manager   |                          [Pcmanfm](https://github.com/lxde/pcmanfm)                           |
-|      Shell      |                          [Bash](https://www.gnu.org/software/bash/)                           |
+|                 |                                               acer                                                |
+| :-------------: | :-----------------------------------------------------------------------------------------------: |
+|       OS        |                                    [NixOS](https://nixos.org/)                                    |
+| WM / Compositor |                          [Hyprland](https://github.com/hyprwm/Hyprland)                           |
+|    Terminal     |                             [Wezterm](https://github.com/wez/wezterm)                             |
+|     Editor      | [Helix](https://github.com/helix-editor/helix) + [Vscodium](https://github.com/VSCodium/vscodium) |
+|      Shell      |                            [Bash](https://www.gnu.org/software/bash/)                             |
 
 <br>
 <br>
@@ -87,10 +82,10 @@ But anyway… let's move on to the installation process!
    $ parted /dev/sda -- set 3 esp on
    ```
 
-   Assing the partitions the respective types. (`/dev/sda1 type = btrfs label = root`), (`/dev/sda2 type = swap label = swap`), (`/dev/sda3 type = efiboot label = boot`). Labelling will later help in hardware-config.nix
+   Assing the partitions the respective types. (`/dev/sda1 type = ext4 label = root`), (`/dev/sda2 type = swap label = swap`), (`/dev/sda3 type = efiboot label = boot`). Labelling will later help in hardware-config.nix
 
    ```bash
-   $ mkfs.btrfs -L root /dev/sda1 -f
+   $ mkfs.ext4 -L root /dev/sda1
    $ mkswap -L swap /dev/sda2
    $ mkfs.fat -F 32 -n boot /dev/sda3
    ```
@@ -98,7 +93,7 @@ But anyway… let's move on to the installation process!
    Mount partitions
 
    ```bash
-   $ mount -t btrfs -o compress=zstd,noatime,ssd,space_cache=v2 /dev/sda1 /mnt
+   $ mount /dev/disk/by-label/root /mnt
    $ mkdir -p /mnt/boot
    $ mount /dev/disk/by-label/boot /mnt/boot
    $ swapon /dev/sda2
@@ -114,7 +109,7 @@ But anyway… let's move on to the installation process!
 6. Install nixos from flake
 
    ```bash
-   $ nixos-install --flake 'github:MobSenpai/dotfiles#acer'
+   $ nixos-install --flake 'github:MobSenpai/dotfiles#hp'
    ```
 
    or
@@ -123,7 +118,7 @@ But anyway… let's move on to the installation process!
    $ cd
    $ git clone https://github.com/MobSenpai/dotfiles.git
    $ cd dotfiles
-   $ nixos-install --flake .#acer
+   $ nixos-install --flake .#hp
    ```
 
 7. Reboot, login as root, and change the password for your user using passwd
@@ -133,14 +128,14 @@ But anyway… let's move on to the installation process!
 9. Install the home manager configuration
 
    ```bash
-   $ home-manager switch --flake 'github:yashraj/dotfiles#yuki@acer'
+   $ home-manager switch --flake 'github:yashraj/dotfiles#yashraj@hp'
    ```
 
    or (if already have dotfiles locally)
 
    ```bash
    $ cd dotfiles
-   $ home-manager switch --flake .#yuki@acer
+   $ home-manager switch --flake .#yashraj@hp
    ```
 
 10. Check wiki for more info. AwesomeWM config has moved to <a href="https://github.com/MobSenpai/sugoi.git">MobSenpai/sugoi</a>
@@ -174,6 +169,6 @@ But anyway… let's move on to the installation process!
 
 - [rxyhn](https://github.com/rxyhn)
 - [JavaCafe01](https://github.com/JavaCafe01)
-- [siduck](https://github.com/siduck)
+- [Misterio77](https://github.com/Misterio77)
 
 </div>
