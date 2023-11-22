@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ../wireless.nix
     ../gtk.nix
     ../wayland-wm
     ../rofi.nix

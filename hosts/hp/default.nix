@@ -41,10 +41,7 @@
   hardware = {
     enableRedistributableFirmware = true;
 
-    bluetooth = {
-      enable = true;
-      package = pkgs.bluez;
-    };
+    bluetooth.enable = true;
   };
 
   programs.hyprland.enable = true;
