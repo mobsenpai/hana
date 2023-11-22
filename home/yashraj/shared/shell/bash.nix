@@ -87,25 +87,14 @@ in {
     '';
 
     shellAliases = {
-      cleanup = "sudo nix-collect-garbage --delete-older-than 7d";
-      bloat = "nix path-info -Sh /run/current-system";
       dev = "nix develop";
-      l = "${lib.getExe eza} -lF --time-style=long-iso --icons";
-      la = "${lib.getExe eza} -lah --tree";
-      ls = "${lib.getExe eza} -ah --git --icons --color=auto --group-directories-first -s extension";
-      sl = "ls";
-      tree = "${lib.getExe eza} --tree --icons --tree";
+      ls = "${lib.getExe exa} -ah --git --icons --color=auto --group-directories-first -s extension";
       c = "clear";
       rm = lib.getExe trash-cli;
-      m = "mkdir -p";
       fcd = "cd $(find -type d | ${lib.getExe fzf})";
-      v = lib.getExe vim;
-      g = lib.getExe git;
       fm = "${lib.getExe fzf} --preview 'preview.sh {}'";
       grep = lib.getExe ripgrep;
       cat = "${lib.getExe bat} --color=always --style=plain";
-      du = lib.getExe du-dust;
-      ps = lib.getExe procs;
       commit = "${lib.getExe git} add . && ${lib.getExe git} commit -m";
       push = "${lib.getExe git} push";
       pull = "${lib.getExe git} pull";

@@ -2,15 +2,17 @@
   description = "Mob's NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
-    nix-colors.url = "github:misterio77/nix-colors";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    # Nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
 
+    # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {
@@ -23,33 +25,34 @@
     forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux" "aarch64-linux"];
     forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPackages.${sys});
   in {
-    nixosModules = import ./modules/nixos;
-    homeManagerModules = import ./modules/home-manager;
-    overlays = import ./overlays {inherit inputs outputs;};
-    packages = forEachPkgs (pkgs: import ./pkgs {inherit pkgs;});
     devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs;});
 
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      # PC
-      acer = nixpkgs.lib.nixosSystem {
+      # Work laptop
+      hp = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/acer];
+        # Our main nixos configuration file
+        modules = [./hosts/hp];
       };
     };
 
+    # Standalone home-manager configuration entrypoint
+    # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      # awesomeWM
-      "yuki@acer" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      # Desktops
+      "yashraj@acer" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home/yashraj/yuki];
+        # Our main home-manager configuration file
+        modules = [./home/yashraj/acer.nix];
       };
 
-      # hyprland
-      "haru@acer" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      "yashraj@hp" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home/yashraj/haru];
+        modules = [./home/yashraj/hp.nix];
       };
     };
   };

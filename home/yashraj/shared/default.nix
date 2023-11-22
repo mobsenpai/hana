@@ -1,43 +1,36 @@
 {
-  lib,
-  pkgs,
-  config,
   inputs,
-  outputs,
+  lib,
+  config,
+  pkgs,
   ...
 }: {
-  imports =
-    [
-      ./colorschemes
-      ./pkgs
-      ./shell
-    ]
-    ++ (builtins.attrValues outputs.homeManagerModules);
+  imports = [
+    ./colorschemes
+    ./pkgs
+    ./services
+    ./shell
+  ];
 
   systemd.user.startServices = "sd-switch";
 
-  manual = {
-    html.enable = false;
-    json.enable = false;
-    manpages.enable = false;
-  };
-
-  nix = {
-    package = lib.mkForce pkgs.nixUnstable;
-    settings = {
-      experimental-features = ["nix-command" "flakes" "repl-flake"];
-      warn-dirty = false;
-    };
-  };
-
   nixpkgs = {
     overlays = [
-      outputs.overlays.default
-      inputs.nixpkgs-f2k.overlays.stdenvs
+      # If you want to use overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
     ];
 
+    # Configure your nixpkgs instance
     config = {
       allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
     };
   };

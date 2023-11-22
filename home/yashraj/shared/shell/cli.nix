@@ -7,37 +7,26 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
-      bc
       bottom
       catimg
-      coreutils
       curl
-      du-dust
-      fd
       file
       jq
       killall
-      man-pages
-      man-pages-posix
       neofetch
-      procs
       ripgrep
       trash-cli
-      tree
       unrar
       unzip
-      util-linux
+      vim
       wget
-      zip
       yt-dlp
+      zip
       ;
   };
 
   programs = {
-    eza.enable = true;
-    # TODO: gpg setup
-    # gpg.enable = true;
-    man.enable = true;
+    exa.enable = true;
 
     bat = {
       enable = true;
@@ -63,6 +52,4 @@
       enableBashIntegration = true;
     };
   };
-
-  # TODO: neofetch config
 }

@@ -129,7 +129,7 @@ in {
         fontAliasing = "antialiased";
         iconTheme = "file-icons";
         list.smoothScrolling = true;
-        panel.defaultLocation = "right";
+        panel.defaultLocation = "bottom";
         smoothScrolling = true;
       };
     };

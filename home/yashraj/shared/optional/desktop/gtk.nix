@@ -7,14 +7,24 @@
   inherit (config) colorscheme;
   inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
 in {
-  imports = [
-    ./rofi.nix
-  ];
+  imports = [];
+
+  home.pointerCursor = {
+    name = "${
+      if config.colorscheme.kind == "light"
+      then "Yaru"
+      else "Yaru"
+    }";
+    package = pkgs.yaru-theme;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
   gtk = {
     enable = true;
     theme = {
-      name = "${colorscheme.slug}";
+      name = colorscheme.slug;
       package = gtkThemeFromScheme {
         scheme = colorscheme;
       };
@@ -24,9 +34,9 @@ in {
       name = "${
         if colorscheme.kind == "light"
         then "Adwaita"
-        else "Gruvbox-Plus-Dark"
+        else "Yaru-dark"
       }";
-      package = pkgs.gruvbox-plus-icon-pack;
+      package = pkgs.yaru-theme;
     };
 
     font = {
@@ -52,10 +62,5 @@ in {
       name = "gtk2";
       package = pkgs.qt6Packages.qt6gtk2;
     };
-  };
-
-  home.sessionVariables = {
-    EDITOR = "hx";
-    BROWSER = "vivaldi";
   };
 }

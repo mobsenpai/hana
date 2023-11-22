@@ -8,11 +8,6 @@
       (pkgs)
       colordiff
       ;
-
-    inherit
-      (pkgs.gitAndTools)
-      gitui
-      ;
   };
 
   programs.git = {
@@ -20,11 +15,6 @@
     lfs.enable = true;
     userName = "MobSenpai";
     userEmail = "github.onstage144@passinbox.com";
-    # TODO: gpg
-    # signing = {
-    #   key = "AAAAAAAAAAAAAAAA";
-    #   signByDefault = true;
-    # };
 
     delta = {
       enable = true;

@@ -69,7 +69,7 @@ in {
         "x-offset" = mkLiteral "0px";
         "y-offset" = mkLiteral "0px";
 
-        # properties for all widgets
+        # Properties for all widgets
         "enabled" = mkLiteral "true";
         "margin" = mkLiteral "0px";
         "padding" = mkLiteral "0px";

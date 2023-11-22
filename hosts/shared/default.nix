@@ -1,28 +1,27 @@
 {
-  lib,
-  pkgs,
   inputs,
-  outputs,
+  lib,
+  config,
+  pkgs,
   ...
 }: {
-  imports =
-    [
-      inputs.home-manager.nixosModules.home-manager
-      ./fonts.nix
-      ./nix.nix
-      ./networking.nix
-    ]
-    ++ (builtins.attrValues outputs.nixosModules);
-
-  home-manager = {
-    useUserPackages = true;
-    extraSpecialArgs = {inherit inputs outputs;};
-  };
+  # You can import other NixOS modules here
+  imports = [
+    ./fonts.nix
+  ];
 
   nixpkgs = {
+    # You can add overlays here
     overlays = [
-      outputs.overlays.default
-      inputs.nixpkgs-f2k.overlays.stdenvs
+      # If you want to use overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
     ];
 
     config = {
@@ -30,157 +29,51 @@
     };
   };
 
-  console = {
-    useXkbConfig = true;
+  nix = {
+    # This will add each flake input as a registry
+    # To make nix3 commands consistent with your flake
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+
+    # This will additionally add your inputs to the system's legacy channels
+    # Making legacy nix commands consistent as well, awesome!
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+
+    settings = {
+      # Enable flakes and new 'nix' command
+      experimental-features = "nix-command flakes";
+      # Deduplicate and optimize nix store
+      auto-optimise-store = true;
+    };
   };
 
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings.LC_TIME = "en_US.UTF-8";
-    supportedLocales = [
-      "en_US.UTF-8/UTF-8"
-      "ja_JP.UTF-8/UTF-8"
-    ];
-  };
-
+  # Set your time zone
   time = {
-    timeZone = "Asia/Kolkata";
     hardwareClockInLocalTime = true;
+    timeZone = "Asia/Kolkata";
   };
 
-  environment = with pkgs; {
-    binsh = lib.getExe bash;
-    shells = [bash];
+  # Select internationalisation properties
+  i18n.defaultLocale = "en_IN";
 
-    systemPackages = lib.attrValues {
-      inherit
-        (pkgs)
-        alsa-utils
-        blueman
-        dbus
-        dconf
-        ffmpeg-full
-        galculator
-        gcc
-        git
-        glib
-        imagemagick
-        libnotify
-        libsecret
-        mpv
-        ntfs3g
-        p7zip
-        pamixer
-        pavucontrol
-        playerctl
-        pulseaudio
-        unrar
-        unzip
-        vim
-        tree
-        wget
-        xarchiver
-        zathura
-        ;
-    };
-
-    variables = {
-      EDITOR = "vim";
-    };
-  };
-
-  programs = {
-    adb.enable = true;
-    bash.promptInit = ''eval "$(${lib.getExe pkgs.starship} init bash)"'';
-    dconf.enable = true;
-
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        curl
-        glib
-        glibc
-        icu
-        libunwind
-        libuuid
-        libsecret
-        openssl
-        stdenv.cc.cc
-        util-linux
-        zlib
-      ];
-    };
-
-    seahorse.enable = true;
-  };
-
+  hardware.pulseaudio.enable = false;
   services = {
-    blueman.enable = true;
-    fstrim.enable = true;
-    fwupd.enable = true;
+  # Enable MTP
     gvfs.enable = true;
 
-    dbus = {
-      enable = true;
-      packages = with pkgs; [dconf];
-    };
-
-    gnome = {
-      glib-networking.enable = true;
-      gnome-keyring.enable = true;
-    };
-
-    udev.packages = with pkgs; [gnome.gnome-settings-daemon];
-
+  # Enable sound with pipewire
     pipewire = {
       enable = true;
       alsa = {
         enable = true;
         support32Bit = true;
       };
-      wireplumber.enable = true;
       pulse.enable = true;
-      jack.enable = true;
-    };
-  };
-
-  hardware.pulseaudio.enable = false;
-
-  systemd.user.services = {
-    pipewire.wantedBy = ["default.target"];
-    pipewire-pulse = {
-      path = [pkgs.pulseaudio];
-      wantedBy = ["default.target"];
     };
   };
 
   security = {
-    apparmor = {
-      enable = true;
-      killUnconfinedConfinables = true;
-      packages = [pkgs.apparmor-profiles];
-    };
-
-    pam = {
-      loginLimits = [
-        {
-          domain = "@wheel";
-          item = "nofile";
-          type = "soft";
-          value = "524288";
-        }
-        {
-          domain = "@wheel";
-          item = "nofile";
-          type = "hard";
-          value = "1048576";
-        }
-      ];
-
-      services = {
-        sddm.enableGnomeKeyring = true;
-        gtklock = {};
-      };
+    pam.services = {
+      gtklock = {};
     };
 
     polkit.enable = true;
