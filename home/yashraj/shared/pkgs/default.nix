@@ -7,6 +7,7 @@
     inherit
       (pkgs)
       cava
+      pcmanfm
       ;
   };
 }
