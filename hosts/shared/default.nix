@@ -57,10 +57,10 @@
 
   hardware.pulseaudio.enable = false;
   services = {
-  # Enable MTP
+    # Enable MTP
     gvfs.enable = true;
 
-  # Enable sound with pipewire
+    # Enable sound with pipewire
     pipewire = {
       enable = true;
       alsa = {

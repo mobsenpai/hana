@@ -5,6 +5,6 @@
     isNormalUser = true;
     extraGroups = ["audio" "networkmanager" "video" "wheel"];
 
-   packages = [pkgs.home-manager];
+    packages = [pkgs.home-manager];
   };
 }
