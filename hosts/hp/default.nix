@@ -25,16 +25,6 @@
     useDHCP = false;
   };
 
-  services = {
-    xserver = {
-      enable = true;
-
-      displayManager = {
-        gdm.enable = true;
-      };
-    };
-  };
-
   programs.hyprland.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

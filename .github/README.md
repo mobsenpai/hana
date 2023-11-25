@@ -121,7 +121,7 @@ But anyway… let's move on to the installation process!
    $ nixos-install --flake .#hp
    ```
 
-7. Reboot, login as normal. Obviously change your username and password in the config file
+7. Reboot, login as normal user. By default `initialPassword` is used, you can change username and password to your own
 
 8. Install the home manager configuration
 
@@ -135,6 +135,8 @@ But anyway… let's move on to the installation process!
    $ cd dotfiles
    $ home-manager switch --flake .#yashraj@hp
    ```
+
+9. Start hyprland by running `Hyprland` in the tty session
 
 <br>
 <br>
