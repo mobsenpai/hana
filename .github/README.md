@@ -136,7 +136,7 @@ But anyway… let's move on to the installation process!
    $ home-manager switch --flake .#yashraj@hp
    ```
 
-9. Start hyprland by running `Hyprland` in the tty session
+9. Start hyprland by running `Hyprland` in the TTY session
 
 <br>
 <br>
