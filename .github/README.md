@@ -121,11 +121,9 @@ But anyway… let's move on to the installation process!
    $ nixos-install --flake .#hp
    ```
 
-7. Reboot, login as root, and change the password for your user using passwd
+7. Reboot, login as normal. Obviously change your username and password in the config file
 
-8. Log in as normal user
-
-9. Install the home manager configuration
+8. Install the home manager configuration
 
    ```bash
    $ home-manager switch --flake 'github:yashraj/dotfiles#yashraj@hp'
@@ -137,8 +135,6 @@ But anyway… let's move on to the installation process!
    $ cd dotfiles
    $ home-manager switch --flake .#yashraj@hp
    ```
-
-10. Check wiki for more info. AwesomeWM config has moved to <a href="https://github.com/MobSenpai/sugoi.git">MobSenpai/sugoi</a>
 
 <br>
 <br>
