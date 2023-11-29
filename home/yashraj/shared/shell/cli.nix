@@ -10,6 +10,7 @@
       bottom
       catimg
       curl
+      cmatrix
       file
       jq
       killall

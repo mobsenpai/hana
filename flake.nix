@@ -30,10 +30,16 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
+      # Main desktop
+      acer = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        # Our main nixos configuration file
+        modules = [./hosts/acer];
+      };
+
       # Work laptop
       hp = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        # Our main nixos configuration file
         modules = [./hosts/hp];
       };
     };

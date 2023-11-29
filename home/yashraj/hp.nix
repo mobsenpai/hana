@@ -1,11 +1,8 @@
 {inputs, ...}: {
   imports = [
-    # Global
     ./shared
 
-    # Optionals
     ./shared/optional/desktop/hyprland
-
     ./shared/optional/programs/wezterm.nix
     ./shared/optional/programs/helix.nix
     ./shared/optional/programs/vivaldi.nix

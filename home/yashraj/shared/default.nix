@@ -4,11 +4,11 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  inherit (inputs.nix-colors) colorSchemes;
+in {
   imports = [
-    ./colorschemes
-    ./pkgs
-    ./services
+    inputs.nix-colors.homeManagerModule
     ./shell
   ];
 
@@ -42,4 +42,7 @@
     homeDirectory = "/home/${config.home.username}";
     stateVersion = "23.05";
   };
+
+  # Use the colorscheme available at https://github.com/tinted-theming/base16-schemes
+  colorscheme = colorSchemes.gruvbox-dark-medium;
 }

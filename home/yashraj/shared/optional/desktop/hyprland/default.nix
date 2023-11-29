@@ -14,6 +14,7 @@
     inherit
       (pkgs)
       waybar
+      pcmanfm
       ;
   };
 }
