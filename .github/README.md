@@ -2,15 +2,11 @@
 <!-- https://github.com/MobSenpai/dotfiles -->
 
 <p align="center">
-<a href="https://github.com/nixos/nixpkgs"><img src="https://img.shields.io/badge/NixOS-unstable-informational.svg?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"></a> <a href="https://awesomewm.org"><img src="https://img.shields.io/static/v1?label=AwesomeWM&message=master&style=flat&logo=awesomewm&colorA=24273A&colorB=8AADF4&logoColor=CAD3F5"/></a>
+<a href="https://github.com/nixos/nixpkgs"><img src="https://img.shields.io/badge/NixOS-23.05-informational.svg?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml/badge.svg"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml/badge.svg"/></a>
 </p>
 
 <p align="center">
-<a href="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml/badge.svg"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml/badge.svg"/></a>
-</p>
-
-<p align="center">
-<a href="https://github.com/MobSenpai/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=flat&label=License&message=MIT&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"/></a>
+<a href="https://builtwithnix.org"><img src="https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a"/></a>
 </p>
 
 <br>
@@ -25,7 +21,7 @@ Mob's Dotfiles
 <br>
 
 <p align="center">
-  <img src="https://i.imgur.com/3eCVWGT.png" width="500px" alt="OS banner"/>
+  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" width="500px" alt="NixOS logo"/>
 </p>
 
 <br>
