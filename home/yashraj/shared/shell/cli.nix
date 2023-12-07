@@ -1,33 +1,29 @@
 {
-  lib,
   config,
   pkgs,
   ...
 }: {
-  home.packages = lib.attrValues {
-    inherit
-      (pkgs)
-      bottom
-      catimg
-      curl
-      cmatrix
-      file
-      jq
-      killall
-      neofetch
-      ripgrep
-      trash-cli
-      unrar
-      unzip
-      vim
-      wget
-      yt-dlp
-      zip
-      ;
-  };
+  home.packages = with pkgs; [
+    bottom
+    catimg
+    curl
+    cmatrix
+    file
+    jq
+    killall
+    neofetch
+    ripgrep
+    trash-cli
+    unrar
+    unzip
+    vim
+    wget
+    yt-dlp
+    zip
+  ];
 
   programs = {
-    exa.enable = true;
+    eza.enable = true;
 
     bat = {
       enable = true;

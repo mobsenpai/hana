@@ -2,7 +2,7 @@
 <!-- https://github.com/MobSenpai/dotfiles -->
 
 <p align="center">
-<a href="https://github.com/nixos/nixpkgs"><img src="https://img.shields.io/badge/NixOS-23.05-informational.svg?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml/badge.svg"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml/badge.svg"/></a>
+<a href="https://github.com/nixos/nixpkgs"><img src="https://img.shields.io/badge/NixOS-23.11-informational.svg?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml/badge.svg"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml/badge.svg"/></a>
 </p>
 
 <p align="center">

@@ -4,7 +4,7 @@
   ...
 }: {
   fonts = {
-    fonts = lib.attrValues {
+    packages = lib.attrValues {
       inherit
         (pkgs)
         noto-fonts-emoji
@@ -20,7 +20,7 @@
       hinting = {
         enable = true;
         autohint = false;
-        style = "hintfull";
+        style = "full";
       };
       subpixel = {
         lcdfilter = "default";

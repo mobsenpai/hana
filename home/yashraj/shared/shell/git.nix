@@ -1,14 +1,7 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
-  home.packages = lib.attrValues {
-    inherit
-      (pkgs)
-      colordiff
-      ;
-  };
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    colordiff
+  ];
 
   programs.git = {
     enable = true;

@@ -18,16 +18,19 @@
       nix
       home-manager
       git
+
+      # Dev
       nodejs
       lua
 
-      # language servers
+      # Language servers
       lua-language-server
       nil
-      nodePackages.vscode-langservers-extracted
       nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
 
-      # formatter
+      # Formatters
+      alejandra
       stylua
       nodePackages.prettier
     ];

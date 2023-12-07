@@ -1,16 +1,14 @@
 {
-  lib,
   config,
   pkgs,
   ...
 }: {
   imports = [
-    ./xdg.nix
     ./bash.nix
-    ./starship.nix
     ./cli.nix
     ./git.nix
-    ./nix.nix
+    ./starship.nix
+    ./xdg.nix
   ];
 
   home = {
@@ -29,15 +27,15 @@
             -*) exit 0;;
           esac
 
-          case "$(${lib.getExe file} --mime-type "$1")" in
+          case "$(file --mime-type "$1")" in
             *text*)
-              ${lib.getExe bat} --color always --plain "$1"
+              bat --color always --plain "$1"
               ;;
             *image* | *pdf)
-              ${lib.getExe catimg} -w 100 -r 2 "$1"
+              catimg -w 100 -r 2 "$1"
               ;;
             *directory*)
-              ${lib.getExe exa} --icons -1 --color=always "$1"
+              eza --icons -1 --color=always "$1"
               ;;
             *)
               echo "unknown file format"

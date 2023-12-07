@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   config,
   pkgs,
   ...
@@ -10,8 +9,7 @@
     visualstudioexptteam.vscodeintellicode
     johnnymorganz.stylua
     sndst00m.markdown-github-dark-pack
-    # TODO: Not working extensions
-    # use nix4vscode
+    # TODO: Fix extensions install
     golf1052.base16-generator
     codeium.codeium
   ];
@@ -35,8 +33,6 @@ in {
       security.workspace.trust.enabled = false;
       telemetry.telemetryLevel = "off";
       prettier.singleQuote = true;
-      stylua.styluaPath = lib.getExe pkgs.stylua;
-      nix.serverPath = lib.getExe pkgs.nil;
 
       "[css]".editor.defaultFormatter = "esbenp.prettier-vscode";
       "[html]".editor.defaultFormatter = "vscode.html-language-features";

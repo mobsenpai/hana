@@ -1,5 +1,4 @@
 {
-  lib,
   config,
   pkgs,
   ...
@@ -83,22 +82,23 @@ in {
 
       # Reporting tools
       # =============================================
-      ${lib.getExe neofetch}
+      "neofetch"
     '';
 
     shellAliases = {
-      dev = "nix develop";
-      ls = "${lib.getExe exa} -ah --git --icons --color=auto --group-directories-first -s extension";
-      c = "clear";
-      rm = lib.getExe trash-cli;
-      fcd = "cd $(find -type d | ${lib.getExe fzf})";
-      fm = "${lib.getExe fzf} --preview 'preview.sh {}'";
-      grep = lib.getExe ripgrep;
-      cat = "${lib.getExe bat} --color=always --style=plain";
-      commit = "${lib.getExe git} add . && ${lib.getExe git} commit -m";
-      push = "${lib.getExe git} push";
-      pull = "${lib.getExe git} pull";
-      ytmp3 = ''${lib.getExe yt-dlp} -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"'';
+      nd = "nix develop -c $SHELL";
+      nsn = "nix shell nixpkgs#";
+      nbn = "nix build nixpkgs#";
+      snrs = "sudo nixos-rebuild --flake . switch";
+      hms = "home-manager --flake . switch";
+
+      cat = "bat --color=always --style=plain";
+      fcd = "cd $(find -type d | fzf)";
+      fm = "fzf --preview 'preview.sh {}'";
+      grep = "ripgrep";
+      ls = "eza --icons --color=auto";
+      rm = "trash";
+      ytmp3 = ''yt-dlp -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"'';
     };
   };
 }
