@@ -33,6 +33,7 @@ in {
       security.workspace.trust.enabled = false;
       telemetry.telemetryLevel = "off";
       prettier.singleQuote = true;
+      # TODO: stylua, lua-language-server and nil devshells paths
 
       "[css]".editor.defaultFormatter = "esbenp.prettier-vscode";
       "[html]".editor.defaultFormatter = "vscode.html-language-features";
