@@ -7,7 +7,7 @@
     enable = true;
     lfs.enable = true;
     userName = "MobSenpai";
-    userEmail = "github.onstage144@passinbox.com";
+    userEmail = "work.velocity806@passinbox.com";
 
     delta = {
       enable = true;
