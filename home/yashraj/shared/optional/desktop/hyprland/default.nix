@@ -15,6 +15,7 @@
       (pkgs)
       waybar
       pcmanfm
+      zathura
       ;
   };
 }
