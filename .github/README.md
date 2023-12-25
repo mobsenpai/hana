@@ -41,7 +41,7 @@ NixOS / Home-Manager / Flake
 |       OS        |                                    [NixOS](https://nixos.org/)                                    |
 | WM / Compositor |                          [Hyprland](https://github.com/hyprwm/Hyprland)                           |
 |    Terminal     |                             [Wezterm](https://github.com/wez/wezterm)                             |
-|     Editor      | [Helix](https://github.com/helix-editor/helix) + [Vscodium](https://github.com/VSCodium/vscodium) |
+|     Editor      |                          [Helix](https://github.com/helix-editor/helix)                           |
 |      Shell      |                            [Bash](https://www.gnu.org/software/bash/)                             |
 
 <br>
