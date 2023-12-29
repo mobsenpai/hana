@@ -13,8 +13,9 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
-      waybar
+      mpv
       pcmanfm
+      waybar
       zathura
       ;
   };
