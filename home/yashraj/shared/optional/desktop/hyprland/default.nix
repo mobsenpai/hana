@@ -13,6 +13,7 @@
   home.packages = lib.attrValues {
     inherit
       (pkgs)
+      feh
       mpv
       pcmanfm
       waybar
