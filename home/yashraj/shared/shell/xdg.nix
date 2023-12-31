@@ -27,8 +27,6 @@ with lib; let
     "inode/directory" = ["pcmanfm.desktop"];
     "application/json" = browser;
     "application/pdf" = ["org.pwmt.zathura.desktop.desktop"];
-    "x-scheme-handler/discord" = ["discordcanary.desktop"];
-    "x-scheme-handler/spotify" = ["spotify.desktop"];
   };
 in {
   home.packages = with pkgs; [xdg-utils];
