@@ -90,6 +90,14 @@ in {
           font_size = ${builtins.toString config.gtk.font.size},
           line_height = 1.0,
           default_cursor_style = "SteadyUnderline",
+          -- TODO: wait for wayland support
+          enable_wayland = false,
+          color_scheme = "${colorscheme.slug}",
+          window_padding = { left = "30pt", right = "30pt", top = "30pt", bottom = "30pt" },
+          enable_tab_bar = true,
+          use_fancy_tab_bar = false,
+          hide_tab_bar_if_only_one_tab = true,
+          show_tab_index_in_tab_bar = false,
 
           -- Keys
           disable_default_key_bindings = true,
@@ -128,7 +136,6 @@ in {
                   key = "Tab",
                   action = wezterm.action { ActivateTabRelative = -1 }
               },
-              { key = "x", mods = "CTRL", action = "ActivateCopyMode" },
               {
                   key = "v",
                   mods = "CTRL|SHIFT",
@@ -139,22 +146,7 @@ in {
                   mods = "CTRL|SHIFT",
                   action = wezterm.action { CopyTo = "ClipboardAndPrimarySelection" }
               },
-              {
-                  key = "L",
-                  mods = "CTRL",
-                  action = wezterm.action.ShowDebugOverlay
-              }
           },
-          front_end = "WebGpu",
-          enable_wayland = true,
-          check_for_updates = false,
-          color_scheme = "${colorscheme.slug}",
-          window_padding = { left = "30pt", right = "30pt", top = "30pt", bottom = "30pt" },
-          inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
-          enable_tab_bar = true,
-          use_fancy_tab_bar = false,
-          hide_tab_bar_if_only_one_tab = true,
-          show_tab_index_in_tab_bar = false,
       }
     '';
   };

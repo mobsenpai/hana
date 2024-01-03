@@ -5,9 +5,9 @@
 }: {
   home.packages = with pkgs; [
     bottom
-    catimg
     curl
     cmatrix
+    fd
     file
     jq
     killall
@@ -18,13 +18,12 @@
     unzip
     vim
     wget
+    yazi
     yt-dlp
     zip
   ];
 
   programs = {
-    eza.enable = true;
-
     bat = {
       enable = true;
       config = {
@@ -34,11 +33,13 @@
       };
     };
 
-    fzf = {
+    eza.enable = true;
+
+    skim = {
       enable = true;
       enableBashIntegration = true;
     };
-
+    
     zoxide = {
       enable = true;
       enableBashIntegration = true;

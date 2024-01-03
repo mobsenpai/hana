@@ -28,31 +28,7 @@ in {
       # fix ctrl+l not working when using vim keybinds
       bind -m vi-command 'Control-l: clear-screen'
       bind -m vi-insert 'Control-l: clear-screen'
-
-      # fzf
-      export FZF_DEFAULT_OPTS="
-        --color fg:#${base04}
-        --color fg+:#${base06}
-        --color bg:#${base00}
-        --color bg+:#${base01}
-        --color hl:#${base0D}
-        --color hl+:#${base0D}
-        --color info:#${base0A}
-        --color marker:#${base0C}
-        --color prompt:#${base0A}
-        --color spinner:#${base0C}
-        --color pointer:#${base0C}
-        --color header:#${base0D}
-        --color preview-fg:#${base0D}
-        --color preview-bg:#${base01}
-        --color gutter:#${base00}
-        --color border:#${base01}
-        --border
-        --prompt 'λ '
-        --pointer ''
-        --marker ''
-      "
-
+      
       # ex = Extractor for all kinds of archives
       # =============================================
       # usage: ex <file>
@@ -93,10 +69,10 @@ in {
       hms = "home-manager --flake . switch";
 
       cat = "bat --color=always --style=plain";
-      fcd = "cd $(find -type d | fzf)";
-      fm = "fzf --preview 'preview.sh {}'";
-      grep = "ripgrep";
-      ls = "eza --icons --color=auto";
+      fcd = "cd $(fd --type d | sk)";
+      fm = "yazi";
+      grep = "rg";
+      ls = "eza -alh --icons --git --group-directories-first";
       rm = "trash";
       ytmp3 = ''yt-dlp -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"'';
     };
