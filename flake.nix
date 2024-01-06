@@ -13,7 +13,6 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs = {
