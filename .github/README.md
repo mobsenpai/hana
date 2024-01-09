@@ -44,6 +44,8 @@ NixOS / Home-Manager / Flake
 |     Editor      |                          [Helix](https://github.com/helix-editor/helix)                           |
 |      Shell      |                            [Bash](https://www.gnu.org/software/bash/)                             |
 
+> Here is an overview of the directory structure
+
 ```bash
 .
 ├── flake.lock
@@ -88,9 +90,20 @@ NixOS / Home-Manager / Flake
 │       │   └── hyprland.nix
 │       └── users
 │           └── yashraj.nix
-├── LICENSE
 └── shell.nix
 ```
+
+* `flake.nix`: home-manager and nix flakes configuration
+
+* `home`: home-manager config for all users
+
+* `hosts`: configurations for different systems
+
+* `shell.nix`: devShells configuration
+
+* `shared`: common folder included by default
+
+* `optional`: optional files to import seperately
 
 <br>
 <br>
