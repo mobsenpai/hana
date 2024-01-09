@@ -106,7 +106,6 @@ NixOS / Home-Manager / Flake
 * `optional`: optional files to import seperately
 
 <br>
-<br>
 
 ## :wrench: <samp>Installation</samp>
 
@@ -196,7 +195,6 @@ But anyway… let's move on to the installation process!
 9. Start hyprland by running `Hyprland` in the TTY session
 
 <br>
-<br>
 
 ## :bulb: <samp>Acknowledgements</samp>
 
@@ -227,3 +225,7 @@ But anyway… let's move on to the installation process!
 - [Misterio77](https://github.com/Misterio77)
 
 </div>
+
+<br>
+
+![Footer](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2Q4NXVzd2g4Y21ndzh3cXF4MGZramhldmF3ZmNid3c3eGw2ZHZzbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/sYbJoCf1sqMJqsSXjb/giphy.gif)
