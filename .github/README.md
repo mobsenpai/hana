@@ -44,6 +44,54 @@ NixOS / Home-Manager / Flake
 |     Editor      |                          [Helix](https://github.com/helix-editor/helix)                           |
 |      Shell      |                            [Bash](https://www.gnu.org/software/bash/)                             |
 
+```bash
+.
+├── flake.lock
+├── flake.nix
+├── home
+│   └── yashraj
+│       ├── acer.nix
+│       ├── hp.nix
+│       └── shared
+│           ├── default.nix
+│           ├── optional
+│           │   ├── desktop
+│           │   │   ├── gtk.nix
+│           │   │   ├── hyprland
+│           │   │   │   └── default.nix
+│           │   │   ├── playerctl.nix
+│           │   │   ├── rofi.nix
+│           │   │   ├── wayland-wm
+│           │   │   │   └── default.nix
+│           │   │   └── wireless.nix
+│           │   └── programs
+│           │       ├── firefox.nix
+│           │       ├── helix.nix
+│           │       └── wezterm.nix
+│           └── shell
+│               ├── bash.nix
+│               ├── cli.nix
+│               ├── default.nix
+│               ├── git.nix
+│               ├── starship.nix
+│               └── xdg.nix
+├── hosts
+│   ├── acer
+│   │   └── default.nix
+│   ├── hp
+│   │   ├── default.nix
+│   │   └── hardware-configuration.nix
+│   └── shared
+│       ├── default.nix
+│       ├── fonts.nix
+│       ├── optional
+│       │   └── hyprland.nix
+│       └── users
+│           └── yashraj.nix
+├── LICENSE
+└── shell.nix
+```
+
 <br>
 <br>
 
