@@ -30,13 +30,6 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      # Main desktop
-      acer = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        # Our main nixos configuration file
-        modules = [./hosts/acer];
-      };
-
       # Work laptop
       hp = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
@@ -48,15 +41,8 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       # Desktops
-      "yashraj@acer" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        # Our main home-manager configuration file
-        modules = [./home/yashraj/acer.nix];
-      };
-
       "yashraj@hp" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [./home/yashraj/hp.nix];
       };
