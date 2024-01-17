@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
   inherit (config) colorscheme;
 in {
   programs.wezterm = {
