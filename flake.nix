@@ -25,15 +25,30 @@
     forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux" "aarch64-linux"];
     forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPackages.${sys});
   in {
-    devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs;});
+    nixosModules = import ./modules/nixos;    
+    homeManagerModules = import ./modules/home-manager;
 
+    devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs;});
+     
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       # Work laptop
       hp = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/hp];
+        modules = [
+          ./hosts/hp
+          inputs.self.nixosModules.base
+          inputs.self.nixosModules.hyprland
+
+          {
+          home-manager = {
+            users.yashraj.imports = [./home/yashraj/hp.nix];
+            extraSpecialArgs = {inherit inputs outputs;};
+          };
+        }
+
+        ];
       };
     };
 

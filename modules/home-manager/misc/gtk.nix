@@ -7,8 +7,6 @@
   inherit (config) colorscheme;
   inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
 in {
-  imports = [];
-
   home.pointerCursor = {
     name = "${
       if config.colorscheme.kind == "light"

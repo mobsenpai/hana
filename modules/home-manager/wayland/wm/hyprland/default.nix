@@ -1,9 +1,13 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
 }: {
-  imports = [];
+  imports = [
+    inputs.self.homeManagerModules.misc.themes
+    inputs.self.homeManagerModules.misc.gtk
+  ];
 
   home.packages = lib.attrValues {
     inherit

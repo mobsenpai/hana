@@ -3,14 +3,7 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-
-    ../shared
-    ../shared/users/yashraj.nix
-
-    ../shared/optional/hyprland.nix
-  ];
+  imports = [./hardware-configuration.nix];
 
   boot = {
     loader = {
