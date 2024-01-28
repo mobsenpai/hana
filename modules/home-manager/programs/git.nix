@@ -45,7 +45,6 @@
       "*~"
       "*.swp"
       "*result*"
-      ".direnv"
       "node_modules"
     ];
   };

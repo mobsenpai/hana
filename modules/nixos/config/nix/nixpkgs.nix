@@ -1,14 +1,9 @@
 {inputs, ...}: {
-    nixpkgs = {
-    # overlays = [
-    #   inputs.nur.overlay
-    # ];
+  nixpkgs = {
+    config.allowUnfree = true;
 
-    # Configure your nixpkgs instance
-    config = {
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      # allowUnfreePredicate = _: true; # todo: check this
-    };
+    overlays = [
+      inputs.nur.overlay
+    ];
   };
 }

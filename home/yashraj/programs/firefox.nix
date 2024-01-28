@@ -19,12 +19,11 @@
     };
 
     profiles.yashraj = {
-      # todo: fix this
-      # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      #   proton-pass
-      #   tree-style-tab
-      #   ublock-origin
-      # ];
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        proton-pass
+        tree-style-tab
+        ublock-origin
+      ];
 
       search.default = "DuckDuckGo";
       settings = {

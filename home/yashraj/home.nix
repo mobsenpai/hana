@@ -1,11 +1,15 @@
 {
-  
-home = {
+  home = {
     username = "yashraj";
     homeDirectory = "/home/yashraj";
-    stateVersion = "23.05";
+    extraOutputsToInstall = ["doc" "devdoc"];
   };
 
-programs.home-manager.enable = true;
+  manual = {
+    html.enable = false;
+    json.enable = false;
+    manpages.enable = false;
+  };
 
+  programs.home-manager.enable = true;
 }

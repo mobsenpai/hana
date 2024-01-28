@@ -1,9 +1,13 @@
-{config, ...}: let
-  inherit (config) colorscheme;
-in {
+{
+  config,
+  themes,
+  ...
+}: {
   programs.alacritty = {
     enable = true;
-    settings = {
+    settings = let
+      inherit (themes.colorscheme) xcolors;
+    in {
       window = {
         padding = {
           x = 30;
@@ -31,34 +35,34 @@ in {
         shape = "Underline";
       };
 
-      colors = with colorscheme.colors; {
+      colors = {
         primary = {
-          background = "0x${base00}";
-          foreground = "0x${base05}";
+          background = xcolors.base00;
+          foreground = xcolors.base05;
         };
 
-        cursor = {cursor = "0x${base07}";};
+        cursor = {cursor = xcolors.base07;};
 
         normal = {
-          black = "0x${base00}";
-          red = "0x${base08}";
-          green = "0x${base0B}";
-          yellow = "0x${base0A}";
-          blue = "0x${base0D}";
-          magenta = "0x${base0E}";
-          cyan = "0x${base0C}";
-          white = "0x${base05}";
+          black = xcolors.base00;
+          red = xcolors.base08;
+          green = xcolors.base0B;
+          yellow = xcolors.base0A;
+          blue = xcolors.base0D;
+          magenta = xcolors.base0E;
+          cyan = xcolors.base0C;
+          white = xcolors.base05;
         };
 
         bright = {
-          black = "0x${base03}";
-          red = "0x${base08}";
-          green = "0x${base0B}";
-          yellow = "0x${base0A}";
-          blue = "0x${base0D}";
-          magenta = "0x${base0E}";
-          cyan = "0x${base0C}";
-          white = "0x${base07}";
+          black = xcolors.base03;
+          red = xcolors.base08;
+          green = xcolors.base0B;
+          yellow = xcolors.base0A;
+          blue = xcolors.base0D;
+          magenta = xcolors.base0E;
+          cyan = xcolors.base0C;
+          white = xcolors.base07;
         };
       };
     };

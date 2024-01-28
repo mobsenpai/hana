@@ -1,9 +1,15 @@
 {inputs, ...}: {
-
-    home-manager.sharedModules = [
+  home-manager.sharedModules = [
     inputs.self.homeManagerModules.hyprland
   ];
 
-    programs.hyprland.enable = true;
-    
+  programs.hyprland.enable = true;
+
+  security = {
+    pam.services = {
+      gtklock = {};
+    };
+
+    polkit.enable = true;
+  };
 }

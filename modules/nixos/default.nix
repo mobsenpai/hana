@@ -1,10 +1,14 @@
 {
-  base = {
-    imports = [
-      ./config
-    ];
-  };
+  flake.nixosModules = {
+    base = {
+      imports = [
+        ./config
+        ./programs
+        ./services
+      ];
+    };
 
-  hyprland = import ./wm/hyprland.nix;
-  
+    bluetooth = import ./hardware/bluetooth.nix;
+    hyprland = import ./wm/hyprland.nix;
+  };
 }

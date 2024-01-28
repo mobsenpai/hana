@@ -1,55 +1,63 @@
 {
-  inputs,
   config,
   pkgs,
   ...
-}: let
-  inherit (config) colorscheme;
-  inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
-in {
-  home.pointerCursor = {
-    name = "${
-      if config.colorscheme.kind == "light"
-      then "Yaru"
-      else "Yaru"
-    }";
-    package = pkgs.yaru-theme;
-    size = 24;
-    gtk.enable = true;
-  };
+}: {
+  # home.pointerCursor = {
+  #   name = "Yaru";
+  #   package = pkgs.yaru-theme;
+  #   size = 24;
+  #   gtk.enable = true;
+  #   x11.enable = true;
+  # };
 
   gtk = {
     enable = true;
-    theme = {
-      name = colorscheme.slug;
-      package = gtkThemeFromScheme {
-        scheme = colorscheme;
-      };
-    };
-
-    iconTheme = {
-      name = "${
-        if colorscheme.kind == "light"
-        then "Adwaita"
-        else "Yaru-dark"
-      }";
-      package = pkgs.yaru-theme;
-    };
 
     font = {
       name = "monospace";
+      # package = "";
       size = 10;
     };
 
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-decoration-layout = "menu:";
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
     };
 
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-decoration-layout = "menu:";
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
     };
+
+    gtk2 = {
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      extraConfig = ''
+        gtk-xft-antialias=1
+        gtk-xft-hinting=1
+        gtk-xft-hintstyle="hintfull"
+        gtk-xft-rgba="rgb"
+      '';
+    };
+
+    gtk3 = {
+      bookmarks = [
+        "file://${config.home.homeDirectory}/Documents"
+        "file://${config.home.homeDirectory}/Downloads"
+        "file://${config.home.homeDirectory}/Music"
+        "file://${config.home.homeDirectory}/Pictures"
+        "file://${config.home.homeDirectory}/Videos"
+      ];
+      extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+        gtk-xft-antialias = 1;
+        gtk-xft-hinting = 1;
+        gtk-xft-hintstyle = "hintfull";
+        gtk-xft-rgba = "rgb";
+      };
+    };
+
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
   };
 
   qt = {

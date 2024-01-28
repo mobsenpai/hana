@@ -28,10 +28,10 @@
       };
 
       defaultFonts = {
+        emoji = ["Noto Color Emoji"];
+        monospace = ["JetBrainsMono Nerd Font"];
         serif = ["Noto Serif"];
         sansSerif = ["Noto Sans"];
-        monospace = ["JetBrainsMono Nerd Font"];
-        emoji = ["Noto Color Emoji"];
       };
     };
   };

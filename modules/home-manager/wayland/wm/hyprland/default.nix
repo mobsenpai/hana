@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    inputs.self.homeManagerModules.misc.themes
     inputs.self.homeManagerModules.misc.gtk
   ];
 
