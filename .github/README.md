@@ -51,7 +51,7 @@ nix flake show github:mobsenpai/hana
 Special thanks to the following individuals:
 
 <p align="center">
-  <a href="https://github.com/rxyhn">Moni-dz</a> •
+  <a href="https://github.com/rxyhn">rxyhn</a> •
   <a href="https://github.com/Misterio77">Misterio77</a> •
-  <a href="https://github.com/JavaCafe01">Fufexan</a> •
+  <a href="https://github.com/JavaCafe01">JavaCafe01</a> •
 </p>
