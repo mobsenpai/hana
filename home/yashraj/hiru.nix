@@ -6,16 +6,16 @@
   imports = [
     ./programs/alacritty.nix
     ./programs/firefox.nix
-    # ./programs/helix.nix
-    # ./programs/rofi.nix
+    ./programs/helix.nix
+    ./programs/media
   ];
 
   home.packages = lib.attrValues {
     inherit
       (pkgs)
       bottom
-      curl
       cmatrix
+      curl
       fd
       file
       jq
@@ -29,12 +29,8 @@
       wget
       yazi
       yt-dlp
-      zip
-      feh
-      mpv
-      pcmanfm
-      waybar
       zathura
+      zip
       ;
   };
 }

@@ -1,5 +1,5 @@
 {
-    programs = {
+  programs = {
     bat.enable = true;
     eza.enable = true;
     man.enable = true;

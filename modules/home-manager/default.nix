@@ -16,7 +16,6 @@
         ./programs/git.nix
         ./programs/starship.nix
         ./programs/utils.nix
-        ./programs/xdg.nix #is it a program?
       ];
     };
   };

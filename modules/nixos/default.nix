@@ -9,6 +9,6 @@
     };
 
     bluetooth = import ./hardware/bluetooth.nix;
-    hyprland = import ./wm/hyprland.nix;
+    hyprland = import ./services/wayland/wm/hyprland.nix;
   };
 }

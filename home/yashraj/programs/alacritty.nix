@@ -37,32 +37,30 @@
 
       colors = {
         primary = {
-          background = xcolors.base00;
-          foreground = xcolors.base05;
+          background = xcolors.black;
+          foreground = xcolors.brightwhite;
         };
 
-        cursor = {cursor = xcolors.base07;};
-
         normal = {
-          black = xcolors.base00;
-          red = xcolors.base08;
-          green = xcolors.base0B;
-          yellow = xcolors.base0A;
-          blue = xcolors.base0D;
-          magenta = xcolors.base0E;
-          cyan = xcolors.base0C;
-          white = xcolors.base05;
+          black = xcolors.black;
+          red = xcolors.red;
+          green = xcolors.green;
+          yellow = xcolors.yellow;
+          blue = xcolors.blue;
+          magenta = xcolors.magenta;
+          cyan = xcolors.cyan;
+          white = xcolors.white;
         };
 
         bright = {
-          black = xcolors.base03;
-          red = xcolors.base08;
-          green = xcolors.base0B;
-          yellow = xcolors.base0A;
-          blue = xcolors.base0D;
-          magenta = xcolors.base0E;
-          cyan = xcolors.base0C;
-          white = xcolors.base07;
+          black = xcolors.brightblack;
+          red = xcolors.brightred;
+          green = xcolors.brightgreen;
+          yellow = xcolors.brightyellow;
+          blue = xcolors.brightblue;
+          magenta = xcolors.brightmagenta;
+          cyan = xcolors.brightcyan;
+          white = xcolors.brightwhite;
         };
       };
     };

@@ -4,15 +4,12 @@
   ...
 }: {
   fonts = {
-    packages = lib.attrValues {
-      inherit
-        (pkgs)
-        noto-fonts-emoji
-        noto-fonts
-        noto-fonts-cjk
-        ;
-      nerdfonts = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-    };
+    packages = with pkgs; [
+      noto-fonts-emoji
+      noto-fonts
+      noto-fonts-cjk
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
+    ];
 
     fontconfig = {
       enable = true;

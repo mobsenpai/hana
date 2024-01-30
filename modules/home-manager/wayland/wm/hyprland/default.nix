@@ -1,6 +1,6 @@
 {
+  config,
   inputs,
-  lib,
   pkgs,
   ...
 }: {
@@ -8,23 +8,26 @@
     inputs.self.homeManagerModules.misc.gtk
   ];
 
-  home.packages = lib.attrValues {
-    inherit
-      (pkgs)
-      grim
-      gtk3 # For gtk-launch
-      imv
-      slurp
-      swappy
-      swaybg
-      swaynotificationcenter
-      swayosd
-      gtklock
-      wl-clipboard
-      ;
-  };
+  home.packages = with pkgs; [
+    grim
+    gtklock
+    slurp
+    swappy
+    swaybg
+    swaynotificationcenter
+    swayosd
+    waybar
+    wl-clipboard
+    xdg-utils
+  ];
 
-  home.sessionVariables = {
-    QT_QPA_PLATFORM = "wayland";
+  xdg = {
+    enable = true;
+    cacheHome = config.home.homeDirectory + "/.local/cache";
+    mimeApps.enable = true;
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
   };
 }

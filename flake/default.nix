@@ -21,7 +21,7 @@
         nil
       ];
 
-      name = "yuki";
+      name = "hana";
       meta.description = "The default development shell";
     };
 

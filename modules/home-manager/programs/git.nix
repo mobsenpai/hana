@@ -6,7 +6,7 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "MobSenpai";
+    userName = "mobsenpai";
     userEmail = "work.velocity806@passinbox.com";
 
     delta = {

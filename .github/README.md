@@ -1,233 +1,57 @@
-<!-- Mob's dotfiles -->
-<!-- https://github.com/MobSenpai/dotfiles -->
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
+<h1 style="text-align: center;">花 - Hana</h1>
 
 <p align="center">
-<a href="https://github.com/nixos/nixpkgs"><img src="https://img.shields.io/badge/NixOS-23.11-informational.svg?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/check.yml/badge.svg"></a> <a href="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml"><img src="https://github.com/MobSenpai/dotfiles/actions/workflows/fmt.yml/badge.svg"/></a>
-</p>
-
-<p align="center">
-<a href="https://builtwithnix.org"><img src="https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a"/></a>
-</p>
-
-<br>
-
-<div align="justify">
-<div align="center">
-
-```ocaml
-Mob's Dotfiles
-```
-
-<br>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" width="500px" alt="NixOS logo"/>
+  <a href="#">
+    <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" title="Banner"/>
+  </a>
 </p>
 
 <br>
 
-```ocaml
-NixOS / Home-Manager / Flake
+<p align="center">
+  <img src="https://github.com/mobsenpai/hana/actions/workflows/flake-check.yml/badge.svg" alt="Workflow Badge" height="20"/>
+  <img src="https://github.com/mobsenpai/hana/actions/workflows/fmt.yml/badge.svg" alt="Workflow Bagdge" height="20">
+  <img src="https://img.shields.io/github/license/mobsenpai/hana" alt="License Badge"  height="20"/>
+</p>
+
+<br>
+
+> [!NOTE]
+>
+> **System Information:**
+>
+> - **OS:** NixOS
+> - **Window Manager:** Hyprland
+> - **Shell:** Bash
+> - **Terminal:** Alacritty
+> - **Editor:** Helix
+
+## :snowflake: About Hana
+
+Welcome to "花 - Hana", a repository showcasing my personal collection of dotfiles. These dotfiles are tailored for NixOS and Home-Manager, utilizing the power of [flakes](https://nixos.wiki/wiki/Flakes) and [flake-parts](https://github.com/hercules-ci/flake-parts) for optimal organization and efficiency.
+
+To explore the flake outputs and their functionalities, run:
+
+```sh
+nix flake show github:mobsenpai/hana
 ```
 
-</div>
+## :package: Repository Contents
 
-<br>
+- **[Flake](./flake):** Core flake scaffolding.
+- **[Home](./home):** [Home-Manager](https://github.com/nix-community/home-manager) configurations.
+- **[Hosts](./hosts):** Host-specific configurations.
+- **[Lib](./lib):** Utility scripts and personal library.
+- **[Modules](./modules):** System-wide shared modules.
 
-## :snowflake: <samp>Information</samp>
+## :bulb: Acknowledgments
 
-|                 |                                               acer                                                |
-| :-------------: | :-----------------------------------------------------------------------------------------------: |
-|       OS        |                                    [NixOS](https://nixos.org/)                                    |
-| WM / Compositor |                          [Hyprland](https://github.com/hyprwm/Hyprland)                           |
-|    Terminal     |                             [Wezterm](https://github.com/wez/wezterm)                             |
-|     Editor      |                          [Helix](https://github.com/helix-editor/helix)                           |
-|      Shell      |                            [Bash](https://www.gnu.org/software/bash/)                             |
-
-> Here is an overview of the directory structure
-
-```bash
-.
-├── flake.lock
-├── flake.nix
-├── home
-│   └── yashraj
-│       ├── acer.nix
-│       ├── hp.nix
-│       └── shared
-│           ├── default.nix
-│           ├── optional
-│           │   ├── desktop
-│           │   │   ├── gtk.nix
-│           │   │   ├── hyprland
-│           │   │   │   └── default.nix
-│           │   │   ├── playerctl.nix
-│           │   │   ├── rofi.nix
-│           │   │   ├── wayland-wm
-│           │   │   │   └── default.nix
-│           │   │   └── wireless.nix
-│           │   └── programs
-│           │       ├── firefox.nix
-│           │       ├── helix.nix
-│           │       └── wezterm.nix
-│           └── shell
-│               ├── bash.nix
-│               ├── cli.nix
-│               ├── default.nix
-│               ├── git.nix
-│               ├── starship.nix
-│               └── xdg.nix
-├── hosts
-│   ├── acer
-│   │   └── default.nix
-│   ├── hp
-│   │   ├── default.nix
-│   │   └── hardware-configuration.nix
-│   └── shared
-│       ├── default.nix
-│       ├── fonts.nix
-│       ├── optional
-│       │   └── hyprland.nix
-│       └── users
-│           └── yashraj.nix
-└── shell.nix
-```
-
-* `flake.nix`: home-manager and nix flakes configuration
-
-* `home`: home-manager config for all users
-
-* `hosts`: configurations for different systems
-
-* `shell.nix`: devShells configuration
-
-* `shared`: common folder included by default
-
-* `optional`: optional files to import seperately
-
-<br>
-
-## :wrench: <samp>Installation</samp>
-
-I highly recommend creating your own configurations based on these dotfiles. Use this repository as a reference to customize your setup according to your preferences and requirements. Please note that these dotfiles were created for my specific hardware configuration, so use them at your own risk.
-
-But anyway… let's move on to the installation process!
-
-1. Download minimal iso
-
-2. Boot into the installer.
-
-3. Switch to root user: `sudo su -`
-
-4. Partitioning
-
-   We create a 512MB EFI boot partition (`/dev/sda3`), 2GB swap partition on (`/dev/sda2`) and the rest will be our filesystem (`/dev/sda1`). `replace sda* with your disk name - use lsblk`
-
-   Format disk as gpt
-
-   ```bash
-   $ parted /dev/sda -- mklabel gpt
-   ```
-
-   Make the above mentioned partitions:
-
-   ```bash
-   $ parted /dev/sda -- mkpart primary 512MiB -2GiB
-   $ parted /dev/sda -- mkpart primary linux-swap -2GiB 100%
-   $ parted /dev/sda -- mkpart ESP fat32 1MiB 512MiB
-   $ parted /dev/sda -- set 3 esp on
-   ```
-
-   Assing the partitions the respective types. (`/dev/sda1 type = ext4 label = root`), (`/dev/sda2 type = swap label = swap`), (`/dev/sda3 type = efiboot label = boot`). Labelling will later help in hardware-config.nix
-
-   ```bash
-   $ mkfs.ext4 -L root /dev/sda1
-   $ mkswap -L swap /dev/sda2
-   $ mkfs.fat -F 32 -n boot /dev/sda3
-   ```
-
-   Mount partitions
-
-   ```bash
-   $ mount /dev/disk/by-label/root /mnt
-   $ mkdir -p /mnt/boot
-   $ mount /dev/disk/by-label/boot /mnt/boot
-   $ swapon /dev/sda2
-   ```
-
-5. Enable flakes & git
-
-   ```bash
-   $ nix-shell -p nixFlakes
-   $ nix-env -iA nixos.git
-   ```
-
-6. Install nixos from flake
-
-   ```bash
-   $ nixos-install --flake 'github:MobSenpai/dotfiles#hp'
-   ```
-
-   or
-
-   ```bash
-   $ cd
-   $ git clone https://github.com/MobSenpai/dotfiles.git
-   $ cd dotfiles
-   $ nixos-install --flake .#hp
-   ```
-
-7. Reboot, login as normal user. By default `initialPassword` is used, you can change username and password to your own
-
-8. Install the home manager configuration
-
-   ```bash
-   $ home-manager switch --flake 'github:yashraj/dotfiles#yashraj@hp'
-   ```
-
-   or (if already have dotfiles locally)
-
-   ```bash
-   $ cd dotfiles
-   $ home-manager switch --flake .#yashraj@hp
-   ```
-
-9. Start hyprland by running `Hyprland` in the TTY session
-
-<br>
-
-## :bulb: <samp>Acknowledgements</samp>
-
-<table align="right">
-  <tr>
-    <th align="center">
-      <sup><sub>:warning: WARNING :warning:</sub></sup>
-    </th>
-  </tr>
-  <tr>
-    <td align="center">
-        <sup><sub><samp>It worked perfectly on my machine, but I can't guarantee it will work on your machine</samp></sub></sup>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <a href="https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution">
-        <sup><sub><samp>Powered by NixOS/Linux x86_64</samp></sub></sup>
-      </a>
-    </td>
-  </tr>
-</table>
-
-**Thanks to all these amazing people**
-
-- [rxyhn](https://github.com/rxyhn)
-- [JavaCafe01](https://github.com/JavaCafe01)
-- [Misterio77](https://github.com/Misterio77)
-
-</div>
-
-<br>
+Special thanks to the following individuals:
 
 <p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2Q4NXVzd2g4Y21ndzh3cXF4MGZramhldmF3ZmNid3c3eGw2ZHZzbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/sYbJoCf1sqMJqsSXjb/giphy.gif" alt="NixOS logo"/>
+  <a href="https://github.com/rxyhn">Moni-dz</a> •
+  <a href="https://github.com/Misterio77">Misterio77</a> •
+  <a href="https://github.com/JavaCafe01">Fufexan</a> •
 </p>

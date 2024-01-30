@@ -11,11 +11,11 @@
 
     specialArgs = {inherit inputs self themes;};
   in {
-    # HP
-    yuki = nixosSystem {
+    # HP 15
+    hana = nixosSystem {
       inherit specialArgs;
       modules = [
-        ./yuki
+        ./hana
         nixosModules.base
         nixosModules.bluetooth
         nixosModules.hyprland

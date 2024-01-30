@@ -1,30 +1,29 @@
 lib: {
   colorscheme = rec {
     colors = {
-      base00 = "282828";
-      base01 = "3c3836";
-      base02 = "504945";
-      base03 = "665c54";
-      base04 = "bdae93";
-      base05 = "d5c4a1";
-      base06 = "ebdbb2";
-      base07 = "fbf1c7";
-      base08 = "fb4934";
-      base09 = "fe8019";
-      base0A = "fabd2f";
-      base0B = "b8bb26";
-      base0C = "8ec07c";
-      base0D = "83a598";
-      base0E = "d3869b";
-      base0F = "d65d0e";
+      black = "282828";
+      red = "cc241d";
+      green = "98971a";
+      yellow = "d79921";
+      blue = "458588";
+      magenta = "b16286";
+      cyan = "689d6a";
+      white = "a89984";
+      brightblack = "928374";
+      brightred = "fb4934";
+      brightgreen = "b8bb26";
+      brightyellow = "fabd2f";
+      brightblue = "83a598";
+      brightmagenta = "d3869b";
+      brightcyan = "8ec07c";
+      brightwhite = "ebdbb2";
+      darkbg = "1d2021";
+      lightbg = "32302f";
+      lightbg2 = "3c3836";
+      orange = "d65d0e";
+      brightorange = "fe8019";
     };
 
     xcolors = lib.mapAttrsRecursive (_: color: "#${color}") colors;
   };
-
-  #   wallpaper = builtins.fetchurl rec {
-  #     name = "wallpaper-${sha256}.png";
-  #     url = "https://media.githubusercontent.com/media/rxyhn/wallpapers/main/OS/NixOS/nixos-nineish-gradient.png";
-  #     sha256 = "1g6h95qbn74n4yhvbch61lpg2nwcmr8kaz1lx566rd58q9jmh755";
-  #   };
 }

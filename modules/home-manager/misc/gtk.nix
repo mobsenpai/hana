@@ -3,20 +3,20 @@
   pkgs,
   ...
 }: {
-  # home.pointerCursor = {
-  #   name = "Yaru";
-  #   package = pkgs.yaru-theme;
-  #   size = 24;
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  # };
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
   gtk = {
     enable = true;
 
     font = {
       name = "monospace";
-      # package = "";
+      package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
       size = 10;
     };
 

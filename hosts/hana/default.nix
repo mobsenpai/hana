@@ -16,5 +16,5 @@
     enableRedistributableFirmware = true;
   };
 
-  networking.hostName = "hp";
+  networking.hostName = "hana";
 }
