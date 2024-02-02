@@ -1,6 +1,6 @@
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-<h1 style="text-align: center;">花 - Hana</h1>
+# 花 - Hana
 
 <p align="center">
   <a href="#">
