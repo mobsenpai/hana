@@ -1,6 +1,6 @@
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-# 花 - Hana
+<h1 align="center">花 - Hana</h1>
 
 <p align="center">
   <a href="#">
@@ -40,11 +40,11 @@ nix flake show github:mobsenpai/hana
 
 ## :package: Repository Contents
 
-- **[Flake](./flake):** Core flake scaffolding.
-- **[Home](./home):** [Home-Manager](https://github.com/nix-community/home-manager) configurations.
-- **[Hosts](./hosts):** Host-specific configurations.
-- **[Lib](./lib):** Utility scripts and personal library.
-- **[Modules](./modules):** System-wide shared modules.
+- **[Flake](../flake):** Core flake scaffolding.
+- **[Home](../home):** [Home-Manager](https://github.com/nix-community/home-manager) configurations.
+- **[Hosts](../hosts):** Host-specific configurations.
+- **[Lib](../lib):** Utility scripts and personal library.
+- **[Modules](../modules):** System-wide shared modules.
 
 ## :bulb: Acknowledgments
 
