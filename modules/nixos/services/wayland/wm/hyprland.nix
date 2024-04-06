@@ -3,6 +3,9 @@
   pkgs,
   ...
 }: {
+  imports = [
+  ];
+
   environment = {
     variables = {
       QT_QPA_PLATFORM = "wayland;xcb";
@@ -26,9 +29,13 @@
 
   security = {
     pam.services = {
-      gtklock = {};
+      hyprlock.text = "auth include login";
     };
-
     polkit.enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 }

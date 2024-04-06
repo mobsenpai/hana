@@ -26,4 +26,13 @@ lib: {
 
     xcolors = lib.mapAttrsRecursive (_: color: "#${color}") colors;
   };
+
+  wallpaper = let
+    url = "https://i.imgur.com/mcW1tIA.png";
+    sha256 = "1zk3hsgqi4sgwshb6r7dj64apsky76xwspnvclbkr658lkadwd7g";
+  in
+    builtins.fetchurl {
+      name = "wallpaper-${sha256}.png";
+      inherit url sha256;
+    };
 }

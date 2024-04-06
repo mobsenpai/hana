@@ -11,6 +11,20 @@
   ];
 
   home.packages = lib.attrValues {
+    # Dev tools
+    inherit
+      (pkgs)
+      alejandra
+      nodejs
+      ;
+    inherit
+      (pkgs.nodePackages)
+      prettier
+      typescript-language-server
+      vscode-langservers-extracted
+      ;
+
+    # Utilities
     inherit
       (pkgs)
       bottom
