@@ -50,6 +50,7 @@ in {
         "SUPER, V, exec, ${clipboard}"
         # Lockscreen
         "SUPER ALT, L, exec, ${lockscreen}"
+
         # Launchers
         # ===================================================================
         "SUPER, RETURN, exec, ${terminal}"
@@ -73,6 +74,7 @@ in {
         "SUPER, F11, exec, pidof -s ${volume} && hyprctl dispatch focuswindow pid:$(pidof -s ${volume}) || ${volume}"
         # TODO: fix this
         "SUPER, F12, exec, pidof -s ${process_monitor} && hyprctl dispatch focuswindow pid:$(pidof -s ${process_monitor}) || ${process_monitor}"
+
         # Client manipulation
         # ===================================================================
         "SUPER CTRL, H, resizeactive, -25 0"
@@ -99,6 +101,16 @@ in {
         "SUPER, L, movefocus, r"
         "SUPER, K, movefocus, u"
         "SUPER, J, movefocus, d"
+
+        # Make focused windows come to top
+        "SUPER, left, alterzorder, top"
+        "SUPER, right, alterzorder, top"
+        "SUPER, up, alterzorder, top"
+        "SUPER, down, alterzorder, top"
+        "SUPER, H, alterzorder, top"
+        "SUPER, L, alterzorder, top"
+        "SUPER, K, alterzorder, top"
+        "SUPER, J, alterzorder, top"
 
         # Move window with mod + arrow keys
         "SUPER SHIFT, left, movewindow, l"
@@ -141,9 +153,6 @@ in {
         ",XF86AudioRaiseVolume, exec, volumectl up 5"
         ",XF86AudioLowerVolume, exec, volumectl down 5"
         ",XF86AudioMute, exec, volumectl toggle-mute"
-        #", XF86AudioRaiseVolume, exec, ${pkgs.swayosd}/bin/swayosd --output-volume=raise --max-volume=120"
-        #", xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd --output-volume=lower"
-        #", XF86AudioMute, exec, ${pkgs.swayosd}/bin/swayosd --output-volume=mute-toggle"
 
         # Media control
         ", XF86AudioNext,exec, ${pkgs.playerctl}/bin/playerctl next"
@@ -154,8 +163,6 @@ in {
         # Brightness control
         ",XF86MonBrightnessUp, exec, lightctl up 5"
         ",XF86MonBrightnessDown, exec, lightctl down 5"
-        #", XF86MonBrightnessUp, exec, ${pkgs.swayosd}/bin/swayosd --brightness=raise"
-        #", XF86MonBrightnessDown, exec, ${pkgs.swayosd}/bin/swayosd --brightness=lower"
       ];
 
       # Mouse bindings
