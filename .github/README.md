@@ -18,6 +18,8 @@
 
 <br>
 
+<img src="https://github.com/mobsenpai/hana/assets/92603465/af165839-acb5-491d-bb0d-ca821587029a" align="right" width="400px">
+
 > [!NOTE]
 >
 > **System Information:**
