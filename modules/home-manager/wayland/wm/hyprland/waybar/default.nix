@@ -124,7 +124,13 @@
       #window,
       #memory,
       #tray {
-        padding: 2px 2px;
+        margin: 2px;
+      }
+
+      #custom-playerctl {
+        background: ${xcolors.lightbg2};
+        padding: 0px 2px 0px 0px;
+        margin: 2px 0px 2px 2px;        
       }
 
       /* Workspaces */

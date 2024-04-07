@@ -50,7 +50,7 @@
     };
 
     monitor = [
-      ", preferred, auto, auto"
+      "eDP-1, highres, 0x0, 1"
     ];
 
     # Decorations

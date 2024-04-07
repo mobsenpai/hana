@@ -30,7 +30,7 @@
   # Apps
   volume = "${pkgs.pavucontrol}/bin/pavucontrol";
   screenshot = ''${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f -'';
-  screenshot_clipboard = ''${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png"'';
+  screenshot_clipboard = ''${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
   emoji_picker = "${pkgs.wofi-emoji}/bin/wofi-emoji";
   process_monitor = "${terminal} --class bottom -e ${pkgs.bottom}/bin/btm";
   clipboard = "${pkgs.cliphist}/bin/cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
@@ -43,7 +43,7 @@ in {
         # ===================================================================
         "SUPER, Q, killactive"
         "SUPER SHIFT, Q, exit"
-        # screenshot
+        # Screenshot
         ", Print, exec, ${screenshot}"
         "SHIFT, Print, exec, ${screenshot_clipboard}"
         # Clipboard

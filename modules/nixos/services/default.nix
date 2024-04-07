@@ -6,5 +6,7 @@
 
   services = {
     gvfs.enable = true;
+    tumbler.enable = true;
+    udev.packages = with pkgs; [android-udev-rules];
   };
 }
