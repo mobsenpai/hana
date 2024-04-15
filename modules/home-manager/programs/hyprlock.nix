@@ -101,7 +101,7 @@
         {
           text = "";
           color = "rgb(255, 255, 255)";
-          font_family = "monospace"; # TODO: monospace?
+          font_family = "monospace"; # TODO: monospace? + check theme
           font_size = 32;
           position = {
             x = 0;
