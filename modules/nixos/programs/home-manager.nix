@@ -1,20 +1,17 @@
 {
   config,
-  inputs,
   lib,
   ...
 }: {
-  imports = [
-    inputs.home-manager.nixosModules.default
-  ];
+  options = {
+    mynixos.home-manager.enable = lib.mkEnableOption "enables home-manager";
+  };
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    verbose = true;
-    sharedModules = [
-      inputs.self.homeManagerModules.shell
-      {home.stateVersion = lib.mkForce config.system.stateVersion;}
-    ];
+  config = lib.mkIf config.mynixos.home-manager.enable {
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      verbose = true;
+    };
   };
 }

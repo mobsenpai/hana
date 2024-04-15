@@ -1,35 +1,32 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }: {
-  fonts = {
-    packages = with pkgs; [
-      noto-fonts-emoji
-      noto-fonts
-      noto-fonts-cjk
-      (nerdfonts.override {fonts = ["JetBrainsMono"];})
-    ];
+  options = {
+    mynixos.fontconfig.enable = lib.mkEnableOption "enables fontconfig";
+  };
 
-    fontconfig = {
-      enable = true;
-      antialias = true;
-      hinting = {
+  config = lib.mkIf config.mynixos.fontconfig.enable {
+    fonts = {
+      enableDefaultPackages = false;
+
+      fontconfig = {
         enable = true;
-        autohint = false;
-        style = "full";
+        defaultFonts = {
+          emoji = ["Noto Color Emoji"];
+          monospace = ["JetBrainsMono Nerd Font"];
+          serif = ["Noto Serif"];
+          sansSerif = ["Noto Sans"];
+        };
       };
-      subpixel = {
-        lcdfilter = "default";
-        rgba = "rgb";
-      };
-
-      defaultFonts = {
-        emoji = ["Noto Color Emoji"];
-        monospace = ["JetBrainsMono Nerd Font"];
-        serif = ["Noto Serif"];
-        sansSerif = ["Noto Sans"];
-      };
+      packages = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        (nerdfonts.override {fonts = ["JetBrainsMono"];})
+      ];
     };
   };
 }

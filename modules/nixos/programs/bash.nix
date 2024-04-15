@@ -1,9 +1,18 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }: {
-  programs.bash = {
-    promptInit = ''eval "$(${lib.getExe pkgs.starship} init bash)"'';
+  options = {
+    mynixos.bash.enable = lib.mkEnableOption "enables bash";
+  };
+
+  config = lib.mkIf config.mynixos.bash.enable {
+    programs.bash = {
+      promptInit = ''
+        eval "$(${pkgs.starship}/bin/starship init bash)"
+      '';
+    };
   };
 }

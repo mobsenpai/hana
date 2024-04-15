@@ -1,10 +1,18 @@
-{pkgs, ...}: {
-  users.mutableUsers = false;
-  users.users.yashraj = {
-    initialPassword = "nixos";
-    isNormalUser = true;
-    extraGroups = ["audio" "networkmanager" "video" "wheel"];
+{
+  config,
+  lib,
+  ...
+}: {
+  options = {
+    mynixos.users-group.enable = lib.mkEnableOption "enables users-group";
+  };
 
-    packages = [pkgs.home-manager];
+  config = lib.mkIf config.mynixos.users-group.enable {
+    users.mutableUsers = false;
+    users.users.yashraj = {
+      initialPassword = "nixos";
+      isNormalUser = true;
+      extraGroups = ["audio" "networkmanager" "video" "wheel"];
+    };
   };
 }

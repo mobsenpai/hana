@@ -1,19 +1,29 @@
-{lib, ...}: {
-  hardware.pulseaudio.enable = lib.mkForce false;
-  security.rtkit.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-
-    pulse.enable = true;
+{
+  config,
+  lib,
+  ...
+}: {
+  options = {
+    mynixos.pipewire.enable = lib.mkEnableOption "enables pipewire";
   };
 
-  sound = {
-    enable = true;
-    mediaKeys.enable = true;
+  config = lib.mkIf config.mynixos.pipewire.enable {
+    hardware.pulseaudio.enable = false;
+    security.rtkit.enable = true;
+
+    services.pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+
+      pulse.enable = true;
+    };
+
+    sound = {
+      enable = true;
+      mediaKeys.enable = true;
+    };
   };
 }

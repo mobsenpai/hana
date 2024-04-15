@@ -1,17 +1,11 @@
 {
   imports = [
-    ./nix
-
+    ./boot.nix
     ./fontconfig.nix
+    ./i18n.nix
+    ./locale.nix
+    ./nix.nix
+    ./system-path.nix
     ./users-group.nix
   ];
-
-  # Set your time zone
-  time = {
-    hardwareClockInLocalTime = true;
-    timeZone = "Asia/Kolkata";
-  };
-
-  # Select internationalisation properties
-  i18n.defaultLocale = "en_IN";
 }

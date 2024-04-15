@@ -1,7 +1,17 @@
-{pkgs, ...}: {
-  hardware.bluetooth = {
-    enable = true;
+{
+  config,
+  lib,
+  ...
+}: {
+  options = {
+    mynixos.bluetooth.enable = lib.mkEnableOption "enables bluetooth";
   };
 
-  services.blueman.enable = true;
+  config = lib.mkIf config.mynixos.bluetooth.enable {
+    hardware.bluetooth = {
+      enable = true;
+    };
+
+    services.blueman.enable = true;
+  };
 }

@@ -1,9 +1,19 @@
 {
-  networking = {
-    networkmanager = {
-      enable = true;
-    };
+  config,
+  lib,
+  ...
+}: {
+  options = {
+    mynixos.networking.enable = lib.mkEnableOption "enables networking";
+  };
 
-    useDHCP = false;
+  config = lib.mkIf config.mynixos.networking.enable {
+    networking = {
+      networkmanager = {
+        enable = true;
+      };
+
+      useDHCP = false;
+    };
   };
 }
