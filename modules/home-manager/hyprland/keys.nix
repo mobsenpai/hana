@@ -6,34 +6,34 @@
 #╚═╝░░╚═╝╚══════╝░░░╚═╝░░░╚═════╝░╚═╝╚═╝░░╚══╝╚═════╝░╚═════╝░
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
 }: let
-  # User
+  # Helpers
   # ===================================================================
   gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
   xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
   defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
 
-  terminal = config.home.sessionVariables.TERMINAL;
-  floating_terminal = "${terminal} --class floating_terminal";
-  editor = "${terminal} --class editor -e ${defaultApp "text/plain"}";
-  browser = defaultApp "x-scheme-handler/https";
-  file_manager = "${pkgs.pcmanfm}/bin/pcmanfm";
-  app_launcher = "${pkgs.wofi}/bin/wofi --show drun";
+  # User
+  # ===================================================================
+  user = {
+    browser = defaultApp "x-scheme-handler/https";
+    terminal = config.home.sessionVariables.TERMINAL;
+    floating_terminal = "${user.terminal} --class floating_terminal";
+    app_launcher = "${pkgs.wofi}/bin/wofi --show drun";
+  };
 
   # Features
   # ===================================================================
   # Apps
-  volume = "${pkgs.pavucontrol}/bin/pavucontrol";
-  screenshot = ''${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f -'';
-  screenshot_clipboard = ''${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
-  emoji_picker = "${pkgs.wofi-emoji}/bin/wofi-emoji";
-  process_monitor = "${terminal} --class process_monitor -e ${pkgs.bottom}/bin/btm";
-  clipboard = "${pkgs.cliphist}/bin/cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-  lockscreen = "${lib.getExe inputs.hyprlock.packages.${pkgs.system}.default}";
+  apps = {
+    screenshot_full = ''${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f -'';
+    screenshot_clipboard = ''${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
+    clipboard = "${pkgs.cliphist}/bin/cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+    emoji_picker = "${pkgs.wofi-emoji}/bin/wofi-emoji";
+  };
 in {
   options = {
     myhome.hyprland.keys.enable = lib.mkEnableOption "enables keys";
@@ -48,27 +48,19 @@ in {
           "SUPER, Q, killactive"
           "SUPER SHIFT, Q, exit"
           # Screenshot
-          ", Print, exec, ${screenshot}"
-          "SHIFT, Print, exec, ${screenshot_clipboard}"
+          ", Print, exec, ${apps.screenshot_full}"
+          "SHIFT, Print, exec, ${apps.screenshot_clipboard}"
           # Clipboard
-          "SUPER, V, exec, ${clipboard}"
+          "SUPER, V, exec, ${apps.clipboard}"
           # Lockscreen
-          "SUPER ALT, L, exec, ${lockscreen}"
+          "SUPER ALT, L, exec, ${pkgs.systemd}/bin/loginctl lock-session"
 
           # Launchers
           # ===================================================================
-          "SUPER, RETURN, exec, ${terminal}"
-          "SUPER SHIFT, RETURN, exec, ${floating_terminal}"
-          "SUPER, A, exec, ${app_launcher}"
-          "SUPER, E, exec, ${emoji_picker}"
-
-          # Run or raise
-          "SUPER, F2, exec, pgrep ${browser} hyprctl dispatch focuswindow ${browser} || ${browser}"
-          "SUPER , F2, exec, pidof -s ${browser} && hyprctl dispatch focuswindow pid:$(pidof -s ${browser}) || ${browser}"
-          "SUPER, F3, exec, [float] pidof -s ${file_manager} && hyprctl dispatch focuswindow pid:$(pidof -s ${file_manager}) || ${file_manager}"
-          "SUPER, F5, exec, pidof -s editor && hyprctl dispatch focuswindow pid:$(pidof -s editor) || ${editor}"
-          "SUPER, F11, exec, pidof -s ${volume} && hyprctl dispatch focuswindow pid:$(pidof -s ${volume}) || ${volume}"
-          "SUPER, F12, exec, pidof -s process_monitor && hyprctl dispatch focuswindow pid:$(pidof -s process_monitor) || ${process_monitor}"
+          "SUPER, RETURN, exec, ${user.terminal}"
+          "SUPER SHIFT, RETURN, exec, ${user.floating_terminal}"
+          "SUPER, A, exec, ${user.app_launcher}"
+          "SUPER, E, exec, ${apps.emoji_picker}"
 
           # Client manipulation
           # ===================================================================
@@ -84,6 +76,9 @@ in {
           # ===================================================================
           "SUPER CTRL, SPACE, togglefloating"
           "ALT, TAB, cyclenext, 1"
+          "ALT, TAB, alterzorder, top"
+          "ALT SHIFT, TAB, cyclenext, prev"
+          "ALT SHIFT, TAB, alterzorder, top"
 
           # Move focus with mod + arrow keys
           "SUPER, left, movefocus, l"

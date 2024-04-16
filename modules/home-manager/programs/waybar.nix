@@ -133,8 +133,7 @@
 
         #custom-playerctl {
           background: ${lightbg2};
-          padding: 0px 2px 0px 0px;
-          margin: 2px 0px 2px 2px;
+          padding-right: 2px;
         }
 
         /* Workspaces */
@@ -167,36 +166,26 @@
 
         /* Systray */
         menu {
-          background: ${black};
-          border: 1px solid ${lightbg2};
+          background: ${lightbg};
+          border: 1px solid ${darkbg};
           border-radius: 8px;
           color: ${white};
         }
 
         menu separator {
-          background: ${lightbg2};
+          background: ${darkbg};
         }
 
         menu menuitem {
           background: transparent;
-          padding: 8px;
+          padding: 4px;
+          margin: 4px;
         }
 
         menu menuitem:hover {
-          background: ${brightorange};
-          color: ${darkbg};
-        }
-
-        menu menuitem:first-child {
-          border-radius: 8px 8px 0 0;
-        }
-
-        menu menuitem:last-child {
-          border-radius: 0 0 8px 8px;
-        }
-
-        menu menuitem:only-child {
+          background: ${lightbg2};
           border-radius: 8px;
+          color: ${white};
         }
       '';
     };
