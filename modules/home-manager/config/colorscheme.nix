@@ -1,11 +1,19 @@
-{lib, ...}: {
-  options.myhome.colorscheme = lib.mkOption {
-    type = lib.types.attrs;
-    description = "Colorscheme";
+{
+  config,
+  lib,
+  ...
+}: {
+  options.myhome.colorscheme = {
+    colors = lib.mkOption {
+      type = lib.types.attrs;
+      default = {};
+      description = "Attribute set of colors";
+    };
 
-    # default = {
-    #   colors = {};
-    #   xcolors = {};
-    # };
+    xcolors = lib.mkOption {
+      type = lib.types.attrs;
+      default = lib.mapAttrsRecursive (_: color: "#${color}") config.myhome.colorscheme.colors;
+      description = "Adds # to colors";
+    };
   };
 }
