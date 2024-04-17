@@ -1,10 +1,9 @@
 {
   imports = [./hardware-configuration.nix];
 
-  # Nixos modules
-  # ===================================================================
   mynixos = {
     base.enable = true;
+    general-desktop.enable = true;
 
     hyprland.enable = true;
   };
