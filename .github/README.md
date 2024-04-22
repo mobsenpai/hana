@@ -42,10 +42,8 @@ nix flake show github:mobsenpai/hana
 
 ## :package: Repository Contents
 
-- **[Flake](../flake):** Core flake scaffolding.
 - **[Home](../home):** [Home-Manager](https://github.com/nix-community/home-manager) configurations.
 - **[Hosts](../hosts):** Host-specific configurations.
-- **[Lib](../lib):** Utility scripts and personal library.
 - **[Modules](../modules):** System-wide shared modules.
 
 ## :bulb: Acknowledgments
@@ -55,5 +53,5 @@ Special thanks to the following individuals:
 <p align="center">
   <a href="https://github.com/rxyhn">rxyhn</a> •
   <a href="https://github.com/Misterio77">Misterio77</a> •
-  <a href="https://github.com/JavaCafe01">JavaCafe01</a>
+  <a href="https://github.com/vimjoyer">vimjoyer</a>
 </p>
