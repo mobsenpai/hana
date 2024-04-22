@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    myhome.helix.enable = lib.mkEnableOption "enables helix";
+    myhome.helix.enable = lib.mkEnableOption "Enables helix";
   };
 
   config = lib.mkIf config.myhome.helix.enable {

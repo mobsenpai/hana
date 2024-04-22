@@ -9,7 +9,7 @@
   ];
 
   options = {
-    myhome.hyprland.enable = lib.mkEnableOption "enable hyprland";
+    myhome.hyprland.enable = lib.mkEnableOption "Enable hyprland";
   };
 
   config = lib.mkIf config.myhome.hyprland.enable {

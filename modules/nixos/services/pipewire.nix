@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    mynixos.pipewire.enable = lib.mkEnableOption "enables pipewire";
+    mynixos.pipewire.enable = lib.mkEnableOption "Enables pipewire";
   };
 
   config = lib.mkIf config.mynixos.pipewire.enable {

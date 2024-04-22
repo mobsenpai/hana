@@ -18,7 +18,7 @@ in {
   ];
 
   options = {
-    myhome.hypridle.enable = lib.mkEnableOption "enables hypridle";
+    myhome.hypridle.enable = lib.mkEnableOption "Enables hypridle";
   };
 
   config = lib.mkIf config.myhome.hypridle.enable {

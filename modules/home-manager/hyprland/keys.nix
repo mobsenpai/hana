@@ -36,7 +36,7 @@
   };
 in {
   options = {
-    myhome.hyprland.keys.enable = lib.mkEnableOption "enables keys";
+    myhome.hyprland.keys.enable = lib.mkEnableOption "Enables keys";
   };
 
   config = lib.mkIf config.myhome.hyprland.keys.enable {

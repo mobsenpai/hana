@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    myhome.media.enable = lib.mkEnableOption "enables media";
+    myhome.media.enable = lib.mkEnableOption "Enables media";
   };
 
   config = lib.mkIf config.myhome.media.enable {

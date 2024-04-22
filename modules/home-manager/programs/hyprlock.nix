@@ -9,11 +9,11 @@
   ];
 
   options = {
-    myhome.hyprlock.enable = lib.mkEnableOption "enables hyprlock";
+    myhome.hyprlock.enable = lib.mkEnableOption "Enables hyprlock";
   };
 
   config = lib.mkIf config.myhome.hyprlock.enable {
-    programs.hyprlock = {
+    programs.hyprlock = with config.myhome.colorscheme; {
       enable = true;
       general = {
         disable_loading_bar = true;
@@ -44,9 +44,9 @@
           dots_size = 0.25;
           dots_spacing = 0.25;
           dots_center = true;
-          outer_color = "rgba(0, 0, 0, 0)";
-          inner_color = "rgba(0, 0, 0, 0.5)";
-          font_color = "rgb(200, 200, 200)";
+          outer_color = "rgb(${colors.black})";
+          inner_color = "rgb(${colors.black})";
+          font_color = "rgb(${colors.white})";
           fade_on_empty = false;
           placeholder_text = "<i>Input Password...</i>";
           hide_input = false;
@@ -61,7 +61,7 @@
       labels = [
         {
           text = "$TIME";
-          color = "rgb(255, 255, 255)";
+          color = "rgb(${colors.white})";
           font_size = 80;
           font_family = "JetBrainsMono Nerd Font ExtraBold";
           position = {
@@ -73,7 +73,7 @@
         }
         {
           text = "Hi there, $USER";
-          color = "rgb(255, 255, 255)";
+          color = "rgb(${colors.white})";
           font_size = 18;
           font_family = "JetBrainsMono Nerd Font";
           position = {

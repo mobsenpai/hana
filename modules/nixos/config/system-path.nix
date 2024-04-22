@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    mynixos.system-path.enable = lib.mkEnableOption "enables system-path";
+    mynixos.system-path.enable = lib.mkEnableOption "Enables system-path";
   };
 
   config = lib.mkIf config.mynixos.system-path.enable {

@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    mynixos.mtp.enable = lib.mkEnableOption "enables mtp";
+    mynixos.mtp.enable = lib.mkEnableOption "Enables mtp";
   };
 
   config = lib.mkIf config.mynixos.mtp.enable {

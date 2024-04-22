@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    mynixos.nix.enable = lib.mkEnableOption "enables nix";
+    mynixos.nix.enable = lib.mkEnableOption "Enables nix";
   };
 
   config = lib.mkIf config.mynixos.nix.enable {

@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    myhome.alacritty.enable = lib.mkEnableOption "enables alacritty";
+    myhome.alacritty.enable = lib.mkEnableOption "Enables alacritty";
   };
 
   config = lib.mkIf config.myhome.alacritty.enable {
@@ -12,7 +12,7 @@
 
     programs.alacritty = {
       enable = true;
-      settings = with config.myhome.colorscheme.xcolors; {
+      settings = {
         window = {
           padding = {
             x = 30;
@@ -47,32 +47,32 @@
           shape = "Underline";
         };
 
-        colors = {
+        colors = with config.myhome.colorscheme; {
           primary = {
-            background = black;
-            foreground = brightwhite;
+            background = xcolors.black;
+            foreground = xcolors.white;
           };
 
           normal = {
-            black = black;
-            red = red;
-            green = green;
-            yellow = yellow;
-            blue = blue;
-            magenta = magenta;
-            cyan = cyan;
-            white = white;
+            black = xcolors.black;
+            red = xcolors.dark-red;
+            green = xcolors.dark-green;
+            yellow = xcolors.dark-yellow;
+            blue = xcolors.dark-blue;
+            magenta = xcolors.dark-purple;
+            cyan = xcolors.dark-aqua;
+            white = xcolors.gray;
           };
 
           bright = {
-            black = brightblack;
-            red = brightred;
-            green = brightgreen;
-            yellow = brightyellow;
-            blue = brightblue;
-            magenta = brightmagenta;
-            cyan = brightcyan;
-            white = brightwhite;
+            black = xcolors.dark-gray;
+            red = xcolors.red;
+            green = xcolors.green;
+            yellow = xcolors.yellow;
+            blue = xcolors.blue;
+            magenta = xcolors.purple;
+            cyan = xcolors.aqua;
+            white = xcolors.white;
           };
         };
       };

@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    myhome.starship.enable = lib.mkEnableOption "enables starship";
+    myhome.starship.enable = lib.mkEnableOption "Enables starship";
   };
 
   config = lib.mkIf config.myhome.starship.enable {

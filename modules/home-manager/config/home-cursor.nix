@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    myhome.home-cursor.enable = lib.mkEnableOption "enables home-cursor";
+    myhome.home-cursor.enable = lib.mkEnableOption "Enables home-cursor";
   };
 
   config = lib.mkIf config.myhome.home-cursor.enable {

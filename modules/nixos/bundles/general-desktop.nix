@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    mynixos.general-desktop.enable = lib.mkEnableOption "enables general-desktop";
+    mynixos.general-desktop.enable = lib.mkEnableOption "Enables general-desktop";
   };
 
   config = lib.mkIf config.mynixos.base.enable {

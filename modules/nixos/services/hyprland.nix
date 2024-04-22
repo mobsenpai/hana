@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    mynixos.hyprland.enable = lib.mkEnableOption "enables hyprland";
+    mynixos.hyprland.enable = lib.mkEnableOption "Enables hyprland";
   };
 
   config = lib.mkIf config.mynixos.hyprland.enable {
@@ -23,9 +23,7 @@
     };
 
     security = {
-      pam.services = {
-        hyprlock.text = "auth include login";
-      };
+      pam.services.hyprlock.text = "auth include login";
     };
 
     xdg.portal = {

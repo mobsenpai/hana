@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    myhome.desktop.enable = lib.mkEnableOption "enables desktop";
+    myhome.desktop.enable = lib.mkEnableOption "Enables desktop";
   };
 
   config = lib.mkIf config.myhome.desktop.enable {

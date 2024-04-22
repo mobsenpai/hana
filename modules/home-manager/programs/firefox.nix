@@ -23,7 +23,7 @@
   ];
 in {
   options = {
-    myhome.firefox.enable = lib.mkEnableOption "enables firefox";
+    myhome.firefox.enable = lib.mkEnableOption "Enables firefox";
   };
 
   config = lib.mkIf config.myhome.firefox.enable {

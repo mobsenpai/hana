@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    myhome.git.enable = lib.mkEnableOption "enables git";
+    myhome.git.enable = lib.mkEnableOption "Enables git";
   };
 
   config = lib.mkIf config.myhome.git.enable {

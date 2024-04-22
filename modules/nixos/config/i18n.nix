@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    mynixos.i18n.enable = lib.mkEnableOption "enables i18n";
+    mynixos.i18n.enable = lib.mkEnableOption "Enables i18n";
   };
 
   config = lib.mkIf config.mynixos.i18n.enable {

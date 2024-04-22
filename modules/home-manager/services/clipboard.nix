@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    myhome.clipboard.enable = lib.mkEnableOption "enables clipboard";
+    myhome.clipboard.enable = lib.mkEnableOption "Enables clipboard";
   };
 
   config = lib.mkIf config.myhome.clipboard.enable {

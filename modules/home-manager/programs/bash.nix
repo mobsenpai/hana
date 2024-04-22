@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    myhome.bash.enable = lib.mkEnableOption "enables bash";
+    myhome.bash.enable = lib.mkEnableOption "Enables bash";
   };
 
   config = lib.mkIf config.myhome.bash.enable {

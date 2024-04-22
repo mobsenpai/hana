@@ -4,18 +4,16 @@
   ...
 }: {
   options = {
-    myhome.wofi.enable = lib.mkEnableOption "enables wofi";
+    myhome.wofi.enable = lib.mkEnableOption "Enables wofi";
   };
 
   config = lib.mkIf config.myhome.wofi.enable {
     programs.wofi = {
       enable = true;
       settings = {
-        allow_images = true;
         columns = 1;
         height = "55%";
         hide_scroll = true;
-        image_size = 30;
         insensitive = true;
         layer = "top";
         location = "center";
@@ -24,56 +22,51 @@
         width = "25%";
       };
 
-      style = with config.myhome.colorscheme.xcolors; ''
+      style = with config.myhome.colorscheme; ''
         *{
           all: unset;
-          font-family: JetBrainsMono Nerd Font;
+          font-family: "JetBrainsMono Nerd Font";
           font-size: 10pt;
-          font-weight: bold;
+          font-weight: normal;
         }
 
         #window {
-          background: ${black};
+          background: ${xcolors.soft-black};
           border-radius: 8px;
-          border: 2px solid ${orange};
+          border: 1px solid ${xcolors.light-black};
         }
 
         #input {
-          background: ${black};
-          color: ${brightwhite};
-          margin-bottom: 8px;
-          padding: 2px;
+          background: ${xcolors.soft-black};
+          border-bottom: 1px solid ${xcolors.light-black};
+          color: ${xcolors.white};
+          margin-bottom: 4px;
+          padding: 4px;
         }
 
         #input > image.left {
-          margin-right: 10px;
+          margin-right: 4px;
         }
 
-        #outer-box {
-          padding: 15px;
-        }
-
-        #text {
-          color: ${brightwhite};
+        #input > image.right  {
           margin-left: 4px;
         }
 
-        #text:selected {
-          color: ${darkbg};
+        #outer-box {
+          padding: 4px;
         }
 
-        #img {
-          background: transparent;
+        #text {
+          color: ${xcolors.white};
         }
 
         #entry {
-          border-radius: 8px;
-          margin: 2px;
+          border-radius: 4px;
           padding: 4px;
         }
 
         #entry:selected {
-          background: ${brightorange};
+          background: ${xcolors.light-black};
         }
       '';
     };

@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    mynixos.gnome-keyring.enable = lib.mkEnableOption "enables gnome-keyring";
+    mynixos.gnome-keyring.enable = lib.mkEnableOption "Enables gnome-keyring";
   };
 
   config = lib.mkIf config.mynixos.gnome-keyring.enable {

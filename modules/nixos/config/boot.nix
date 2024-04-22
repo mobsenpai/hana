@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    mynixos.boot.enable = lib.mkEnableOption "enables boot";
+    mynixos.boot.enable = lib.mkEnableOption "Enables boot";
   };
 
   config = lib.mkIf config.mynixos.boot.enable {

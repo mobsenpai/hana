@@ -79,7 +79,7 @@
     '';
 in {
   options = {
-    myhome.hyprland.options.enable = lib.mkEnableOption "enables hyprland";
+    myhome.hyprland.options.enable = lib.mkEnableOption "Enables hyprland";
   };
 
   config = lib.mkIf config.myhome.hyprland.options.enable {
@@ -99,26 +99,15 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      settings = with config.myhome.colorscheme.colors; {
+      settings = with config.myhome.colorscheme; {
         # Initialization
         # ===================================================================
-        input = {
-          follow_mouse = 1;
-          float_switch_override_focus = 0;
-
-          touchpad = {
-            natural_scroll = false;
-          };
-
-          sensitivity = 0;
-        };
-
         general = {
-          border_size = 3;
-          "col.active_border" = "rgb(${orange})";
-          "col.inactive_border" = "rgb(${lightbg2})";
-          gaps_in = 5;
-          gaps_out = 10;
+          border_size = 2;
+          "col.active_border" = "rgb(${colors.white})";
+          "col.inactive_border" = "rgb(${colors.light-black})";
+          gaps_in = 4;
+          gaps_out = 8;
         };
 
         misc = {
@@ -156,12 +145,13 @@ in {
         };
 
         decoration = {
-          rounding = 10;
+          rounding = 8;
 
           drop_shadow = true;
-          shadow_range = 4;
+          shadow_offset = "0 2";
+          shadow_range = 20;
           shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          "col.shadow" = "rgba(00000055)";
 
           blur = {
             enabled = true;
@@ -198,8 +188,7 @@ in {
           "float, class:^(imv)$"
           "float, class:^(xdg-desktop-portal-gtk)$"
 
-          # Floating and scratchpad terminal float
-          "float, class:^(scratchpad)$, title:^(Alacritty)$"
+          # Floating terminal float
           "float, class:^(floating_terminal)$, title:^(Alacritty)$"
 
           # Pin windows on top

@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    mynixos.polkit-gnome.enable = lib.mkEnableOption "enables polkit-gnome";
+    mynixos.polkit-gnome.enable = lib.mkEnableOption "Enables polkit-gnome";
   };
 
   config = lib.mkIf config.mynixos.polkit-gnome.enable {

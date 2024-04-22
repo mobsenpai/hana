@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    mynixos.bash.enable = lib.mkEnableOption "enables bash";
+    mynixos.bash.enable = lib.mkEnableOption "Enables bash";
   };
 
   config = lib.mkIf config.mynixos.bash.enable {

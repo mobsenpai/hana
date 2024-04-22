@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    myhome.hyprpaper.enable = lib.mkEnableOption "enables hyprpaper";
+    myhome.hyprpaper.enable = lib.mkEnableOption "Enables hyprpaper";
   };
 
   config = lib.mkIf config.myhome.hyprpaper.enable {

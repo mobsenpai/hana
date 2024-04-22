@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    myhome.base-dev.enable = lib.mkEnableOption "enables base dev";
+    myhome.base-dev.enable = lib.mkEnableOption "Enables base dev";
   };
 
   config = lib.mkIf config.myhome.base-dev.enable {

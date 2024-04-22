@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    myhome.utils.enable = lib.mkEnableOption "enables utils";
+    myhome.utils.enable = lib.mkEnableOption "Enables utils";
   };
 
   config = lib.mkIf config.myhome.utils.enable {

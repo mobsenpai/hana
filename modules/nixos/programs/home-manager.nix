@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    mynixos.home-manager.enable = lib.mkEnableOption "enables home-manager";
+    mynixos.home-manager.enable = lib.mkEnableOption "Enables home-manager";
   };
 
   config = lib.mkIf config.mynixos.home-manager.enable {

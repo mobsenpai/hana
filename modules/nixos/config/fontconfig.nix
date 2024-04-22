@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    mynixos.fontconfig.enable = lib.mkEnableOption "enables fontconfig";
+    mynixos.fontconfig.enable = lib.mkEnableOption "Enables fontconfig";
   };
 
   config = lib.mkIf config.mynixos.fontconfig.enable {

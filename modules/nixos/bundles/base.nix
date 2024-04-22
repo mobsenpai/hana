@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    mynixos.base.enable = lib.mkEnableOption "enables base";
+    mynixos.base.enable = lib.mkEnableOption "Enables base";
   };
 
   config = lib.mkIf config.mynixos.base.enable {

@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    mynixos.locale.enable = lib.mkEnableOption "enables locale";
+    mynixos.locale.enable = lib.mkEnableOption "Enables locale";
   };
 
   config = lib.mkIf config.mynixos.locale.enable {

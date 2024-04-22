@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    mynixos.users-group.enable = lib.mkEnableOption "enables users-group";
+    mynixos.users-group.enable = lib.mkEnableOption "Enables users-group";
   };
 
   config = lib.mkIf config.mynixos.users-group.enable {
