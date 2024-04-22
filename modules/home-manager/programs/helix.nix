@@ -13,20 +13,59 @@
     programs.helix = {
       enable = true;
 
-      languages.language = [
+      languages = {
+      language-server.emmet-ls = {
+        command = "emmet-ls";
+        args = ["--stdio"];
+      }; 
+
+      language = [
         {
           name = "html";
+          file-types = ["html" "htm"];
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "html"];
+          };
+          language-servers = ["vscode-html-language-server" "emmet-ls"];
+        }
+        {
+          name = "json";
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "json"];
+          };
         }
         {
           name = "css";
+          file-types = ["css"];
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "css"];
+          };
+          language-servers = ["vscode-css-language-server" "emmet-ls"];
         }
         {
           name = "javascript";
+          file-types = ["js" "jsx" "ts" "tsx"];
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "typescript"];
+          };
+          language-servers = ["typescript-language-server" "emmet-ls"];
         }
         {
           name = "nix";
+          auto-format = true;
+          formatter.command = "alejandra";
+          language-servers = ["nil"];
         }
       ];
+      };
 
       settings = {
         theme = "base16_transparent";
