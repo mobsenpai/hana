@@ -24,8 +24,7 @@
 
       backgrounds = [
         {
-          path = "";
-          color = "rgba(0, 0, 0, 0.5)";
+          path = config.myhome.wallpaper;
           blur_passes = 3;
           contrast = 0.8916;
           brightness = 0.8172;
@@ -63,7 +62,7 @@
           text = "$TIME";
           color = "rgb(${colors.white})";
           font_size = 80;
-          font_family = "JetBrainsMono Nerd Font ExtraBold";
+          font_family = "Fira Mono Nerd Font ExtraBold";
           position = {
             x = 0;
             y = -200;
@@ -75,7 +74,7 @@
           text = "Hi there, $USER";
           color = "rgb(${colors.white})";
           font_size = 18;
-          font_family = "JetBrainsMono Nerd Font";
+          font_family = "Fira Mono Nerd Font";
           position = {
             x = 0;
             y = -30;

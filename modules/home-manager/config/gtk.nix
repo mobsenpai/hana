@@ -60,8 +60,8 @@ in {
       enable = true;
 
       font = {
-        package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-        name = "JetBrainsMono Nerd Font";
+        package = pkgs.nerdfonts.override {fonts = ["FiraMono"];};
+        name = "Fira Mono Nerd Font";
         size = 10;
       };
 

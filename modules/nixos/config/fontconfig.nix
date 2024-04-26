@@ -16,7 +16,7 @@
         enable = true;
         defaultFonts = {
           emoji = ["Noto Color Emoji"];
-          monospace = ["JetBrainsMono Nerd Font"];
+          monospace = ["FiraMono Nerd Font"];
           serif = ["Noto Serif"];
           sansSerif = ["Noto Sans"];
         };
@@ -25,7 +25,7 @@
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
-        (nerdfonts.override {fonts = ["JetBrainsMono"];})
+        (nerdfonts.override {fonts = ["FiraMono"];})
       ];
     };
   };

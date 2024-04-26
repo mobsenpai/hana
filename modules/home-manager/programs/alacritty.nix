@@ -24,19 +24,19 @@
 
         font = {
           bold = {
-            family = "JetBrainsMono Nerd Font";
+            family = "FiraMono Nerd Font";
             style = "Bold";
           };
           bold_italic = {
-            family = "JetBrainsMono Nerd Font";
+            family = "FiraMono Nerd Font";
             style = "Bold Italic";
           };
           italic = {
-            family = "JetBrainsMono Nerd Font";
+            family = "FiraMono Nerd Font";
             style = "Italic";
           };
           normal = {
-            family = "JetBrainsMono Nerd Font";
+            family = "FiraMono Nerd Font";
             style = "Regular";
           };
 

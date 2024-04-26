@@ -97,6 +97,10 @@ in {
       volumectl
     ];
 
+    # xdg.mimeApps.defaultApplications = {
+    #   "inode/directory" = "pcmanfm.desktop";
+    # };
+
     wayland.windowManager.hyprland = {
       enable = true;
       settings = with config.myhome.colorscheme; {
@@ -108,6 +112,7 @@ in {
           "col.inactive_border" = "rgb(${colors.light-black})";
           gaps_in = 4;
           gaps_out = 8;
+          layout = "master";
         };
 
         misc = {
@@ -145,19 +150,13 @@ in {
         };
 
         decoration = {
-          rounding = 8;
-
           drop_shadow = true;
           shadow_offset = "0 2";
           shadow_range = 20;
           shadow_render_power = 3;
           "col.shadow" = "rgba(00000055)";
 
-          blur = {
-            enabled = true;
-            passes = 1;
-            size = 3;
-          };
+          rounding = 8;
         };
 
         # Layouts

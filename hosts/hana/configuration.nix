@@ -4,6 +4,7 @@
   mynixos = {
     base.enable = true;
     general-desktop.enable = true;
+    laptop.enable = true;
 
     hyprland.enable = true;
   };

@@ -19,9 +19,12 @@
   # User
   # ===================================================================
   user = {
-    browser = defaultApp "x-scheme-handler/https";
     terminal = config.home.sessionVariables.TERMINAL;
     floating_terminal = "${user.terminal} --class floating_terminal";
+    browser = defaultApp "x-scheme-handler/https";
+    editor = defaultApp "text/plain";
+    file_manager = defaultApp "inode/directory";
+    term_filemanager = "alacritty --class term_filemanager -e yazi";
     app_launcher = "${pkgs.wofi}/bin/wofi --show drun";
   };
 
@@ -61,6 +64,7 @@ in {
           "SUPER SHIFT, RETURN, exec, ${user.floating_terminal}"
           "SUPER, A, exec, ${user.app_launcher}"
           "SUPER, E, exec, ${apps.emoji_picker}"
+          "SUPER, R, exec, ${defaultApp "text/plain"}"
 
           # Client manipulation
           # ===================================================================
