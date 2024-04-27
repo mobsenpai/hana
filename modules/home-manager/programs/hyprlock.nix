@@ -43,9 +43,9 @@
           dots_size = 0.25;
           dots_spacing = 0.25;
           dots_center = true;
-          outer_color = "rgb(${colors.black})";
-          inner_color = "rgb(${colors.black})";
-          font_color = "rgb(${colors.white})";
+          outer_color = "rgb(${colors.bg0})";
+          inner_color = "rgb(${colors.bg0})";
+          font_color = "rgb(${colors.fg1})";
           fade_on_empty = false;
           placeholder_text = "<i>Input Password...</i>";
           hide_input = false;
@@ -60,9 +60,9 @@
       labels = [
         {
           text = "$TIME";
-          color = "rgb(${colors.white})";
+          color = "rgb(${colors.fg1})";
           font_size = 80;
-          font_family = "Fira Mono Nerd Font ExtraBold";
+          font_family = "FiraMono Nerd Font ExtraBold";
           position = {
             x = 0;
             y = -200;
@@ -72,9 +72,9 @@
         }
         {
           text = "Hi there, $USER";
-          color = "rgb(${colors.white})";
+          color = "rgb(${colors.fg1})";
           font_size = 18;
-          font_family = "Fira Mono Nerd Font";
+          font_family = "FiraMono Nerd Font";
           position = {
             x = 0;
             y = -30;

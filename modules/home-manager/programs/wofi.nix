@@ -31,15 +31,15 @@
         }
 
         #window {
-          background: ${xcolors.soft-black};
+          background: ${xcolors.bg1};
           border-radius: 8px;
-          border: 1px solid ${xcolors.light-black};
+          border: 1px solid ${xcolors.bg2};
         }
 
         #input {
-          background: ${xcolors.soft-black};
-          border-bottom: 1px solid ${xcolors.light-black};
-          color: ${xcolors.white};
+          background: ${xcolors.bg1};
+          border-bottom: 1px solid ${xcolors.bg2};
+          color: ${xcolors.fg1};
           margin-bottom: 4px;
           padding: 4px;
         }
@@ -57,7 +57,7 @@
         }
 
         #text {
-          color: ${xcolors.white};
+          color: ${xcolors.fg1};
         }
 
         #entry {
@@ -66,7 +66,7 @@
         }
 
         #entry:selected {
-          background: ${xcolors.light-black};
+          background: ${xcolors.bg2};
         }
       '';
     };

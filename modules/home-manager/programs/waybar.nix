@@ -36,13 +36,13 @@ in {
           };
 
           clock = {
-            format = formatIcon xcolors.blue xcolors.dark-black "" + formatText xcolors.dark-blue xcolors.white "{:%a %b %d - %I:%M %p}";
-            format-alt = formatIcon xcolors.blue xcolors.dark-black "" + formatText xcolors.dark-blue xcolors.white "{:%H:%M}";
+            format = formatIcon xcolors.blue1 xcolors.bg0 "" + formatText xcolors.blue0 xcolors.fg0 "{:%a %b %d - %I:%M %p}";
+            format-alt = formatIcon xcolors.blue1 xcolors.bg0 "" + formatText xcolors.blue0 xcolors.fg0 "{:%H:%M}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           };
 
           cpu = {
-            format = formatIcon xcolors.yellow xcolors.dark-black "" + formatText xcolors.soft-black xcolors.dark-yellow "{usage}%";
+            format = formatIcon xcolors.yellow1 xcolors.bg0 "" + formatText xcolors.bg1 xcolors.yellow0 "{usage}%";
           };
 
           "custom/notification" = {
@@ -67,7 +67,7 @@ in {
 
           "custom/playerctl" = {
             exec = "${pkgs.playerctl}/bin/playerctl -a metadata --format '{\"text\": \"{{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
-            format = formatIcon xcolors.purple xcolors.dark-black "{icon}" + formatText xcolors.soft-black xcolors.dark-purple "{}";
+            format = formatIcon xcolors.purple1 xcolors.bg0 "{icon}" + formatText xcolors.bg1 xcolors.purple0 "{}";
             format-icons = {
               "Paused" = "";
               "Playing" = "󰎈";
@@ -86,7 +86,7 @@ in {
 
           "custom/weather" = {
             exec = "${pkgs.wttrbar}/bin/wttrbar --location Bihar --hide-conditions";
-            format = formatIcon xcolors.green xcolors.dark-black "" + formatText xcolors.soft-black xcolors.dark-green "{}°";
+            format = formatIcon xcolors.green1 xcolors.bg0 "" + formatText xcolors.bg1 xcolors.green0 "{}°";
             tooltip = true;
             interval = 3600;
             return-type = "json";
@@ -130,7 +130,7 @@ in {
           };
 
           memory = {
-            format = formatIcon xcolors.aqua xcolors.dark-black "" + formatText xcolors.dark-aqua xcolors.soft-black "{}%";
+            format = formatIcon xcolors.aqua1 xcolors.bg0 "" + formatText xcolors.aqua0 xcolors.bg1 "{}%";
           };
 
           network = {
@@ -153,14 +153,14 @@ in {
       style = ''
         * {
           all: unset;
-          font-family: "Fira Mono Nerd Font";
+          font-family: "FiraMono Nerd Font";
           font-size: 10pt;
           font-weight: normal;
         }
 
         window#waybar {
-          background: ${xcolors.black};
-          color: ${xcolors.white};
+          background: ${xcolors.bg0};
+          color: ${xcolors.fg1};
         }
 
         .modules-left{
@@ -180,7 +180,7 @@ in {
         #workspaces,
         #window,
         #memory {
-          background: ${xcolors.black};
+          background: ${xcolors.bg0};
           margin: 2px 0;
         }
 
@@ -192,31 +192,31 @@ in {
         }
 
         #workspaces button {
-          background: ${xcolors.black};
-          color: ${xcolors.gray};
+          background: ${xcolors.bg0};
+          color: ${xcolors.gray1};
           padding: 0 6px;
         }
 
         #workspaces button.active {
-          background: ${xcolors.orange};
-          color: ${xcolors.dark-black};
+          background: ${xcolors.orange1};
+          color: ${xcolors.bg0};
         }
 
         #workspaces button.urgent {
-          background: ${xcolors.red};
-          color: ${xcolors.white};
+          background: ${xcolors.red1};
+          color: ${xcolors.fg1};
         }
 
         #window {
-          color: ${xcolors.dark-green};
+          color: ${xcolors.green0};
         }
 
         tooltip,
         #tray menu {
-          background: ${xcolors.soft-black};
-          border: 1px solid ${xcolors.light-black};
+          background: ${xcolors.bg1};
+          border: 1px solid ${xcolors.bg2};
           border-radius: 8px;
-          color: ${xcolors.white};
+          color: ${xcolors.fg1};
         }
 
         #tray menu {
@@ -224,18 +224,18 @@ in {
         }
 
         #tray menu separator {
-          background: ${xcolors.light-black};
+          background: ${xcolors.bg2};
         }
 
         #tray menu menuitem {
           border-radius: 4px;
-          color: ${xcolors.white};
+          color: ${xcolors.fg1};
           padding: 4px;
         }
 
         #tray menu menuitem:hover {
-          background: ${xcolors.light-black};
-          color: ${xcolors.white};
+          background: ${xcolors.bg2};
+          color: ${xcolors.fg1};
         }
       '';
     };

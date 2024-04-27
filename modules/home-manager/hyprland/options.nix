@@ -108,8 +108,8 @@ in {
         # ===================================================================
         general = {
           border_size = 2;
-          "col.active_border" = "rgb(${colors.white})";
-          "col.inactive_border" = "rgb(${colors.light-black})";
+          "col.active_border" = "rgb(${colors.fg1})";
+          "col.inactive_border" = "rgb(${colors.bg2})";
           gaps_in = 4;
           gaps_out = 8;
           layout = "master";

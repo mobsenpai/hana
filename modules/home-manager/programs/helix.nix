@@ -8,6 +8,8 @@
   };
 
   config = lib.mkIf config.myhome.helix.enable {
+    home.sessionVariables.EDITOR = "hx";
+
     xdg = {
       desktopEntries.Helix = {
         name = "Helix";
@@ -160,6 +162,9 @@
               "selections"
               "position"
             ];
+            mode.normal = "NORMAL";
+            mode.insert = "INSERT";
+            mode.select = "SELECT";
           };
         };
       };
@@ -226,11 +231,11 @@
           bg = "bg2";
         };
         "ui.statusline.normal" = {
-          fg = "fg1";
-          bg = "bg2";
+          fg = "bg0";
+          bg = "gray1";
         };
         "ui.statusline.insert" = {
-          fg = "fg1";
+          fg = "bg0";
           bg = "blue0";
         };
         "ui.statusline.select" = {
@@ -238,7 +243,7 @@
           bg = "orange0";
         };
         "ui.statusline.inactive" = {
-          fg = "fg4";
+          fg = "gray1";
           bg = "bg1";
         };
         "ui.bufferline" = {
@@ -247,7 +252,7 @@
         };
         "ui.bufferline.active" = {
           fg = "bg0";
-          bg = "yellow0";
+          bg = "gray1";
         };
         "ui.bufferline.background" = {bg = "bg2";};
         "ui.popup" = {bg = "bg1";};
@@ -322,38 +327,6 @@
         "markup.raw" = "red1";
 
         palette = config.myhome.colorscheme.xcolors;
-
-        # palette = {
-        #   bg0 = "#282828"; # main background
-        #   bg1 = "#3c3836";
-        #   bg2 = "#504945";
-        #   bg3 = "#665c54";
-        #   bg4 = "#7c6f64";
-
-        #   fg0 = "#fbf1c7";
-        #   fg1 = "#ebdbb2"; # main foreground
-        #   fg2 = "#d5c4a1";
-        #   fg3 = "#bdae93";
-        #   fg4 = "#a89984"; # gray0
-
-        #   gray0 = "#a89984";
-        #   gray1 = "#928374";
-
-        #   red0 = "#cc241d"; # neutral
-        #   red1 = "#fb4934"; # bright
-        #   green0 = "#98971a";
-        #   green1 = "#b8bb26";
-        #   yellow0 = "#d79921";
-        #   yellow1 = "#fabd2f";
-        #   blue0 = "#458588";
-        #   blue1 = "#83a598";
-        #   purple0 = "#b16286";
-        #   purple1 = "#d3869b";
-        #   aqua0 = "#689d6a";
-        #   aqua1 = "#8ec07c";
-        #   orange0 = "#d65d0e";
-        #   orange1 = "#fe8019";
-        # };
       };
     };
   };

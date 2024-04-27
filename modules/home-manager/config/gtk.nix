@@ -5,47 +5,47 @@
   ...
 }: let
   cssContent = with config.myhome.colorscheme; ''
-    @define-color accent_color ${xcolors.orange};
-    @define-color accent_bg_color ${xcolors.dark-orange};
-    @define-color accent_fg_color ${xcolors.white};
+    @define-color accent_color ${xcolors.orange1};
+    @define-color accent_bg_color ${xcolors.orange0};
+    @define-color accent_fg_color ${xcolors.fg1};
 
-    @define-color destructive_color ${xcolors.aqua};
-    @define-color destructive_bg_color ${xcolors.dark-aqua};
-    @define-color destructive_fg_color ${xcolors.white};
+    @define-color destructive_color ${xcolors.aqua1};
+    @define-color destructive_bg_color ${xcolors.aqua0};
+    @define-color destructive_fg_color ${xcolors.fg1};
 
-    @define-color success_color ${xcolors.green};
-    @define-color success_bg_color ${xcolors.dark-green};
-    @define-color success_fg_color ${xcolors.white};
+    @define-color success_color ${xcolors.green1};
+    @define-color success_bg_color ${xcolors.green0};
+    @define-color success_fg_color ${xcolors.fg1};
 
-    @define-color warning_color ${xcolors.yellow};
-    @define-color warning_bg_color ${xcolors.dark-yellow};
-    @define-color warning_fg_color ${xcolors.white};
+    @define-color warning_color ${xcolors.yellow1};
+    @define-color warning_bg_color ${xcolors.yellow0};
+    @define-color warning_fg_color ${xcolors.fg1};
 
-    @define-color error_color ${xcolors.red};
-    @define-color error_bg_color ${xcolors.dark-red};
-    @define-color error_fg_color ${xcolors.white};
+    @define-color error_color ${xcolors.red1};
+    @define-color error_bg_color ${xcolors.red0};
+    @define-color error_fg_color ${xcolors.fg1};
 
-    @define-color window_bg_color ${xcolors.black};
-    @define-color window_fg_color ${xcolors.white};
+    @define-color window_bg_color ${xcolors.bg0};
+    @define-color window_fg_color ${xcolors.fg1};
 
-    @define-color view_bg_color ${xcolors.black};
-    @define-color view_fg_color ${xcolors.white};
+    @define-color view_bg_color ${xcolors.bg0};
+    @define-color view_fg_color ${xcolors.fg1};
 
-    @define-color headerbar_bg_color ${xcolors.black};
-    @define-color headerbar_fg_color ${xcolors.white};
-    @define-color headerbar_border_color ${xcolors.white};
+    @define-color headerbar_bg_color ${xcolors.bg0};
+    @define-color headerbar_fg_color ${xcolors.fg1};
+    @define-color headerbar_border_color ${xcolors.fg1};
     @define-color headerbar_backdrop_color @window_bg_color;
     @define-color headerbar_shade_color rgba(0, 0, 0, 0.36);
 
     @define-color card_bg_color rgba(255, 255, 255, 0.08);
-    @define-color card_fg_color ${xcolors.white};
+    @define-color card_fg_color ${xcolors.fg1};
     @define-color card_shade_color rgba(0, 0, 0, 0.36);
 
-    @define-color dialog_bg_color ${xcolors.soft-black};
-    @define-color dialog_fg_color ${xcolors.white};
+    @define-color dialog_bg_color ${xcolors.bg1};
+    @define-color dialog_fg_color ${xcolors.fg1};
 
-    @define-color popover_bg_color ${xcolors.soft-black};
-    @define-color popover_fg_color ${xcolors.white};
+    @define-color popover_bg_color ${xcolors.bg1};
+    @define-color popover_fg_color ${xcolors.fg1};
 
     @define-color shade_color rgba(0, 0, 0, 0.36);
     @define-color scrollbar_outline_color rgba(0, 0, 0, 0.5);
@@ -61,7 +61,7 @@ in {
 
       font = {
         package = pkgs.nerdfonts.override {fonts = ["FiraMono"];};
-        name = "Fira Mono Nerd Font";
+        name = "FiraMono Nerd Font";
         size = 10;
       };
 

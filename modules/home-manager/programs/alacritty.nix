@@ -43,36 +43,47 @@
           size = 10;
         };
 
-        cursor.style = {
-          shape = "Underline";
+        cursor = {
+          style.shape = "Beam";
+          unfocused_hollow = false;
         };
 
         colors = with config.myhome.colorscheme; {
           primary = {
-            background = xcolors.black;
-            foreground = xcolors.white;
+            background = xcolors.bg0;
+            foreground = xcolors.fg1;
+          };
+
+          cursor = {
+            text = xcolors.bg1;
+            cursor = xcolors.fg4;
+          };
+
+          selection = {
+            background = xcolors.bg2;
+            text = "CellForeground";
           };
 
           normal = {
-            black = xcolors.black;
-            red = xcolors.dark-red;
-            green = xcolors.dark-green;
-            yellow = xcolors.dark-yellow;
-            blue = xcolors.dark-blue;
-            magenta = xcolors.dark-purple;
-            cyan = xcolors.dark-aqua;
-            white = xcolors.gray;
+            black = xcolors.bg0;
+            red = xcolors.red0;
+            green = xcolors.green0;
+            yellow = xcolors.yellow0;
+            blue = xcolors.blue0;
+            magenta = xcolors.purple0;
+            cyan = xcolors.aqua0;
+            white = xcolors.gray1;
           };
 
           bright = {
-            black = xcolors.dark-gray;
-            red = xcolors.red;
-            green = xcolors.green;
-            yellow = xcolors.yellow;
-            blue = xcolors.blue;
-            magenta = xcolors.purple;
-            cyan = xcolors.aqua;
-            white = xcolors.white;
+            black = xcolors.gray0;
+            red = xcolors.red1;
+            green = xcolors.green1;
+            yellow = xcolors.yellow1;
+            blue = xcolors.blue1;
+            magenta = xcolors.purple1;
+            cyan = xcolors.aqua1;
+            white = xcolors.fg1;
           };
         };
       };
