@@ -1,11 +1,11 @@
 {
-  myhome = {
+  myHome = {
     desktop.enable = true;
 
     hyprland.enable = true;
   };
 
-  myhome.colorscheme.colors = {
+  myHome.colorscheme.colors = {
     bg0 = "282828"; # main background
     bg1 = "3c3836";
     bg2 = "504945";
@@ -37,7 +37,7 @@
     orange1 = "fe8019";
   };
 
-  myhome.wallpaper = builtins.fetchurl rec {
+  myHome.wallpaper = builtins.fetchurl rec {
     name = "wallpaper-${sha256}.png";
     url = "https://i.imgur.com/nV0jfST.png";
     sha256 = "195mzd8ryyqzl8brlpsq0ww0llzjzi3cw0nirb98iax730cz3xby";

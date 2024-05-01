@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    mynixos.bluetooth.enable = lib.mkEnableOption "Enables bluetooth";
+    myNixos.bluetooth.enable = lib.mkEnableOption "Enables bluetooth";
   };
 
-  config = lib.mkIf config.mynixos.bluetooth.enable {
+  config = lib.mkIf config.myNixos.bluetooth.enable {
     hardware.bluetooth = {
       enable = true;
     };

@@ -8,11 +8,11 @@
   formatText = bg: fg: text: "<span background='${bg}' foreground='${fg}'> ${text} </span>";
 in {
   options = {
-    myhome.waybar.enable = lib.mkEnableOption "Enables waybar";
+    myHome.waybar.enable = lib.mkEnableOption "Enables waybar";
   };
 
-  config = lib.mkIf config.myhome.waybar.enable {
-    programs.waybar = with config.myhome.colorscheme; {
+  config = lib.mkIf config.myHome.waybar.enable {
+    programs.waybar = with config.myHome.colorscheme; {
       enable = true;
       systemd.enable = true;
       systemd.target = "graphical-session.target";
@@ -100,6 +100,7 @@ in {
             };
             modules = [
               "custom/notification"
+              "pulseaudio"
               "network"
               "battery"
             ];
@@ -141,6 +142,19 @@ in {
             tooltip-format-ethernet = "Ethernet: {ifname}\n󰅃 {bandwidthUpBytes} 󰅀 {bandwidthDownBytes}";
             tooltip-format-disconnected = "Disconnected";
             on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
+          };
+
+          pulseaudio = {
+            format = "{icon}";
+            format-bluetooth = "󰂯";
+            format-muted = "󰖁";
+            format-icons = {
+              hands-free = "󱡏";
+              headphone = "󰋋";
+              headset = "󰋎";
+            };
+            tooltip-format = "Volume: {volume}%";
+            on-click = "${pkgs.pamixer}/bin/pamixer --toggle-mute";
           };
 
           tray = {

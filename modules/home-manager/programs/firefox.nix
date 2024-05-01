@@ -23,10 +23,10 @@
   ];
 in {
   options = {
-    myhome.firefox.enable = lib.mkEnableOption "Enables firefox";
+    myHome.firefox.enable = lib.mkEnableOption "Enables firefox";
   };
 
-  config = lib.mkIf config.myhome.firefox.enable {
+  config = lib.mkIf config.myHome.firefox.enable {
     home.sessionVariables.BROWSER = "firefox";
     xdg.mimeApps.defaultApplications = builtins.listToAttrs (map (mimeType: {
         name = mimeType;

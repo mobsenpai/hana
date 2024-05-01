@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    myhome.helix.enable = lib.mkEnableOption "Enables helix";
+    myHome.helix.enable = lib.mkEnableOption "Enables helix";
   };
 
-  config = lib.mkIf config.myhome.helix.enable {
+  config = lib.mkIf config.myHome.helix.enable {
     home.sessionVariables.EDITOR = "hx";
 
     xdg = {
@@ -49,7 +49,6 @@
 
     programs.helix = {
       enable = true;
-
       languages = {
         language-server.emmet-ls = {
           command = "emmet-ls";
@@ -129,7 +128,7 @@
               nbsp = "⍽";
               nnbsp = "␣";
               tab = "→";
-              newline = "";
+              newline = "¬";
               tabpad = "·";
             };
 
@@ -326,7 +325,7 @@
         "markup.link.text" = "red1";
         "markup.raw" = "red1";
 
-        palette = config.myhome.colorscheme.xcolors;
+        palette = config.myHome.colorscheme.xcolors;
       };
     };
   };

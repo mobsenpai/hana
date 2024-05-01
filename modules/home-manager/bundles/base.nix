@@ -4,11 +4,11 @@
   ...
 }: {
   options = {
-    myhome.base.enable = lib.mkEnableOption "Enables base";
+    myHome.base.enable = lib.mkEnableOption "Enables base";
   };
 
-  config = lib.mkIf config.myhome.base.enable {
-    myhome = {
+  config = lib.mkIf config.myHome.base.enable {
+    myHome = {
       gtk.enable = lib.mkDefault true;
       home.enable = lib.mkDefault true;
       home-cursor.enable = lib.mkDefault true;

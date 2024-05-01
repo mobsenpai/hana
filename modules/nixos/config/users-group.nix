@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    mynixos.users-group.enable = lib.mkEnableOption "Enables users-group";
+    myNixos.users-group.enable = lib.mkEnableOption "Enables users-group";
   };
 
-  config = lib.mkIf config.mynixos.users-group.enable {
+  config = lib.mkIf config.myNixos.users-group.enable {
     users.mutableUsers = false;
     users.users.yashraj = {
       initialPassword = "nixos";

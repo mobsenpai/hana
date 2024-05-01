@@ -18,10 +18,10 @@ in {
   ];
 
   options = {
-    myhome.hypridle.enable = lib.mkEnableOption "Enables hypridle";
+    myHome.hypridle.enable = lib.mkEnableOption "Enables hypridle";
   };
 
-  config = lib.mkIf config.myhome.hypridle.enable {
+  config = lib.mkIf config.myHome.hypridle.enable {
     services.hypridle = {
       enable = true;
       beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";

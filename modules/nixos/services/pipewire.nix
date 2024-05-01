@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    mynixos.pipewire.enable = lib.mkEnableOption "Enables pipewire";
+    myNixos.pipewire.enable = lib.mkEnableOption "Enables pipewire";
   };
 
-  config = lib.mkIf config.mynixos.pipewire.enable {
+  config = lib.mkIf config.myNixos.pipewire.enable {
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
 

@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    myhome.home.enable = lib.mkEnableOption "Enables home";
+    myHome.home.enable = lib.mkEnableOption "Enables home";
   };
 
-  config = lib.mkIf config.myhome.home.enable {
+  config = lib.mkIf config.myHome.home.enable {
     home = {
       username = "yashraj";
       homeDirectory = "/home/yashraj";

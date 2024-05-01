@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    myhome.alacritty.enable = lib.mkEnableOption "Enables alacritty";
+    myHome.alacritty.enable = lib.mkEnableOption "Enables alacritty";
   };
 
-  config = lib.mkIf config.myhome.alacritty.enable {
+  config = lib.mkIf config.myHome.alacritty.enable {
     home.sessionVariables.TERMINAL = "alacritty";
 
     programs.alacritty = {
@@ -23,18 +23,6 @@
         };
 
         font = {
-          bold = {
-            family = "FiraMono Nerd Font";
-            style = "Bold";
-          };
-          bold_italic = {
-            family = "FiraMono Nerd Font";
-            style = "Bold Italic";
-          };
-          italic = {
-            family = "FiraMono Nerd Font";
-            style = "Italic";
-          };
           normal = {
             family = "FiraMono Nerd Font";
             style = "Regular";
@@ -48,7 +36,7 @@
           unfocused_hollow = false;
         };
 
-        colors = with config.myhome.colorscheme; {
+        colors = with config.myHome.colorscheme; {
           primary = {
             background = xcolors.bg0;
             foreground = xcolors.fg1;

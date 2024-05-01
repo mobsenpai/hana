@@ -39,10 +39,15 @@
   };
 in {
   options = {
-    myhome.hyprland.keys.enable = lib.mkEnableOption "Enables keys";
+    myHome.hyprland.keys.enable = lib.mkEnableOption "Enables keys";
   };
 
-  config = lib.mkIf config.myhome.hyprland.keys.enable {
+  config = lib.mkIf config.myHome.hyprland.keys.enable {
+    myHome.bluetooth.enable = lib.mkDefault true;
+    myHome.network.enable = lib.mkDefault true;
+    myHome.volumectl.enable = lib.mkDefault true;
+    myHome.lightctl.enable = lib.mkDefault true;
+
     wayland.windowManager.hyprland = {
       settings = {
         bind = [
@@ -65,13 +70,12 @@ in {
           "SUPER, A, exec, ${user.app_launcher}"
           "SUPER, E, exec, ${apps.emoji_picker}"
           "SUPER, R, exec, ${defaultApp "text/plain"}"
+          "SUPER, B, exec, bluetooth"
+          "SUPER, N, exec, network"
+          "SUPER, T, exec, ${user.file_manager}"
 
           # Client manipulation
           # ===================================================================
-          "SUPER CTRL, H, resizeactive, -25 0"
-          "SUPER CTRL, L, resizeactive, 25 0"
-          "SUPER CTRL, K, resizeactive, 0 -25"
-          "SUPER CTRL, J, resizeactive, 0 25"
           "SUPER, C, centerwindow, 1"
           "SUPER, F, fullscreen, 0"
           "SUPER, M, fullscreen, 1"
@@ -157,6 +161,12 @@ in {
           # Brightness control
           ",XF86MonBrightnessUp, exec, lightctl up 5"
           ",XF86MonBrightnessDown, exec, lightctl down 5"
+
+          # Resize active window - Client manipulation
+          "SUPER CTRL, H, resizeactive, -25 0"
+          "SUPER CTRL, L, resizeactive, 25 0"
+          "SUPER CTRL, K, resizeactive, 0 -25"
+          "SUPER CTRL, J, resizeactive, 0 25"
         ];
 
         # Mouse bindings

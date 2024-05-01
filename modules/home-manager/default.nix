@@ -5,6 +5,7 @@
     ./dev
     ./hyprland
     ./programs
+    ./scripts
     ./services
   ];
 }

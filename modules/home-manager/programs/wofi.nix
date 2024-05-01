@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    myhome.wofi.enable = lib.mkEnableOption "Enables wofi";
+    myHome.wofi.enable = lib.mkEnableOption "Enables wofi";
   };
 
-  config = lib.mkIf config.myhome.wofi.enable {
+  config = lib.mkIf config.myHome.wofi.enable {
     programs.wofi = {
       enable = true;
       settings = {
@@ -22,7 +22,7 @@
         width = "25%";
       };
 
-      style = with config.myhome.colorscheme; ''
+      style = with config.myHome.colorscheme; ''
         *{
           all: unset;
           font-family: "Fira Mono Nerd Font";

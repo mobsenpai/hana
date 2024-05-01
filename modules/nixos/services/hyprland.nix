@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    mynixos.hyprland.enable = lib.mkEnableOption "Enables hyprland";
+    myNixos.hyprland.enable = lib.mkEnableOption "Enables hyprland";
   };
 
-  config = lib.mkIf config.mynixos.hyprland.enable {
+  config = lib.mkIf config.myNixos.hyprland.enable {
     environment = {
       variables = {
         QT_QPA_PLATFORM = "wayland;xcb";

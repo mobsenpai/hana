@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    mynixos.polkit-gnome.enable = lib.mkEnableOption "Enables polkit-gnome";
+    myNixos.polkit-gnome.enable = lib.mkEnableOption "Enables polkit-gnome";
   };
 
-  config = lib.mkIf config.mynixos.polkit-gnome.enable {
+  config = lib.mkIf config.myNixos.polkit-gnome.enable {
     security.polkit.enable = true;
 
     systemd.user.services.polkit-gnome-authentication-agent-1 = {

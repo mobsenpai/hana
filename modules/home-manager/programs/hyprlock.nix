@@ -9,11 +9,11 @@
   ];
 
   options = {
-    myhome.hyprlock.enable = lib.mkEnableOption "Enables hyprlock";
+    myHome.hyprlock.enable = lib.mkEnableOption "Enables hyprlock";
   };
 
-  config = lib.mkIf config.myhome.hyprlock.enable {
-    programs.hyprlock = with config.myhome.colorscheme; {
+  config = lib.mkIf config.myHome.hyprlock.enable {
+    programs.hyprlock = with config.myHome.colorscheme; {
       enable = true;
       general = {
         disable_loading_bar = true;
@@ -24,7 +24,7 @@
 
       backgrounds = [
         {
-          path = config.myhome.wallpaper;
+          path = config.myHome.wallpaper;
           blur_passes = 3;
           contrast = 0.8916;
           brightness = 0.8172;
@@ -62,7 +62,7 @@
           text = "$TIME";
           color = "rgb(${colors.fg1})";
           font_size = 80;
-          font_family = "FiraMono Nerd Font ExtraBold";
+          font_family = "FiraMono Nerd Font Bold";
           position = {
             x = 0;
             y = -200;

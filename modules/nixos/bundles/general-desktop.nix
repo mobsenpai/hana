@@ -4,11 +4,11 @@
   ...
 }: {
   options = {
-    mynixos.general-desktop.enable = lib.mkEnableOption "Enables general-desktop";
+    myNixos.general-desktop.enable = lib.mkEnableOption "Enables general-desktop";
   };
 
-  config = lib.mkIf config.mynixos.base.enable {
-    mynixos = {
+  config = lib.mkIf config.myNixos.base.enable {
+    myNixos = {
       fontconfig.enable = lib.mkDefault true;
       i18n.enable = lib.mkDefault true;
       locale.enable = lib.mkDefault true;

@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    mynixos.boot.enable = lib.mkEnableOption "Enables boot";
+    myNixos.boot.enable = lib.mkEnableOption "Enables boot";
   };
 
-  config = lib.mkIf config.mynixos.boot.enable {
+  config = lib.mkIf config.myNixos.boot.enable {
     boot = {
       loader = {
         efi.canTouchEfiVariables = true;

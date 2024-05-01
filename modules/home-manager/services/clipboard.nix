@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    myhome.clipboard.enable = lib.mkEnableOption "Enables clipboard";
+    myHome.clipboard.enable = lib.mkEnableOption "Enables clipboard";
   };
 
-  config = lib.mkIf config.myhome.clipboard.enable {
+  config = lib.mkIf config.myHome.clipboard.enable {
     systemd.user.services = {
       cliphist = {
         Unit = {

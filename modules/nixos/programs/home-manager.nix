@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    mynixos.home-manager.enable = lib.mkEnableOption "Enables home-manager";
+    myNixos.home-manager.enable = lib.mkEnableOption "Enables home-manager";
   };
 
-  config = lib.mkIf config.mynixos.home-manager.enable {
+  config = lib.mkIf config.myNixos.home-manager.enable {
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;

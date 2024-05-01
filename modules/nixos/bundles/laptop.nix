@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    mynixos.laptop.enable = lib.mkEnableOption "Enables Laptop";
+    myNixos.laptop.enable = lib.mkEnableOption "Enables Laptop";
   };
 
-  config = lib.mkIf config.mynixos.bluetooth.enable {
+  config = lib.mkIf config.myNixos.bluetooth.enable {
     services = {
       logind = {
         powerKey = "suspend";

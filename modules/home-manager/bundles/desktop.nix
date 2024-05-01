@@ -5,11 +5,11 @@
   ...
 }: {
   options = {
-    myhome.desktop.enable = lib.mkEnableOption "Enables desktop";
+    myHome.desktop.enable = lib.mkEnableOption "Enables desktop";
   };
 
-  config = lib.mkIf config.myhome.desktop.enable {
-    myhome = {
+  config = lib.mkIf config.myHome.desktop.enable {
+    myHome = {
       base.enable = lib.mkDefault true;
 
       alacritty.enable = lib.mkDefault true;
@@ -22,5 +22,9 @@
     home.packages = with pkgs; [
       appflowy
     ];
+
+    xdg.mimeApps.defaultApplications = {
+      "inode/directory" = "pcmanfm.desktop";
+    };
   };
 }

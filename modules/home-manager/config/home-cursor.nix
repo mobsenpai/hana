@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    myhome.home-cursor.enable = lib.mkEnableOption "Enables home-cursor";
+    myHome.home-cursor.enable = lib.mkEnableOption "Enables home-cursor";
   };
 
-  config = lib.mkIf config.myhome.home-cursor.enable {
+  config = lib.mkIf config.myHome.home-cursor.enable {
     home.pointerCursor = {
       package = pkgs.vanilla-dmz;
       name = "Vanilla-DMZ";

@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    mynixos.mtp.enable = lib.mkEnableOption "Enables mtp";
+    myNixos.mtp.enable = lib.mkEnableOption "Enables mtp";
   };
 
-  config = lib.mkIf config.mynixos.mtp.enable {
+  config = lib.mkIf config.myNixos.mtp.enable {
     services = {
       gvfs.enable = true;
       tumbler.enable = true;

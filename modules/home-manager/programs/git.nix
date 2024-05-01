@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    myhome.git.enable = lib.mkEnableOption "Enables git";
+    myHome.git.enable = lib.mkEnableOption "Enables git";
   };
 
-  config = lib.mkIf config.myhome.git.enable {
+  config = lib.mkIf config.myHome.git.enable {
     programs.git = {
       enable = true;
       delta.enable = true;

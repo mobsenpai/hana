@@ -5,13 +5,13 @@
   ...
 }: {
   options = {
-    myhome.hyprpaper.enable = lib.mkEnableOption "Enables hyprpaper";
+    myHome.hyprpaper.enable = lib.mkEnableOption "Enables hyprpaper";
   };
 
-  config = lib.mkIf config.myhome.hyprpaper.enable {
+  config = lib.mkIf config.myHome.hyprpaper.enable {
     xdg.configFile."hypr/hyprpaper.conf".text = ''
-      preload = ${config.myhome.wallpaper}
-      wallpaper = , ${config.myhome.wallpaper}
+      preload = ${config.myHome.wallpaper}
+      wallpaper = , ${config.myHome.wallpaper}
     '';
 
     systemd.user.services.hyprpaper = {

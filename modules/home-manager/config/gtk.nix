@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  cssContent = with config.myhome.colorscheme; ''
+  cssContent = with config.myHome.colorscheme; ''
     @define-color accent_color ${xcolors.orange1};
     @define-color accent_bg_color ${xcolors.orange0};
     @define-color accent_fg_color ${xcolors.fg1};
@@ -52,10 +52,10 @@
   '';
 in {
   options = {
-    myhome.gtk.enable = lib.mkEnableOption "Enables gtk";
+    myHome.gtk.enable = lib.mkEnableOption "Enables gtk";
   };
 
-  config = lib.mkIf config.myhome.gtk.enable {
+  config = lib.mkIf config.myHome.gtk.enable {
     gtk = {
       enable = true;
 
@@ -75,7 +75,17 @@ in {
         name = "adw-gtk3";
       };
 
-      gtk3.extraCss = cssContent;
+      gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      gtk3 = {
+        bookmarks = [
+          "file://${config.home.homeDirectory}/Documents"
+          "file://${config.home.homeDirectory}/Downloads"
+          "file://${config.home.homeDirectory}/Music"
+          "file://${config.home.homeDirectory}/Pictures"
+          "file://${config.home.homeDirectory}/Videos"
+        ];
+        extraCss = cssContent;
+      };
       gtk4.extraCss = cssContent;
     };
 

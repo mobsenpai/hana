@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.myhome.colorscheme = {
+  options.myHome.colorscheme = {
     colors = lib.mkOption {
       type = lib.types.attrs;
       default = {};
@@ -12,7 +12,7 @@
 
     xcolors = lib.mkOption {
       type = lib.types.attrs;
-      default = lib.mapAttrsRecursive (_: color: "#${color}") config.myhome.colorscheme.colors;
+      default = lib.mapAttrsRecursive (_: color: "#${color}") config.myHome.colorscheme.colors;
       description = "Adds # to colors";
     };
   };

@@ -1,7 +1,7 @@
 {
   imports = [./hardware-configuration.nix];
 
-  mynixos = {
+  myNixos = {
     base.enable = true;
     general-desktop.enable = true;
     laptop.enable = true;

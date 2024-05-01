@@ -5,13 +5,16 @@
   ...
 }: {
   options = {
-    myhome.bash.enable = lib.mkEnableOption "Enables bash";
+    myHome.bash.enable = lib.mkEnableOption "Enables bash";
   };
 
-  config = lib.mkIf config.myhome.bash.enable {
+  config = lib.mkIf config.myHome.bash.enable {
+    myHome.panes.enable = lib.mkDefault true;
+
     programs.bash = {
       enable = true;
       historyControl = ["erasedups" "ignorespace"];
+      historyFile = "${config.xdg.dataHome}/bash/bash_history";
       shellOptions = [
         "autocd"
         "cdspell"
@@ -33,7 +36,7 @@
         bind -m vi-insert 'Control-l: clear-screen'
 
         # Aesthetics
-        ${pkgs.neofetch}/bin/neofetch
+        panes
       '';
 
       shellAliases = {

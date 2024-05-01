@@ -4,11 +4,11 @@
   ...
 }: {
   options = {
-    mynixos.base.enable = lib.mkEnableOption "Enables base";
+    myNixos.base.enable = lib.mkEnableOption "Enables base";
   };
 
-  config = lib.mkIf config.mynixos.base.enable {
-    mynixos = {
+  config = lib.mkIf config.myNixos.base.enable {
+    myNixos = {
       boot.enable = lib.mkDefault true;
       nix.enable = lib.mkDefault true;
       system-path.enable = lib.mkDefault true;

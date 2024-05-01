@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    mynixos.networking.enable = lib.mkEnableOption "Enables networking";
+    myNixos.networking.enable = lib.mkEnableOption "Enables networking";
   };
 
-  config = lib.mkIf config.mynixos.networking.enable {
+  config = lib.mkIf config.myNixos.networking.enable {
     networking = {
       networkmanager = {
         enable = true;

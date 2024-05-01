@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    myhome.utils.enable = lib.mkEnableOption "Enables utils";
+    myHome.utils.enable = lib.mkEnableOption "Enables utils";
   };
 
-  config = lib.mkIf config.myhome.utils.enable {
+  config = lib.mkIf config.myHome.utils.enable {
     home.packages = with pkgs; [
       bottom
       cmatrix

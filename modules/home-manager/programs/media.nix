@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    myhome.media.enable = lib.mkEnableOption "Enables media";
+    myHome.media.enable = lib.mkEnableOption "Enables media";
   };
 
-  config = lib.mkIf config.myhome.media.enable {
+  config = lib.mkIf config.myHome.media.enable {
     services = {
       playerctld.enable = true;
     };
