@@ -23,10 +23,10 @@
         };
 
         font = {
-          normal = {
-            family = "FiraMono Nerd Font";
-            style = "Regular";
-          };
+          bold.family = "FiraMono Nerd Font";
+          bold_italic.family = "FiraMono Nerd Font";
+          italic.family = "FiraMono Nerd Font";
+          normal.family = "FiraMono Nerd Font";
 
           size = 10;
         };

@@ -14,7 +14,6 @@
     programs.bash = {
       enable = true;
       historyControl = ["erasedups" "ignorespace"];
-      historyFile = "${config.xdg.dataHome}/bash/bash_history";
       shellOptions = [
         "autocd"
         "cdspell"
@@ -40,11 +39,11 @@
       '';
 
       shellAliases = {
-        cat = "${pkgs.bat}/bin/bat --color=always --style=plain";
-        fcd = "cd $(${pkgs.fd}/bin/fd --type d | ${pkgs.skim}/bin/sk)";
+        cat = "${pkgs.bat}/bin/bat";
+        fcd = "cd $(${pkgs.fd}/bin/fd --type d | ${pkgs.fzf}/bin/fzf)";
         fm = "${pkgs.yazi}/bin/yazi";
         grep = "${pkgs.ripgrep}/bin/rg";
-        ls = "${pkgs.eza}/bin/eza -alh --icons --git --group-directories-first";
+        ls = "${pkgs.eza}/bin/eza --all --git --group-directories-first --header --icons --long";
         rm = "${pkgs.trash-cli}/bin/trash-put";
         ytmp3 = ''${pkgs.yt-dlp}/bin/yt-dlp -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"'';
       };

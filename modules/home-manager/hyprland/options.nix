@@ -175,5 +175,9 @@
         createDirectories = true;
       };
     };
+
+    xdg.mimeApps.defaultApplications = {
+      "inode/directory" = "pcmanfm.desktop";
+    };
   };
 }

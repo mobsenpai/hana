@@ -25,7 +25,7 @@
       style = with config.myHome.colorscheme; ''
         *{
           all: unset;
-          font-family: "Fira Mono Nerd Font";
+          font-family: "FiraMono Nerd Font";
           font-size: 10pt;
           font-weight: normal;
         }

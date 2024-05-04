@@ -13,9 +13,12 @@
     hypridle.url = "github:hyprwm/hypridle";
     hyprlock.url = "github:hyprwm/hyprlock";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    hypridle.inputs.nixpkgs.follows = "nixpkgs";
+    hyprlock.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {...} @ inputs: {

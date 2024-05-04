@@ -22,9 +22,5 @@
     home.packages = with pkgs; [
       appflowy
     ];
-
-    xdg.mimeApps.defaultApplications = {
-      "inode/directory" = "pcmanfm.desktop";
-    };
   };
 }

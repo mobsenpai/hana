@@ -11,13 +11,14 @@
   config = lib.mkIf config.myHome.utils.enable {
     home.packages = with pkgs; [
       bottom
+      cbonsai
       cmatrix
       curl
       fd
       file
       jq
       killall
-      neofetch
+      macchina
       ripgrep
       trash-cli
       unrar
@@ -33,21 +34,9 @@
     programs = {
       bat.enable = true;
       eza.enable = true;
-
-      dircolors = {
-        enable = true;
-        enableBashIntegration = true;
-      };
-
-      skim = {
-        enable = true;
-        enableBashIntegration = true;
-      };
-
-      zoxide = {
-        enable = true;
-        enableBashIntegration = true;
-      };
+      dircolors.enable = true;
+      fzf.enable = true;
+      zoxide.enable = true;
     };
   };
 }
