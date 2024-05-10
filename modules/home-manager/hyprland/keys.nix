@@ -45,6 +45,7 @@ in {
   config = lib.mkIf config.myHome.hyprland.keys.enable {
     myHome.bluetooth.enable = lib.mkDefault true;
     myHome.network.enable = lib.mkDefault true;
+    myHome.powermenu.enable = lib.mkDefault true;
     myHome.volumectl.enable = lib.mkDefault true;
     myHome.lightctl.enable = lib.mkDefault true;
 
@@ -73,6 +74,7 @@ in {
           "SUPER, B, exec, bluetooth"
           "SUPER, N, exec, network"
           "SUPER, T, exec, ${user.file_manager}"
+          "SUPER, X, exec, powermenu"
 
           # Client manipulation
           # ===================================================================
