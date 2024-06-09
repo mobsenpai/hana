@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -13,10 +12,6 @@
     fi
   '';
 in {
-  imports = [
-    inputs.hypridle.homeManagerModules.hypridle
-  ];
-
   options = {
     myHome.hypridle.enable = lib.mkEnableOption "Enables hypridle";
   };
@@ -24,15 +19,19 @@ in {
   config = lib.mkIf config.myHome.hypridle.enable {
     services.hypridle = {
       enable = true;
-      beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
-      lockCmd = lib.getExe config.programs.hyprlock.package;
+      settings = {
+        general = {
+          before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
+          lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+        };
 
-      listeners = [
-        {
-          timeout = 300;
-          onTimeout = suspendScript.outPath;
-        }
-      ];
+        listener = [
+          {
+            timeout = 1800;
+            on-timeout = suspendScript.outPath;
+          }
+        ];
+      };
     };
   };
 }

@@ -30,6 +30,6 @@
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
 
-    system.stateVersion = "23.11";
+    system.stateVersion = "23.05";
   };
 }

@@ -15,7 +15,6 @@ in {
     programs.waybar = with config.myHome.colorscheme; {
       enable = true;
       systemd.enable = true;
-      systemd.target = "graphical-session.target";
 
       settings = [
         {
@@ -43,6 +42,11 @@ in {
 
           cpu = {
             format = formatIcon xcolors.yellow1 xcolors.bg0 "" + formatText xcolors.bg1 xcolors.yellow0 "{usage}%";
+          };
+
+          "custom/chevron" = {
+            format = "";
+            tooltip = false;
           };
 
           "custom/notification" = {
@@ -79,14 +83,9 @@ in {
             return-type = "json";
           };
 
-          "custom/chevron" = {
-            format = "";
-            tooltip = false;
-          };
-
           "custom/weather" = {
-            exec = "${pkgs.wttrbar}/bin/wttrbar --location Bihar --hide-conditions";
-            format = formatIcon xcolors.green1 xcolors.bg0 "" + formatText xcolors.bg1 xcolors.green0 "{}°";
+            exec = "${pkgs.wttrbar}/bin/wttrbar --location Bihar --custom-indicator \"{temp_C} °C\"";
+            format = formatIcon xcolors.green1 xcolors.bg0 "" + formatText xcolors.bg1 xcolors.green0 "{}";
             tooltip = true;
             interval = 3600;
             return-type = "json";

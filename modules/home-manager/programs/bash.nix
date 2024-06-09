@@ -33,6 +33,8 @@
         # Binds specific to vi mode
         bind -m vi-command 'Control-l: clear-screen'
         bind -m vi-insert 'Control-l: clear-screen'
+        bind -m vi-insert 'Control-k: previous-history'
+        bind -m vi-insert 'Control-j: next-history'
 
         # Aesthetics
         panes

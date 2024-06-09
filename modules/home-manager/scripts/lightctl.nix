@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: let
-  # Brightness control utility
   lightctl = pkgs.writeShellScriptBin "lightctl" ''
     case "$1" in
     up)

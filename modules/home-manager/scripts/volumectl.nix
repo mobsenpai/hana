@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: let
-  # Volume control utility
   volumectl = pkgs.writeShellScriptBin "volumectl" ''
     #!/usr/bin/env bash
 

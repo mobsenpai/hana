@@ -22,7 +22,6 @@
       pcmanfm
       slurp
       swappy
-      swaynotificationcenter
       wl-clipboard
       xdg-utils
     ];
@@ -148,21 +147,6 @@
           # All clients that I want out of my way when they are running
           "workspace 10 silent, class:^(qemu)$"
         ];
-      };
-
-      systemd = {
-        enable = true;
-        extraCommands = lib.mkBefore [
-          "systemctl --user stop graphical-session.target"
-          "systemctl --user start hyprland-session.target"
-        ];
-      };
-    };
-
-    systemd.user.targets.tray = {
-      Unit = {
-        Description = "Home Manager System Tray";
-        Requires = ["graphical-session-pre.target"];
       };
     };
 
