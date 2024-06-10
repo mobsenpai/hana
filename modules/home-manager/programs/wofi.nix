@@ -17,6 +17,7 @@
         insensitive = true;
         layer = "top";
         location = "center";
+        no_actions = true;
         orientation = "vertical";
         prompt = "";
         width = "25%";
