@@ -1,22 +1,16 @@
 {
-  config,
   lib,
   pkgs,
+  config,
   ...
-}: {
-  options = {
-    myHome.media.enable = lib.mkEnableOption "Enables media";
-  };
-
-  config = lib.mkIf config.myHome.media.enable {
-    services = {
-      playerctld.enable = true;
-    };
-
+}: let
+  cfg = config.modules.programs.media;
+in
+  lib.mkIf cfg.enable
+  {
     home.packages = with pkgs; [
       imv
       mpv
-      pavucontrol
       playerctl
     ];
 
@@ -25,5 +19,4 @@
       "image/*" = "imv.desktop";
       "video/*" = "mpv.desktop";
     };
-  };
-}
+  }

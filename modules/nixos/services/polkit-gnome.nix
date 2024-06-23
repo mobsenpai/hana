@@ -1,14 +1,13 @@
 {
-  config,
   lib,
   pkgs,
+  config,
   ...
-}: {
-  options = {
-    myNixos.polkit-gnome.enable = lib.mkEnableOption "Enables polkit-gnome";
-  };
-
-  config = lib.mkIf config.myNixos.polkit-gnome.enable {
+}: let
+  cfg = config.modules.services.polkit-gnome;
+in
+  lib.mkIf cfg.enable
+  {
     security.polkit.enable = true;
 
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
@@ -24,5 +23,4 @@
         TimeoutStopSec = 10;
       };
     };
-  };
-}
+  }

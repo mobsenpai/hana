@@ -1,5 +1,0 @@
-{
-  imports = [
-    ./base-dev.nix
-  ];
-}

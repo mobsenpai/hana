@@ -1,6 +1,3 @@
-{
-  imports = [
-    ./bash.nix
-    ./home-manager.nix
-  ];
+{lib, ...}: {
+  imports = lib.utils.scanPaths ./.;
 }

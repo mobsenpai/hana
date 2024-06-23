@@ -1,5 +1,3 @@
-{
-  imports = [
-    ./bluetooth.nix
-  ];
+{lib, ...}: {
+  imports = lib.utils.scanPaths ./.;
 }

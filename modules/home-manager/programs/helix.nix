@@ -1,54 +1,37 @@
 {
-  config,
   lib,
+  pkgs,
+  config,
   ...
-}: {
-  options = {
-    myHome.helix.enable = lib.mkEnableOption "Enables helix";
-  };
-
-  config = lib.mkIf config.myHome.helix.enable {
-    home.sessionVariables.EDITOR = "hx";
-
-    xdg = {
-      desktopEntries.Helix = {
-        name = "Helix";
-        genericName = "Text Editor";
-        comment = "Edit text files";
-        exec = "alacritty --class editor -e hx %F";
-        icon = "helix";
-        mimeType = [
-          "text/english"
-          "text/plain"
-          "text/x-makefile"
-          "text/x-c++hdr"
-          "text/x-c++src"
-          "text/x-chdr"
-          "text/x-csrc"
-          "text/x-java"
-          "text/x-moc"
-          "text/x-pascal"
-          "text/x-tcl"
-          "text/x-tex"
-          "application/x-shellscript"
-          "text/x-c"
-          "text/x-c++"
-        ];
-        terminal = false;
-        type = "Application";
-        categories = [
-          "Utility"
-          "TextEditor"
-        ];
-      };
-
-      mimeApps.defaultApplications = {
-        "text/plain" = "Helix.desktop";
-      };
-    };
-
+}: let
+  inherit (lib) mkIf getExe;
+  inherit (config.modules.colorScheme) xcolors;
+  cfg = config.modules.programs.helix;
+in
+  mkIf cfg.enable
+  {
     programs.helix = {
       enable = true;
+      defaultEditor = true;
+
+      extraPackages = with pkgs; [
+        # Runtime dependencies
+        emmet-ls
+        nodejs
+
+        # Language servers
+        nil
+        nodePackages.typescript-language-server
+        nodePackages.vscode-langservers-extracted
+
+        # Formatters
+        alejandra
+        nodePackages.prettier
+
+        # NOTE: These 'extra' lsp and formatters should be installed on a
+        # per-project basis using nix shell
+      ];
+
       languages = {
         language-server.emmet-ls = {
           command = "emmet-ls";
@@ -325,8 +308,45 @@
         "markup.link.text" = "red1";
         "markup.raw" = "red1";
 
-        palette = config.myHome.colorscheme.xcolors;
+        palette = xcolors;
       };
     };
-  };
-}
+
+    xdg.desktopEntries.Helix = let
+      helix = getExe config.programs.helix.package;
+      terminal = config.modules.desktop.terminal.exePath;
+    in {
+      name = "Helix";
+      genericName = "Text Editor";
+      comment = "Edit text files";
+      exec = "${terminal} --title editor -e ${helix} %F";
+      icon = "helix";
+      mimeType = [
+        "text/english"
+        "text/plain"
+        "text/x-makefile"
+        "text/x-c++hdr"
+        "text/x-c++src"
+        "text/x-chdr"
+        "text/x-csrc"
+        "text/x-java"
+        "text/x-moc"
+        "text/x-pascal"
+        "text/x-tcl"
+        "text/x-tex"
+        "application/x-shellscript"
+        "text/x-c"
+        "text/x-c++"
+      ];
+      terminal = false;
+      type = "Application";
+      categories = [
+        "Utility"
+        "TextEditor"
+      ];
+    };
+
+    xdg.mimeApps.defaultApplications = {
+      "text/plain" = ["Helix.desktop"];
+    };
+  }

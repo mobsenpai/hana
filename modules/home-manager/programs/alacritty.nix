@@ -1,15 +1,13 @@
 {
-  config,
   lib,
+  config,
   ...
-}: {
-  options = {
-    myHome.alacritty.enable = lib.mkEnableOption "Enables alacritty";
-  };
-
-  config = lib.mkIf config.myHome.alacritty.enable {
-    home.sessionVariables.TERMINAL = "alacritty";
-
+}: let
+  inherit (config.modules.colorScheme) xcolors;
+  cfg = config.modules.programs.alacritty;
+in
+  lib.mkIf cfg.enable
+  {
     programs.alacritty = {
       enable = true;
       settings = {
@@ -18,25 +16,17 @@
             x = 30;
             y = 30;
           };
-
           dynamic_padding = true;
+          decorations = "none";
+          dynamic_title = true;
         };
 
         font = {
-          bold.family = "FiraMono Nerd Font";
-          bold_italic.family = "FiraMono Nerd Font";
-          italic.family = "FiraMono Nerd Font";
-          normal.family = "FiraMono Nerd Font";
-
           size = 10;
+          normal.family = "FiraMono Nerd Font";
         };
 
-        cursor = {
-          style.shape = "Beam";
-          unfocused_hollow = false;
-        };
-
-        colors = with config.myHome.colorscheme; {
+        colors = {
           primary = {
             background = xcolors.bg0;
             foreground = xcolors.fg1;
@@ -74,7 +64,32 @@
             white = xcolors.fg1;
           };
         };
+
+        mouse = {
+          hide_when_typing = false;
+        };
+
+        cursor = {
+          blink_interval = 500;
+          style = {
+            shape = "Beam";
+            blinking = "On";
+          };
+        };
       };
     };
-  };
-}
+
+    desktop.hyprland.settings = {
+      bind = [
+        "SUPER, Return, exec, alacritty"
+        "SUPER SHIFT, Return, exec, alacritty --class float"
+        # Scratchpad terminal
+        "SUPER SHIFT, S, exec, alacritty --class float --title s1"
+      ];
+
+      windowrulev2 = [
+        "float, class:^(float)$, title:^(Alacritty)$"
+        "workspace special:s1 silent, class:^(float)$, title:^(s1)$"
+      ];
+    };
+  }

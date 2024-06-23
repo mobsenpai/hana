@@ -1,19 +1,18 @@
 {
-  config,
   lib,
+  config,
   ...
-}: {
-  options = {
-    myHome.git.enable = lib.mkEnableOption "Enables git";
-  };
-
-  config = lib.mkIf config.myHome.git.enable {
+}: let
+  cfg = config.modules.programs.git;
+in
+  lib.mkIf cfg.enable
+  {
     programs.git = {
       enable = true;
       delta.enable = true;
 
-      userName = "mobsenpai";
       userEmail = "work.velocity806@passinbox.com";
+      userName = "mobsenpai";
 
       extraConfig = {
         init.defaultBranch = "main";
@@ -26,5 +25,4 @@
         "node_modules"
       ];
     };
-  };
-}
+  }

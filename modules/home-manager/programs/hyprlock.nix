@@ -1,14 +1,17 @@
 {
-  config,
   lib,
+  pkgs,
+  config,
   ...
-}: {
-  options = {
-    myHome.hyprlock.enable = lib.mkEnableOption "Enables hyprlock";
-  };
-
-  config = lib.mkIf config.myHome.hyprlock.enable {
-    programs.hyprlock = with config.myHome.colorscheme; {
+}: let
+  inherit (lib) mkIf getExe';
+  inherit (config.modules.colorScheme) colors;
+  inherit (config.modules.desktop) wallpaper;
+  cfg = config.modules.programs.hyprlock;
+in
+  mkIf cfg.enable
+  {
+    programs.hyprlock = {
       enable = true;
       settings = {
         general = {
@@ -18,7 +21,7 @@
 
         background = [
           {
-            path = config.myHome.wallpaper;
+            path = wallpaper.default;
             blur_passes = 3;
             contrast = 0.8916;
             brightness = 0.8172;
@@ -68,5 +71,10 @@
         ];
       };
     };
-  };
-}
+
+    desktop.hyprland.settings.bind = let
+      loginctl = getExe' pkgs.systemd "loginctl";
+    in [
+      "SUPER ALT, L, exec, ${loginctl} lock-session"
+    ];
+  }

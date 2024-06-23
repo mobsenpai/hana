@@ -1,21 +1,20 @@
 {
-  config,
   lib,
+  config,
   ...
-}: {
-  options = {
-    myHome.hyprpaper.enable = lib.mkEnableOption "Enables hyprpaper";
-  };
-
-  config = lib.mkIf config.myHome.hyprpaper.enable {
+}: let
+  inherit (config.modules.desktop) wallpaper;
+  cfg = config.modules.services.hyprpaper;
+in {
+  config = lib.mkIf cfg.enable {
     services.hyprpaper = {
       enable = true;
       settings = {
         preload = [
-          config.myHome.wallpaper
+          wallpaper.default
         ];
         wallpaper = [
-          ", ${config.myHome.wallpaper}"
+          ", ${wallpaper.default}"
         ];
       };
     };

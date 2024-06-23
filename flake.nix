@@ -1,45 +1,50 @@
 {
-  description = ''
-    ███╗░░░███╗░█████╗░██████╗░██╗░██████╗  ███╗░░██╗██╗██╗░░██╗░█████╗░░██████╗
-    ████╗░████║██╔══██╗██╔══██╗╚█║██╔════╝  ████╗░██║██║╚██╗██╔╝██╔══██╗██╔════╝
-    ██╔████╔██║██║░░██║██████╦╝░╚╝╚█████╗░  ██╔██╗██║██║░╚███╔╝░██║░░██║╚█████╗░
-    ██║╚██╔╝██║██║░░██║██╔══██╗░░░░╚═══██╗  ██║╚████║██║░██╔██╗░██║░░██║░╚═══██╗
-    ██║░╚═╝░██║╚█████╔╝██████╦╝░░░██████╔╝  ██║░╚███║██║██╔╝╚██╗╚█████╔╝██████╔╝
-    ╚═╝░░░░░╚═╝░╚════╝░╚═════╝░░░░╚═════╝░  ╚═╝░░╚══╝╚═╝╚═╝░░╚═╝░╚════╝░╚═════╝░
-  '';
+  description = "Yash Raj's NixOS Flake";
 
-  inputs = {
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    inherit (lib) nixosSystem genAttrs hasPrefix;
+    lib = nixpkgs.lib.extend (final: prev: (import ./lib final) // home-manager.lib);
 
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
+    systems = ["x86_64-linux"];
+    forEachSystem = f:
+      genAttrs systems (system:
+        f (nixpkgs.legacyPackages.${system}));
 
-  outputs = {...} @ inputs: {
-    homeManagerModules.default = ./modules/home-manager;
-    nixosModules.default = ./modules/nixos;
-
-    nixosConfigurations = {
-      hana = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/hana/configuration.nix
-          inputs.self.outputs.nixosModules.default
-          inputs.home-manager.nixosModules.home-manager
-
-          {
-            home-manager = {
-              extraSpecialArgs = {inherit inputs;};
-              users.yashraj.imports = [
-                ./home/hana.nix
-                inputs.self.outputs.homeManagerModules.default
-              ];
-            };
-          }
-        ];
+    mkHost = hostname: username: system: {
+      ${hostname} = nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit self inputs hostname username lib;
+        };
+        modules =
+          if (hasPrefix "installer" hostname)
+          then [./hosts/installer]
+          else [
+            ./hosts/${hostname}
+            ./modules/nixos
+          ];
       };
     };
+  in {
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
+    templates = import ./templates;
+
+    nixosConfigurations = mkHost "hana" "yashraj" "x86_64-linux";
+  };
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

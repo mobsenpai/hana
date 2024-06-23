@@ -1,9 +1,3 @@
-{
-  imports = [
-    ./bundles
-    ./config
-    ./hardware
-    ./programs
-    ./services
-  ];
+{lib, ...}: {
+  imports = lib.utils.scanPaths ./.;
 }

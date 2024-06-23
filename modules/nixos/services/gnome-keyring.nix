@@ -1,15 +1,11 @@
 {
-  config,
   lib,
+  config,
   ...
-}: {
-  options = {
-    myNixos.gnome-keyring.enable = lib.mkEnableOption "Enables gnome-keyring";
-  };
-
-  config = lib.mkIf config.myNixos.gnome-keyring.enable {
-    services = {
-      gnome.gnome-keyring.enable = true;
-    };
-  };
-}
+}: let
+  cfg = config.modules.services.gnome-keyring;
+in
+  lib.mkIf cfg.enable
+  {
+    services.gnome.gnome-keyring.enable = true;
+  }
