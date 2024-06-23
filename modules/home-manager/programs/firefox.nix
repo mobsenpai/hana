@@ -51,7 +51,7 @@ in
             "browser.aboutConfig.showWarning" = false;
             "doms.forms.autocomplete.formautofill" = false;
             "extensions.formautofill.creditCards.enabled" = false;
-            "identify.fxaccounts.enabled" = false;
+            "identity.fxaccounts.enabled" = false;
             "signon.management.page.breach-alerts.enabled" = false;
 
             # Privacy
