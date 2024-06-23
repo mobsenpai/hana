@@ -40,14 +40,16 @@ nix flake show github:mobsenpai/hana
 
 - **[Home](../home):** [Home-Manager](https://github.com/nix-community/home-manager) configurations.
 - **[Hosts](../hosts):** Host-specific configurations.
+- **[Lib](../lib):** Custom utilities
 - **[Modules](../modules):** System-wide shared modules.
+- **[Templates](../templates):** Custom flake templates
 
 ## :bulb: Acknowledgments
 
 Special thanks to the following individuals:
 
 <p align="center">
-  < a href="https://github.com/JManch">JManch</a> •
+  <a href="https://github.com/JManch">JManch</a> •
   <a href="https://github.com/rxyhn">rxyhn</a> •
   <a href="https://github.com/Misterio77">Misterio77</a> •
   <a href="https://github.com/vimjoyer">vimjoyer</a>
