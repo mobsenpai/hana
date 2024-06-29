@@ -53,7 +53,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       wl-clipboard
-      pcmanfm
+      gnome.nautilus
     ];
     services.cliphist.enable = true;
   };
