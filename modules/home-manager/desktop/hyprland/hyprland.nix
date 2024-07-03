@@ -80,7 +80,7 @@ in
         };
 
         master = {
-          new_is_master = true;
+          new_status = "master";
           mfact = 0.5;
           new_on_top = true;
         };
