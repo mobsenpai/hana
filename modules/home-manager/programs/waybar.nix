@@ -201,12 +201,8 @@ in
             color: ${xcolors.fg1};
           }
 
-          .modules-left{
-            padding-left: 4px;
-          }
-
-          .modules-right {
-            padding-right: 4px;
+          window#waybar > box {
+            padding: 2px;
           }
 
           #clock,
@@ -219,7 +215,6 @@ in
           #window,
           #memory {
             background: ${xcolors.bg0};
-            margin: 2px 0;
           }
 
           #battery,
