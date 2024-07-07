@@ -19,8 +19,9 @@
         ${systemctl} suspend
       fi
     '';
-in {
-  config = mkIf cfg.enable {
+in
+  mkIf cfg.enable
+  {
     services.hypridle = {
       enable = true;
       settings = let
@@ -41,5 +42,20 @@ in {
         ];
       };
     };
-  };
-}
+
+    desktop.hyprland.binds = let
+      systemctl = getExe' pkgs.systemd "systemctl";
+      notifySend = getExe pkgs.libnotify;
+      toggleHypridle = pkgs.writeShellScript "hypridle-toggle" ''
+        ${systemctl} is-active --quiet --user hypridle && {
+          ${systemctl} stop --quiet --user hypridle
+          ${notifySend} --urgency=low -t 2000 'Hypridle' 'Service disabled'
+        } || {
+          ${systemctl} start --quiet --user hypridle
+          ${notifySend} --urgency=low -t 2000 'Hypridle' 'Service enabled'
+        }
+      '';
+    in [
+      "SUPER, U, exec, ${toggleHypridle}"
+    ];
+  }

@@ -15,8 +15,9 @@
     if homeManager.enable
     then homeDesktopCfg.windowManager
     else null;
-in {
-  config = mkIf cfg.enable (mkMerge [
+in
+  mkIf cfg.enable
+  (mkMerge [
     {
       # Enables wayland for all apps that support it
       environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -45,5 +46,4 @@ in {
         package = hyprlandPackage;
       };
     })
-  ]);
-}
+  ])

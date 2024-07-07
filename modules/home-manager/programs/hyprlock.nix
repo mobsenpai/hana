@@ -72,7 +72,7 @@ in
       };
     };
 
-    desktop.hyprland.settings.bind = let
+    desktop.hyprland.binds = let
       loginctl = getExe' pkgs.systemd "loginctl";
     in [
       "SUPER ALT, L, exec, ${loginctl} lock-session"

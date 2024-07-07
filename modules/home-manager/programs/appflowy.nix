@@ -7,7 +7,8 @@
   inherit (lib) mkIf getExe;
   cfg = config.modules.programs.appflowy;
 in
-  mkIf cfg.enable {
+  mkIf cfg.enable
+  {
     home.packages = with pkgs; [
       appflowy
     ];

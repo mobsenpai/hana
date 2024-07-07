@@ -5,8 +5,9 @@
   ...
 }: let
   cfg = config.modules.system.audio;
-in {
-  config = lib.mkIf cfg.enable {
+in
+  lib.mkIf cfg.enable
+  {
     environment.systemPackages = [pkgs.pavucontrol];
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
@@ -21,5 +22,4 @@ in {
       enable = true;
       mediaKeys.enable = true;
     };
-  };
-}
+  }

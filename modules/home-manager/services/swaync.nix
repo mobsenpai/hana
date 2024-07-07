@@ -6,7 +6,8 @@
   inherit (config.modules.colorScheme) xcolors;
   cfg = config.modules.services.swaync;
 in
-  lib.mkIf cfg.enable {
+  lib.mkIf cfg.enable
+  {
     services.swaync = {
       enable = true;
       settings = {
