@@ -25,8 +25,8 @@ in
 
       settings = {
         bar = let
-          formatIcon = bg: fg: icon: "<span background='${bg}' foreground='${fg}'> ${icon} </span>";
-          formatText = bg: fg: text: "<span background='${bg}' foreground='${fg}'> ${text} </span>";
+          formatIcon = bg: fg: icon: "<span line_height='1.1' background='${bg}' foreground='${fg}'> ${icon} </span>";
+          formatText = bg: fg: text: "<span line_height='1.1' background='${bg}' foreground='${fg}'> ${text} </span>";
         in {
           exclusive = true;
           fixed-center = true;
@@ -202,7 +202,7 @@ in
           }
 
           window#waybar > box {
-            padding: 2px;
+            padding: 3px;
           }
 
           #clock,
