@@ -14,7 +14,7 @@
 
 <br>
 
-<img src="https://github.com/mobsenpai/hana/assets/92603465/0577c6b8-46e4-4a0e-bacb-99f9128e9e16" alt="Showcase" align="right" width="390px">
+<img src="https://github.com/user-attachments/assets/13fb0727-4426-4d81-b4ca-ba0ec272ab6c" alt="Showcase" align="right" width="390px">
 
 > [!NOTE]
 >
