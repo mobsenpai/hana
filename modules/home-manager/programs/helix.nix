@@ -27,9 +27,6 @@ in
         # Formatters
         alejandra
         nodePackages.prettier
-
-        # NOTE: These 'extra' lsp and formatters should be installed on a
-        # per-project basis using nix shell
       ];
 
       languages = {
