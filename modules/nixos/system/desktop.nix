@@ -45,5 +45,7 @@ in
         enable = true;
         package = hyprlandPackage;
       };
+
+      modules.services.greetd.sessionDirs = ["${hyprlandPackage}/share/wayland-sessions"];
     })
   ])

@@ -7,7 +7,14 @@
   inherit (lib) mapAttrs filterAttrs isType mapAttrsToList;
 in {
   nixpkgs = {
-    overlays = [];
+    overlays = [
+      (final: _prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          system = final.system;
+          config.allowUnfree = true;
+        };
+      })
+    ];
 
     config.allowUnfree = true;
   };

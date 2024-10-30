@@ -6,7 +6,7 @@
       homeManager.enable = true;
     };
     services = {
-      gnome-keyring.enable = true;
+      greetd.enable = true;
       polkit-gnome.enable = true;
     };
     system = {
