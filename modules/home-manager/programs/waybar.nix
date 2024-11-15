@@ -5,7 +5,7 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf getExe getExe' optional;
+  inherit (lib) mkIf getExe getExe';
   inherit (config.modules.colorScheme) xcolors;
   cfg = config.modules.programs.waybar;
   desktopCfg = config.modules.desktop;
