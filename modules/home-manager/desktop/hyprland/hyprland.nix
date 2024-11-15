@@ -24,8 +24,8 @@ in
           border_size = 2;
           "col.active_border" = "rgb(${colors.fg1})";
           "col.inactive_border" = "rgb(${colors.bg2})";
-          gaps_in = 4;
-          gaps_out = 8;
+          gaps_in = 10;
+          gaps_out = 10;
           layout = "master";
         };
 
@@ -65,6 +65,13 @@ in
         };
 
         decoration = {
+          blur = {
+            enabled = true;
+            size = 8;
+            passes = 2;
+            vibrancy = 0.2696;
+          };
+
           drop_shadow = true;
           shadow_offset = "0 2";
           shadow_range = 20;

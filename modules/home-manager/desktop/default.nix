@@ -33,8 +33,8 @@ in {
     };
 
     wallpaper = let
-      url = "https://i.imgur.com/nV0jfST.png";
-      sha256 = "195mzd8ryyqzl8brlpsq0ww0llzjzi3cw0nirb98iax730cz3xby";
+      url = "https://i.imgur.com/YU169OL.png";
+      sha256 = "073rw08hvb3ls8x4j5zsm3bcq97fni3hyzbzrv4akah2sxzibqhr";
       ext = lib.last (lib.splitString "." url);
     in {
       default = mkOption {

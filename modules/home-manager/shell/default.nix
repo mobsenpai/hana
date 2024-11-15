@@ -35,8 +35,10 @@ in {
         zip
       ])
       ++ optionals cfg.sillyTools (with pkgs; [
+        cava
         cbonsai
         cmatrix
+        tty-clock
       ]);
 
     home.sessionVariables.COLORTERM = "truecolor";

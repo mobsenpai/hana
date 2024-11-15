@@ -11,73 +11,82 @@ in
       enable = true;
 
       settings = {
-        scan_timeout = 10;
-        add_newline = true;
-        line_break.disabled = true;
-        format = "$directory$git_branch$git_metrics$git_commit$git_state$git_status$all";
+        add_newline = false;
+        format = "$username$directory$git_branch$git_metrics$git_commit$git_state$git_status$all";
+
         character = {
-          success_symbol = "[λ](green)";
-          error_symbol = "[λ](red)";
-          vimcmd_symbol = "[λ](green)";
+          success_symbol = "[❯](bright-black)";
+          error_symbol = "[❯](bright-red)";
+          vimcmd_symbol = "[❯](bright-green)";
         };
+
         directory = {
-          home_symbol = "home";
-          style = "cyan";
+          style = "bright-blue";
         };
-        git_commit.tag_symbol = " tag ";
+
         git_branch = {
-          style = "purple";
-          symbol = "";
+          style = "bright-black";
+          format = "[$symbol$branch(:$remote_branch)]($style) ";
         };
+
         git_metrics = {
-          added_style = "bold yellow";
-          deleted_style = "bold red";
+          added_style = "bright-black";
+          deleted_style = "bright-black";
           disabled = false;
         };
-        aws.symbol = "aws ";
-        bun.symbol = "bun ";
-        c.symbol = "C ";
-        cobol.symbol = "cobol ";
-        conda.symbol = "conda ";
-        crystal.symbol = "cr ";
-        cmake.symbol = "cmake ";
-        daml.symbol = "daml ";
-        dart.symbol = "dart ";
-        deno.symbol = "deno ";
-        dotnet.symbol = ".NET ";
-        directory.read_only = " ro";
-        docker_context.symbol = "docker ";
-        elixir.symbol = "exs ";
-        elm.symbol = "elm ";
-        golang.symbol = "go ";
-        guix_shell.symbol = "guix ";
-        hg_branch.symbol = "hg ";
-        java.symbol = "java ";
-        julia.symbol = "jl ";
-        kotlin.symbol = "kt ";
-        lua.symbol = "lua ";
-        memory_usage.symbol = "memory ";
-        meson.symbol = "meson ";
-        nim.symbol = "nim ";
-        nix_shell.symbol = "nix ";
-        ocaml.symbol = "ml ";
-        opa.symbol = "opa ";
-        nodejs.symbol = "nodejs ";
-        package.symbol = "pkg ";
-        perl.symbol = "pl ";
-        php.symbol = "php ";
-        pulumi.symbol = "pulumi ";
-        purescript.symbol = "purs ";
-        python.symbol = "py ";
-        raku.symbol = "raku ";
-        ruby.symbol = "rb ";
-        rust.symbol = "rs ";
-        scala.symbol = "scala ";
-        spack.symbol = "spack ";
-        sudo.symbol = "sudo ";
-        swift.symbol = "swift ";
-        terraform.symbol = "terraform ";
-        zig.symbol = "zig ";
+
+        git_status = {
+          style = "bright-black";
+        };
+
+        username = {
+          format = "[$user](purple) ";
+          show_always = true;
+        };
+
+        aws.symbol = "  ";
+        buf.symbol = " ";
+        c.symbol = " ";
+        conda.symbol = " ";
+        crystal.symbol = " ";
+        dart.symbol = " ";
+        directory.read_only = " 󰌾";
+        docker_context.symbol = " ";
+        elixir.symbol = " ";
+        elm.symbol = " ";
+        fennel.symbol = " ";
+        fossil_branch.symbol = " ";
+        git_branch.symbol = " ";
+        git_commit.tag_symbol = " ";
+        golang.symbol = " ";
+        guix_shell.symbol = " ";
+        haskell.symbol = " ";
+        haxe.symbol = " ";
+        hg_branch.symbol = " ";
+        hostname.ssh_symbol = " ";
+        java.symbol = " ";
+        julia.symbol = " ";
+        kotlin.symbol = " ";
+        lua.symbol = " ";
+        memory_usage.symbol = "󰍛 ";
+        meson.symbol = "󰔷 ";
+        nim.symbol = "󰆥 ";
+        nix_shell.symbol = " ";
+        nodejs.symbol = " ";
+        ocaml.symbol = " ";
+        os.symbols.NixOS = " ";
+        package.symbol = "󰏗 ";
+        perl.symbol = " ";
+        php.symbol = " ";
+        pijul_channel.symbol = " ";
+        python.symbol = " ";
+        rlang.symbol = "󰟔 ";
+        ruby.symbol = " ";
+        rust.symbol = "󱘗 ";
+        scala.symbol = " ";
+        swift.symbol = " ";
+        zig.symbol = " ";
+        gradle.symbol = " ";
       };
     };
   }

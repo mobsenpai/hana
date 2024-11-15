@@ -90,6 +90,7 @@ in
       windowrulev2 = [
         "float, class:^(float)$, title:^(Alacritty)$"
         "workspace special:s1 silent, class:^(float)$, title:^(s1)$"
+        "opacity 0.85, class:(Alacritty)"
       ];
     };
   }

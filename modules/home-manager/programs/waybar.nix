@@ -36,7 +36,7 @@ in
 
           modules-left = ["hyprland/workspaces" "hyprland/window"];
           modules-center = ["custom/playerctl"];
-          modules-right = ["custom/weather" "memory" "cpu" "clock" "group/systray" "group/info"];
+          modules-right = ["custom/weather" "memory" "cpu" "clock" "group/systray" "custom/notification"];
 
           battery = mkIf isLaptop {
             format = "{icon}";
@@ -107,21 +107,6 @@ in
             return-type = "json";
           };
 
-          "group/info" = {
-            orientation = "inherit";
-            drawer = {
-              "transition-duration" = 500;
-              "transition-left-to-right" = false;
-            };
-            modules =
-              [
-                "custom/notification"
-                "pulseaudio"
-                "network"
-              ]
-              ++ optional isLaptop "battery";
-          };
-
           "group/systray" = {
             orientation = "inherit";
             drawer = {
@@ -130,6 +115,7 @@ in
             };
             modules = [
               "custom/chevron"
+              "battery"
               "tray"
             ];
           };
@@ -198,6 +184,7 @@ in
 
           window#waybar {
             background: ${xcolors.bg0};
+            border: 1px solid ${xcolors.bg2};
             color: ${xcolors.fg1};
           }
 

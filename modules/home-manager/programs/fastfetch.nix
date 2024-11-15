@@ -10,7 +10,7 @@ in
   {
     home.packages = [pkgs.fastfetch];
 
-    programs.zsh.shellAliases = {
+    programs.bash.shellAliases = {
       neofetch = "fastfetch";
     };
 
