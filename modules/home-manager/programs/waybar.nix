@@ -66,7 +66,7 @@ in
             return-type = "json";
             format = "{icon}";
             format-icons = {
-              notification = "󰂚";
+              notification = "󱅫";
               none = "󰂜";
               dnd-notification = "󰂛";
               dnd-none = "󰪑";
