@@ -18,14 +18,17 @@ in
         # Runtime dependencies
         emmet-ls
         nodejs
+        python3
 
         # Language servers
         nil
         nodePackages.typescript-language-server
         nodePackages.vscode-langservers-extracted
+        python312Packages.python-lsp-server
 
         # Formatters
         alejandra
+        black
         nodePackages.prettier
       ];
 
@@ -79,6 +82,16 @@ in
             auto-format = true;
             formatter.command = "alejandra";
             language-servers = ["nil"];
+          }
+          {
+            name = "python";
+            file-types = ["py"];
+            auto-format = true;
+            formatter = {
+              command = "black";
+              args = ["--stdio"];
+            };
+            language-servers = ["pylsp"];
           }
         ];
       };

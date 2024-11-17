@@ -35,6 +35,8 @@ in
           focus_on_activate = true;
           force_default_wallpaper = 0;
           new_window_takes_over_fullscreen = 2;
+          # https://github.com/hyprwm/Hyprland/pull/7657
+          initial_workspace_tracking = 0;
         };
 
         input = {

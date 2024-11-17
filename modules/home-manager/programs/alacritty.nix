@@ -82,15 +82,15 @@ in
     desktop.hyprland.settings = {
       bind = [
         "SUPER, Return, exec, alacritty"
-        "SUPER SHIFT, Return, exec, alacritty --class float"
-        # Scratchpad terminal
-        "SUPER SHIFT, S, exec, alacritty --class float --title s1"
+        "SUPER SHIFT, Return, exec, [float] alacritty"
       ];
 
       windowrulev2 = [
-        "float, class:^(float)$, title:^(Alacritty)$"
-        "workspace special:s1 silent, class:^(float)$, title:^(s1)$"
         "opacity 0.85, class:(Alacritty)"
+      ];
+
+      workspace = [
+        "special:s1, on-created-empty:alacritty"
       ];
     };
   }
