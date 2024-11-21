@@ -24,7 +24,7 @@ in
         nil
         nodePackages.typescript-language-server
         nodePackages.vscode-langservers-extracted
-        python312Packages.python-lsp-server
+        pyright
 
         # Formatters
         alejandra
@@ -91,7 +91,7 @@ in
               command = "black";
               args = ["--stdio"];
             };
-            language-servers = ["pylsp"];
+            language-servers = ["pyright"];
           }
         ];
       };
