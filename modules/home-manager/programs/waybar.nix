@@ -132,7 +132,7 @@ in
           };
 
           memory = {
-            format = formatIcon xcolors.aqua1 xcolors.bg0 "" + " {}%";
+            format = formatIcon xcolors.aqua1 xcolors.bg0 "" + " {used:0.1f} G";
           };
 
           network = let
