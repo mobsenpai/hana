@@ -25,8 +25,7 @@ in
 
       settings = {
         bar = let
-          formatIcon = bg: fg: icon: "<span line_height='1.1' background='${bg}' foreground='${fg}'> ${icon} </span>";
-          formatText = bg: fg: text: "<span line_height='1.1' background='${bg}' foreground='${fg}'> ${text} </span>";
+          formatIcon = bg: fg: icon: "<span line_height='1.2' background='${bg}' foreground='${fg}'> ${icon} </span>";
         in {
           exclusive = true;
           fixed-center = true;
@@ -39,23 +38,23 @@ in
           modules-right = ["custom/weather" "memory" "cpu" "clock" "group/systray" "custom/notification"];
 
           battery = mkIf isLaptop {
-            format = "{icon}";
+            format = "<span line_height='1.2'> {icon} </span>";
             format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
             tooltip-format = "{timeTo}, {capacity}%";
           };
 
           clock = {
-            format = formatIcon xcolors.blue1 xcolors.bg0 "" + formatText xcolors.blue0 xcolors.fg0 "{:%a %b %d - %I:%M %p}";
-            format-alt = formatIcon xcolors.blue1 xcolors.bg0 "" + formatText xcolors.blue0 xcolors.fg0 "{:%H:%M}";
+            format = formatIcon xcolors.blue1 xcolors.bg0 "" + " {:%a %b %d - %I:%M %p}";
+            format-alt = formatIcon xcolors.blue1 xcolors.bg0 "" + " {:%H:%M}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           };
 
           cpu = {
-            format = formatIcon xcolors.yellow1 xcolors.bg0 "" + formatText xcolors.bg1 xcolors.yellow0 "{usage}%";
+            format = formatIcon xcolors.yellow1 xcolors.bg0 "" + " {usage}%";
           };
 
           "custom/chevron" = {
-            format = "";
+            format = "<span line_height='1.2'>  </span>";
             tooltip = false;
           };
 
@@ -64,7 +63,7 @@ in
           in {
             exec = "${swaync} -swb";
             return-type = "json";
-            format = "{icon}";
+            format = "<span line_height='1.2'> {icon} </span>";
             format-icons = {
               notification = "󱅫";
               none = "󰂜";
@@ -85,7 +84,7 @@ in
             playerctl = getExe pkgs.playerctl;
           in {
             exec = "${playerctl} -a metadata --format '{\"text\": \"{{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
-            format = formatIcon xcolors.purple1 xcolors.bg0 "{icon}" + formatText xcolors.bg1 xcolors.purple0 "{}";
+            format = formatIcon xcolors.purple1 xcolors.bg0 "{icon}" + " {}";
             format-icons = {
               "Paused" = "";
               "Playing" = "󰎈";
@@ -101,7 +100,7 @@ in
             wttrbar = getExe pkgs.wttrbar;
           in {
             exec = "${wttrbar} --location Bihar --custom-indicator \"{temp_C} °C\"";
-            format = formatIcon xcolors.green1 xcolors.bg0 "" + formatText xcolors.bg1 xcolors.green0 "{}";
+            format = formatIcon xcolors.green1 xcolors.bg0 "" + " {}";
             tooltip = true;
             interval = 3600;
             return-type = "json";
@@ -133,14 +132,14 @@ in
           };
 
           memory = {
-            format = formatIcon xcolors.aqua1 xcolors.bg0 "" + formatText xcolors.aqua0 xcolors.bg1 "{}%";
+            format = formatIcon xcolors.aqua1 xcolors.bg0 "" + " {}%";
           };
 
           network = let
             connection-editor = getExe' pkgs.networkmanagerapplet "nm-connection-editor";
           in {
-            format-wifi = "󰤨";
-            format-ethernet = "󰈀";
+            format-wifi = " 󰤨 ";
+            format-ethernet = " 󰈀 ";
             format-disconnected = "";
             tooltip-format-wifi = "WiFi: {essid} ({signalStrength}%)\n󰅃 {bandwidthUpBytes} 󰅀 {bandwidthDownBytes}";
             tooltip-format-ethernet = "Ethernet: {ifname}\n󰅃 {bandwidthUpBytes} 󰅀 {bandwidthDownBytes}";
@@ -151,7 +150,7 @@ in
           pulseaudio = let
             pamixer = getExe pkgs.pamixer;
           in {
-            format = "{icon}";
+            format = "<span line_height='1.2'> {icon} </span>";
             format-bluetooth = "󰂯";
             format-muted = "󰖁";
             format-icons = {
@@ -192,23 +191,41 @@ in
             padding: 3px;
           }
 
-          #clock,
-          #cpu,
-          #custom-playerctl,
-          #custom-weather,
+          #clock {
+            background: ${xcolors.blue0};
+            color: ${xcolors.fg0};
+            padding-right: 6px;
+          }
+
+          #cpu {
+            background: ${xcolors.bg1};
+            color: ${xcolors.yellow0};
+            padding-right: 6px;
+          }
+
+          #custom-playerctl {
+            background: ${xcolors.bg1};
+            color: ${xcolors.purple0};
+            padding-right:6px;
+          }
+
+          #custom-weather {
+            background: ${xcolors.bg1};
+            color: ${xcolors.green0};
+            padding-right: 6px;
+          }
+
+          #memory {
+            background: ${xcolors.aqua0};
+            color: ${xcolors.bg1};
+            padding-right: 6px;
+          }
+
           #info,
           #systray,
           #workspaces,
-          #window,
-          #memory {
+          #window{
             background: ${xcolors.bg0};
-          }
-
-          #battery,
-          #custom-notification,
-          #custom-chevron,
-          #network {
-            padding: 0 6px;
           }
 
           #workspaces button {
