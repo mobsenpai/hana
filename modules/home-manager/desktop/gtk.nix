@@ -38,7 +38,6 @@
     @define-color headerbar_border_color @headerbar_fg_color;
     @define-color headerbar_backdrop_color @window_bg_color;
     @define-color headerbar_shade_color rgba(0, 0, 0, 0.36);
-    @headerbar_darker_shade_color rgba(0, 0, 0, 0.9);
 
     @define-color sidebar_bg_color ${xcolors.bg3};
     @define-color sidebar_fg_color ${xcolors.fg1};
@@ -81,6 +80,12 @@ in
       iconTheme = {
         name = "Adwaita";
         package = pkgs.gnome.adwaita-icon-theme;
+      };
+
+      font = {
+        package = pkgs.nerdfonts.override {fonts = ["FiraMono"];};
+        name = "FiraMono Nerd Font";
+        size = 10;
       };
 
       gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
