@@ -25,6 +25,8 @@ in
         nodePackages.typescript-language-server
         nodePackages.vscode-langservers-extracted
         pyright
+        clang
+        clang-tools
 
         # Formatters
         alejandra
@@ -92,6 +94,20 @@ in
               args = ["--stdio"];
             };
             language-servers = ["pyright"];
+          }
+          {
+            name = "c";
+            file-types = ["c" "h"];
+            auto-format = true;
+            formatter.command = "clang-format";
+            language-servers = ["clangd"];
+          }
+          {
+            name = "cpp";
+            file-types = ["cpp" "cc" "cxx" "hpp" "hcc" "hxx"];
+            auto-format = true;
+            formatter.command = "clang-format";
+            language-servers = ["clangd"];
           }
         ];
       };
