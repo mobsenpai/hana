@@ -18,8 +18,10 @@
       helix.enable = true;
       hyprlock.enable = true;
       media.enable = true;
+      pcmanfm.enable = true;
       waybar.enable = true;
       wofi.enable = true;
+      zathura.enable = true;
     };
 
     services = {
