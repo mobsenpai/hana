@@ -5,10 +5,16 @@
     core = {
       homeManager.enable = true;
     };
+
+    programs = {
+      dconf.enable = true;
+    };
+
     services = {
       greetd.enable = true;
       polkit-gnome.enable = true;
     };
+
     system = {
       device.type = "laptop";
       desktop.enable = true;

@@ -19,6 +19,6 @@ in
     desktop.hyprland.binds = let
       appflowy = getExe pkgs.appflowy;
     in [
-      "SUPER, F3, exec, ${appflowy}"
+      "SUPER, F4, exec, ${appflowy}"
     ];
   }

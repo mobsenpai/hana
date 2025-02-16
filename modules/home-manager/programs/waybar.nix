@@ -5,7 +5,7 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf getExe getExe';
+  inherit (lib) mkIf optional optionals getExe getExe';
   inherit (config.modules.colorScheme) xcolors;
   cfg = config.modules.programs.waybar;
   desktopCfg = config.modules.desktop;
@@ -17,6 +17,15 @@ in
     services = {
       blueman-applet.enable = true;
       network-manager-applet.enable = true;
+      udiskie = {
+        enable = true;
+        settings = {
+          program_options = {
+            # https://github.com/nix-community/home-manager/issues/632
+            file_manager = "pcmanfm";
+          };
+        };
+      };
     };
 
     programs.waybar = {
@@ -33,7 +42,12 @@ in
           position = "top";
           spacing = 8;
 
-          modules-left = ["hyprland/workspaces" "hyprland/window"];
+          modules-left =
+            optionals isHyprland
+            [
+              "hyprland/workspaces"
+              "hyprland/window"
+            ];
           modules-center = ["custom/playerctl"];
           modules-right = ["custom/weather" "memory" "cpu" "clock" "group/systray" "custom/notification"];
 
@@ -53,8 +67,8 @@ in
             format = formatIcon xcolors.yellow1 xcolors.bg0 "" + " {usage}%";
           };
 
-          "custom/chevron" = {
-            format = "<span line_height='1.2'>  </span>";
+          "custom/trayicon" = {
+            format = formatIcon xcolors.red0 xcolors.bg0 "󱊔";
             tooltip = false;
           };
 
@@ -65,14 +79,14 @@ in
             return-type = "json";
             format = "<span line_height='1.2'> {icon} </span>";
             format-icons = {
-              notification = "󱅫";
-              none = "󰂜";
-              dnd-notification = "󰂛";
-              dnd-none = "󰪑";
-              inhibited-notification = "󰂛";
-              inhibited-none = "󰪑";
-              dnd-inhibited-notification = "󰂛";
-              dnd-inhibited-none = "󰪑";
+              notification = "󱥂";
+              none = "󰍥";
+              dnd-notification = "󱅯";
+              dnd-none = "󱙎";
+              inhibited-notification = "󱅯";
+              inhibited-none = "󱙎";
+              dnd-inhibited-notification = "󱅯";
+              dnd-inhibited-none = "󱙎";
             };
             on-click = "${swaync} -t -sw";
             on-click-right = "${swaync} -d -sw";
@@ -108,15 +122,13 @@ in
 
           "group/systray" = {
             orientation = "inherit";
-            drawer = {
-              "transition-duration" = 500;
-              "transition-left-to-right" = false;
-            };
-            modules = [
-              "custom/chevron"
-              "battery"
-              "tray"
-            ];
+            modules =
+              [
+                "custom/trayicon"
+                "pulseaudio"
+              ]
+              ++ optional isLaptop "battery"
+              ++ ["tray"];
           };
 
           "hyprland/workspaces" = mkIf isHyprland {
@@ -135,28 +147,17 @@ in
             format = formatIcon xcolors.aqua1 xcolors.bg0 "" + " {used:0.1f} G";
           };
 
-          network = let
-            connection-editor = getExe' pkgs.networkmanagerapplet "nm-connection-editor";
-          in {
-            format-wifi = " 󰤨 ";
-            format-ethernet = " 󰈀 ";
-            format-disconnected = "";
-            tooltip-format-wifi = "WiFi: {essid} ({signalStrength}%)\n󰅃 {bandwidthUpBytes} 󰅀 {bandwidthDownBytes}";
-            tooltip-format-ethernet = "Ethernet: {ifname}\n󰅃 {bandwidthUpBytes} 󰅀 {bandwidthDownBytes}";
-            tooltip-format-disconnected = "Disconnected";
-            on-click = "${connection-editor}";
-          };
-
           pulseaudio = let
             pamixer = getExe pkgs.pamixer;
           in {
             format = "<span line_height='1.2'> {icon} </span>";
-            format-bluetooth = "󰂯";
-            format-muted = "󰖁";
+            format-bluetooth = " 󰂯 ";
+            format-muted = " 󰖁 ";
             format-icons = {
               hands-free = "󱡏";
               headphone = "󰋋";
               headset = "󰋎";
+              default = ["󰖀" "󰕾" "󰕾"];
             };
             tooltip-format = "Volume: {volume}%";
             on-click = "${pamixer} --toggle-mute";
@@ -221,8 +222,12 @@ in
             padding-right: 6px;
           }
 
+          #systray {
+            background: ${xcolors.bg1};
+            padding-right: 6px;
+          }
+
           #info,
-          #systray,
           #workspaces,
           #window{
             background: ${xcolors.bg0};

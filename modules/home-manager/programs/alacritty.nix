@@ -90,7 +90,7 @@ in
       ];
 
       workspace = [
-        "special:s1, on-created-empty:alacritty"
+        "special:s1, gapsout:80, on-created-empty:alacritty"
       ];
     };
   }

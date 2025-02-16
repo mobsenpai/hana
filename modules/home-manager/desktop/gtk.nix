@@ -89,6 +89,7 @@ in
       };
 
       gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+
       gtk3 = {
         bookmarks = [
           "file://${config.home.homeDirectory}/Documents"
@@ -99,6 +100,7 @@ in
         ];
         extraCss = cssContent;
       };
+
       gtk4.extraCss = cssContent;
     };
 
@@ -115,4 +117,6 @@ in
       enable = true;
       platformTheme.name = "gtk";
     };
+
+    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   }

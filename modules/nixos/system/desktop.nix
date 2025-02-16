@@ -4,7 +4,7 @@
   username,
   ...
 }: let
-  inherit (lib) mkIf mkForce mkMerge;
+  inherit (lib) utils mkIf mkForce mkMerge;
   inherit (config.modules.core) homeManager;
   inherit (homeConfig.programs) hyprlock;
   cfg = config.modules.system.desktop;
@@ -41,6 +41,11 @@ in
     })
 
     (mkIf (windowManager == "Hyprland") {
+      assertions = utils.asserts [
+        homeManager.enable
+        "Hyprland requires Home Manager to be enabled"
+      ];
+
       programs.hyprland = {
         enable = true;
         package = hyprlandPackage;

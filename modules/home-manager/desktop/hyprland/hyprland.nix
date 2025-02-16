@@ -5,14 +5,16 @@
   osConfig,
   ...
 }: let
+  inherit (lib) mkIf mkForce;
   inherit (config.modules.colorScheme) colors;
   desktopCfg = config.modules.desktop;
   osDesktopEnabled = osConfig.modules.system.desktop.enable;
   hyprland = config.wayland.windowManager.hyprland.package;
 in
-  lib.mkIf (osDesktopEnabled && desktopCfg.windowManager == "Hyprland")
+  mkIf (osDesktopEnabled && desktopCfg.windowManager == "Hyprland")
   {
     xdg.portal = {
+      enable = mkForce true;
       extraPortals = [pkgs.xdg-desktop-portal-hyprland];
       configPackages = [hyprland];
     };
