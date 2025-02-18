@@ -15,8 +15,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages =
-      (with pkgs; [
+    home.packages = with pkgs;
+      [
         bat
         bottom
         curl
@@ -34,7 +34,7 @@ in {
         yt-dlp
         zathura
         zip
-      ])
+      ]
       ++ optionals cfg.sillyTools (with pkgs; [
         cava
         cbonsai

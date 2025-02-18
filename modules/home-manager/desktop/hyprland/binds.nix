@@ -16,6 +16,7 @@
   inherit (osConfig.modules.system) audio;
   desktopCfg = config.modules.desktop;
   osDesktopEnabled = osConfig.modules.system.desktop.enable;
+  isLaptop = osConfig.modules.system.device.type == "laptop";
 
   jaq = getExe pkgs.jaq;
   hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
@@ -36,9 +37,10 @@ in
   mkIf (osDesktopEnabled && desktopCfg.windowManager == "Hyprland")
   {
     wayland.windowManager.hyprland = let
+      brightnessctl = getExe pkgs.brightnessctl;
       grimblast = getExe pkgs.grimblast;
-      wpctl = getExe' pkgs.wireplumber "wpctl";
       playerctl = getExe pkgs.playerctl;
+      wpctl = getExe' pkgs.wireplumber "wpctl";
     in {
       settings.bind =
         [
@@ -125,10 +127,11 @@ in
           # Scratchpad
           "SUPER, S, togglespecialworkspace, s1"
         ]
-        ++ (
-          optional audio.enable
-          ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        );
+        ++ optional audio.enable ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ++ optionals isLaptop [
+          ", XF86MonBrightnessUp, exec, ${brightnessctl} set +5%"
+          ", XF86MonBrightnessDown, exec, ${brightnessctl} set 5%-"
+        ];
 
       settings.bindm = [
         "SUPER, mouse:272, movewindow"

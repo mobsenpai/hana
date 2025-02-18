@@ -51,6 +51,17 @@ in
           modules-center = ["custom/playerctl"];
           modules-right = ["custom/weather" "memory" "cpu" "clock" "group/systray" "custom/notification"];
 
+          backlight = let
+            brightnessctl = getExe pkgs.brightnessctl;
+          in
+            mkIf isLaptop {
+              format = "<span line_height='1.2'> {icon} </span>";
+              format-icons = ["󰃞" "󰃟" "󰃠"];
+              on-scroll-up = "${brightnessctl} set +1%";
+              on-scroll-down = "${brightnessctl} set 1%-";
+              tooltip-format = "Backlight: {percent}%";
+            };
+
           battery = mkIf isLaptop {
             format = "<span line_height='1.2'> {icon} </span>";
             format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
@@ -126,6 +137,7 @@ in
               [
                 "custom/trayicon"
                 "pulseaudio"
+                "backlight"
               ]
               ++ optional isLaptop "battery"
               ++ ["tray"];
