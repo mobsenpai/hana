@@ -10,6 +10,7 @@ in
   {
     security.polkit.enable = true;
 
+    # https://github.com/nix-community/home-manager/pull/5619
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
       wantedBy = ["graphical-session.target"];

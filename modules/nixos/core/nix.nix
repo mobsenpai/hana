@@ -36,8 +36,6 @@ in {
       # Do not load the default global registry
       # https://channels.nixos.org/flake-registry.json
       flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
     };
   };
 }

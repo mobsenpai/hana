@@ -2,9 +2,7 @@
   inherit
     (lib)
     utils
-    mkOption
     mkAliasOptionModule
-    types
     ;
 in {
   imports =

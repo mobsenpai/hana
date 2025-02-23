@@ -17,9 +17,4 @@ in
       alsa.enable = true;
       pulse.enable = true;
     };
-
-    sound = {
-      enable = true;
-      mediaKeys.enable = true;
-    };
   }

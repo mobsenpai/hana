@@ -12,17 +12,11 @@ in
 
       settings = {
         add_newline = false;
-        format = "$username$directory$git_branch$git_metrics$git_commit$git_state$git_status$all";
+        format = "\\[ $username$directory$git_branch$git_metrics$git_commit$git_state$git_status$all\\]\n$character";
 
-        character = {
-          success_symbol = "[❯](bright-black)";
-          error_symbol = "[❯](bright-red)";
-          vimcmd_symbol = "[❯](bright-green)";
-        };
+        character.format = "\\$ ";
 
-        directory = {
-          style = "bright-blue";
-        };
+        directory.style = "green";
 
         git_branch = {
           style = "bright-black";
@@ -39,8 +33,10 @@ in
           style = "bright-black";
         };
 
+        line_break.disabled = true;
+
         username = {
-          format = "[$user](purple) ";
+          style_user = "green";
           show_always = true;
         };
 

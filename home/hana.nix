@@ -18,6 +18,7 @@
       helix.enable = true;
       hyprlock.enable = true;
       media.enable = true;
+      ncspot.enable = true;
       pcmanfm.enable = true;
       waybar.enable = true;
       wofi.enable = true;

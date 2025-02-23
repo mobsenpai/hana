@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }: let
@@ -8,62 +7,48 @@
 in
   lib.mkIf cfg.enable
   {
-    home.packages = [pkgs.fastfetch];
+    programs.fastfetch = {
+      enable = true;
+      settings = {
+        logo.source = "nixos_small";
+        display.separator = " ›  ";
+        modules = [
+          "break"
+          {
+            type = "os";
+            key = "OS  ";
+            keyColor = "red";
+          }
+          {
+            type = "kernel";
+            key = "KER ";
+            keyColor = "green";
+          }
+          {
+            type = "shell";
+            key = "SH  ";
+            keyColor = "blue";
+          }
+          {
+            type = "terminal";
+            key = "TER ";
+            keyColor = "magenta";
+          }
+          {
+            type = "wm";
+            key = "WM  ";
+            keyColor = "cyan";
+          }
+          "break"
+        ];
+      };
+    };
+
+    programs.bash.initExtra = ''
+      fastfetch
+    '';
 
     programs.bash.shellAliases = {
       neofetch = "fastfetch";
     };
-
-    xdg.configFile."fastfetch/config.jsonc".text =
-      /*
-      jsonc
-      */
-      ''
-
-        {
-          "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-          "modules": [
-            "title",
-            "separator",
-            {
-              "type": "os",
-              "format": "{3} {12}"
-            },
-            {
-              "type": "host",
-              "format": "{/2}{-}{/}{2}{?3} {3}{?}"
-            },
-            "kernel",
-            "uptime",
-            "packages",
-            "shell",
-            {
-              "type": "display",
-              "compactType": "original",
-              "key": "Resolution"
-            },
-            "de",
-            "wm",
-            "wmtheme",
-            "icons",
-            "cursor",
-            "terminal",
-            {
-              "type": "terminalfont",
-              "format": "{/2}{-}{/}{2}{?3} {3}{?}"
-            },
-            "cpu",
-            {
-              "type": "gpu",
-              "key": "GPU"
-            },
-            {
-              "type": "memory",
-              "format": "{/1}{-}{/}{/2}{-}{/}{} / {}"
-            },
-            "disk",
-          ]
-        }
-
-      '';
   }

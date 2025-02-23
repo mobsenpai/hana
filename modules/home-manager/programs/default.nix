@@ -12,6 +12,7 @@ in {
     helix.enable = mkEnableOption "helix";
     hyprlock.enable = mkEnableOption "hyprlock";
     media.enable = mkEnableOption "media tools";
+    ncspot.enable = mkEnableOption "ncspot";
     pcmanfm.enable = mkEnableOption "pcmanfm";
     waybar.enable = mkEnableOption "waybar";
     wofi.enable = mkEnableOption "wofi";

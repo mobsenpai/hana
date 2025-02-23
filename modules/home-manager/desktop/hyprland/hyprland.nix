@@ -37,8 +37,6 @@ in
           focus_on_activate = true;
           force_default_wallpaper = 0;
           new_window_takes_over_fullscreen = 2;
-          # https://github.com/hyprwm/Hyprland/pull/7657
-          initial_workspace_tracking = 0;
         };
 
         input = {
@@ -76,11 +74,13 @@ in
             vibrancy = 0.2696;
           };
 
-          drop_shadow = true;
-          shadow_offset = "0 2";
-          shadow_range = 20;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(00000055)";
+          shadow = {
+            enabled = true;
+            color = "rgba(00000055)";
+            offset = "0 2";
+            range = 20;
+            render_power = 3;
+          };
 
           rounding = 8;
         };

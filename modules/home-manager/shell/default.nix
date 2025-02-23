@@ -36,9 +36,9 @@ in {
         zip
       ]
       ++ optionals cfg.sillyTools (with pkgs; [
-        cava
         cbonsai
         cmatrix
+        pipes-rs
         tty-clock
       ]);
 
