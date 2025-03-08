@@ -21,6 +21,7 @@ in
             proton-pass
             tree-style-tab
             ublock-origin
+            vimium-c
           ];
 
           search = {
@@ -46,6 +47,9 @@ in
             "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
             "browser.startup.page" = 3;
             "browser.toolbars.bookmarks.visibility" = "never";
+            "browser.uidensity" = 1;
+            "sidebar.main.tools" = "history,bookmarks";
+            "sidebar.revamp" = true;
 
             # QOL
             "browser.aboutConfig.showWarning" = false;
