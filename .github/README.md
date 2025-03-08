@@ -14,7 +14,7 @@
 
 <br>
 
-<img src="https://github.com/user-attachments/assets/13fb0727-4426-4d81-b4ca-ba0ec272ab6c" alt="Showcase" align="right" width="390px">
+<img src="https://github.com/user-attachments/assets/352355a4-068f-46e0-9702-0e90945d0137" alt="Showcase" align="right" width="390px">
 
 > [!NOTE]
 >
@@ -53,4 +53,24 @@ Special thanks to the following individuals:
   <a href="https://github.com/rxyhn">rxyhn</a> •
   <a href="https://github.com/Misterio77">Misterio77</a> •
   <a href="https://github.com/vimjoyer">vimjoyer</a>
+</p>
+
+## :camera: Showcase Images
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0ff8ef28-1c6b-4b5d-9c7b-69a048e9bf18" alt="Showcase Image 1" width="600px">
+  <br>
+  <em>Neofetch, cmatrix and cbonsai</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1b4920b5-6120-455e-918c-debbcca85e0d" alt="Showcase Image 2" width="600px">
+  <br>
+  <em>Ncspot, pipes-rs and cava running in scratchpad</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0cbc4e92-74dd-497e-8305-2fb7d78abc10" alt="Showcase Image 3" width="600px">
+  <br>
+  <em>Gtk apps and system monitor</em>
 </p>
