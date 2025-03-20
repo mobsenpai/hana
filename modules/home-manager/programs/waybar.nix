@@ -17,15 +17,6 @@ in
     services = {
       blueman-applet.enable = true;
       network-manager-applet.enable = true;
-      udiskie = {
-        enable = true;
-        settings = {
-          program_options = {
-            # https://github.com/nix-community/home-manager/issues/632
-            file_manager = "pcmanfm";
-          };
-        };
-      };
     };
 
     programs.waybar = {
