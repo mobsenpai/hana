@@ -1,4 +1,9 @@
 {
+  c-dev-shell = {
+    path = ./c-dev-shell;
+    description = "C dev shell flake";
+  };
+
   minimal-dev-shell = {
     path = ./minimal-dev-shell;
     description = "Minimal dev shell flake";

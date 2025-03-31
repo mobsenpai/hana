@@ -9,6 +9,7 @@
 in
   mkIf cfg.enable
   {
+    # TODO: fix screen sharing
     programs.firefox = {
       enable = true;
       profiles = {
