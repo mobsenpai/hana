@@ -126,6 +126,7 @@ in
 
           # Scratchpad
           "SUPER, S, togglespecialworkspace, s1"
+          "SUPER SHIFT, S, movetoworkspacesilent, special:s1"
         ]
         ++ optional audio.enable ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ++ optionals isLaptop [

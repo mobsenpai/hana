@@ -152,6 +152,7 @@ in
 
           pulseaudio = let
             pamixer = getExe pkgs.pamixer;
+            pavu = getExe pkgs.pavucontrol;
           in {
             format = "<span line_height='1.2'> {icon} </span>";
             format-bluetooth = " 󰂯 ";
@@ -164,6 +165,7 @@ in
             };
             tooltip-format = "Volume: {volume}%";
             on-click = "${pamixer} --toggle-mute";
+            on-click-right = "${pavu}";
           };
 
           tray = {

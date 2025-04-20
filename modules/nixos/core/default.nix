@@ -12,8 +12,10 @@ in {
   };
 
   config = {
-    environment.systemPackages = [
-      pkgs.git
+    environment.systemPackages = with pkgs; [
+      gitMinimal
+      fd
+      tree
     ];
 
     i18n = {
