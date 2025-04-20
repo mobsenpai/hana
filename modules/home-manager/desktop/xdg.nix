@@ -8,6 +8,7 @@
 lib.mkIf osConfig.modules.system.desktop.enable
 {
   home.packages = [pkgs.xdg-utils];
+  xdg.portal.xdgOpenUsePortal = true;
 
   xdg.userDirs = let
     home = config.home.homeDirectory;

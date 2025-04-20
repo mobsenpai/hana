@@ -24,8 +24,12 @@ in
     }
 
     (mkIf homeManager.enable {
-      xdg.portal.enable = mkForce false;
       security.pam.services.hyprlock = mkIf (hyprlock.enable) {};
+      # https://github.com/JManch/nixos/blob/79498794ea4eb1b1dea797ec853ff2a29e0cb0df/modules/nixos/system/desktop/root.nix#L94
+      environment.pathsToLink = [
+        "/share/xdg-desktop-portal"
+        "/share/applications"
+      ];
     })
 
     (mkIf (cfg.desktopEnvironment == "gnome") {
@@ -50,6 +54,8 @@ in
         enable = true;
         package = hyprlandPackage;
       };
+
+      xdg.portal.enable = mkForce false;
 
       modules.services.greetd.sessionDirs = ["${hyprlandPackage}/share/wayland-sessions"];
     })

@@ -5,7 +5,7 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf mkForce;
+  inherit (lib) utils mkIf mkForce;
   inherit (config.modules.colorScheme) colors;
   desktopCfg = config.modules.desktop;
   osDesktopEnabled = osConfig.modules.system.desktop.enable;
@@ -13,9 +13,17 @@
 in
   mkIf (osDesktopEnabled && desktopCfg.windowManager == "Hyprland")
   {
+    assertions = utils.asserts [
+      (!osConfig.xdg.portal.enable)
+      "Hyprland's portal configuration conflicts with existing xdg.portal settings"
+    ];
+
     xdg.portal = {
       enable = mkForce true;
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+      ];
       configPackages = [hyprland];
     };
 
