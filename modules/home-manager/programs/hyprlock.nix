@@ -16,7 +16,7 @@ in
       settings = {
         general = {
           disable_loading_bar = true;
-          grace = 3;
+          grace = 5;
         };
 
         background = [
