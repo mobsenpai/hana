@@ -107,6 +107,10 @@ in
         gestures = {
           workspace_swipe = false;
         };
+
+        windowrulev2 = [
+          "float,class:^(yad)$"
+        ];
       };
     };
   }

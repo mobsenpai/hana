@@ -11,31 +11,31 @@ in
     services.swaync = {
       enable = true;
       settings = {
-        "control-center-margin-top" = 10;
-        "control-center-margin-bottom" = 10;
-        "control-center-margin-right" = 10;
-        "control-center-margin-left" = 10;
-        "control-center-positionX" = "right";
-        "control-center-width" = 400;
-        "fit-to-screen" = true;
-        "hide-on-clear" = true;
-        "hide-on-action" = true;
-        "image-visibility" = "when-available";
-        "keyboard-shortcuts" = true;
-        "layer" = "overlay";
-        "notification-icon-size" = 40;
-        "notification-body-image-height" = 40;
-        "notification-body-image-width" = 40;
-        "notification-window-width" = 350;
-        "positionX" = "center";
-        "positionY" = "top";
-        "script-fail-notify" = true;
-        "timeout" = 3;
-        "timeout-low" = 2;
-        "timeout-critical" = 0;
-        "transition-time" = 200;
-        "widgets" = ["title" "dnd" "notifications"];
-        "widget-config" = {
+        control-center-margin-top = 10;
+        control-center-margin-bottom = 10;
+        control-center-margin-right = 10;
+        control-center-margin-left = 10;
+        control-center-positionX = "right";
+        control-center-width = 400;
+        fit-to-screen = true;
+        hide-on-clear = true;
+        hide-on-action = true;
+        image-visibility = "when-available";
+        keyboard-shortcuts = true;
+        layer = "overlay";
+        notification-icon-size = 40;
+        notification-body-image-height = 40;
+        notification-body-image-width = 40;
+        notification-window-width = 350;
+        positionX = "center";
+        positionY = "top";
+        script-fail-notify = true;
+        timeout = 3;
+        timeout-low = 2;
+        timeout-critical = 0;
+        transition-time = 200;
+        widgets = ["title" "dnd" "notifications"];
+        widget-config = {
           "dnd" = {
             "text" = "Do not disturb";
           };
@@ -46,6 +46,7 @@ in
           };
         };
       };
+
       style =
         /*
         css

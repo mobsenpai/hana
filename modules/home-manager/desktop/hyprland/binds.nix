@@ -9,7 +9,6 @@
     (lib)
     mkIf
     optionals
-    optional
     getExe
     getExe'
     ;
@@ -20,6 +19,10 @@
 
   jaq = getExe pkgs.jaq;
   hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
+  wpctl = getExe' pkgs.wireplumber "wpctl";
+  brightnessctl = getExe pkgs.brightnessctl;
+  notify-send = getExe' pkgs.libnotify "notify-send";
+  yad = getExe pkgs.yad;
 
   toggleFloating =
     pkgs.writeShellScript "hypr-toggle-floating"
@@ -33,14 +36,156 @@
         ${hyprctl} dispatch togglefloating
       fi
     '';
+
+  volumectl =
+    pkgs.writeShellScript "volumectl"
+    /*
+    bash
+    */
+    ''
+      case "$1" in
+        up)
+          ${wpctl} set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ "''${2:-5}%+"
+          ;;
+        down)
+          ${wpctl} set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ "''${2:-5}%-"
+          ;;
+        toggle-mute)
+          ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle
+          ;;
+        toggle-mic-mute)
+          ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+          ;;
+      esac
+
+      volume_percentage="$(${wpctl} get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}')"
+      isMuted="$(${wpctl} get-volume @DEFAULT_AUDIO_SINK@ | grep -o 'MUTED')"
+      micMuted="$(${wpctl} get-volume @DEFAULT_AUDIO_SOURCE@ | grep -o 'MUTED')"
+
+      if [ "$1" = "toggle-mic-mute" ]; then
+        if [ -n "$micMuted" ]; then
+          ${notify-send} -u normal -a "VOLUMECTL" -r 61190 "Microphone Muted" -i microphone-sensitivity-muted-symbolic
+        else
+          ${notify-send} -u normal -a "VOLUMECTL" -r 61190 "Microphone Unmuted" -i microphone-sensitivity-high-symbolic
+        fi
+      else
+        if [ -n "$isMuted" ]; then
+          ${notify-send} -u normal -a "VOLUMECTL" -r 91190 "Volume Muted" -i audio-volume-muted-symbolic
+        else
+          ${notify-send} -u normal -a "VOLUMECTL" -r 91190 "Volume: $volume_percentage%" \
+            -h string:x-canonical-private-synchronous:volumectl \
+            -h int:value:"$volume_percentage" \
+            -i audio-volume-high-symbolic
+        fi
+      fi
+    '';
+
+  lightctl =
+    pkgs.writeShellScript "lightctl"
+    /*
+    bash
+    */
+    ''
+      case "$1" in
+        up)
+          ${brightnessctl} -q s "''${2:-5}%+"
+          ;;
+        down)
+          ${brightnessctl} -q s "''${2:-5}%-"
+          ;;
+      esac
+
+      # Calculate brightness percentage
+      current=$(${brightnessctl} g)
+      max=$(${brightnessctl} m)
+      brightness_percentage=$(( (current * 100) / max ))
+
+      ${notify-send} -u normal -a "LIGHTCTL" "Brightness: $brightness_percentage%" \
+        -h string:x-canonical-private-synchronous:lightctl \
+        -h int:value:"$brightness_percentage" \
+        -i display-brightness-symbolic
+    '';
+
+  kbmenu =
+    pkgs.writeShellScript "kbmenu"
+    /*
+    bash
+    */
+    ''
+      if pidof wofi >/dev/null; then
+        pkill wofi
+      fi
+
+      ${yad} \
+        --center \
+        --title="Hyprland Keybinds" \
+        --no-buttons \
+        --list \
+        --width=500 \
+        --height=600 \
+        --column=Key: \
+        --column=Description: \
+        --timeout-indicator=bottom \
+        "SUPER Return" "Launch terminal" \
+        "SUPER SHIFT Return" "Launch floating terminal" \
+        "SUPER A" "Launch wofi" \
+        "SUPER F2" "Launch browser" \
+        "SUPER F3" "Launch file manager" \
+        "SUPER F4" "Launch Appflowy" \
+        "SUPER CTRL C" "Colour picker" \
+        "SUPER, Left Click" "Move window with mouse" \
+        "SUPER, Right Click" "Resize window with mouse" \
+        "SUPER SHIFT →" "Resize window right" \
+        "SUPER SHIFT ←" "Resize window left" \
+        "SUPER SHIFT ↑" "Resize window up" \
+        "SUPER SHIFT ↓" "Resize window down" \
+        "SUPER SHIFT L" "Resize window right (HJKL)" \
+        "SUPER SHIFT H" "Resize window left (HJKL)" \
+        "SUPER SHIFT K" "Resize window up (HJKL)" \
+        "SUPER SHIFT J" "Resize window down (HJKL)" \
+        "XF86MonBrightnessDown" "Decrease brightness" \
+        "XF86MonBrightnessUp" "Increase brightness" \
+        "XF86AudioLowerVolume" "Lower volume" \
+        "XF86AudioRaiseVolume" "Increase volume" \
+        "XF86AudioMicMute" "Mute microphone" \
+        "XF86AudioMute" "Mute audio" \
+        "XF86AudioPlay" "Play/Pause media" \
+        "XF86AudioNext" "Next media track" \
+        "XF86AudioPrev" "Previous media track" \
+        "SUPER SHIFT Q" "Exit Hyprland session" \
+        "SUPER CTRL SPACE" "Toggle floating window" \
+        "SUPER F" "Toggle fullscreen" \
+        "SUPER ALT L" "Lock screen" \
+        "SUPER Q" "Close active window" \
+        "SUPER E" "Launch emoji picker" \
+        "Prtscrn" "Screenshot (clipboard)" \
+        "Shift Prtscrn" "Screenshot (save)" \
+        "SUPER SHIFT CTRL ←" "Move window left" \
+        "SUPER SHIFT CTRL →" "Move window right" \
+        "SUPER SHIFT CTRL ↑" "Move window up" \
+        "SUPER SHIFT CTRL ↓" "Move window down" \
+        "SUPER SHIFT S" "Move to scratchpad" \
+        "SUPER S" "Toggle scratchpad workspace" \
+        "ALT Tab" "Cycle next window" \
+        "SUPER CTRL →" "Switch to next workspace" \
+        "SUPER CTRL ←" "Switch to previous workspace" \
+        "SUPER CTRL ↓" "Go to first empty workspace" \
+        "SUPER ←" "Move focus left" \
+        "SUPER →" "Move focus right" \
+        "SUPER ↑" "Move focus up" \
+        "SUPER ↓" "Move focus down" \
+        "SUPER 1-0" "Switch to workspace 1-10" \
+        "SUPER SHIFT 1-0" "Move to workspace 1-10" \
+        "SUPER SHIFT 1-0" "Silently move to workspace 1-10"
+    '';
 in
   mkIf (osDesktopEnabled && desktopCfg.windowManager == "Hyprland")
   {
     wayland.windowManager.hyprland = let
-      brightnessctl = getExe pkgs.brightnessctl;
       grimblast = getExe pkgs.grimblast;
       playerctl = getExe pkgs.playerctl;
-      wpctl = getExe' pkgs.wireplumber "wpctl";
+      picker = getExe pkgs.hyprpicker;
+      pkill = getExe' pkgs.procps "pkill";
     in {
       settings.bind =
         [
@@ -127,11 +272,20 @@ in
           # Scratchpad
           "SUPER, S, togglespecialworkspace, s1"
           "SUPER SHIFT, S, movetoworkspacesilent, special:s1"
+
+          # Keyboard shortcuts (yad)
+          "SUPER, F1, exec, ${pkill} yad || ${kbmenu}"
+
+          # Color picker
+          "SUPER CTRL, C, exec, ${picker} --autocopy --format=hex"
         ]
-        ++ optional audio.enable ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ++ optionals audio.enable [
+          ", XF86AudioMute, exec, ${volumectl} toggle-mute"
+          ",XF86AudioMicMute,exec,${volumectl} toggle-mic-mute"
+        ]
         ++ optionals isLaptop [
-          ", XF86MonBrightnessUp, exec, ${brightnessctl} set +5%"
-          ", XF86MonBrightnessDown, exec, ${brightnessctl} set 5%-"
+          ", XF86MonBrightnessUp, exec, ${lightctl} up"
+          ", XF86MonBrightnessDown, exec, ${lightctl} down"
         ];
 
       settings.bindm = [
@@ -153,8 +307,8 @@ in
           "SUPER CTRL, J, resizeactive, 0 25"
         ]
         ++ optionals audio.enable [
-          ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86AudioRaiseVolume, exec, ${volumectl} up"
+          ", XF86AudioLowerVolume, exec, ${volumectl} down"
         ];
     };
   }
