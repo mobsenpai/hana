@@ -6,7 +6,6 @@
 }: let
   inherit (lib) utils mkIf mkForce mkMerge;
   inherit (config.modules.core) homeManager;
-  inherit (homeConfig.programs) hyprlock;
   cfg = config.modules.system.desktop;
   homeConfig = config.home-manager.users.${username};
   homeDesktopCfg = homeConfig.modules.desktop;
@@ -21,10 +20,11 @@ in
     {
       # Enables wayland for all apps that support it
       environment.sessionVariables.NIXOS_OZONE_WL = "1";
+      # Some apps like vscode need the keyring for saving credentials
+      services.gnome.gnome-keyring.enable = true;
     }
 
     (mkIf homeManager.enable {
-      security.pam.services.hyprlock = mkIf (hyprlock.enable) {};
       # https://github.com/JManch/nixos/blob/79498794ea4eb1b1dea797ec853ff2a29e0cb0df/modules/nixos/system/desktop/root.nix#L94
       environment.pathsToLink = [
         "/share/xdg-desktop-portal"

@@ -17,7 +17,7 @@ in
           name = "default";
           isDefault = true;
 
-          extensions = with utils.flakePkgs args "firefox-addons"; [
+          extensions.packages = with utils.flakePkgs args "firefox-addons"; [
             proton-pass
             tree-style-tab
             ublock-origin
@@ -26,7 +26,7 @@ in
 
           search = {
             force = true;
-            default = "DuckDuckGo";
+            default = "ddg";
           };
 
           settings = {

@@ -4,8 +4,6 @@ in {
   imports = utils.scanPaths ./.;
 
   options.modules.services = {
-    polkit-gnome.enable = mkEnableOption "gnome polkit";
-
     greetd = {
       enable = mkEnableOption "greetd with tuigreet";
       sessionDirs = mkOption {

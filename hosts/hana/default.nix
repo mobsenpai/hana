@@ -12,7 +12,6 @@
 
     services = {
       greetd.enable = true;
-      polkit-gnome.enable = true;
     };
 
     system = {

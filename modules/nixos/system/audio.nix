@@ -12,7 +12,7 @@ in
   lib.mkIf cfg.enable
   {
     environment.systemPackages = [pkgs.pavucontrol];
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
 
     services.pipewire = {

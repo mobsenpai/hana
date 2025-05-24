@@ -83,7 +83,7 @@ in
       };
 
       font = {
-        package = pkgs.nerdfonts.override {fonts = ["FiraMono"];};
+        package = pkgs.nerd-fonts.fira-mono;
         name = "FiraMono Nerd Font";
         size = 10;
       };

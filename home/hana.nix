@@ -1,4 +1,6 @@
-{
+{inputs, ...}: {
+  imports = [inputs.aoi.homeModules.default];
+  programs.aoi.enable = true;
   modules = {
     shell = {
       enable = true;

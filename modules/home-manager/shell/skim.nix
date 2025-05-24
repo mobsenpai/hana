@@ -10,7 +10,6 @@
 in
   mkIf config.modules.shell.enable
   {
-    # https://github.com/skim-rs/skim/issues/565
     programs.skim = {
       enable = true;
       defaultCommand = "${fd} -H --type f";

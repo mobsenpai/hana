@@ -35,12 +35,4 @@ in
         };
       };
     };
-
-    # Enable gnome keyring for saving login credentials in apps such as VSCode
-    # Works with greetd through pam
-    services.gnome.gnome-keyring.enable = true;
-    security.pam.services.greetd = {
-      startSession = true;
-      enableGnomeKeyring = true;
-    };
   }
