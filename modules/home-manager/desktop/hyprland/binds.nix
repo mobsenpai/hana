@@ -21,7 +21,6 @@
   hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
   wpctl = getExe' pkgs.wireplumber "wpctl";
   brightnessctl = getExe pkgs.brightnessctl;
-  notify-send = getExe' pkgs.libnotify "notify-send";
   yad = getExe pkgs.yad;
 
   toggleFloating =
@@ -35,75 +34,6 @@
       else
         ${hyprctl} dispatch togglefloating
       fi
-    '';
-
-  volumectl =
-    pkgs.writeShellScript "volumectl"
-    /*
-    bash
-    */
-    ''
-      case "$1" in
-        up)
-          ${wpctl} set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ "''${2:-5}%+"
-          ;;
-        down)
-          ${wpctl} set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ "''${2:-5}%-"
-          ;;
-        toggle-mute)
-          ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle
-          ;;
-        toggle-mic-mute)
-          ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-          ;;
-      esac
-
-      volume_percentage="$(${wpctl} get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}')"
-      isMuted="$(${wpctl} get-volume @DEFAULT_AUDIO_SINK@ | grep -o 'MUTED')"
-      micMuted="$(${wpctl} get-volume @DEFAULT_AUDIO_SOURCE@ | grep -o 'MUTED')"
-
-      if [ "$1" = "toggle-mic-mute" ]; then
-        if [ -n "$micMuted" ]; then
-          ${notify-send} -u normal -a "VOLUMECTL" -r 61190 "Microphone Muted" -i microphone-sensitivity-muted-symbolic
-        else
-          ${notify-send} -u normal -a "VOLUMECTL" -r 61190 "Microphone Unmuted" -i microphone-sensitivity-high-symbolic
-        fi
-      else
-        if [ -n "$isMuted" ]; then
-          ${notify-send} -u normal -a "VOLUMECTL" -r 91190 "Volume Muted" -i audio-volume-muted-symbolic
-        else
-          ${notify-send} -u normal -a "VOLUMECTL" -r 91190 "Volume: $volume_percentage%" \
-            -h string:x-canonical-private-synchronous:volumectl \
-            -h int:value:"$volume_percentage" \
-            -i audio-volume-high-symbolic
-        fi
-      fi
-    '';
-
-  lightctl =
-    pkgs.writeShellScript "lightctl"
-    /*
-    bash
-    */
-    ''
-      case "$1" in
-        up)
-          ${brightnessctl} -q s "''${2:-5}%+"
-          ;;
-        down)
-          ${brightnessctl} -q s "''${2:-5}%-"
-          ;;
-      esac
-
-      # Calculate brightness percentage
-      current=$(${brightnessctl} g)
-      max=$(${brightnessctl} m)
-      brightness_percentage=$(( (current * 100) / max ))
-
-      ${notify-send} -u normal -a "LIGHTCTL" "Brightness: $brightness_percentage%" \
-        -h string:x-canonical-private-synchronous:lightctl \
-        -h int:value:"$brightness_percentage" \
-        -i display-brightness-symbolic
     '';
 
   kbmenu =
@@ -280,12 +210,12 @@ in
           "SUPER CTRL, C, exec, ${picker} --autocopy --format=hex"
         ]
         ++ optionals audio.enable [
-          ", XF86AudioMute, exec, ${volumectl} toggle-mute"
-          ",XF86AudioMicMute,exec,${volumectl} toggle-mic-mute"
+          ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ",XF86AudioMicMute,exec, ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ]
         ++ optionals isLaptop [
-          ", XF86MonBrightnessUp, exec, ${lightctl} up"
-          ", XF86MonBrightnessDown, exec, ${lightctl} down"
+          ", XF86MonBrightnessUp, exec, ${brightnessctl} set +5%"
+          ", XF86MonBrightnessDown, exec, ${brightnessctl} set 5%-"
         ];
 
       settings.bindm = [
@@ -307,8 +237,8 @@ in
           "SUPER CTRL, J, resizeactive, 0 25"
         ]
         ++ optionals audio.enable [
-          ", XF86AudioRaiseVolume, exec, ${volumectl} up"
-          ", XF86AudioLowerVolume, exec, ${volumectl} down"
+          ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ];
     };
   }
