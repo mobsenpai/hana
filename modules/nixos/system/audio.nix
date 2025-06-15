@@ -4,15 +4,14 @@
   config,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf getExe' mkForce;
   inherit (config.modules.core) homeManager;
   inherit (config.modules.system) desktop;
   cfg = config.modules.system.audio;
 in
   lib.mkIf cfg.enable
   {
-    environment.systemPackages = [pkgs.pavucontrol];
-    services.pulseaudio.enable = false;
+    services.pulseaudio.enable = mkForce false;
     security.rtkit.enable = true;
 
     services.pipewire = {
@@ -21,13 +20,26 @@ in
       pulse.enable = true;
     };
 
-    hm = mkIf homeManager.enable {
-      desktop.hyprland.settings.windowrulev2 = [
-        "float, class:^(org.pulseaudio.pavucontrol)$"
-        "size 50% 50%, class:^(org.pulseaudio.pavucontrol)$"
-        "center, class:^(org.pulseaudio.pavucontrol)$"
-      ];
-    };
+    hm = let
+      wpctl = getExe' pkgs.wireplumber "wpctl";
+    in
+      mkIf homeManager.enable {
+        dconf.settings."com/saivert/pwvucontrol".enable-overamplification = true;
+        desktop.hyprland.settings = {
+          windowrule = [
+            "float, class:^(com\\.saivert\\.pwvucontrol)$"
+            "size 60% 60%, class:^(com\\.saivert\\.pwvucontrol)$"
+            "center, class:^(com\\.saivert\\.pwvucontrol)$"
+          ];
 
-    userPackages = mkIf desktop.enable [pkgs.pavucontrol];
+          bind = [
+            ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ",XF86AudioMicMute,exec, ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+            ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
+            ", XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ];
+        };
+      };
+
+    userPackages = mkIf desktop.enable [pkgs.pwvucontrol];
   }

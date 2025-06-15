@@ -23,7 +23,7 @@ lib.mkIf osConfig.modules.system.desktop.enable
 
   xdg.mimeApps.enable = osConfig.modules.system.desktop.desktopEnvironment == null;
 
-  desktop.hyprland.settings.windowrulev2 = [
+  desktop.hyprland.settings.windowrule = [
     # Float the file picker
     "float, class:^(xdg-desktop-portal-gtk)$"
     "size 50% 50%, class:^(xdg-desktop-portal-gtk)$"

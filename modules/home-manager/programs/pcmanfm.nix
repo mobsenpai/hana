@@ -17,10 +17,10 @@ in
       "inode/directory" = ["pcmanfm.desktop"];
     };
 
-    desktop.hyprland.settings.windowrulev2 = [
-      "float, class:^(org.gnome.pcmanfm)$"
-      "size 50% 50%, class:^(org.gnome.pcmanfm)$"
-      "center, class:^(org.gnome.pcmanfm)$"
+    desktop.hyprland.settings.windowrule = [
+      "float, class:^(pcmanfm)$"
+      "size 50% 50%, class:^(pcmanfm)$"
+      "center, class:^(pcmanfm)$"
     ];
 
     desktop.hyprland.binds = let

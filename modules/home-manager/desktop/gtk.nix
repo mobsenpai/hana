@@ -5,11 +5,11 @@
   osConfig,
   ...
 }: let
-  inherit (config.modules.colorScheme) xcolors;
+  inherit (config.modules.colorScheme) xcolors type;
   cssContent = ''
-    @define-color accent_color ${xcolors.orange1};
-    @define-color accent_bg_color ${xcolors.orange0};
-    @define-color accent_fg_color ${xcolors.fg1};
+    @define-color accent_color ${xcolors.blue1};
+    @define-color accent_bg_color ${xcolors.blue0};
+    @define-color accent_fg_color ${xcolors.bg0};
 
     @define-color destructive_color ${xcolors.red1};
     @define-color destructive_bg_color ${xcolors.red0};
@@ -104,8 +104,6 @@ in
       gtk4.extraCss = cssContent;
     };
 
-    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
-
     home.pointerCursor = {
       gtk.enable = true;
       name = "Vanilla-DMZ";
@@ -118,5 +116,5 @@ in
       platformTheme.name = "gtk";
     };
 
-    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-${type}";
   }

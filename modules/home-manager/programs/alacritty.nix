@@ -85,8 +85,8 @@ in
         "SUPER SHIFT, Return, exec, [float] alacritty"
       ];
 
-      windowrulev2 = [
-        "opacity 0.85, class:(Alacritty)"
+      windowrule = [
+        "opacity 0.85, class:^(Alacritty)$"
       ];
 
       workspace = [

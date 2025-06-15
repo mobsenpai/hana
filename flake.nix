@@ -47,7 +47,7 @@
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
-    aoi.url = "path:/home/yashraj/Documents/aoi";
+    aoi.url = "path:/home/yashraj/Documents/aoi"; # TODO: WIP
     aoi.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

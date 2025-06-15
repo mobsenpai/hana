@@ -11,7 +11,6 @@ in
     home.packages = with pkgs; [
       imv
       mpv
-      playerctl
     ];
 
     xdg.mimeApps.defaultApplications = {

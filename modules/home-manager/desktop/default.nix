@@ -32,20 +32,11 @@ in {
       description = "Information about the default terminal";
     };
 
-    wallpaper = let
-      url = "https://i.imgur.com/WqurbRF.jpeg";
-      sha256 = "1xj630lxy5q789llbpfra7w95f14xz60cllf04c8inl19g3qd5dv";
-      ext = lib.last (lib.splitString "." url);
-    in {
+    wallpaper = {
       default = mkOption {
         type = lib.types.path;
-        default = builtins.fetchurl {
-          name = "wallpaper-${sha256}.${ext}";
-          inherit url sha256;
-        };
-        description = ''
-          The default wallpaper to use.
-        '';
+        default = null;
+        description = "The default wallpaper to use";
       };
     };
   };
@@ -54,6 +45,10 @@ in {
     home.packages = with pkgs; [
       wl-clipboard
     ];
-    services.cliphist.enable = true;
+
+    dconf.settings = {
+      "org/gtk/settings/file-chooser".show-hidden = true;
+      "org/gtk/gtk4/settings/file-chooser".show-hidden = true;
+    };
   };
 }

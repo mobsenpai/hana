@@ -80,8 +80,16 @@ in
           blur = {
             enabled = true;
             size = 8;
-            passes = 2;
-            vibrancy = 0.2696;
+            passes = 3;
+            new_optimizations = true;
+            ignore_opacity = false;
+            xray = false;
+            noise = 0.2;
+            contrast = 0.9;
+            brightness = 0.8;
+            vibrancy = 0.15;
+            vibrancy_darkness = 0.0;
+            popups = true;
           };
 
           shadow = {
@@ -110,7 +118,7 @@ in
           workspace_swipe = false;
         };
 
-        windowrulev2 = [
+        windowrule = [
           "float,class:^(yad)$"
         ];
       };
