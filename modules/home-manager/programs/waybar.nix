@@ -5,12 +5,15 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf optional optionals getExe getExe';
+  inherit (lib) mkIf optional getExe getExe';
   inherit (config.modules.colorScheme) xcolors;
+  inherit (osConfig.modules.system) device;
+  inherit (config.modules.desktop) windowManager;
   cfg = config.modules.programs.waybar;
-  desktopCfg = config.modules.desktop;
-  isHyprland = desktopCfg.windowManager == "Hyprland";
-  isLaptop = osConfig.modules.system.device.type == "laptop";
+
+  swaync = getExe' config.services.swaync.package "swaync-client";
+  wpctl = getExe' pkgs.wireplumber "wpctl";
+  pwvu = getExe pkgs.pwvucontrol;
 in
   mkIf cfg.enable
   {
@@ -24,62 +27,46 @@ in
       systemd.enable = true;
 
       settings = {
-        bar = let
-          formatIcon = bg: fg: icon: "<span line_height='1.2' background='${bg}' foreground='${fg}'> ${icon} </span>";
-        in {
+        bar = {
           exclusive = true;
           fixed-center = true;
           layer = "top";
-          position = "top";
+          position = "bottom";
           spacing = 8;
+          height = 27;
 
           modules-left =
-            optionals isHyprland
-            [
-              "hyprland/workspaces"
-              "hyprland/window"
+            optional (windowManager == "Niri") "niri/workspaces"
+            ++ optional (windowManager == "Hyprland") "hyprland/workspaces";
+
+          modules-center =
+            optional (windowManager == "Niri") "niri/window"
+            ++ optional (windowManager == "Hyprland") "hyprland/window";
+
+          modules-right =
+            ["pulseaudio"]
+            ++ optional (device.type == "laptop") "battery"
+            ++ [
+              "clock"
+              "custom/notification"
+              "tray"
             ];
-          modules-center = ["custom/playerctl"];
-          modules-right = ["custom/weather" "memory" "cpu" "clock" "group/systray" "custom/notification"];
 
-          backlight = let
-            brightnessctl = getExe pkgs.brightnessctl;
-          in
-            mkIf isLaptop {
-              format = "<span line_height='1.2'> {icon} </span>";
-              format-icons = ["󰃞" "󰃟" "󰃠"];
-              on-scroll-up = "${brightnessctl} set +1%";
-              on-scroll-down = "${brightnessctl} set 1%-";
-              tooltip-format = "Backlight: {percent}%";
-            };
-
-          battery = mkIf isLaptop {
-            format = "<span line_height='1.2'> {icon} </span>";
+          battery = mkIf (device.type == "laptop") {
+            format = "{capacity}% {icon}";
             format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
             tooltip-format = "{timeTo}, {capacity}%";
           };
 
           clock = {
-            format = formatIcon xcolors.blue1 xcolors.bg0 "" + " {:%a %b %d - %I:%M %p}";
-            format-alt = formatIcon xcolors.blue1 xcolors.bg0 "" + " {:%H:%M}";
+            format = "{:%H:%M %d/%m/%Y}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           };
 
-          cpu = {
-            format = formatIcon xcolors.yellow1 xcolors.bg0 "" + " {usage}%";
-          };
-
-          "custom/trayicon" = {
-            format = formatIcon xcolors.red0 xcolors.bg0 "󱊔";
-            tooltip = false;
-          };
-
-          "custom/notification" = let
-            swaync = getExe' config.services.swaync.package "swaync-client";
-          in {
+          "custom/notification" = {
             exec = "${swaync} -swb";
             return-type = "json";
-            format = "<span line_height='1.2'> {icon} </span>";
+            format = "{icon}";
             format-icons = {
               notification = "󱥂";
               none = "󰍥";
@@ -96,76 +83,46 @@ in
             escape = true;
           };
 
-          "custom/playerctl" = let
-            playerctl = getExe pkgs.playerctl;
-          in {
-            exec = "${playerctl} -a metadata --format '{\"text\": \"{{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
-            format = formatIcon xcolors.purple1 xcolors.bg0 "{icon}" + " {}";
-            format-icons = {
-              "Paused" = "";
-              "Playing" = "󰎈";
-            };
-            max-length = 20;
-            on-click = "${playerctl} play-pause";
-            on-click-middle = "${playerctl} previous";
-            on-click-right = "${playerctl} next";
-            return-type = "json";
+          "niri/workspaces" = mkIf (windowManager == "Niri") {
+            format = "{index}";
+            on-click = "activate";
+            disable-scroll = true;
           };
 
-          "custom/weather" = let
-            wttrbar = getExe pkgs.wttrbar;
-          in {
-            exec = "${wttrbar} --location Bihar --custom-indicator \"{temp_C} °C\"";
-            format = formatIcon xcolors.green1 xcolors.bg0 "" + " {}";
-            tooltip = true;
-            interval = 3600;
-            return-type = "json";
+          "niri/window" = mkIf (windowManager == "Niri") {
+            format = "{title}";
+            max-length = 40;
+            separate-outputs = true;
           };
 
-          "group/systray" = {
-            orientation = "inherit";
-            modules =
-              [
-                "custom/trayicon"
-                "pulseaudio"
-                "backlight"
-              ]
-              ++ optional isLaptop "battery"
-              ++ ["tray"];
-          };
-
-          "hyprland/workspaces" = mkIf isHyprland {
+          "hyprland/workspaces" = mkIf (windowManager == "Hyprland") {
             format = "{name}";
             on-click = "activate";
             disable-scroll = true;
           };
 
-          "hyprland/window" = mkIf isHyprland {
+          "hyprland/window" = mkIf (windowManager == "Hyprland") {
             format = "{title}";
             max-length = 40;
-            seperate-outputs = true;
+            separate-outputs = true;
           };
 
-          memory = {
-            format = formatIcon xcolors.aqua1 xcolors.bg0 "" + " {used:0.1f} G";
-          };
-
-          pulseaudio = let
-            pamixer = getExe pkgs.pamixer;
-            pavu = getExe pkgs.pavucontrol;
-          in {
-            format = "<span line_height='1.2'> {icon} </span>";
-            format-bluetooth = " 󰂯 ";
-            format-muted = " 󰖁 ";
+          pulseaudio = {
+            format = "{volume}% {icon} {format_source}";
+            format-bluetooth = "{volume}% {icon}󰂯 {format_source}";
+            format-muted = " 󰖁 {format_source}";
+            format-bluetooth-muted = "󰖁 {icon}󰂯 {format_source}";
+            format-source = "{volume}% 󰍬";
+            format-source-muted = "󰍭";
             format-icons = {
               hands-free = "󱡏";
               headphone = "󰋋";
               headset = "󰋎";
-              default = ["󰖀" "󰕾" "󰕾"];
+              default = ["󰕿" "󰖀" "󰕾"];
             };
-            tooltip-format = "Volume: {volume}%";
-            on-click = "${pamixer} --toggle-mute";
-            on-click-right = "${pavu}";
+            tooltip-format = "Output: {desc}\nInput: {source_desc}";
+            on-click = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            on-click-right = "${pwvu}";
           };
 
           tray = {
@@ -197,56 +154,33 @@ in
             padding: 3px;
           }
 
-          #clock {
-            background: ${xcolors.blue0};
-            color: ${xcolors.fg0};
-            padding-right: 6px;
+          #battery,
+          #clock,
+          #custom-notification,
+          #window,
+          #pulseaudio {
+            background: ${xcolors.bg0};
+            color: ${xcolors.fg1};
           }
 
-          #cpu {
-            background: ${xcolors.bg1};
-            color: ${xcolors.yellow0};
-            padding-right: 6px;
+          #custom-notification {
+            padding-right: 4px;
           }
 
-          #custom-playerctl {
-            background: ${xcolors.bg1};
-            color: ${xcolors.purple0};
-            padding-right:6px;
-          }
-
-          #custom-weather {
-            background: ${xcolors.bg1};
-            color: ${xcolors.green0};
-            padding-right: 6px;
-          }
-
-          #memory {
-            background: ${xcolors.aqua0};
-            color: ${xcolors.bg1};
-            padding-right: 6px;
-          }
-
-          #systray {
-            background: ${xcolors.bg1};
-            padding-right: 6px;
-          }
-
-          #info,
-          #workspaces,
-          #window{
+          #workspaces {
             background: ${xcolors.bg0};
           }
 
           #workspaces button {
             background: ${xcolors.bg0};
             color: ${xcolors.gray1};
-            padding: 0 6px;
+            padding: 0 5px;
+            border-bottom: 2px solid transparent;
           }
 
           #workspaces button.active {
-            background: ${xcolors.orange1};
-            color: ${xcolors.bg0};
+            background: ${xcolors.bg2};
+            border-bottom: 2px solid ${xcolors.blue1};
           }
 
           #workspaces button.urgent {
@@ -255,7 +189,7 @@ in
           }
 
           #window {
-            color: ${xcolors.green0};
+            color: ${xcolors.fg1};
           }
 
           tooltip,

@@ -3,7 +3,5 @@
 in {
   imports = utils.scanPaths ./.;
 
-  options.modules.programs = {
-    dconf.enable = mkEnableOption "dconf";
-  };
+  options.modules.programs = {};
 }

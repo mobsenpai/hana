@@ -1,11 +1,4 @@
-# TODO: WIP
-{inputs, ...}: {
-  imports = [inputs.aoi.homeModules.default];
-  services.aoi = {
-    enable = true;
-    pathfix = true;
-    systemd = true;
-  };
+{
   modules = {
     shell = {
       enable = true;
@@ -13,7 +6,8 @@
     };
 
     desktop = {
-      windowManager = "Hyprland";
+      windowManager = "Niri";
+      # TODO: change
       wallpaper.default = builtins.fetchurl {
         url = "https://images.unsplash.com/photo-1497042915201-daf0dd6fdc09?auto=format&fit=crop&w=1366&h=768&q=80";
         name = "wallpaper";
@@ -32,56 +26,68 @@
       media.enable = true;
       ncspot.enable = true;
       pcmanfm.enable = true;
-      waybar.enable = false;
+      tofi.enable = true;
+      waybar.enable = true;
       wofi.enable = false;
       zathura.enable = true;
     };
 
     services = {
-      cliphist.enable = false;
+      cliphist.enable = true;
       hypridle.enable = true;
       hyprpaper.enable = true;
-      swaync.enable = false;
+      swaync.enable = true;
     };
 
+    # TODO: change
     colorScheme = {
-      type = "dark";
+      polarity = "dark";
       colors = {
-        bg0 = "171719";
-        bg1 = "252628";
-        bg2 = "2E2F31";
-        bg3 = "3A3A3D";
-        bg4 = "48484C";
+        # Backgrounds
+        bg0 = "1E1E1E"; # Main background
+        bg1 = "241F31"; # Slightly lighter, from Adwaita palette
+        bg2 = "2E3436"; # Even lighter (not in Adwaita, but common in GNOME)
+        bg3 = "3A3A3D"; # Custom, slightly lighter still
+        bg4 = "48484C"; # Custom, even lighter
 
-        fg0 = "E5E7ED";
-        fg1 = "D1D3DB";
-        fg2 = "BFC2CC";
-        fg3 = "A7A9B3";
-        fg4 = "6E6E72";
+        # Foregrounds
+        fg0 = "FFFFFF"; # Main foreground
+        fg1 = "C0BFBC"; # Secondary foreground (Adwaita light gray)
+        fg2 = "BFC2CC"; # Custom, slightly darker
+        fg3 = "A7A9B3"; # Custom, even darker
+        fg4 = "6E6E72"; # Custom, darkest
 
-        gray0 = "6E6E72";
-        gray1 = "8A8A8F";
+        # Grays
+        gray0 = "5E5C64"; # Adwaita dark gray
+        gray1 = "8A8A8F"; # Custom, lighter gray
 
-        red0 = "F9AAB6";
-        red1 = "F68B9D";
+        # Reds
+        red0 = "C01C28"; # Adwaita red
+        red1 = "ED333B"; # Adwaita bright red
 
-        green0 = "AAF9B0";
-        green1 = "7EEA88";
+        # Greens
+        green0 = "2EC27E"; # Adwaita green
+        green1 = "57E389"; # Adwaita bright green
 
-        yellow0 = "F9F7AA";
-        yellow1 = "F4F28B";
+        # Yellows
+        yellow0 = "F5C211"; # Adwaita yellow
+        yellow1 = "F8E45C"; # Adwaita bright yellow
 
-        blue0 = "A8C7FA";
-        blue1 = "7EA8F5";
+        # Blues
+        blue0 = "1E78E4"; # Adwaita blue
+        blue1 = "51A1FF"; # Adwaita bright blue
 
-        purple0 = "DCADF9";
-        purple1 = "BC8EE6";
+        # Purples
+        purple0 = "9841BB"; # Adwaita purple
+        purple1 = "C061CB"; # Adwaita bright purple
 
-        aqua0 = "AAF3F9";
-        aqua1 = "7EE6F0";
+        # Aquas/Cyans
+        aqua0 = "0AB9DC"; # Adwaita cyan
+        aqua1 = "4FD2FD"; # Adwaita bright cyan
 
-        orange0 = "F9C5AA";
-        orange1 = "F6B184";
+        # Oranges (not a main Adwaita color, but plausible GNOME accent)
+        orange0 = "F57900"; # GNOME orange
+        orange1 = "F6B184"; # Custom, lighter orange
       };
     };
   };

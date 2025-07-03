@@ -15,11 +15,13 @@ in {
     xcolors = lib.mkOption {
       type = lib.types.attrs;
       default = lib.mapAttrsRecursive (_: color: "#${color}") cfg.colors;
-      description = "Adds # to colors";
+      description = "Like colors, but # prepended to each value";
     };
 
-    type = lib.mkOption {
+    polarity = lib.mkOption {
       type = lib.types.enum ["light" "dark"];
+      default = "dark";
+      description = "Whether the color scheme is light or dark";
     };
   };
 }

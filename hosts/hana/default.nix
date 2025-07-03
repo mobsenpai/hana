@@ -6,9 +6,7 @@
       homeManager.enable = true;
     };
 
-    programs = {
-      dconf.enable = true;
-    };
+    programs = {};
 
     services = {
       greetd.enable = true;

@@ -13,9 +13,18 @@ in
       appflowy
     ];
 
-    desktop.hyprland.binds = let
+    desktop = let
       appflowy = getExe pkgs.appflowy;
-    in [
-      "SUPER, F4, exec, ${appflowy}"
-    ];
+    in {
+      niri.binds = {
+        "Mod+F4" = {
+          action.spawn = appflowy;
+          hotkey-overlay.title = "Open appflowy";
+        };
+      };
+
+      hyprland.binds = [
+        "SUPER, F4, exec, ${appflowy}"
+      ];
+    };
   }

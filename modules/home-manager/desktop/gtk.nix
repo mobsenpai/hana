@@ -5,7 +5,7 @@
   osConfig,
   ...
 }: let
-  inherit (config.modules.colorScheme) xcolors type;
+  inherit (config.modules.colorScheme) xcolors polarity;
   cssContent = ''
     @define-color accent_color ${xcolors.blue1};
     @define-color accent_bg_color ${xcolors.blue0};
@@ -73,7 +73,7 @@ in
     gtk = {
       enable = true;
       theme = {
-        name = "adw-gtk3";
+        name = "adw-gtk3${lib.optionalString (polarity == "dark") "-dark"}";
         package = pkgs.adw-gtk3;
       };
 
@@ -116,5 +116,5 @@ in
       platformTheme.name = "gtk";
     };
 
-    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-${type}";
+    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-${polarity}";
   }

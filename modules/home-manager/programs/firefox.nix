@@ -105,9 +105,47 @@ in
       "x-scheme-handler/https" = ["firefox.desktop"];
     };
 
-    desktop.hyprland.binds = let
+    desktop = let
       firefox = getExe config.programs.firefox.package;
-    in [
-      "SUPER, F2, exec, ${firefox}"
-    ];
+    in {
+      niri.settings = {
+        window-rules = [
+          {
+            matches = [{app-id = "firefox";}];
+            open-maximized = true;
+          }
+          {
+            matches = [
+              {
+                app-id = "firefox";
+                title = "Picture-in-Picture";
+              }
+            ];
+
+            open-floating = true;
+            default-column-width = {proportion = 0.6;};
+            default-window-height = {proportion = 0.6;};
+          }
+        ];
+
+        binds = {
+          "Mod+F2" = {
+            action.spawn = firefox;
+            hotkey-overlay.title = "Open firefox";
+          };
+        };
+      };
+
+      hyprland.settings = {
+        windowrule = [
+          "float, class:^(firefox)$, title:^(Picture-in-Picture)$"
+          "size 60% 60%, class:^(firefox)$, title:^(Picture-in-Picture)$"
+          "center, class:^(firefox)$, title:^(Picture-in-Picture)$"
+        ];
+
+        binds = [
+          "SUPER, F2, exec, ${firefox}"
+        ];
+      };
+    };
   }

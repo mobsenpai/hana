@@ -3,6 +3,7 @@
   config,
   ...
 }: let
+  inherit (lib) getExe;
   inherit (config.modules.colorScheme) xcolors;
   cfg = config.modules.programs.alacritty;
 in
@@ -79,18 +80,29 @@ in
       };
     };
 
-    desktop.hyprland.settings = {
-      bind = [
-        "SUPER, Return, exec, alacritty"
-        "SUPER SHIFT, Return, exec, [float] alacritty"
-      ];
+    desktop = let
+      alacritty = getExe config.programs.alacritty.package;
+    in {
+      niri.binds = {
+        "Mod+Return" = {
+          action.spawn = alacritty;
+          hotkey-overlay.title = "Open alacritty";
+        };
+      };
 
-      windowrule = [
-        "opacity 0.85, class:^(Alacritty)$"
-      ];
+      hyprland.settings = {
+        bind = [
+          "SUPER, Return, exec, ${alacritty}"
+          "SUPER SHIFT, Return, exec, [float] ${alacritty}"
+        ];
 
-      workspace = [
-        "special:s1, gapsout:80, on-created-empty:alacritty"
-      ];
+        windowrule = [
+          "opacity 0.85, class:^(Alacritty)$"
+        ];
+
+        workspace = [
+          "special:s1, gapsout:80, on-created-empty:alacritty"
+        ];
+      };
     };
   }

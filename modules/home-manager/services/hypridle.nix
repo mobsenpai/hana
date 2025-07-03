@@ -1,13 +1,13 @@
 {
-  config,
   lib,
   pkgs,
+  inputs,
+  config,
   ...
 }: let
-  inherit (lib) mkIf getExe getExe';
+  inherit (lib) mkIf getExe getExe' optional;
+  inherit (config.modules.desktop) windowManager;
   cfg = config.modules.services.hypridle;
-  desktopCfg = config.modules.desktop;
-  isHyprland = desktopCfg.windowManager == "Hyprland";
 in
   mkIf cfg.enable
   {
@@ -17,34 +17,54 @@ in
         loginctl = getExe' pkgs.systemd "loginctl";
         hyprlock = getExe pkgs.hyprlock;
         hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
+        niri = getExe' inputs.niri.packages.${pkgs.system}.niri-stable "niri";
         systemctl = getExe' pkgs.systemd "systemctl";
+        brightnessctl = getExe pkgs.brightnessctl;
       in {
         general = {
-          after_sleep_cmd = mkIf isHyprland "${hyprctl} dispatch dpms on";
+          after_sleep_cmd =
+            if windowManager == "Hyprland"
+            then "${hyprctl} dispatch dpms on"
+            else if windowManager == "Niri"
+            then "${niri} msg action power-on-monitors"
+            else null;
+
           before_sleep_cmd = "${loginctl} lock-session";
           lock_cmd = hyprlock;
         };
 
-        listener = [
-          {
-            timeout = 300;
-            on-timeout = "${loginctl} lock-session";
-          }
-          (mkIf isHyprland
+        listener =
+          [
             {
-              timeout = 330;
-              on-timeout = "${hyprctl} dispatch dpms off";
-              on-resume = "${hyprctl} dispatch dpms on";
-            })
-          {
-            timeout = 600;
-            on-timeout = "${systemctl} suspend";
+              timeout = 270;
+              on-timeout = "${brightnessctl} -s set 10%";
+              on-resume = "${brightnessctl} -r";
+            }
+            {
+              timeout = 300;
+              on-timeout = "${loginctl} lock-session";
+            }
+          ]
+          ++ optional (windowManager == "Hyprland") {
+            timeout = 330;
+            on-timeout = "${hyprctl} dispatch dpms off";
+            on-resume = "${hyprctl} dispatch dpms on";
           }
-        ];
+          ++ optional (windowManager == "Niri") {
+            timeout = 330;
+            on-timeout = "${niri} msg action power-off-monitors";
+            on-resume = "${niri} msg action power-on-monitors";
+          }
+          ++ [
+            {
+              timeout = 600;
+              on-timeout = "${systemctl} suspend";
+            }
+          ];
       };
     };
 
-    desktop.hyprland.binds = let
+    desktop = let
       systemctl = getExe' pkgs.systemd "systemctl";
       notifySend = getExe pkgs.libnotify;
       toggleHypridle = pkgs.writeShellScript "hypridle-toggle" ''
@@ -56,7 +76,16 @@ in
           ${notifySend} --urgency=low -t 2000 'Hypridle' 'Service enabled'
         }
       '';
-    in [
-      "SUPER, U, exec, ${toggleHypridle}"
-    ];
+    in {
+      niri.binds = {
+        "Mod+U" = {
+          action.spawn = "${toggleHypridle}";
+          hotkey-overlay.title = "Toggle hypridle";
+        };
+      };
+
+      hyprland.binds = [
+        "SUPER, U, exec, ${toggleHypridle}"
+      ];
+    };
   }

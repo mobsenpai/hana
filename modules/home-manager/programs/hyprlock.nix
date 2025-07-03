@@ -72,9 +72,18 @@ in
       };
     };
 
-    desktop.hyprland.binds = let
+    desktop = let
       loginctl = getExe' pkgs.systemd "loginctl";
-    in [
-      "SUPER ALT, L, exec, ${loginctl} lock-session"
-    ];
+    in {
+      niri.binds = {
+        "Mod+Alt+Period" = {
+          action.spawn = [loginctl "lock-session"];
+          hotkey-overlay.title = "Lock Screen";
+        };
+      };
+
+      hyprland.binds = [
+        "SUPER ALT, Period, exec, ${loginctl} lock-session"
+      ];
+    };
   }

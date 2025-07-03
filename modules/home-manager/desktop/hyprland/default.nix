@@ -1,9 +1,14 @@
-{lib, ...}: let
-  inherit
-    (lib)
-    utils
-    mkAliasOptionModule
-    ;
+{
+  lib,
+  pkgs,
+  config,
+  osConfig,
+  ...
+}: let
+  inherit (lib) mkIf mkForce utils mkAliasOptionModule;
+  inherit (config.modules.desktop) windowManager;
+  osDesktopEnabled = osConfig.modules.system.desktop.enable;
+  hyprland = config.wayland.windowManager.hyprland.package;
 in {
   imports =
     utils.scanPaths ./.
@@ -16,4 +21,22 @@ in {
         ["desktop" "hyprland" "settings"]
         ["wayland" "windowManager" "hyprland" "settings"])
     ];
+
+  config = mkIf (osDesktopEnabled && windowManager == "Hyprland") {
+    assertions = utils.asserts [
+      (!osConfig.xdg.portal.enable)
+      "Hyprland's portal configuration conflicts with existing xdg.portal settings"
+    ];
+
+    xdg.portal = {
+      enable = mkForce true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+      ];
+      configPackages = [hyprland];
+    };
+
+    services.hyprpolkitagent.enable = true;
+  };
 }

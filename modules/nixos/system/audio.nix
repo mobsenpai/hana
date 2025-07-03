@@ -25,6 +25,24 @@ in
     in
       mkIf homeManager.enable {
         dconf.settings."com/saivert/pwvucontrol".enable-overamplification = true;
+        desktop.niri.settings = {
+          window-rules = [
+            {
+              matches = [{app-id = "com\\.saivert\\.pwvucontrol";}];
+              open-floating = true;
+              default-column-width = {proportion = 0.6;};
+              default-window-height = {proportion = 0.6;};
+            }
+          ];
+
+          binds = {
+            "XF86AudioMute".action.spawn = [wpctl "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
+            "XF86AudioMicMute".action.spawn = [wpctl "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
+            "XF86AudioRaiseVolume".action.spawn = [wpctl "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"];
+            "XF86AudioLowerVolume".action.spawn = [wpctl "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"];
+          };
+        };
+
         desktop.hyprland.settings = {
           windowrule = [
             "float, class:^(com\\.saivert\\.pwvucontrol)$"

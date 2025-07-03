@@ -78,15 +78,32 @@ in
         '';
     };
 
-    desktop.hyprland.settings.bindr = let
+    desktop = let
       pkill = getExe' pkgs.procps "pkill";
       wofi = getExe config.programs.wofi.package;
       wofi-emoji = getExe pkgs.wofi-emoji;
       cliphist = getExe pkgs.cliphist;
       wl-copy = getExe' pkgs.wl-clipboard "wl-copy";
-    in [
-      "SUPER, A, exec, ${pkill} wofi || ${wofi} --show drun"
-      "SUPER, E, exec, ${pkill} wofi || ${wofi-emoji}"
-      "SUPER, V, exec, ${pkill} wofi || ${cliphist} list | ${wofi} --dmenu | ${cliphist} decode | ${wl-copy}"
-    ];
+    in {
+      niri.binds = with config.lib.niri.actions; {
+        "Mod+A" = {
+          repeat = false;
+          action = spawn "sh" "-c" "${pkill} wofi || ${wofi} --show drun";
+        };
+        "Mod+E" = {
+          repeat = false;
+          action = spawn "sh" "-c" "${pkill} wofi || ${wofi-emoji}";
+        };
+        "Mod+V" = {
+          repeat = false;
+          action = spawn "sh" "-c" "${pkill} wofi || ${cliphist} list | ${wofi} --dmenu | ${cliphist} decode | ${wl-copy}";
+        };
+      };
+
+      hyprland.settings.bindr = [
+        "SUPER, A, exec, ${pkill} wofi || ${wofi} --show drun"
+        "SUPER, E, exec, ${pkill} wofi || ${wofi-emoji}"
+        "SUPER, V, exec, ${pkill} wofi || ${cliphist} list | ${wofi} --dmenu | ${cliphist} decode | ${wl-copy}"
+      ];
+    };
   }

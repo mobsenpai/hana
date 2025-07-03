@@ -12,7 +12,7 @@ in {
 
   options.modules.desktop = {
     windowManager = mkOption {
-      type = types.nullOr (types.enum ["Hyprland"]);
+      type = types.nullOr (types.enum ["Hyprland" "Niri"]);
       default = null;
       description = "Window manager to use";
     };

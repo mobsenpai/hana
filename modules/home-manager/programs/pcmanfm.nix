@@ -17,15 +17,18 @@ in
       "inode/directory" = ["pcmanfm.desktop"];
     };
 
-    desktop.hyprland.settings.windowrule = [
-      "float, class:^(pcmanfm)$"
-      "size 50% 50%, class:^(pcmanfm)$"
-      "center, class:^(pcmanfm)$"
-    ];
-
-    desktop.hyprland.binds = let
+    desktop = let
       pcmanfm = getExe pkgs.pcmanfm;
-    in [
-      "SUPER, F3, exec, ${pcmanfm}"
-    ];
+    in {
+      niri.binds = {
+        "Mod+F3" = {
+          action.spawn = pcmanfm;
+          hotkey-overlay.title = "Open pcmanfm file manager";
+        };
+      };
+
+      hyprland.binds = [
+        "SUPER, F3, exec, ${pcmanfm}"
+      ];
+    };
   }

@@ -6,20 +6,6 @@ in {
   options.modules.system = {
     audio.enable = mkEnableOption "pipewire audio";
     bluetooth.enable = mkEnableOption "bluetooth";
-    desktop = {
-      enable = mkEnableOption "desktop functionality";
-
-      desktopEnvironment = mkOption {
-        type = with types; nullOr (enum ["xfce" "plasma" "gnome"]);
-        default = null;
-        description = ''
-          The desktop environment to use. The window manager is configured in
-          home manager. Some windows managers don't require a desktop
-          environment and some desktop environments include a window manager.
-        '';
-      };
-    };
-
     device = {
       type = mkOption {
         type = types.enum ["laptop" "desktop" "server" "vm"];

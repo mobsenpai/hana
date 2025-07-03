@@ -14,6 +14,7 @@ in {
     media.enable = mkEnableOption "media tools";
     ncspot.enable = mkEnableOption "ncspot";
     pcmanfm.enable = mkEnableOption "pcmanfm";
+    tofi.enable = mkEnableOption "tofi";
     waybar.enable = mkEnableOption "waybar";
     wofi.enable = mkEnableOption "wofi";
     zathura.enable = mkEnableOption "zathura";

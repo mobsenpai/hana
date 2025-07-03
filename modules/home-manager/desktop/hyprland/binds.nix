@@ -5,16 +5,10 @@
   osConfig,
   ...
 }: let
-  inherit
-    (lib)
-    mkIf
-    optionals
-    getExe
-    getExe'
-    ;
-  desktopCfg = config.modules.desktop;
+  inherit (lib) mkIf optionals getExe getExe';
+  inherit (osConfig.modules.system) device;
+  inherit (config.modules.desktop) windowManager;
   osDesktopEnabled = osConfig.modules.system.desktop.enable;
-  isLaptop = osConfig.modules.system.device.type == "laptop";
 
   jaq = getExe pkgs.jaq;
   hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
@@ -83,7 +77,8 @@
         "SUPER SHIFT Q" "Exit Hyprland session" \
         "SUPER CTRL SPACE" "Toggle floating window" \
         "SUPER F" "Toggle fullscreen" \
-        "SUPER ALT L" "Lock screen" \
+        "SUPER ALT Period(.)" "Lock screen" \
+        "SUPER U" "Toggle Hypridle service" \
         "SUPER Q" "Close active window" \
         "SUPER E" "Launch emoji picker" \
         "Prtscrn" "Screenshot (clipboard)" \
@@ -107,7 +102,7 @@
         "SUPER SHIFT 1-0" "Silently move to workspace 1-10"
     '';
 in
-  mkIf (osDesktopEnabled && desktopCfg.windowManager == "Hyprland")
+  mkIf (osDesktopEnabled && windowManager == "Hyprland")
   {
     wayland.windowManager.hyprland = let
       grimblast = getExe pkgs.grimblast;
@@ -206,7 +201,8 @@ in
         "SUPER CTRL, C, exec, ${picker} --autocopy --format=hex"
       ];
 
-      settings.bindl = optionals isLaptop [
+      # Brightness control
+      settings.bindl = optionals (device.type == "laptop") [
         ", XF86MonBrightnessUp, exec, ${brightnessctl} set +5%"
         ", XF86MonBrightnessDown, exec, ${brightnessctl} set 5%-"
       ];
