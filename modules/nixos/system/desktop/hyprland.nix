@@ -9,16 +9,16 @@
   cfg = config.modules.system.desktop;
 
   homeConfig = config.home-manager.users.${username};
-  homeDesktopCfg = homeConfig.modules.desktop;
+  homeDesktop = homeConfig.modules.desktop;
   hyprlandPackage = homeConfig.wayland.windowManager.hyprland.package;
   windowManager =
-    if homeManager.enable
-    then homeDesktopCfg.windowManager
+    if (homeManager.enable or false)
+    then homeDesktop.windowManager
     else null;
 in {
   config = mkIf (cfg.enable && windowManager == "Hyprland") {
     assertions = utils.asserts [
-      homeManager.enable
+      (homeManager.enable or false)
       "Hyprland requires Home Manager to be enabled"
     ];
 

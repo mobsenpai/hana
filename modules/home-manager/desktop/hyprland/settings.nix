@@ -7,17 +7,17 @@
   inherit (lib) mkIf;
   inherit (config.modules.colorScheme) colors;
   inherit (config.modules.desktop) windowManager;
-  osDesktopEnabled = osConfig.modules.system.desktop.enable;
+  osDesktop = osConfig.modules.system.desktop;
 in
-  mkIf (osDesktopEnabled && windowManager == "Hyprland")
+  mkIf (osDesktop.enable && windowManager == "Hyprland")
   {
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
         general = {
           border_size = 2;
-          "col.active_border" = "rgb(${colors.fg1})";
-          "col.inactive_border" = "rgb(${colors.bg2})";
+          "col.active_border" = "rgb(${colors.base0D})";
+          "col.inactive_border" = "rgb(${colors.base02})";
           gaps_in = 10;
           gaps_out = 10;
           layout = "master";

@@ -49,5 +49,8 @@
 
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-resources.url = "github:mobsenpai/nix-resources";
+    nix-resources.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

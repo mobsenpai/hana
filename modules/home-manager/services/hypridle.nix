@@ -1,23 +1,27 @@
 {
   lib,
   pkgs,
-  inputs,
   config,
   ...
 }: let
-  inherit (lib) mkIf getExe getExe' optional;
+  inherit (lib) mkIf utils getExe getExe' optional;
   inherit (config.modules.desktop) windowManager;
   cfg = config.modules.services.hypridle;
 in
   mkIf cfg.enable
   {
+    assertions = utils.asserts [
+      (config.programs.hyprlock.enable)
+      "Hyidle requires hyprlock to be enabled"
+    ];
+
     services.hypridle = {
       enable = true;
       settings = let
         loginctl = getExe' pkgs.systemd "loginctl";
-        hyprlock = getExe pkgs.hyprlock;
+        hyprlock = getExe config.programs.hyprlock.package;
         hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
-        niri = getExe' inputs.niri.packages.${pkgs.system}.niri-stable "niri";
+        niri = getExe' config.programs.niri.package "niri";
         systemctl = getExe' pkgs.systemd "systemctl";
         brightnessctl = getExe pkgs.brightnessctl;
       in {

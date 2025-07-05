@@ -7,9 +7,9 @@
 }: let
   inherit (lib) mkIf getExe;
   inherit (config.modules.desktop) windowManager;
-  osDesktopEnabled = osConfig.modules.system.desktop.enable;
+  osDesktop = osConfig.modules.system.desktop;
 in
-  mkIf (osDesktopEnabled && windowManager == "Niri") {
+  mkIf (osDesktop.enable && windowManager == "Niri") {
     programs.niri.settings.binds = with config.lib.niri.actions; let
       brightnessctl = getExe pkgs.brightnessctl;
     in {

@@ -1,3 +1,8 @@
+# TODO:
+# 1. try a desktopenvironment to test the conditions
+# for example how does hyprpaper play out if left enabled
+# 2. greetd assertion, do we need more?
+# 3. more assertions check, like how hypridle asserts hyprlock not enabled
 {
   lib,
   config,

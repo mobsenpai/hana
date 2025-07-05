@@ -1,3 +1,5 @@
+# TODO:
+# 1. check onclick for pulseaudio, only mutes output
 {
   lib,
   pkgs,
@@ -145,9 +147,9 @@ in
           }
 
           window#waybar {
-            background: ${xcolors.bg0};
-            border: 1px solid ${xcolors.bg2};
-            color: ${xcolors.fg1};
+            background: ${xcolors.base00};
+            border: 1px solid ${xcolors.base02};
+            color: ${xcolors.base05};
           }
 
           window#waybar > box {
@@ -159,8 +161,8 @@ in
           #custom-notification,
           #window,
           #pulseaudio {
-            background: ${xcolors.bg0};
-            color: ${xcolors.fg1};
+            background: ${xcolors.base00};
+            color: ${xcolors.base05};
           }
 
           #custom-notification {
@@ -168,36 +170,36 @@ in
           }
 
           #workspaces {
-            background: ${xcolors.bg0};
+            background: ${xcolors.base00};
           }
 
           #workspaces button {
-            background: ${xcolors.bg0};
-            color: ${xcolors.gray1};
+            background: ${xcolors.base00};
+            color: ${xcolors.base05};
             padding: 0 5px;
             border-bottom: 2px solid transparent;
           }
 
           #workspaces button.active {
-            background: ${xcolors.bg2};
-            border-bottom: 2px solid ${xcolors.blue1};
+            background: ${xcolors.base02};
+            border-bottom: 2px solid ${xcolors.base0D};
           }
 
           #workspaces button.urgent {
-            background: ${xcolors.red1};
-            color: ${xcolors.fg1};
+            background: ${xcolors.base08};
+            color: ${xcolors.base05};
           }
 
           #window {
-            color: ${xcolors.fg1};
+            color: ${xcolors.base05};
           }
 
           tooltip,
           #tray menu {
-            background: ${xcolors.bg1};
-            border: 1px solid ${xcolors.bg2};
+            background: ${xcolors.base01};
+            border: 1px solid ${xcolors.base02};
             border-radius: 8px;
-            color: ${xcolors.fg1};
+            color: ${xcolors.base05};
           }
 
           #tray menu {
@@ -205,18 +207,18 @@ in
           }
 
           #tray menu separator {
-            background: ${xcolors.bg2};
+            background: ${xcolors.base02};
           }
 
           #tray menu menuitem {
             border-radius: 4px;
-            color: ${xcolors.fg1};
+            color: ${xcolors.base05};
             padding: 4px;
           }
 
           #tray menu menuitem:hover {
-            background: ${xcolors.bg2};
-            color: ${xcolors.fg1};
+            background: ${xcolors.base02};
+            color: ${xcolors.base05};
           }
         '';
     };

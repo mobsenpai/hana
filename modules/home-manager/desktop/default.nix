@@ -5,8 +5,9 @@
   osConfig,
   ...
 }: let
-  inherit (lib) utils mkIf mkOption getExe types;
-  cfg = osConfig.modules.system.desktop;
+  inherit (lib) utils mkIf mkOption types;
+  cfg = config.modules.desktop;
+  osDesktop = osConfig.modules.system.desktop;
 in {
   imports = utils.scanPaths ./.;
 
@@ -17,34 +18,42 @@ in {
       description = "Window manager to use";
     };
 
-    terminal = {
-      exePath = mkOption {
-        type = types.str;
-        default = getExe config.programs.alacritty.package;
-      };
+    terminal = mkOption {
+      type = types.nullOr (types.enum ["Alacritty"]);
+      default = null;
 
-      class = mkOption {
-        type = types.str;
-        default = "Alacritty";
-        description = "Window class of the terminal";
-      };
-
-      description = "Information about the default terminal";
+      description = ''
+        XDG desktop ID of the default terminal to use with xdg-terminal-exec.
+        The terminal should have its desktop entry modified to comply with the
+        xdg-terminal-exec spec.
+      '';
     };
 
-    wallpaper = {
-      default = mkOption {
-        type = lib.types.path;
-        default = null;
-        description = "The default wallpaper to use";
-      };
-    };
+    # wallpaper = mkOption {
+    #   type = types.path;
+    #   default = null;
+    #   description = "The default wallpaper to use";
+    # };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf osDesktop.enable {
+    assertions = utils.asserts [
+      (osDesktop.enable)
+      "You cannot enable home-manager desktop if NixOS desktop is not enabled"
+      (cfg.terminal != null)
+      "A default desktop terminal must be set"
+      (cfg.windowManager != null -> osDesktop.desktopEnvironment == null)
+      "You cannot use a desktop environemnt with a window manager"
+    ];
+
     home.packages = with pkgs; [
+      xdg-terminal-exec
       wl-clipboard
     ];
+
+    xdg.configFile."xdg-terminals.list".text = ''
+      ${cfg.terminal}.desktop
+    '';
 
     dconf.settings = {
       "org/gtk/settings/file-chooser".show-hidden = true;

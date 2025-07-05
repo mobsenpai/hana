@@ -2,6 +2,7 @@
 # 1. fix the black corners
 {
   lib,
+  pkgs,
   config,
   osConfig,
   ...
@@ -9,11 +10,12 @@
   inherit (lib) mkIf;
   inherit (config.modules.colorScheme) xcolors;
   inherit (config.modules.desktop) windowManager;
-  osDesktopEnabled = osConfig.modules.system.desktop.enable;
+  osDesktop = osConfig.modules.system.desktop;
 in
-  mkIf (osDesktopEnabled && windowManager == "Niri") {
+  mkIf (osDesktop.enable && windowManager == "Niri") {
     programs.niri = {
       enable = true;
+      package = pkgs.niri;
       settings = {
         gestures = {hot-corners.enable = true;};
         hotkey-overlay.skip-at-startup = true;
@@ -38,9 +40,9 @@ in
 
         layout = {
           border = {
-            active.color = xcolors.blue1;
+            active.color = xcolors.base0D;
             enable = true;
-            inactive.color = xcolors.bg2;
+            inactive.color = xcolors.base02;
             width = 1;
           };
 

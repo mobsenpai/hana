@@ -8,7 +8,7 @@
 }: let
   inherit (lib) mkIf mkForce utils mkAliasOptionModule;
   inherit (config.modules.desktop) windowManager;
-  osDesktopEnabled = osConfig.modules.system.desktop.enable;
+  osDesktop = osConfig.modules.system.desktop;
 in {
   imports =
     [inputs.niri.homeModules.niri]
@@ -23,7 +23,7 @@ in {
         ["programs" "niri" "settings"])
     ];
 
-  config = mkIf (osDesktopEnabled && windowManager == "Niri") {
+  config = mkIf (osDesktop.enable && windowManager == "Niri") {
     xdg.portal = {
       enable = mkForce true;
       extraPortals = with pkgs; [

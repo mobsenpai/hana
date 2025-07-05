@@ -7,7 +7,7 @@
 }: let
   inherit (lib) mkIf mkForce utils mkAliasOptionModule;
   inherit (config.modules.desktop) windowManager;
-  osDesktopEnabled = osConfig.modules.system.desktop.enable;
+  osDesktop = osConfig.modules.system.desktop;
   hyprland = config.wayland.windowManager.hyprland.package;
 in {
   imports =
@@ -22,7 +22,7 @@ in {
         ["wayland" "windowManager" "hyprland" "settings"])
     ];
 
-  config = mkIf (osDesktopEnabled && windowManager == "Hyprland") {
+  config = mkIf (osDesktop.enable && windowManager == "Hyprland") {
     assertions = utils.asserts [
       (!osConfig.xdg.portal.enable)
       "Hyprland's portal configuration conflicts with existing xdg.portal settings"

@@ -1,9 +1,10 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: let
-  inherit (lib) getExe;
+  inherit (lib) getExe hiPrio;
   inherit (config.modules.colorScheme) xcolors;
   cfg = config.modules.programs.alacritty;
 in
@@ -29,40 +30,40 @@ in
 
         colors = {
           primary = {
-            background = xcolors.bg0;
-            foreground = xcolors.fg1;
+            background = xcolors.base00;
+            foreground = xcolors.base05;
           };
 
           cursor = {
-            text = xcolors.bg1;
-            cursor = xcolors.fg4;
+            text = xcolors.base00;
+            cursor = xcolors.base05;
           };
 
           selection = {
-            background = xcolors.bg2;
+            background = xcolors.base02;
             text = "CellForeground";
           };
 
           normal = {
-            black = xcolors.bg0;
-            red = xcolors.red0;
-            green = xcolors.green0;
-            yellow = xcolors.yellow0;
-            blue = xcolors.blue0;
-            magenta = xcolors.purple0;
-            cyan = xcolors.aqua0;
-            white = xcolors.gray1;
+            black = xcolors.base01;
+            red = xcolors.base08;
+            green = xcolors.base0B;
+            yellow = xcolors.base0A;
+            blue = xcolors.base0D;
+            magenta = xcolors.base0E;
+            cyan = xcolors.base0C;
+            white = xcolors.base06;
           };
 
           bright = {
-            black = xcolors.gray0;
-            red = xcolors.red1;
-            green = xcolors.green1;
-            yellow = xcolors.yellow1;
-            blue = xcolors.blue1;
-            magenta = xcolors.purple1;
-            cyan = xcolors.aqua1;
-            white = xcolors.fg1;
+            black = xcolors.base02;
+            red = xcolors.base12;
+            green = xcolors.base14;
+            yellow = xcolors.base13;
+            blue = xcolors.base16;
+            magenta = xcolors.base17;
+            cyan = xcolors.base15;
+            white = xcolors.base07;
           };
         };
 
@@ -79,6 +80,22 @@ in
         };
       };
     };
+
+    home.packages = [
+      # Modify the desktop entry to comply with the xdg-terminal-exec spec
+      # https://gitlab.freedesktop.org/terminal-wg/specifications/-/merge_requests/3
+      (hiPrio (
+        pkgs.runCommand "alacritty-desktop-modify" {} ''
+          mkdir -p $out/share/applications
+          substitute ${pkgs.alacritty}/share/applications/Alacritty.desktop $out/share/applications/Alacritty.desktop \
+            --replace-fail "Type=Application" "Type=Application
+          X-TerminalArgAppId=--class
+          X-TerminalArgDir=--working-directory
+          X-TerminalArgHold=--hold
+          X-TerminalArgTitle=--title"
+        ''
+      ))
+    ];
 
     desktop = let
       alacritty = getExe config.programs.alacritty.package;

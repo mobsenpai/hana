@@ -1,4 +1,4 @@
-{
+{inputs, ...}: {
   modules = {
     shell = {
       enable = true;
@@ -6,13 +6,9 @@
     };
 
     desktop = {
+      terminal = "Alacritty";
       windowManager = "Niri";
-      # TODO: change
-      wallpaper.default = builtins.fetchurl {
-        url = "https://images.unsplash.com/photo-1497042915201-daf0dd6fdc09?auto=format&fit=crop&w=1366&h=768&q=80";
-        name = "wallpaper";
-        sha256 = "1hib3ibr053bp1s0j1vwv65670hpzml5flpqkpzf0dq7li0b2yyg";
-      };
+      # wallpaper = "${inputs.nix-resources}/wallpapers/clair-obscur-underwater.jpg";
     };
 
     programs = {
@@ -39,55 +35,37 @@
       swaync.enable = true;
     };
 
-    # TODO: change
+    # TODO:
+    # 1. should i make separate colorscheme files?
+    # Use styleguide
+    # https://github.com/tinted-theming/base24/blob/main/styling.md
     colorScheme = {
       polarity = "dark";
       colors = {
-        # Backgrounds
-        bg0 = "1E1E1E"; # Main background
-        bg1 = "241F31"; # Slightly lighter, from Adwaita palette
-        bg2 = "2E3436"; # Even lighter (not in Adwaita, but common in GNOME)
-        bg3 = "3A3A3D"; # Custom, slightly lighter still
-        bg4 = "48484C"; # Custom, even lighter
-
-        # Foregrounds
-        fg0 = "FFFFFF"; # Main foreground
-        fg1 = "C0BFBC"; # Secondary foreground (Adwaita light gray)
-        fg2 = "BFC2CC"; # Custom, slightly darker
-        fg3 = "A7A9B3"; # Custom, even darker
-        fg4 = "6E6E72"; # Custom, darkest
-
-        # Grays
-        gray0 = "5E5C64"; # Adwaita dark gray
-        gray1 = "8A8A8F"; # Custom, lighter gray
-
-        # Reds
-        red0 = "C01C28"; # Adwaita red
-        red1 = "ED333B"; # Adwaita bright red
-
-        # Greens
-        green0 = "2EC27E"; # Adwaita green
-        green1 = "57E389"; # Adwaita bright green
-
-        # Yellows
-        yellow0 = "F5C211"; # Adwaita yellow
-        yellow1 = "F8E45C"; # Adwaita bright yellow
-
-        # Blues
-        blue0 = "1E78E4"; # Adwaita blue
-        blue1 = "51A1FF"; # Adwaita bright blue
-
-        # Purples
-        purple0 = "9841BB"; # Adwaita purple
-        purple1 = "C061CB"; # Adwaita bright purple
-
-        # Aquas/Cyans
-        aqua0 = "0AB9DC"; # Adwaita cyan
-        aqua1 = "4FD2FD"; # Adwaita bright cyan
-
-        # Oranges (not a main Adwaita color, but plausible GNOME accent)
-        orange0 = "F57900"; # GNOME orange
-        orange1 = "F6B184"; # Custom, lighter orange
+        base00 = "1d1f21";
+        base01 = "282a2e";
+        base02 = "373b41";
+        base03 = "969896";
+        base04 = "b4b7b4";
+        base05 = "c5c8c6";
+        base06 = "e0e0e0";
+        base07 = "ffffff";
+        base08 = "cc6666";
+        base09 = "de935f";
+        base0A = "f0c674";
+        base0B = "b5bd68";
+        base0C = "8abeb7";
+        base0D = "81a2be";
+        base0E = "b294bb";
+        base0F = "a3685a";
+        base10 = "181a1b";
+        base11 = "141516";
+        base12 = "ff8888";
+        base13 = "ffe082";
+        base14 = "d6e685";
+        base15 = "b4ffff";
+        base16 = "a6c8ff";
+        base17 = "d2aaff";
       };
     };
   };

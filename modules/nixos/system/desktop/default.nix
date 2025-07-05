@@ -13,7 +13,7 @@ in {
     enable = mkEnableOption "desktop functionality";
 
     desktopEnvironment = mkOption {
-      type = with types; nullOr (enum ["xfce" "plasma" "gnome"]);
+      type = with types; nullOr (enum ["gnome"]);
       default = null;
       description = ''
         The desktop environment to use. The window manager is configured in

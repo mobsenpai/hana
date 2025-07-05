@@ -178,161 +178,145 @@ in
       };
 
       themes.main = {
-        "attribute" = "aqua1";
-        "keyword" = {fg = "red1";};
-        "keyword.directive" = "red0";
-        "namespace" = "aqua1";
-        "punctuation" = "orange1";
-        "punctuation.delimiter" = "orange1";
-        "operator" = "purple1";
-        "special" = "purple0";
-        "variable.other.member" = "blue1";
-        "variable" = "fg1";
-        "variable.builtin" = "orange1";
-        "variable.parameter" = "fg2";
-        "type" = "yellow1";
-        "type.builtin" = "yellow1";
-        "constructor" = {
-          fg = "purple1";
-          modifiers = ["bold"];
-        };
-        "function" = {
-          fg = "green1";
-          modifiers = ["bold"];
-        };
-        "function.macro" = "aqua1";
-        "function.builtin" = "yellow1";
-        "tag" = "red1";
+        "attributes" = "base09";
         "comment" = {
-          fg = "gray1";
+          fg = "base03";
           modifiers = ["italic"];
         };
-        "constant" = {fg = "purple1";};
-        "constant.builtin" = {
-          fg = "purple1";
+        "constant" = "base09";
+        "constant.character.escape" = "base0C";
+        "constant.numeric" = "base09";
+        "constructor" = "base0D";
+        "debug" = "base03";
+        "diagnostic" = {modifiers = ["underlined"];};
+        "diff.delta" = "base09";
+        "diff.minus" = "base08";
+        "diff.plus" = "base0B";
+        "error" = "base08";
+        "function" = "base0D";
+        "hint" = "base03";
+        "info" = "base0D";
+        "keyword" = "base0E";
+        "label" = "base0E";
+        "namespace" = "base0E";
+        "operator" = "base05";
+        "special" = "base0D";
+        "string" = "base0B";
+        "type" = "base0A";
+        "variable" = "base08";
+        "variable.other.member" = "base0B";
+        "warning" = "base09";
+        "markup.bold" = {
+          fg = "base0A";
           modifiers = ["bold"];
         };
-        "string" = "green1";
-        "constant.numeric" = "purple1";
-        "constant.character.escape" = {
-          fg = "fg2";
-          modifiers = ["bold"];
+        "markup.heading" = "base0D";
+        "markup.italic" = {
+          fg = "base0E";
+          modifiers = ["italic"];
         };
-        "label" = "aqua1";
-        "module" = "aqua1";
-
-        "diff.plus" = "green1";
-        "diff.delta" = "orange1";
-        "diff.minus" = "red1";
-
-        "warning" = "yellow1";
-        "error" = "red1";
-        "info" = "aqua1";
-        "hint" = "blue1";
-
-        "ui.background" = {bg = "bg0";};
-        "ui.linenr" = {fg = "bg4";};
-        "ui.linenr.selected" = {fg = "yellow1";};
-        "ui.cursorline" = {bg = "bg1";};
-        "ui.statusline" = {
-          fg = "fg1";
-          bg = "bg2";
-        };
-        "ui.statusline.normal" = {
-          fg = "bg0";
-          bg = "gray1";
-        };
-        "ui.statusline.insert" = {
-          fg = "bg0";
-          bg = "blue0";
-        };
-        "ui.statusline.select" = {
-          fg = "fg1";
-          bg = "orange0";
-        };
-        "ui.statusline.inactive" = {
-          fg = "gray1";
-          bg = "bg1";
-        };
-        "ui.bufferline" = {
-          fg = "fg1";
-          bg = "bg1";
-        };
-        "ui.bufferline.active" = {
-          fg = "bg0";
-          bg = "gray1";
-        };
-        "ui.bufferline.background" = {bg = "bg2";};
-        "ui.popup" = {bg = "bg1";};
-        "ui.window" = {bg = "bg1";};
-        "ui.help" = {
-          bg = "bg1";
-          fg = "fg1";
-        };
-        "ui.text" = {fg = "fg1";};
-        "ui.text.focus" = {fg = "fg1";};
-        "ui.selection" = {bg = "bg2";};
-        "ui.selection.primary" = {bg = "bg3";};
-        "ui.cursor.primary" = {
-          bg = "fg4";
-          fg = "bg1";
-        };
-        "ui.cursor.match" = {bg = "bg3";};
-        "ui.menu" = {
-          fg = "fg1";
-          bg = "bg2";
-        };
-        "ui.menu.selected" = {
-          fg = "bg2";
-          bg = "blue1";
-          modifiers = ["bold"];
-        };
-        "ui.virtual.whitespace" = "bg2";
-        "ui.virtual.ruler" = {bg = "bg1";};
-        "ui.virtual.inlay-hint" = {fg = "gray1";};
-        "ui.virtual.wrap" = {fg = "bg2";};
-        "ui.virtual.jump-label" = {
-          fg = "purple0";
-          modifiers = ["bold"];
-        };
-
-        "diagnostic.warning" = {
-          underline = {
-            color = "yellow1";
-            style = "curl";
-          };
-        };
-        "diagnostic.error" = {
-          underline = {
-            color = "red1";
-            style = "curl";
-          };
-        };
-        "diagnostic.info" = {
-          underline = {
-            color = "aqua1";
-            style = "curl";
-          };
-        };
-        "diagnostic.hint" = {
-          underline = {
-            color = "blue1";
-            style = "curl";
-          };
-        };
-        "diagnostic.unnecessary" = {modifiers = ["dim"];};
-        "diagnostic.deprecated" = {modifiers = ["crossed_out"];};
-
-        "markup.heading" = "aqua1";
-        "markup.bold" = {modifiers = ["bold"];};
-        "markup.italic" = {modifiers = ["italic"];};
-        "markup.strikethrough" = {modifiers = ["crossed_out"];};
+        "markup.link.text" = "base08";
         "markup.link.url" = {
-          fg = "green1";
+          fg = "base09";
           modifiers = ["underlined"];
         };
-        "markup.link.text" = "red1";
-        "markup.raw" = "red1";
+        "markup.list" = "base08";
+        "markup.quote" = "base0C";
+        "markup.raw" = "base0B";
+        "markup.strikethrough" = {modifiers = ["crossed_out"];};
+        "diagnostic.hint" = {underline = {style = "curl";};};
+        "diagnostic.info" = {underline = {style = "curl";};};
+        "diagnostic.warning" = {underline = {style = "curl";};};
+        "diagnostic.error" = {underline = {style = "curl";};};
+        "ui.background" = {bg = "base00";};
+        "ui.bufferline.active" = {
+          fg = "base00";
+          bg = "base03";
+          modifiers = ["bold"];
+        };
+        "ui.bufferline" = {
+          fg = "base04";
+          bg = "base00";
+        };
+        "ui.cursor" = {
+          fg = "base0A";
+          modifiers = ["reversed"];
+        };
+        "ui.cursor.insert" = {
+          fg = "base0A";
+          modifiers = ["reversed"];
+        };
+        "ui.cursorline.primary" = {
+          fg = "base05";
+          bg = "base01";
+        };
+        "ui.cursor.match" = {
+          fg = "base0A";
+          modifiers = ["reversed"];
+        };
+        "ui.cursor.select" = {
+          fg = "base0A";
+          modifiers = ["reversed"];
+        };
+        "ui.gutter" = {bg = "base00";};
+        "ui.help" = {
+          fg = "base06";
+          bg = "base01";
+        };
+        "ui.linenr" = {
+          fg = "base03";
+          bg = "base00";
+        };
+        "ui.linenr.selected" = {
+          fg = "base04";
+          bg = "base01";
+          modifiers = ["bold"];
+        };
+        "ui.menu" = {
+          fg = "base05";
+          bg = "base01";
+        };
+        "ui.menu.scroll" = {
+          fg = "base03";
+          bg = "base01";
+        };
+        "ui.menu.selected" = {
+          fg = "base01";
+          bg = "base04";
+        };
+        "ui.popup" = {bg = "base01";};
+        "ui.selection" = {bg = "base02";};
+        "ui.selection.primary" = {bg = "base02";};
+        "ui.statusline" = {
+          fg = "base04";
+          bg = "base01";
+        };
+        "ui.statusline.inactive" = {
+          bg = "base01";
+          fg = "base03";
+        };
+        "ui.statusline.insert" = {
+          fg = "base00";
+          bg = "base0B";
+        };
+        "ui.statusline.normal" = {
+          fg = "base00";
+          bg = "base03";
+        };
+        "ui.statusline.select" = {
+          fg = "base00";
+          bg = "base0F";
+        };
+        "ui.text" = "base05";
+        "ui.text.focus" = "base05";
+        "ui.virtual.indent-guide" = {fg = "base03";};
+        "ui.virtual.inlay-hint" = {fg = "base03";};
+        "ui.virtual.ruler" = {bg = "base01";};
+        "ui.virtual.jump-label" = {
+          fg = "base0A";
+          modifiers = ["bold"];
+        };
+        "ui.window" = {bg = "base01";};
 
         palette = xcolors;
       };
@@ -340,12 +324,12 @@ in
 
     xdg.desktopEntries.Helix = let
       helix = getExe config.programs.helix.package;
-      terminal = config.modules.desktop.terminal.exePath;
+      xdg-terminal = getExe pkgs.xdg-terminal-exec;
     in {
       name = "Helix";
       genericName = "Text Editor";
       comment = "Edit text files";
-      exec = "${terminal} --title editor -e ${helix} %F";
+      exec = "${xdg-terminal} --title=Editor --app-id=helix -e ${helix} %F";
       icon = "helix";
       mimeType = [
         "text/english"

@@ -21,7 +21,7 @@ in
 
         background = [
           {
-            path = wallpaper.default;
+            path = "${wallpaper.images.clair-obscur-underwater.path}";
             blur_passes = 3;
             contrast = 0.8916;
             brightness = 0.8172;
@@ -37,9 +37,9 @@ in
             dots_size = 0.25;
             dots_spacing = 0.25;
             dots_center = true;
-            outer_color = "rgb(${colors.bg0})";
-            inner_color = "rgb(${colors.bg0})";
-            font_color = "rgb(${colors.fg1})";
+            outer_color = "rgb(${colors.base02})";
+            inner_color = "rgb(${colors.base00})";
+            font_color = "rgb(${colors.base05})";
             fade_on_empty = false;
             placeholder_text = "<i>Input Password...</i>";
             hide_input = false;
@@ -52,7 +52,7 @@ in
         label = [
           {
             text = ''cmd[update:1000] echo "$(date +"%-I:%M%p")"'';
-            color = "rgb(${colors.fg1})";
+            color = "rgb(${colors.base05})";
             font_size = 80;
             font_family = "FiraMono Nerd Font Bold";
             position = "0, -200";
@@ -61,7 +61,7 @@ in
           }
           {
             text = "Hi there, $USER";
-            color = "rgb(${colors.fg1})";
+            color = "rgb(${colors.base05})";
             font_size = 18;
             font_family = "FiraMono Nerd Font";
             position = "0, -30";

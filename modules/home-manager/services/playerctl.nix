@@ -8,7 +8,7 @@
   inherit (lib) utils getExe;
 in {
   assertions = utils.asserts [
-    (osConfig.modules.system.audio.enable)
+    (osConfig.modules.system.audio.enable or false)
     "System audio"
   ];
 

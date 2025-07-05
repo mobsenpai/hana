@@ -30,12 +30,12 @@ in
         padding-bottom = 3;
         selection-background-padding = 4;
 
-        background-color = xcolors.bg0;
-        foreground-color = xcolors.fg1;
-        text-color = xcolors.fg1;
-        border-color = xcolors.bg2;
-        selection-color = xcolors.blue1;
-        selection-background = xcolors.bg2;
+        background-color = xcolors.base00;
+        foreground-color = xcolors.base05;
+        text-color = xcolors.base05;
+        border-color = xcolors.base02;
+        selection-color = xcolors.base0D;
+        selection-background = xcolors.base02;
       };
     };
 

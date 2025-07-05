@@ -38,15 +38,15 @@ in
           }
 
           #window {
-            background: ${xcolors.bg1};
+            background: ${xcolors.base01};
             border-radius: 8px;
-            border: 1px solid ${xcolors.bg2};
+            border: 1px solid ${xcolors.base02};
           }
 
           #input {
-            background: ${xcolors.bg1};
-            border-bottom: 1px solid ${xcolors.bg2};
-            color: ${xcolors.fg1};
+            background: ${xcolors.base01};
+            border-bottom: 1px solid ${xcolors.base02};
+            color: ${xcolors.base05};
             margin-bottom: 4px;
             padding: 4px;
           }
@@ -64,7 +64,7 @@ in
           }
 
           #text {
-            color: ${xcolors.fg1};
+            color: ${xcolors.base05};
           }
 
           #entry {
@@ -73,7 +73,7 @@ in
           }
 
           #entry:selected {
-            background: ${xcolors.bg2};
+            background: ${xcolors.base02};
           }
         '';
     };

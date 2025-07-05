@@ -60,15 +60,15 @@ in
           }
 
           .notification {
-            background: ${xcolors.bg1};
-            border: 1px solid ${xcolors.bg2};
+            background: ${xcolors.base01};
+            border: 1px solid ${xcolors.base02};
             border-radius: 8px;
             padding: 7px;
           }
 
           .notification-content {
-            background: ${xcolors.bg1};
-            color: ${xcolors.fg1};
+            background: ${xcolors.base01};
+            color: ${xcolors.base05};
           }
 
           .notification .image {
@@ -80,83 +80,83 @@ in
           }
 
           progressbar {
-            background: ${xcolors.bg0};
+            background: ${xcolors.base00};
             border-radius: 2px;
           }
 
           progress {
-            background: ${xcolors.orange0};
+            background: ${xcolors.base09};
             border-radius: 2px;
           }
 
           .close-button {
-            background: ${xcolors.red0};
+            background: ${xcolors.base08};
             border-radius: 50%;
-            color: ${xcolors.bg0};
+            color: ${xcolors.base00};
           }
 
           .close-button:hover {
-            background: ${xcolors.red1};
+            background: ${xcolors.base08};
             transition: 200ms;
           }
 
           .time {
-            color: ${xcolors.green0};
+            color: ${xcolors.base0B};
             font-size: 9pt;
             margin-right: 24px;
           }
 
           .control-center {
-            background: ${xcolors.bg1};
-            border: 1px solid ${xcolors.bg2};
+            background: ${xcolors.base01};
+            border: 1px solid ${xcolors.base02};
             border-radius: 8px;
             padding: 8px;
           }
 
           .control-center-list-placeholder {
-            background: ${xcolors.bg1};
-            color: ${xcolors.bg4};
+            background: ${xcolors.base01};
+            color: ${xcolors.base04};
           }
 
           .control-center .notification-group {
-            color: ${xcolors.fg1};
+            color: ${xcolors.base05};
           }
 
           .widget-title {
-            background: ${xcolors.bg1};
-            color: ${xcolors.fg1};
+            background: ${xcolors.base01};
+            color: ${xcolors.base05};
             margin-bottom: 8px;
           }
 
           .widget-title > button {
-            background: ${xcolors.green0};
-            color: ${xcolors.bg0};
+            background: ${xcolors.base0B};
+            color: ${xcolors.base00};
             border-radius: 4px;
             padding: 2px;
           }
 
           .widget-title > button:hover {
-            background: ${xcolors.green1};
-            color: ${xcolors.bg0};
+            background: ${xcolors.base14};
+            color: ${xcolors.base00};
             transition: 200ms;
           }
 
           .widget-dnd {
-            background: ${xcolors.bg1};
-            color: ${xcolors.fg1};
+            background: ${xcolors.base01};
+            color: ${xcolors.base05};
           }
 
           .widget-dnd > switch {
-            background: ${xcolors.bg3};
+            background: ${xcolors.base03};
             border-radius: 4px;
           }
 
           .widget-dnd > switch:checked {
-            background: ${xcolors.orange0};
+            background: ${xcolors.base09};
           }
 
           .widget-dnd > switch slider {
-            background: ${xcolors.bg0};
+            background: ${xcolors.base00};
             border-radius: 4px;
           }
         '';

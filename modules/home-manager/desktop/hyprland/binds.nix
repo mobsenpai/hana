@@ -8,7 +8,7 @@
   inherit (lib) mkIf optionals getExe getExe';
   inherit (osConfig.modules.system) device;
   inherit (config.modules.desktop) windowManager;
-  osDesktopEnabled = osConfig.modules.system.desktop.enable;
+  osDesktop = osConfig.modules.system.desktop;
 
   jaq = getExe pkgs.jaq;
   hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
@@ -102,7 +102,7 @@
         "SUPER SHIFT 1-0" "Silently move to workspace 1-10"
     '';
 in
-  mkIf (osDesktopEnabled && windowManager == "Hyprland")
+  mkIf (osDesktop.enable && windowManager == "Hyprland")
   {
     wayland.windowManager.hyprland = let
       grimblast = getExe pkgs.grimblast;

@@ -1,7 +1,5 @@
 {
   lib,
-  pkgs,
-  inputs,
   config,
   username,
   ...
@@ -10,16 +8,16 @@
   inherit (config.modules.core) homeManager;
   cfg = config.modules.system.desktop;
   homeConfig = config.home-manager.users.${username};
-  homeDesktopCfg = homeConfig.modules.desktop;
-  niriPackage = inputs.niri.packages.${pkgs.system}.niri-stable;
+  homeDesktop = homeConfig.modules.desktop;
+  niriPackage = homeConfig.programs.niri.package;
   windowManager =
-    if homeManager.enable
-    then homeDesktopCfg.windowManager
+    if (homeManager.enable or false)
+    then homeDesktop.windowManager
     else null;
 in {
   config = mkIf (cfg.enable && windowManager == "Niri") {
     assertions = utils.asserts [
-      homeManager.enable
+      (homeManager.enable or false)
       "Niri requires Home Manager to be enabled"
     ];
 

@@ -101,6 +101,21 @@
         "type": "github"
       }
     },
+    "nix-resources": {
+      "locked": {
+        "lastModified": 1751676057,
+        "narHash": "sha256-gzZC2oJi0zF/WImnjwN6IFoPP114kSGdjjEfLIZ3jdo=",
+        "owner": "mobsenpai",
+        "repo": "nix-resources",
+        "rev": "18bf1de41428c052625a0ab8ea671917b3311dea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mobsenpai",
+        "repo": "nix-resources",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1750969886,
@@ -154,6 +169,7 @@
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
         "niri": "niri",
+        "nix-resources": "nix-resources",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }

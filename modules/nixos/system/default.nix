@@ -8,7 +8,7 @@ in {
     bluetooth.enable = mkEnableOption "bluetooth";
     device = {
       type = mkOption {
-        type = types.enum ["laptop" "desktop" "server" "vm"];
+        type = types.enum ["laptop" "desktop"];
         description = "The type/purpose of the device";
       };
 
