@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) utils mkIf getExe';
+  inherit (lib) mkIf utils getExe';
   cfg = config.modules.services.greetd;
 in
   mkIf cfg.enable {

@@ -5,7 +5,7 @@
   osConfig,
   ...
 }: let
-  inherit (lib) utils mkIf mkOption types;
+  inherit (lib) mkIf utils mkOption types;
   cfg = config.modules.desktop;
   osDesktop = osConfig.modules.system.desktop;
 in {
@@ -28,12 +28,6 @@ in {
         xdg-terminal-exec spec.
       '';
     };
-
-    # wallpaper = mkOption {
-    #   type = types.path;
-    #   default = null;
-    #   description = "The default wallpaper to use";
-    # };
   };
 
   config = mkIf osDesktop.enable {

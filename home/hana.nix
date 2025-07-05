@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{
   modules = {
     shell = {
       enable = true;
@@ -8,7 +8,6 @@
     desktop = {
       terminal = "Alacritty";
       windowManager = "Niri";
-      # wallpaper = "${inputs.nix-resources}/wallpapers/clair-obscur-underwater.jpg";
     };
 
     programs = {

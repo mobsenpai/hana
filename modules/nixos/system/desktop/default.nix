@@ -3,8 +3,9 @@
   config,
   ...
 }: let
-  inherit (lib) utils mkIf mkEnableOption mkOption types;
+  inherit (lib) mkIf utils mkDefault mkEnableOption mkOption types;
   inherit (config.modules.core) homeManager;
+  inherit (config.modules.system) device;
   cfg = config.modules.system.desktop;
 in {
   imports = utils.scanPaths ./.;
@@ -24,12 +25,24 @@ in {
   };
 
   config = mkIf cfg.enable {
+    hardware.graphics.enable = true;
+
+    # Some apps may use this to optimise for power savings
+    services.upower.enable = mkDefault (device.type == "laptop");
+    services.power-profiles-daemon.enable = mkDefault (device.type == "laptop");
+
+    # Service doesn't autostart otherwise https://github.com/NixOS/nixpkgs/issues/81138
+    systemd.services.upower.wantedBy = mkIf config.services.upower.enable ["graphical.target"];
+
     # Enables wayland for all apps that support it
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     # Some apps like vscode need the keyring for saving credentials
     services.gnome.gnome-keyring.enable = true;
 
-    # https://github.com/JManch/nixos/blob/79498794ea4eb1b1dea797ec853ff2a29e0cb0df/modules/nixos/system/desktop/root.nix#L94
+    # Necessary for xdg-portal home-manager module to work with useUserPackages enabled
+    # https://github.com/nix-community/home-manager/pull/5184
+    # NOTE: When https://github.com/nix-community/home-manager/pull/2548 gets
+    # merged this may no longer be needed
     environment.pathsToLink = mkIf homeManager.enable [
       "/share/xdg-desktop-portal"
       "/share/applications"

@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) utils mkEnableOption mkIf optionals;
+  inherit (lib) mkIf utils mkEnableOption optionals;
   cfg = config.modules.shell;
 in {
   imports = utils.scanPaths ./.;
