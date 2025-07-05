@@ -36,6 +36,7 @@
 
     # TODO:
     # 1. should i make separate colorscheme files?
+    # 2. should this even be here
     # Use styleguide
     # https://github.com/tinted-theming/base24/blob/main/styling.md
     colorScheme = {

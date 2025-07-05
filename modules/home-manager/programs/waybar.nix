@@ -222,4 +222,15 @@ in
           }
         '';
     };
+
+    # Removing black corner on waybar
+    # https://github.com/YaLTeR/niri/discussions/1668
+    desktop.niri.settings = {
+      layer-rules = [
+        {
+          matches = [{namespace = "waybar";}];
+          opacity = 0.99;
+        }
+      ];
+    };
   }

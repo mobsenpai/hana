@@ -1,5 +1,3 @@
-# TODO
-# 1. fix the black corners
 {
   lib,
   pkgs,
