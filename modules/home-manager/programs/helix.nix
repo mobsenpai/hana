@@ -15,23 +15,26 @@ in
       defaultEditor = true;
 
       extraPackages = with pkgs; [
+        # TODO
         # Runtime dependencies
-        emmet-ls
-        nodejs
-        python3
+        # nodejs
+        # python3
 
         # Language servers
+        emmet-ls
         nil
         nodePackages.typescript-language-server
         nodePackages.vscode-langservers-extracted
         pyright
         clang
-        clang-tools
+        jdt-language-server
 
         # Formatters
         alejandra
         black
         nodePackages.prettier
+        clang-tools
+        google-java-format
       ];
 
       languages = {
@@ -108,6 +111,16 @@ in
             auto-format = true;
             formatter.command = "clang-format";
             language-servers = ["clangd"];
+          }
+          {
+            name = "java";
+            file-types = ["java"];
+            auto-format = true;
+            formatter = {
+              command = "google-java-format";
+              args = ["-"];
+            };
+            language-servers = ["jdtls"];
           }
         ];
       };
