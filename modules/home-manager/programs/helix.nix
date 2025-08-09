@@ -15,25 +15,19 @@ in
       defaultEditor = true;
 
       extraPackages = with pkgs; [
-        # TODO
-        # Runtime dependencies
-        # nodejs
-        # python3
-
         # Language servers
         emmet-ls
         nil
         nodePackages.typescript-language-server
         nodePackages.vscode-langservers-extracted
         pyright
-        clang
+        clang-tools
         jdt-language-server
 
         # Formatters
         alejandra
         black
         nodePackages.prettier
-        clang-tools
         google-java-format
       ];
 

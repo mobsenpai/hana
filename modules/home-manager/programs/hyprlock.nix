@@ -21,7 +21,7 @@ in
 
         background = [
           {
-            path = "${wallpaper.images.clair-obscur-underwater.path}";
+            path = "${wallpaper}";
             blur_passes = 3;
             contrast = 0.8916;
             brightness = 0.8172;

@@ -12,10 +12,10 @@ in
       enable = true;
       settings = {
         preload = [
-          "${wallpaper.images.clair-obscur-underwater.path}"
+          "${wallpaper}"
         ];
         wallpaper = [
-          ",${wallpaper.images.clair-obscur-underwater.path}"
+          ",${wallpaper}"
         ];
       };
     };

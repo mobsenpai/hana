@@ -1,5 +1,3 @@
-# TODO:
-# 1. check onclick for pulseaudio, only mutes output
 {
   lib,
   pkgs,
@@ -14,7 +12,6 @@
   cfg = config.modules.programs.waybar;
 
   swaync = getExe' config.services.swaync.package "swaync-client";
-  wpctl = getExe' pkgs.wireplumber "wpctl";
   pwvu = getExe pkgs.pwvucontrol;
 in
   mkIf cfg.enable
@@ -109,6 +106,8 @@ in
             separate-outputs = true;
           };
 
+          # NOTE: switch to wireplumber module after nixpkgs-stable catches up to the new version
+          # https://github.com/Alexays/Waybar/pull/4319
           pulseaudio = {
             format = "{volume}% {icon} {format_source}";
             format-bluetooth = "{volume}% {icon}󰂯 {format_source}";
@@ -123,8 +122,7 @@ in
               default = ["󰕿" "󰖀" "󰕾"];
             };
             tooltip-format = "Output: {desc}\nInput: {source_desc}";
-            on-click = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
-            on-click-right = "${pwvu}";
+            on-click = pwvu;
           };
 
           tray = {
