@@ -162,9 +162,6 @@ in
           #wireplumber {
             background: ${xcolors.base00};
             color: ${xcolors.base05};
-          }
-
-          #custom-notification {
             padding-right: 4px;
           }
 
