@@ -53,7 +53,12 @@ in
 
           battery = mkIf (device.type == "laptop") {
             format = "{capacity}% {icon}";
-            format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+            format-charging = "{capacity}% {icon}";
+            format-plugged = "{capacity}% 󰚥";
+            format-icons = {
+              default = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+              charging = ["󰢟" "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅"];
+            };
             tooltip-format = "{timeTo}, {capacity}%";
           };
 

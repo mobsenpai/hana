@@ -1,11 +1,10 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: let
-  inherit (lib) mkIf utils mkDefault;
+  inherit (lib) utils mkDefault;
   inherit (config.modules.system.device) gpu;
 in {
   imports = [
@@ -15,6 +14,13 @@ in {
   assertions = utils.asserts [
     (gpu.type == "nvidia")
     "Uses nvidia card"
+    (lib.versionOlder config.boot.kernelPackages.kernel.version "6.19")
+    ''
+      Kernel >= 6.19 detected!
+      • Delete: kernelPatches block + ./btusb.patch
+      • Remove: "asus_wmi" "asus_nb_wmi" from kernelModules
+      • Add: "asus-armoury" to kernelModules
+    ''
   ];
 
   services.xserver.videoDrivers = ["modesetting"];
@@ -60,6 +66,7 @@ in {
         patch = ./btusb.patch;
       }
     ];
+
     initrd.availableKernelModules = [
       "xhci_pci"
       "nvme"
@@ -69,7 +76,6 @@ in {
       "sd_mod"
     ];
 
-    # NOTE: replace with asus-armoury in kernel 6.19
     kernelModules = ["kvm-intel" "asus_wmi" "asus_nb_wmi"];
   };
 
