@@ -15,6 +15,10 @@ in
       enable = true;
       package = pkgs.niri;
       settings = {
+        xwayland-satellite = {
+          enable = true;
+          path = lib.getExe pkgs.xwayland-satellite;
+        };
         gestures = {hot-corners.enable = true;};
         hotkey-overlay.skip-at-startup = true;
         input = {
@@ -25,7 +29,7 @@ in
             dwt = true;
             dwtp = true;
             middle-emulation = true;
-            natural-scroll = false;
+            natural-scroll = true;
             scroll-method = "two-finger";
             tap = true;
             tap-button-map = "left-right-middle";
@@ -81,7 +85,7 @@ in
               x = 0;
               y = 0;
             };
-            scale = 1.0;
+            scale = 1.15;
           };
 
           "HDMI-A-1" = {

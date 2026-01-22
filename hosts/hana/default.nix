@@ -6,17 +6,26 @@
       homeManager.enable = true;
     };
 
-    programs = {};
+    programs = {
+      gaming.enable = true;
+    };
 
     services = {
       greetd.enable = true;
     };
 
     system = {
-      device.type = "laptop";
-      desktop.enable = true;
+      device = {
+        type = "laptop";
+        gpu.type = "nvidia";
+        battery = "BAT0";
+      };
 
-      audio.enable = true;
+      desktop.enable = true;
+      audio = {
+        enable = true;
+        inputNoiseSuppression = true;
+      };
       bluetooth.enable = true;
     };
   };

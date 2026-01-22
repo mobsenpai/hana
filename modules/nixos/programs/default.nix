@@ -3,5 +3,7 @@
 in {
   imports = utils.scanPaths ./.;
 
-  options.modules.programs = {};
+  options.modules.programs = {
+    gaming.enable = mkEnableOption "gaming";
+  };
 }

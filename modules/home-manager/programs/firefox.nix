@@ -26,7 +26,7 @@ in
 
           search = {
             force = true;
-            default = "ddg";
+            default = "google";
           };
 
           settings = {

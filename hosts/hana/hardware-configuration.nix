@@ -4,15 +4,74 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}: let
+  inherit (lib) mkIf utils mkDefault;
+  inherit (config.modules.system.device) gpu;
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  assertions = utils.asserts [
+    (gpu.type == "nvidia")
+    "Uses nvidia card"
+  ];
+
+  services.xserver.videoDrivers = ["modesetting"];
+  hardware.nvidia = {
+    modesetting.enable = true;
+    dynamicBoost.enable = true;
+    powerManagement.finegrained = true;
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+
+      intelBusId = "PCI:0@0:2:0";
+      nvidiaBusId = "PCI:1@0:0:0";
+    };
+  };
+
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
+  };
+
+  services.supergfxd.enable = true;
+  programs.rog-control-center = {
+    enable = true;
+    autoStart = true;
+  };
+
+  services.hardware.openrgb.enable = true;
+
+  services.fwupd.enable = true;
+  systemd.timers."fwupd-refresh".enable = false;
+
+  services.thermald.enable = true;
+  services.power-profiles-daemon.enable = false;
+  services.tlp.enable = false;
+
+  boot = {
+    kernelPatches = [
+      {
+        name = "add-realtek-8852ce-btusb";
+        patch = ./btusb.patch;
+      }
+    ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "nvme"
+      "thunderbolt"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+    ];
+
+    # NOTE: replace with asus-armoury in kernel 6.19
+    kernelModules = ["kvm-intel" "asus_wmi" "asus_nb_wmi"];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/root";
@@ -28,15 +87,6 @@
     {device = "/dev/disk/by-label/swap";}
   ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform = mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = mkDefault config.hardware.enableRedistributableFirmware;
 }

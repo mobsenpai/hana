@@ -9,12 +9,10 @@ in
   {
     programs.git = {
       enable = true;
-      delta.enable = true;
 
-      userEmail = "work.velocity806@passinbox.com";
-      userName = "mobsenpai";
-
-      extraConfig = {
+      settings = {
+        user.email = "work.velocity806@passinbox.com";
+        user.name = "mobsenpai";
         init.defaultBranch = "main";
       };
 
@@ -24,5 +22,10 @@ in
         "*result*"
         "node_modules"
       ];
+    };
+
+    programs.delta = {
+      enable = true;
+      enableGitIntegration = true;
     };
   }

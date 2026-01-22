@@ -7,7 +7,7 @@
 }: let
   inherit (lib) mkIf optional getExe getExe';
   inherit (config.modules.colorScheme) xcolors;
-  inherit (osConfig.modules.system) device;
+  inherit (osConfig.modules.system) audio device;
   inherit (config.modules.desktop) windowManager;
   cfg = config.modules.programs.waybar;
 
@@ -43,7 +43,7 @@ in
             ++ optional (windowManager == "Hyprland") "hyprland/window";
 
           modules-right =
-            ["pulseaudio"]
+            optional (audio.enable) "wireplumber"
             ++ optional (device.type == "laptop") "battery"
             ++ [
               "clock"
@@ -58,7 +58,7 @@ in
           };
 
           clock = {
-            format = "{:%H:%M %d/%m/%Y}";
+            format = "{:%I:%M %p %d/%m/%Y}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           };
 
@@ -106,28 +106,24 @@ in
             separate-outputs = true;
           };
 
-          # NOTE: switch to wireplumber module after nixpkgs-stable catches up to the new version
-          # https://github.com/Alexays/Waybar/pull/4319
-          pulseaudio = {
-            format = "{volume}% {icon} {format_source}";
-            format-bluetooth = "{volume}% {icon}󰂯 {format_source}";
-            format-muted = " 󰖁 {format_source}";
-            format-bluetooth-muted = "󰖁 {icon}󰂯 {format_source}";
-            format-source = "{volume}% 󰍬";
-            format-source-muted = "󰍭";
-            format-icons = {
-              hands-free = "󱡏";
-              headphone = "󰋋";
-              headset = "󰋎";
-              default = ["󰕿" "󰖀" "󰕾"];
-            };
-            tooltip-format = "Output: {desc}\nInput: {source_desc}";
-            on-click = pwvu;
-          };
-
           tray = {
             reverse-direction = true;
             spacing = 4;
+          };
+
+          "wireplumber" = mkIf audio.enable {
+            format = "{volume}% {icon} {format_source}";
+            format-muted = "󰖁 {format_source}";
+            format-source = "{volume}% 󰍬";
+            format-source-muted = "󰍭";
+            format-icons = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
+            tooltip-format = "Output: {node_name}\nInput: {source_desc}";
+            tooltip = true;
+            on-click = pwvu;
           };
         };
       };
@@ -158,7 +154,7 @@ in
           #clock,
           #custom-notification,
           #window,
-          #pulseaudio {
+          #wireplumber {
             background: ${xcolors.base00};
             color: ${xcolors.base05};
           }

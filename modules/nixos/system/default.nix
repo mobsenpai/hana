@@ -1,10 +1,18 @@
-{lib, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) utils mkEnableOption mkOption types;
+  inherit (config.modules.system) device;
 in {
   imports = utils.scanPaths ./.;
 
   options.modules.system = {
-    audio.enable = mkEnableOption "pipewire audio";
+    audio = {
+      enable = mkEnableOption "pipewire audio";
+      inputNoiseSuppression = mkEnableOption "input noise suppression source";
+    };
     bluetooth.enable = mkEnableOption "bluetooth";
     device = {
       type = mkOption {
@@ -21,6 +29,15 @@ in {
             dedicated GPU.
           '';
         };
+      };
+
+      battery = mkOption {
+        type = with types; nullOr str;
+        default = null;
+        example = "BAT1";
+        description = ''
+          Name of the battery device in /sys/class/power_supply.
+        '';
       };
     };
   };
