@@ -5,7 +5,7 @@
       systemd-boot = {
         enable = true;
         editor = false;
-        consoleMode = "auto";
+        consoleMode = "max";
         configurationLimit = 10;
       };
     };
