@@ -10,6 +10,10 @@
 in
   mkIf cfg.enable
   {
+    # NOTE: xwayland-satellite (niri) 0.7 has issues with wl-clip, making steam
+    # unable to launch if something is copied to clipboard
+    # gets fixed in 0.8
+    # https://github.com/YaLTeR/niri/issues/2250
     programs.steam = {
       enable = true;
       protontricks.enable = true;
