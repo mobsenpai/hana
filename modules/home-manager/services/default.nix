@@ -8,5 +8,6 @@ in {
     hypridle.enable = mkEnableOption "hypridle daemon";
     hyprpaper.enable = mkEnableOption "hyprpaper daemon";
     swaync.enable = mkEnableOption "swaync notification daemon";
+    wlsunset.enable = mkEnableOption "wlsunset daemon";
   };
 }

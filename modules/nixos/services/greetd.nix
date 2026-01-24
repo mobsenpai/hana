@@ -16,13 +16,15 @@ in
       "Do not enable greetd when using a desktop environment as it brings its own display manager"
     ];
 
-    services.greetd = {
+    services.greetd = let
+      tuigreet = getExe' pkgs.tuigreet "tuigreet";
+    in {
       enable = true;
       settings = {
         default_session = {
           user = "greeter";
           command = ''
-            ${getExe' pkgs.tuigreet "tuigreet"} \
+            ${tuigreet} \
             --time \
             --sessions ${cfg.sessionDirs} \
             --remember \

@@ -7,18 +7,53 @@
 }: let
   inherit (lib) mkIf optional getExe getExe';
   inherit (config.modules.colorScheme) xcolors;
-  inherit (osConfig.modules.system) audio device;
+  inherit (osConfig.modules.system) audio device networking;
   inherit (config.modules.desktop) windowManager;
   cfg = config.modules.programs.waybar;
 
   swaync = getExe' config.services.swaync.package "swaync-client";
   pwvu = getExe pkgs.pwvucontrol;
+  iwgtk = getExe pkgs.iwgtk;
+  wpa_gui = getExe pkgs.wpa_supplicant_gui;
 in
   mkIf cfg.enable
   {
     services = {
       blueman-applet.enable = true;
-      network-manager-applet.enable = true;
+    };
+
+    # NOTE: if iwgtk,wpa_gui services are upstream then can be removed
+    home.packages = mkIf networking.wireless.enable [
+      (mkIf (networking.wireless.backend == "iwd") pkgs.iwgtk)
+      (mkIf (networking.wireless.backend == "wpa_supplicant") pkgs.wpa_supplicant_gui)
+    ];
+
+    systemd.user.services = {
+      iwgtk = mkIf (networking.wireless.enable && networking.wireless.backend == "iwd") {
+        Unit = {
+          Description = "iwd GTK tray applet";
+          WantedBy = ["graphical-session.target"];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${iwgtk} -i";
+          Restart = "on-failure";
+          RestartSec = 3;
+        };
+      };
+
+      wpa-gui = mkIf (networking.wireless.enable && networking.wireless.backend == "wpa_supplicant") {
+        Unit = {
+          Description = "wpa_supplicant GTK tray applet";
+          WantedBy = ["graphical-session.target"];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${wpa_gui} -t";
+          Restart = "on-failure";
+          RestartSec = 3;
+        };
+      };
     };
 
     programs.waybar = {

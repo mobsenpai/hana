@@ -22,7 +22,9 @@ in
       wantedBy = ["timers.target"];
     };
 
-    systemd.user.services."low-battery-notify" = {
+    systemd.user.services."low-battery-notify" = let
+      libnotify = lib.getExe pkgs.libnotify;
+    in {
       requisite = ["graphical-session.target"];
       after = ["graphical-session.target"];
       path = lib.mkForce []; # inherit user session env vars
@@ -31,7 +33,7 @@ in
         status=$(cat /sys/class/power_supply/${device.battery}/status)
 
         if [[ $cap -le 10 && $status == "Discharging" ]]; then
-          ${lib.getExe pkgs.libnotify} --transient --urgency=critical -t 5000 "Battery Low" "$cap% remaining";
+          ${libnotify} --transient --urgency=critical -t 5000 "Battery Low" "$cap% remaining";
         fi
       '';
     };

@@ -5,10 +5,26 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf map filter listToAttrs getExe;
   inherit (config.modules.colorScheme) xcolors;
   inherit (config.modules.desktop) windowManager;
   osDesktop = osConfig.modules.system.desktop;
+
+  dynamicOutputs = listToAttrs (
+    map
+    (monitor: {
+      name = monitor.name;
+      value = {
+        inherit (monitor) position scale;
+        mode = {
+          width = monitor.width;
+          height = monitor.height;
+          refresh = monitor.refreshRate * 1000;
+        };
+      };
+    })
+    (filter (m: m.enabled) osConfig.modules.system.device.monitors)
+  );
 in
   mkIf (osDesktop.enable && windowManager == "Niri") {
     programs.niri = {
@@ -17,7 +33,7 @@ in
       settings = {
         xwayland-satellite = {
           enable = true;
-          path = lib.getExe pkgs.xwayland-satellite;
+          path = getExe pkgs.xwayland-satellite;
         };
         gestures = {hot-corners.enable = true;};
         hotkey-overlay.skip-at-startup = true;
@@ -79,29 +95,7 @@ in
           };
         };
 
-        outputs = {
-          "eDP-1" = {
-            position = {
-              x = 0;
-              y = 0;
-            };
-            scale = 1.15;
-          };
-
-          "HDMI-A-1" = {
-            mode = {
-              height = 768;
-              refresh = null;
-              width = 1366;
-            };
-            position = {
-              x = 0;
-              y = 0;
-            };
-            scale = 1.0;
-          };
-        };
-
+        outputs = dynamicOutputs;
         overview = {
           backdrop-color = "transparent";
         };

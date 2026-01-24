@@ -32,6 +32,7 @@
       hypridle.enable = true;
       hyprpaper.enable = true;
       swaync.enable = true;
+      wlsunset.enable = true;
     };
 
     # Use styleguide

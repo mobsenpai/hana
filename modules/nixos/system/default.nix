@@ -1,10 +1,5 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) utils mkEnableOption mkOption types;
-  inherit (config.modules.system) device;
 in {
   imports = utils.scanPaths ./.;
 
@@ -13,11 +8,21 @@ in {
       enable = mkEnableOption "pipewire audio";
       inputNoiseSuppression = mkEnableOption "input noise suppression source";
     };
+
     bluetooth.enable = mkEnableOption "bluetooth";
     device = {
       type = mkOption {
         type = types.enum ["laptop" "desktop"];
         description = "The type/purpose of the device";
+      };
+
+      battery = mkOption {
+        type = with types; nullOr str;
+        default = null;
+        example = "BAT1";
+        description = ''
+          Name of the battery device in /sys/class/power_supply.
+        '';
       };
 
       gpu = {
@@ -31,13 +36,90 @@ in {
         };
       };
 
-      battery = mkOption {
-        type = with types; nullOr str;
-        default = null;
-        example = "BAT1";
-        description = ''
-          Name of the battery device in /sys/class/power_supply.
-        '';
+      monitors = mkOption {
+        type = types.listOf (types.submodule {
+          options = {
+            enabled = mkOption {
+              type = types.bool;
+              default = true;
+              description = ''
+                If the monitor should be disabled by default and enabled on-demand
+                set this to false
+              '';
+            };
+
+            name = mkOption {
+              type = types.str;
+              example = "DP-1";
+            };
+
+            number = mkOption {
+              type = types.int;
+            };
+
+            width = mkOption {
+              type = types.int;
+              example = 2560;
+            };
+
+            height = mkOption {
+              type = types.int;
+              example = 1440;
+            };
+
+            scale = mkOption {
+              type = types.float;
+              default = 1.0;
+            };
+
+            refreshRate = mkOption {
+              type = types.float;
+              default = 60.0;
+            };
+
+            position = {
+              x = mkOption {
+                type = types.int;
+                default = 0;
+                description = "Relative x position of monitor from top left corner";
+              };
+              y = mkOption {
+                type = types.int;
+                default = 0;
+                description = "Relative y position of monitor from top left corner";
+              };
+            };
+
+            transform = mkOption {
+              type = types.int;
+              default = 0;
+              description = "Rotation transform according to Hyprland's transform list";
+            };
+          };
+        });
+        default = [];
+      };
+    };
+
+    networking = {
+      wireless = {
+        enable = mkEnableOption "wireless";
+        backend = mkOption {
+          type = types.enum [
+            "iwd"
+            "wpa_supplicant"
+          ];
+          default = "iwd";
+          description = "The wireless authentication backend to use.";
+        };
+      };
+
+      firewall = {
+        enable =
+          mkEnableOption "Firewall"
+          // {
+            default = true;
+          };
       };
     };
   };
