@@ -132,6 +132,7 @@ in
         tabs = {
           show = "multiple";
           title.alignment = "left";
+          last_close = "default-page";
         };
 
         url = rec {
