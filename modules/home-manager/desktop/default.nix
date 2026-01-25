@@ -12,21 +12,35 @@ in {
   imports = utils.scanPaths ./.;
 
   options.modules.desktop = {
+    terminal = mkOption {
+      type = types.nullOr (types.enum ["Alacritty"]);
+      default = null;
+      description = ''
+        XDG desktop ID of the default terminal to use with xdg-terminal-exec.
+        The terminal should have its desktop entry modified to comply with the
+        xdg-terminal-exec spec.
+      '';
+    };
+
     windowManager = mkOption {
       type = types.nullOr (types.enum ["Hyprland" "Niri"]);
       default = null;
       description = "Window manager to use";
     };
 
-    terminal = mkOption {
-      type = types.nullOr (types.enum ["Alacritty"]);
-      default = null;
+    style = {
+      font = {
+        family = mkOption {
+          type = types.str;
+          default = "FiraMono Nerd Font";
+          description = "Font family name";
+        };
 
-      description = ''
-        XDG desktop ID of the default terminal to use with xdg-terminal-exec.
-        The terminal should have its desktop entry modified to comply with the
-        xdg-terminal-exec spec.
-      '';
+        package = mkOption {
+          type = types.package;
+          default = pkgs.nerd-fonts.fira-mono;
+        };
+      };
     };
   };
 

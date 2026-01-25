@@ -14,13 +14,12 @@
       alacritty.enable = true;
       appflowy.enable = true;
       fastfetch.enable = true;
-      firefox.enable = true;
       git.enable = true;
       helix.enable = true;
       hyprlock.enable = true;
       media.enable = true;
-      ncspot.enable = true;
       pcmanfm.enable = true;
+      qutebrowser.enable = true;
       tofi.enable = true;
       waybar.enable = true;
       wofi.enable = false;

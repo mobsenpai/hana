@@ -33,7 +33,7 @@
             name = "eDP-1";
             width = 1920;
             height = 1200;
-            scale = 1.15;
+            scale = 1.20;
             refreshRate = 165.0;
             position.x = 0;
             position.y = 0;

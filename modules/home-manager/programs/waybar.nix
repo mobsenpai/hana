@@ -9,6 +9,7 @@
   inherit (config.modules.colorScheme) xcolors;
   inherit (osConfig.modules.system) audio device networking;
   inherit (config.modules.desktop) windowManager;
+  inherit (config.modules.desktop.style) font;
   cfg = config.modules.programs.waybar;
 
   swaync = getExe' config.services.swaync.package "swaync-client";
@@ -175,7 +176,7 @@ in
         ''
           * {
             all: unset;
-            font-family: "FiraMono Nerd Font";
+            font-family: "${font.family}";
             font-size: 10pt;
             font-weight: normal;
           }

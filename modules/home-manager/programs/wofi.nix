@@ -6,6 +6,8 @@
 }: let
   inherit (lib) mkIf getExe getExe';
   inherit (config.modules.colorScheme) xcolors;
+  inherit (config.modules.desktop.style) font;
+
   cfg = config.modules.programs.wofi;
 in
   mkIf cfg.enable
@@ -32,7 +34,7 @@ in
         ''
           *{
             all: unset;
-            font-family: "FiraMono Nerd Font";
+            font-family: "${font.family}";
             font-size: 10pt;
             font-weight: normal;
           }

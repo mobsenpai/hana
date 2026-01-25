@@ -6,6 +6,8 @@
 }: let
   inherit (lib) getExe hiPrio;
   inherit (config.modules.colorScheme) xcolors;
+  inherit (config.modules.desktop.style) font;
+
   cfg = config.modules.programs.alacritty;
 in
   lib.mkIf cfg.enable
@@ -26,7 +28,7 @@ in
 
         font = {
           size = 10;
-          normal.family = "FiraMono Nerd Font";
+          normal.family = font.family;
         };
 
         colors = {

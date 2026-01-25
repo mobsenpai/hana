@@ -7,6 +7,7 @@
   inherit (lib) mkIf getExe';
   inherit (config.modules.colorScheme) colors;
   inherit (config.modules.desktop) wallpaper;
+  inherit (config.modules.desktop.style) font;
   cfg = config.modules.programs.hyprlock;
 in
   mkIf cfg.enable
@@ -54,7 +55,7 @@ in
             text = ''cmd[update:1000] echo "$(date +"%-I:%M%p")"'';
             color = "rgb(${colors.base05})";
             font_size = 80;
-            font_family = "FiraMono Nerd Font Bold";
+            font_family = "${font.family} Bold";
             position = "0, -200";
             halign = "center";
             valign = "top";
@@ -63,7 +64,7 @@ in
             text = "Hi there, $USER";
             color = "rgb(${colors.base05})";
             font_size = 18;
-            font_family = "FiraMono Nerd Font";
+            font_family = font.family;
             position = "0, -30";
             halign = "center";
             valign = "center";

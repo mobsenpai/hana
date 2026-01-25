@@ -1,12 +1,11 @@
 {
   lib,
-  pkgs,
+  config,
   osConfig,
   ...
 }:
 lib.mkIf osConfig.modules.system.desktop.enable
 {
   fonts.fontconfig.enable = true;
-
-  home.packages = [pkgs.nerd-fonts.fira-mono];
+  home.packages = [config.modules.desktop.style.font.package];
 }

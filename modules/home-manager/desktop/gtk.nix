@@ -6,6 +6,8 @@
   ...
 }: let
   inherit (config.modules.colorScheme) xcolors polarity;
+  inherit (config.modules.desktop.style) font;
+
   cssContent = ''
     @define-color accent_color         ${xcolors.base16};
     @define-color accent_bg_color      ${xcolors.base0D};
@@ -83,8 +85,8 @@ in
       };
 
       font = {
-        package = pkgs.nerd-fonts.fira-mono;
-        name = "FiraMono Nerd Font";
+        package = font.package;
+        name = font.family;
         size = 10;
       };
 
