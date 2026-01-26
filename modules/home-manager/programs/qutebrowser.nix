@@ -112,9 +112,9 @@ in
           headers.do_not_track = true;
           javascript.alert = false;
           notifications.enabled = false;
-          canvas_reading = false;
+          canvas_reading = true;
           blocking.enabled = true;
-          webrtc_ip_handling_policy = "disable-non-proxied-udp";
+          webrtc_ip_handling_policy = "default-public-interface-only";
         };
 
         downloads = {
