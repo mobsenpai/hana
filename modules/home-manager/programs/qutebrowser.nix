@@ -26,8 +26,6 @@ in
           "ge" = "scroll-to-perc 100";
           "gp" = "tab-prev";
           "gn" = "tab-next";
-          "<space>f" = "hint links tab";
-          "<space>b" = "tab-select";
           "gf" = "hint links";
           "gd" = "hint inputs";
           "u" = "undo";
