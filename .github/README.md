@@ -50,7 +50,7 @@ Special thanks to the following individuals:
 
 <p align="center">
   <a href="https://github.com/JManch">JManch</a> •
-  <a href="https://github.com/rxyhn">rxyhn</a> •
+  <a href="https://github.com/raexera">raexera</a> •
   <a href="https://github.com/Misterio77">Misterio77</a> •
   <a href="https://github.com/vimjoyer">vimjoyer</a>
 </p>
