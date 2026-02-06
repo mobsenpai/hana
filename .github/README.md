@@ -21,7 +21,7 @@
 > **System Information:**
 >
 > - **OS:** NixOS
-> - **Window Manager:** Hyprland
+> - **Window Manager:** Niri
 > - **Shell:** Bash
 > - **Terminal:** Alacritty
 > - **Editor:** Helix
