@@ -42,6 +42,12 @@ in {
         };
       };
     };
+
+    primaryBrowser = mkOption {
+      type = types.nullOr (types.enum ["Firefox" "Qutebrowser"]);
+      default = null;
+      description = "Primary browser to use";
+    };
   };
 
   config = mkIf osDesktop.enable {

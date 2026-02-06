@@ -6,6 +6,7 @@
 }: let
   inherit (lib) mkIf;
   inherit (config.modules.core) homeManager;
+  inherit (config.modules.system) device;
   cfg = config.modules.programs.gaming;
 in
   mkIf cfg.enable
@@ -44,5 +45,12 @@ in
           "center, class:^(com\\.saivert\\.pwvucontrol)$"
         ];
       };
+
+      # Fix slow steam client downloads https://redd.it/16e1l4h
+      # Speed up shader processing by using more than a single thread
+      home.file.".steam/steam/steam_dev.cfg".text = ''
+        @nClientDownloadEnableHTTP2PlatformLinux 0
+        unShaderBackgroundProcessingThreads ${toString device.cpu.threads}
+      '';
     };
   }

@@ -3,12 +3,13 @@
   config,
   ...
 }: let
+  inherit (lib) mkIf getExe optionals;
   inherit (config.modules.colorScheme) xcolors polarity;
   inherit (config.modules.desktop.style) font;
-
+  inherit (config.modules.desktop) primaryBrowser;
   cfg = config.modules.programs.qutebrowser;
 in
-  lib.mkIf cfg.enable {
+  mkIf cfg.enable {
     programs.qutebrowser = {
       enable = true;
       loadAutoconfig = false;
@@ -146,11 +147,42 @@ in
       '';
     };
 
-    xdg.mimeApps.defaultApplications = {
+    xdg.mimeApps.defaultApplications = mkIf (primaryBrowser == "Qutebrowser") {
       "text/html" = ["org.qutebrowser.qutebrowser.desktop"];
       "text/xml" = ["org.qutebrowser.qutebrowser.desktop"];
       "x-scheme-handler/http" = ["org.qutebrowser.qutebrowser.desktop"];
       "x-scheme-handler/https" = ["org.qutebrowser.qutebrowser.desktop"];
       "x-scheme-handler/qute" = ["org.qutebrowser.qutebrowser.desktop"];
+    };
+
+    desktop = let
+      qutebrowser = getExe config.programs.qutebrowser.package;
+    in {
+      niri.settings = {
+        window-rules = [
+          {
+            matches = [{app-id = "org.qutebrowser.qutebrowser";}];
+            open-maximized = true;
+          }
+        ];
+
+        binds = {
+          "Mod+F2" = mkIf (primaryBrowser == "Qutebrowser") {
+            action.spawn = qutebrowser;
+            hotkey-overlay.title = "Open Qutebrowser";
+          };
+        };
+      };
+
+      # TODO: test on hyprland
+      hyprland.settings = {
+        windowrule = [
+          "maximize, class:^(org\\.qutebrowser\\.qutebrowser)$"
+        ];
+
+        binds = optionals (primaryBrowser == "Qutebrowser") [
+          "SUPER, F2, exec, ${qutebrowser}"
+        ];
+      };
     };
   }

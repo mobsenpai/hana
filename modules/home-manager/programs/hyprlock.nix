@@ -2,26 +2,32 @@
   lib,
   pkgs,
   config,
+  osConfig,
   ...
 }: let
-  inherit (lib) mkIf getExe';
+  inherit (lib) mkIf getExe' utils filter head;
   inherit (config.modules.colorScheme) colors;
   inherit (config.modules.desktop) wallpaper;
   inherit (config.modules.desktop.style) font;
+  inherit (osConfig.modules.system.device) monitors;
   cfg = config.modules.programs.hyprlock;
+
+  primaryMonitor = head (filter (m: m.isPrimary) monitors);
+  labelHeight = builtins.ceil (0.035 * primaryMonitor.height * primaryMonitor.scale);
 in
   mkIf cfg.enable
   {
+    assertions = utils.asserts [
+      (builtins.any (m: m.isPrimary) monitors)
+      "hyprlock: at least one monitor must be primary"
+    ];
+
     programs.hyprlock = {
       enable = true;
       settings = {
-        general = {
-          disable_loading_bar = true;
-          grace = 5;
-        };
-
         background = [
           {
+            monitor = "";
             path = "${wallpaper}";
             blur_passes = 3;
             contrast = 0.8916;
@@ -30,10 +36,10 @@ in
             vibrancy_darkness = 0.0;
           }
         ];
-
         input-field = [
           {
-            size = "200, 50";
+            monitor = "";
+            size = "${toString (builtins.ceil (0.12 * primaryMonitor.width * primaryMonitor.scale))}, ${toString labelHeight}";
             outline_thickness = 2;
             dots_size = 0.25;
             dots_spacing = 0.25;
@@ -44,28 +50,29 @@ in
             fade_on_empty = false;
             placeholder_text = "<i>Input Password...</i>";
             hide_input = false;
-            position = "0, -100";
+            position = "0, -${toString (labelHeight * 1.8)}";
             halign = "center";
             valign = "center";
           }
         ];
-
         label = [
           {
+            monitor = "";
             text = ''cmd[update:1000] echo "$(date +"%-I:%M%p")"'';
             color = "rgb(${colors.base05})";
-            font_size = 80;
+            font_size = builtins.ceil (0.046875 * primaryMonitor.width * primaryMonitor.scale);
             font_family = "${font.family} Bold";
-            position = "0, -200";
+            position = "0, ${toString (labelHeight * 4)}";
             halign = "center";
-            valign = "top";
+            valign = "center";
           }
           {
+            monitor = "";
             text = "Hi there, $USER";
             color = "rgb(${colors.base05})";
-            font_size = 18;
+            font_size = builtins.ceil (0.012 * primaryMonitor.width * primaryMonitor.scale);
             font_family = font.family;
-            position = "0, -30";
+            position = "0, ${toString (labelHeight * 0)}";
             halign = "center";
             valign = "center";
           }

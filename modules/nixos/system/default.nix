@@ -9,7 +9,11 @@ in {
       inputNoiseSuppression = mkEnableOption "input noise suppression source";
     };
 
-    bluetooth.enable = mkEnableOption "bluetooth";
+    bluetooth = {
+      enable = mkEnableOption "bluetooth";
+      applet.enable = mkEnableOption "Blueman system tray applet";
+    };
+
     device = {
       type = mkOption {
         type = types.enum ["laptop" "desktop"];
@@ -23,6 +27,21 @@ in {
         description = ''
           Name of the battery device in /sys/class/power_supply.
         '';
+      };
+
+      cpu = {
+        type = mkOption {
+          type = types.enum [
+            "intel"
+            "amd"
+          ];
+          description = "The device's CPU manufacturer";
+        };
+
+        threads = mkOption {
+          type = types.int;
+          description = "The CPU thread count";
+        };
       };
 
       gpu = {
@@ -95,6 +114,12 @@ in {
               default = 0;
               description = "Rotation transform according to Hyprland's transform list";
             };
+
+            isPrimary = mkOption {
+              type = types.bool;
+              default = false;
+              description = "Whether this is the primary monitor for lockscreen sizing";
+            };
           };
         });
         default = [];
@@ -102,6 +127,7 @@ in {
     };
 
     networking = {
+      applet.enable = mkEnableOption "Iwgtk system tray applet";
       wireless = {
         enable = mkEnableOption "wireless";
         backend = mkOption {

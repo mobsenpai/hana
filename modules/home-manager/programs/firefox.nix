@@ -4,7 +4,8 @@
   osConfig,
   ...
 } @ args: let
-  inherit (lib) mkIf utils getExe;
+  inherit (lib) mkIf utils getExe optionals;
+  inherit (config.modules.desktop) primaryBrowser;
   cfg = config.modules.programs.firefox;
 in
   mkIf cfg.enable
@@ -98,7 +99,7 @@ in
       };
     };
 
-    xdg.mimeApps.defaultApplications = {
+    xdg.mimeApps.defaultApplications = mkIf (primaryBrowser == "Firefox") {
       "text/html" = ["firefox.desktop"];
       "text/xml" = ["firefox.desktop"];
       "x-scheme-handler/http" = ["firefox.desktop"];
@@ -129,13 +130,14 @@ in
         ];
 
         binds = {
-          "Mod+F2" = {
+          "Mod+F2" = mkIf (primaryBrowser == "Firefox") {
             action.spawn = firefox;
             hotkey-overlay.title = "Open firefox";
           };
         };
       };
 
+      # TODO: test on hyprland
       hyprland.settings = {
         windowrule = [
           "float, class:^(firefox)$, title:^(Picture-in-Picture)$"
@@ -143,7 +145,7 @@ in
           "center, class:^(firefox)$, title:^(Picture-in-Picture)$"
         ];
 
-        binds = [
+        binds = optionals (primaryBrowser == "Firefox") [
           "SUPER, F2, exec, ${firefox}"
         ];
       };

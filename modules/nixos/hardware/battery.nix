@@ -4,16 +4,16 @@
   config,
   ...
 }: let
-  inherit (lib) mkIf utils;
+  inherit (lib) mkIf utils getExe mkForce;
   inherit (config.modules.system) desktop;
   inherit (config.modules.system) device;
 in
   mkIf (device.type == "laptop") {
     assertions = utils.asserts [
       (desktop.enable or false)
-      "Battery notification requires desktop to be enabled"
+      "hardware.battery requires desktop to be enabled"
       (desktop.desktopEnvironment == null)
-      "Do not enable when using a desktop environment as it brings its implementation"
+      "Do not enable hardware.battery when using a desktop environment as it brings its implementation"
     ];
 
     systemd.user.timers."low-battery-notify" = {
@@ -23,11 +23,11 @@ in
     };
 
     systemd.user.services."low-battery-notify" = let
-      libnotify = lib.getExe pkgs.libnotify;
+      libnotify = getExe pkgs.libnotify;
     in {
       requisite = ["graphical-session.target"];
       after = ["graphical-session.target"];
-      path = lib.mkForce []; # inherit user session env vars
+      path = mkForce []; # inherit user session env vars
       script = ''
         cap=$(cat /sys/class/power_supply/${device.battery}/capacity)
         status=$(cat /sys/class/power_supply/${device.battery}/status)
@@ -38,3 +38,5 @@ in
       '';
     };
   }
+# TODO: bad assertion, no way to enable or disable hardware.battery
+

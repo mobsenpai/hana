@@ -20,10 +20,18 @@
         inputNoiseSuppression = true;
       };
 
-      bluetooth.enable = true;
+      bluetooth = {
+        enable = true;
+        applet.enable = true;
+      };
+
       desktop.enable = true;
       device = {
         battery = "BAT0";
+        cpu = {
+          type = "intel";
+          threads = 16;
+        };
         gpu.type = "nvidia";
         type = "laptop";
 
@@ -38,10 +46,11 @@
             position.x = 0;
             position.y = 0;
             enabled = true;
+            isPrimary = true;
           }
           {
             number = 2;
-            name = "HDMI-A-1";
+            name = "DP-1";
             width = 1366;
             height = 768;
             scale = 1.0;
@@ -55,6 +64,7 @@
 
       networking = {
         wireless.enable = true;
+        applet.enable = true;
       };
     };
   };

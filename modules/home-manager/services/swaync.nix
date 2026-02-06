@@ -95,6 +95,7 @@ in
             background: ${xcolors.base08};
             border-radius: 50%;
             color: ${xcolors.base00};
+            margin: 7px;
           }
 
           .close-button:hover {

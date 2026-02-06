@@ -8,6 +8,7 @@
     desktop = {
       terminal = "Alacritty";
       windowManager = "Niri";
+      primaryBrowser = "Qutebrowser";
     };
 
     programs = {
