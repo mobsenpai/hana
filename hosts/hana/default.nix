@@ -32,9 +32,9 @@
           type = "intel";
           threads = 16;
         };
+
         gpu.type = "nvidia";
         type = "laptop";
-
         monitors = [
           {
             number = 1;
@@ -48,6 +48,7 @@
             enabled = true;
             isPrimary = true;
           }
+
           {
             number = 2;
             name = "DP-1";
