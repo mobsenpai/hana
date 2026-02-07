@@ -47,6 +47,8 @@ in {
   services.supergfxd.enable = true;
   programs.rog-control-center = {
     enable = true;
+    # https://github.com/YaLTeR/niri/issues/3177
+    # https://github.com/nixos/nixpkgs/issues/455932
     autoStart = true;
   };
 

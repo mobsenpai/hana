@@ -5,6 +5,7 @@
   osConfig,
   ...
 }: let
+  inherit (lib) mkIf optionalString;
   inherit (config.modules.colorScheme) xcolors polarity;
   inherit (config.modules.desktop.style) font;
 
@@ -70,12 +71,12 @@
     @define-color scrollbar_outline_color rgba(0, 0, 0, 0.5);
   '';
 in
-  lib.mkIf osConfig.modules.system.desktop.enable
+  mkIf osConfig.modules.system.desktop.enable
   {
     gtk = {
       enable = true;
       theme = {
-        name = "adw-gtk3${lib.optionalString (polarity == "dark") "-dark"}";
+        name = "adw-gtk3${optionalString (polarity == "dark") "-dark"}";
         package = pkgs.adw-gtk3;
       };
 
@@ -115,8 +116,15 @@ in
 
     qt = {
       enable = true;
-      platformTheme.name = "gtk";
+      platformTheme.name = "gtk3";
     };
+
+    # fixing crash when platform theme set to gtk3 or gnome
+    # https://github.com/NixOS/nixpkgs/issues/168484
+    xdg.systemDirs.data = with pkgs; [
+      "${gtk3}/share/gsettings-schemas/gtk+3-${gtk3.version}"
+      "${gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-${gsettings-desktop-schemas.version}"
+    ];
 
     dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-${polarity}";
   }

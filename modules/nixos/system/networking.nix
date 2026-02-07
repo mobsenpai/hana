@@ -72,27 +72,31 @@ in {
         iwgtk = mkIf (cfg.wireless.enable && cfg.wireless.backend == "iwd") {
           Unit = {
             Description = "iwd GTK tray applet";
-            WantedBy = ["graphical-session.target"];
           };
+
           Service = {
             Type = "simple";
             ExecStart = "${iwgtk} -i";
             Restart = "on-failure";
             RestartSec = 3;
           };
+
+          Install.WantedBy = ["graphical-session.target"];
         };
 
         wpa-gui = mkIf (cfg.wireless.enable && cfg.wireless.backend == "wpa_supplicant") {
           Unit = {
             Description = "wpa_supplicant GTK tray applet";
-            WantedBy = ["graphical-session.target"];
           };
+
           Service = {
             Type = "simple";
             ExecStart = "${wpa_gui} -t";
             Restart = "on-failure";
             RestartSec = 3;
           };
+
+          Install.WantedBy = ["graphical-session.target"];
         };
       };
 

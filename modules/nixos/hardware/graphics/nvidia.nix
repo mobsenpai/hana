@@ -23,6 +23,6 @@ in
       package = config.boot.kernelPackages.nvidiaPackages.stable;
       open = true;
       nvidiaSettings = false; # does not work on wayland
-      powerManagement.enable = true;
+      powerManagement.enable = config.hardware.nvidia.powerManagement.finegrained == false;
     };
   }

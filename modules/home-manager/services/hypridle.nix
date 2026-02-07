@@ -24,6 +24,7 @@ in
         niri = getExe' config.programs.niri.package "niri";
         systemctl = getExe' pkgs.systemd "systemctl";
         brightnessctl = getExe pkgs.brightnessctl;
+        pidof = getExe' pkgs.procps "pidof";
       in {
         general = {
           after_sleep_cmd =
@@ -34,7 +35,7 @@ in
             else null;
 
           before_sleep_cmd = "${loginctl} lock-session";
-          lock_cmd = hyprlock;
+          lock_cmd = "${pidof} hyprlock || ${hyprlock}";
         };
 
         listener =
