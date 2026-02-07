@@ -16,7 +16,7 @@ in {
 
     device = {
       type = mkOption {
-        type = types.enum ["laptop" "desktop"];
+        type = types.enum ["laptop" "desktop" "server"];
         description = "The type/purpose of the device";
       };
 

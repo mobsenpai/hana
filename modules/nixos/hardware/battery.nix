@@ -8,12 +8,10 @@
   inherit (config.modules.system) desktop;
   inherit (config.modules.system) device;
 in
-  mkIf (device.type == "laptop") {
+  mkIf (device.type == "laptop" && desktop.desktopEnvironment == null) {
     assertions = utils.asserts [
-      (desktop.enable or false)
-      "hardware.battery requires desktop to be enabled"
-      (desktop.desktopEnvironment == null)
-      "Do not enable hardware.battery when using a desktop environment as it brings its implementation"
+      (device.battery != null)
+      "Name of battery device should be set"
     ];
 
     systemd.user.timers."low-battery-notify" = {
@@ -38,5 +36,3 @@ in
       '';
     };
   }
-# TODO: bad assertion, no way to enable or disable hardware.battery
-
