@@ -137,7 +137,6 @@ in
         };
       };
 
-      # TODO: test on hyprland
       hyprland.settings = {
         windowrule = [
           "float, class:^(firefox)$, title:^(Picture-in-Picture)$"
@@ -145,7 +144,7 @@ in
           "center, class:^(firefox)$, title:^(Picture-in-Picture)$"
         ];
 
-        binds = optionals (primaryBrowser == "Firefox") [
+        bind = optionals (primaryBrowser == "Firefox") [
           "SUPER, F2, exec, ${firefox}"
         ];
       };

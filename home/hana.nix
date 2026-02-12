@@ -15,6 +15,7 @@
       alacritty.enable = true;
       appflowy.enable = true;
       fastfetch.enable = true;
+      firefox.enable = false;
       git.enable = true;
       helix.enable = true;
       hyprlock.enable = true;

@@ -1,11 +1,10 @@
 {
   lib,
-  pkgs,
   config,
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf map filter listToAttrs getExe;
+  inherit (lib) mkIf map filter listToAttrs;
   inherit (config.modules.colorScheme) xcolors;
   inherit (config.modules.desktop) windowManager;
   osDesktop = osConfig.modules.system.desktop;
@@ -15,7 +14,11 @@
     (monitor: {
       name = monitor.name;
       value = {
-        inherit (monitor) position scale;
+        scale = monitor.scale;
+        position = {
+          x = monitor.position.x;
+          y = monitor.position.y;
+        };
         mode = {
           width = monitor.width;
           height = monitor.height;
@@ -29,12 +32,8 @@ in
   mkIf (osDesktop.enable && windowManager == "Niri") {
     programs.niri = {
       enable = true;
-      package = pkgs.niri;
       settings = {
-        xwayland-satellite = {
-          enable = true;
-          path = getExe pkgs.xwayland-satellite;
-        };
+        xwayland-satellite.enable = true;
         gestures = {hot-corners.enable = true;};
         hotkey-overlay.skip-at-startup = true;
         input = {

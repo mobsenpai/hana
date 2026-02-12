@@ -6,7 +6,7 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf mkForce utils mkAliasOptionModule;
+  inherit (lib) mkIf mkForce mkDefault getExe utils mkAliasOptionModule;
   inherit (config.modules.desktop) windowManager;
   osDesktop = osConfig.modules.system.desktop;
 in {
@@ -23,8 +23,13 @@ in {
         ["programs" "niri" "settings"])
     ];
 
-  config = mkIf (osDesktop.enable && windowManager == "Niri") {
-    xdg.portal = {
+  config = {
+    programs.niri = {
+      package = mkDefault pkgs.niri;
+      settings.xwayland-satellite.path = mkDefault (getExe pkgs.xwayland-satellite);
+    };
+
+    xdg.portal = mkIf (osDesktop.enable && windowManager == "Niri") {
       enable = mkForce true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
@@ -32,6 +37,6 @@ in {
       ];
     };
 
-    services.polkit-gnome.enable = true;
+    services.polkit-gnome.enable = mkIf (osDesktop.enable && windowManager == "Niri") true;
   };
 }

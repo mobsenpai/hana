@@ -7,7 +7,6 @@
   inherit (lib) mkIf getExe getExe';
   inherit (config.modules.colorScheme) xcolors;
   inherit (config.modules.desktop.style) font;
-
   cfg = config.modules.programs.wofi;
 in
   mkIf cfg.enable

@@ -91,7 +91,7 @@ in
 
           "niri/window" = mkIf (windowManager == "Niri") {
             format = "{title}";
-            max-length = 40;
+            max-length = 60;
             separate-outputs = true;
           };
 
@@ -109,7 +109,7 @@ in
 
           tray = {
             reverse-direction = true;
-            spacing = 4;
+            spacing = 8;
           };
 
           "wireplumber" = mkIf audio.enable {

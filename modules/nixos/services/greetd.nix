@@ -26,9 +26,10 @@ in
           command = ''
             ${tuigreet} \
             --time \
-            --sessions ${cfg.sessionDirs} \
+            --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions \
+            --remember-session \
             --remember \
-            --remember-session
+            --asterisks
           '';
         };
       };

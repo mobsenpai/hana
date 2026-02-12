@@ -56,7 +56,7 @@
             height = 768;
             scale = 1.0;
             refreshRate = 60.0;
-            position.x = 0;
+            position.x = 1600;
             position.y = 0;
             enabled = true;
           }

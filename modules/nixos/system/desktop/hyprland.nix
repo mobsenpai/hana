@@ -7,10 +7,8 @@
   inherit (lib) mkIf mkForce utils;
   inherit (config.modules.core) homeManager;
   cfg = config.modules.system.desktop;
-
   homeConfig = config.home-manager.users.${username};
   homeDesktop = homeConfig.modules.desktop;
-  hyprlandPackage = homeConfig.wayland.windowManager.hyprland.package;
   windowManager =
     if (homeManager.enable or false)
     then homeDesktop.windowManager
@@ -24,11 +22,8 @@ in {
 
     programs.hyprland = {
       enable = true;
-      package = hyprlandPackage;
     };
+
     xdg.portal.enable = mkForce false;
-    modules.services.greetd.sessionDirs = [
-      "${hyprlandPackage}/share/wayland-sessions"
-    ];
   };
 }

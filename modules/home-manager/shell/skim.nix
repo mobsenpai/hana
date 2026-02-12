@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib) mkIf getExe;
+
   fd = getExe pkgs.fd;
   bat = getExe pkgs.bat;
 in

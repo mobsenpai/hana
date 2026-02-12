@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   username,
   ...
@@ -9,7 +10,6 @@
   cfg = config.modules.system.desktop;
   homeConfig = config.home-manager.users.${username};
   homeDesktop = homeConfig.modules.desktop;
-  niriPackage = homeConfig.programs.niri.package;
   windowManager =
     if (homeManager.enable or false)
     then homeDesktop.windowManager
@@ -23,11 +23,6 @@ in {
 
     programs.niri = {
       enable = true;
-      package = niriPackage;
     };
-
-    modules.services.greetd.sessionDirs = [
-      "${niriPackage}/share/wayland-sessions"
-    ];
   };
 }

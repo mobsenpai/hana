@@ -4,10 +4,15 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf filter;
   inherit (config.modules.colorScheme) colors;
   inherit (config.modules.desktop) windowManager;
   osDesktop = osConfig.modules.system.desktop;
+
+  dynamicMonitors =
+    map
+    (monitor: "${monitor.name},${toString monitor.width}x${toString monitor.height}@${toString (monitor.refreshRate * 1000)},${toString monitor.position.x}x${toString monitor.position.y},${toString monitor.scale}")
+    (filter (m: m.enabled) osConfig.modules.system.device.monitors);
 in
   mkIf (osDesktop.enable && windowManager == "Hyprland")
   {
@@ -15,11 +20,11 @@ in
       enable = true;
       settings = {
         general = {
-          border_size = 2;
+          border_size = 1;
           "col.active_border" = "rgb(${colors.base0D})";
           "col.inactive_border" = "rgb(${colors.base02})";
-          gaps_in = 10;
-          gaps_out = 10;
+          gaps_in = 6;
+          gaps_out = 6;
           layout = "master";
         };
 
@@ -33,11 +38,17 @@ in
 
         input = {
           kb_layout = "us";
+          accel_profile = "adaptive";
+          scroll_method = "2fg";
+          touchpad = {
+            natural_scroll = true;
+            tap-to-click = true;
+            middle_button_emulation = true;
+            clickfinger_behavior = 1;
+          };
         };
 
-        monitor = [
-          "eDP-1, highres, 0x0, 1"
-        ];
+        monitor = dynamicMonitors;
 
         animations = {
           enabled = true;
@@ -60,18 +71,7 @@ in
 
         decoration = {
           blur = {
-            enabled = true;
-            size = 8;
-            passes = 3;
-            new_optimizations = true;
-            ignore_opacity = false;
-            xray = false;
-            noise = 0.2;
-            contrast = 0.9;
-            brightness = 0.8;
-            vibrancy = 0.15;
-            vibrancy_darkness = 0.0;
-            popups = true;
+            enabled = false;
           };
 
           shadow = {
@@ -82,7 +82,7 @@ in
             render_power = 3;
           };
 
-          rounding = 8;
+          rounding = 0;
         };
 
         dwindle = {
@@ -94,10 +94,6 @@ in
           new_status = "master";
           mfact = 0.5;
           new_on_top = true;
-        };
-
-        gestures = {
-          workspace_swipe = false;
         };
 
         windowrule = [

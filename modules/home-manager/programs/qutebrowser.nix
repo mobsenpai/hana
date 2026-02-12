@@ -174,13 +174,12 @@ in
         };
       };
 
-      # TODO: test on hyprland
       hyprland.settings = {
         windowrule = [
           "maximize, class:^(org\\.qutebrowser\\.qutebrowser)$"
         ];
 
-        binds = optionals (primaryBrowser == "Qutebrowser") [
+        bind = optionals (primaryBrowser == "Qutebrowser") [
           "SUPER, F2, exec, ${qutebrowser}"
         ];
       };

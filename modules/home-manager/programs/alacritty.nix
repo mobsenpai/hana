@@ -7,7 +7,6 @@
   inherit (lib) getExe hiPrio;
   inherit (config.modules.colorScheme) xcolors;
   inherit (config.modules.desktop.style) font;
-
   cfg = config.modules.programs.alacritty;
 in
   lib.mkIf cfg.enable
@@ -114,10 +113,6 @@ in
         bind = [
           "SUPER, Return, exec, ${alacritty}"
           "SUPER SHIFT, Return, exec, [float] ${alacritty}"
-        ];
-
-        windowrule = [
-          "opacity 0.85, class:^(Alacritty)$"
         ];
 
         workspace = [

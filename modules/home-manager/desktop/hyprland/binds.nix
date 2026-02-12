@@ -14,7 +14,6 @@
   hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
   brightnessctl = getExe pkgs.brightnessctl;
   yad = getExe pkgs.yad;
-
   toggleFloating =
     pkgs.writeShellScript "hypr-toggle-floating"
     /*
@@ -28,6 +27,7 @@
       fi
     '';
 
+  # TODO: check
   kbmenu =
     pkgs.writeShellScript "kbmenu"
     /*

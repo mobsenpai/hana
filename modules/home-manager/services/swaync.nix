@@ -5,7 +5,6 @@
 }: let
   inherit (config.modules.colorScheme) xcolors;
   inherit (config.modules.desktop.style) font;
-
   cfg = config.modules.services.swaync;
 in
   lib.mkIf cfg.enable

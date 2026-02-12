@@ -108,15 +108,25 @@ in {
             default-column-width = {proportion = 0.6;};
             default-window-height = {proportion = 0.6;};
           }
+
+          {
+            matches = [{app-id = "wpa_gui";}];
+            open-floating = true;
+            default-column-width = {proportion = 0.6;};
+            default-window-height = {proportion = 0.6;};
+          }
         ];
       };
 
-      # TODO: test on hyprland
       desktop.hyprland.settings = {
         windowrule = [
           "float, class:^(org\\.twosheds\\.iwgtk)$"
           "size 60% 60%, class:^(org\\.twosheds\\.iwgtk)$"
           "center, class:^(org\\.twosheds\\.iwgtk)$"
+
+          "float, title:^(wpa_gui)$"
+          "size 60% 60%, title:^(wpa_gui)$"
+          "center, title:^(wpa_gui)$"
         ];
       };
     };

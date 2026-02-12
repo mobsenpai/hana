@@ -36,7 +36,6 @@ in
         ];
       };
 
-      # TODO: test on hyprland
       desktop.hyprland.settings = {
         windowrule = [
           "float, class:^(\\.blueman-manager-wrapped)$"
