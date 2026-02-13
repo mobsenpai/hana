@@ -24,6 +24,7 @@ in {
     ];
 
   config = {
+    # TODO: a better way to do this?
     programs.niri = {
       package = mkDefault pkgs.niri;
       settings.xwayland-satellite.path = mkDefault (getExe pkgs.xwayland-satellite);

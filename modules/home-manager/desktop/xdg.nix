@@ -34,7 +34,6 @@ lib.mkIf osConfig.modules.system.desktop.enable
     ];
 
     hyprland.settings.windowrule = [
-      # Float the file picker
       "float, class:^(xdg-desktop-portal-gtk)$"
       "size 50% 50%, class:^(xdg-desktop-portal-gtk)$"
       "center, class:^(xdg-desktop-portal-gtk)$"

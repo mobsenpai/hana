@@ -22,29 +22,25 @@ in
     };
 
     hm = mkIf homeManager.enable {
-      desktop.niri.settings = {
-        window-rules = [
-          {
-            matches = [
-              {
-                app-id = "steam";
-                title = "Friends List";
-              }
-            ];
-            open-floating = true;
-            default-column-width = {proportion = 0.6;};
-            default-window-height = {proportion = 0.6;};
-          }
-        ];
-      };
+      desktop.niri.settings.window-rules = [
+        {
+          matches = [
+            {
+              app-id = "steam";
+              title = "Friends List";
+            }
+          ];
+          open-floating = true;
+          default-column-width = {proportion = 0.6;};
+          default-window-height = {proportion = 0.6;};
+        }
+      ];
 
-      desktop.hyprland.settings = {
-        windowrule = [
-          "float, class:^(com\\.saivert\\.pwvucontrol)$"
-          "size 60% 60%, class:^(com\\.saivert\\.pwvucontrol)$"
-          "center, class:^(com\\.saivert\\.pwvucontrol)$"
-        ];
-      };
+      desktop.hyprland.settings.windowrule = [
+        "float, class:^(com\\.saivert\\.pwvucontrol)$"
+        "size 60% 60%, class:^(com\\.saivert\\.pwvucontrol)$"
+        "center, class:^(com\\.saivert\\.pwvucontrol)$"
+      ];
 
       # Fix slow steam client downloads https://redd.it/16e1l4h
       # Speed up shader processing by using more than a single thread

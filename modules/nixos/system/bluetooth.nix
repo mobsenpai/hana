@@ -25,24 +25,20 @@ in
         blueman-applet.enable = true;
       };
 
-      desktop.niri.settings = {
-        window-rules = [
-          {
-            matches = [{app-id = "\\.blueman-manager-wrapped";}];
-            open-floating = true;
-            default-column-width = {proportion = 0.6;};
-            default-window-height = {proportion = 0.6;};
-          }
-        ];
-      };
+      desktop.niri.settings.window-rules = [
+        {
+          matches = [{app-id = "\\.blueman-manager-wrapped";}];
+          open-floating = true;
+          default-column-width = {proportion = 0.6;};
+          default-window-height = {proportion = 0.6;};
+        }
+      ];
 
-      desktop.hyprland.settings = {
-        windowrule = [
-          "float, class:^(\\.blueman-manager-wrapped)$"
-          "size 60% 60%, class:^(\\.blueman-manager-wrapped)$"
-          "center, class:^(\\.blueman-manager-wrapped)$"
-        ];
-      };
+      desktop.hyprland.settings.windowrule = [
+        "float, class:^(\\.blueman-manager-wrapped)$"
+        "size 60% 60%, class:^(\\.blueman-manager-wrapped)$"
+        "center, class:^(\\.blueman-manager-wrapped)$"
+      ];
     };
   }
 # TODO: test on desktop environment
