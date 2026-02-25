@@ -8,6 +8,7 @@
 
     programs = {
       gaming.enable = true;
+      localsend.enable = true;
     };
 
     services = {
@@ -25,7 +26,11 @@
         applet.enable = true;
       };
 
-      desktop.enable = true;
+      desktop = {
+        enable = true;
+        desktopEnvironment = null;
+      };
+
       device = {
         battery = "BAT0";
         cpu = {

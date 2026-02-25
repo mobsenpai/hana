@@ -11,7 +11,13 @@
   osDesktop = osConfig.modules.system.desktop;
 in {
   imports =
-    [inputs.niri.homeModules.niri]
+    [
+      inputs.niri.homeModules.niri
+      {
+        programs.niri.package = mkDefault pkgs.niri;
+        programs.niri.settings.xwayland-satellite.path = mkDefault (getExe pkgs.xwayland-satellite);
+      }
+    ]
     ++ utils.scanPaths ./.
     ++ [
       (mkAliasOptionModule
@@ -23,14 +29,8 @@ in {
         ["programs" "niri" "settings"])
     ];
 
-  config = {
-    # TODO: a better way to do this?
-    programs.niri = {
-      package = mkDefault pkgs.niri;
-      settings.xwayland-satellite.path = mkDefault (getExe pkgs.xwayland-satellite);
-    };
-
-    xdg.portal = mkIf (osDesktop.enable && windowManager == "Niri") {
+  config = mkIf (osDesktop.enable && windowManager == "Niri") {
+    xdg.portal = {
       enable = mkForce true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
@@ -38,6 +38,6 @@ in {
       ];
     };
 
-    services.polkit-gnome.enable = mkIf (osDesktop.enable && windowManager == "Niri") true;
+    services.polkit-gnome.enable = true;
   };
 }

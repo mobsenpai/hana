@@ -110,9 +110,9 @@ in
       };
 
       hyprland.settings = {
-        bind = [
-          "SUPER, Return, exec, ${alacritty}"
-          "SUPER SHIFT, Return, exec, [float] ${alacritty}"
+        bindd = [
+          "SUPER, Return, Open alacritty, exec, ${alacritty}"
+          "SUPER SHIFT, Return, Open alacritty (float), exec, [float] ${alacritty}"
         ];
 
         workspace = [

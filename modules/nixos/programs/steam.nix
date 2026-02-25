@@ -37,9 +37,9 @@ in
       ];
 
       desktop.hyprland.settings.windowrule = [
-        "float, class:^(com\\.saivert\\.pwvucontrol)$"
-        "size 60% 60%, class:^(com\\.saivert\\.pwvucontrol)$"
-        "center, class:^(com\\.saivert\\.pwvucontrol)$"
+        "float, class:^(steam)$, title:^(Friends List)$"
+        "size 60% 60%, class:^(steam)$, title:^(Friends List)$"
+        "center, class:^(steam)$, title:^(Friends List)$"
       ];
 
       # Fix slow steam client downloads https://redd.it/16e1l4h

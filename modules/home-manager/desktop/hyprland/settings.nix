@@ -8,48 +8,18 @@
   inherit (config.modules.colorScheme) colors;
   inherit (config.modules.desktop) windowManager;
   osDesktop = osConfig.modules.system.desktop;
+  enabledMonitors = filter (m: m.enabled) osConfig.modules.system.device.monitors;
 
   dynamicMonitors =
     map
     (monitor: "${monitor.name},${toString monitor.width}x${toString monitor.height}@${toString (monitor.refreshRate * 1000)},${toString monitor.position.x}x${toString monitor.position.y},${toString monitor.scale}")
-    (filter (m: m.enabled) osConfig.modules.system.device.monitors);
+    enabledMonitors;
 in
   mkIf (osDesktop.enable && windowManager == "Hyprland")
   {
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
-        general = {
-          border_size = 1;
-          "col.active_border" = "rgb(${colors.base0D})";
-          "col.inactive_border" = "rgb(${colors.base02})";
-          gaps_in = 6;
-          gaps_out = 6;
-          layout = "master";
-        };
-
-        misc = {
-          disable_hyprland_logo = true;
-          disable_splash_rendering = true;
-          focus_on_activate = true;
-          force_default_wallpaper = 0;
-          new_window_takes_over_fullscreen = 2;
-        };
-
-        input = {
-          kb_layout = "us";
-          accel_profile = "adaptive";
-          scroll_method = "2fg";
-          touchpad = {
-            natural_scroll = true;
-            tap-to-click = true;
-            middle_button_emulation = true;
-            clickfinger_behavior = 1;
-          };
-        };
-
-        monitor = dynamicMonitors;
-
         animations = {
           enabled = true;
           bezier = [
@@ -90,15 +60,51 @@ in
           preserve_split = true;
         };
 
+        general = {
+          border_size = 1;
+          "col.active_border" = "rgb(${colors.base0D})";
+          "col.inactive_border" = "rgb(${colors.base02})";
+          gaps_in = 6;
+          gaps_out = 6;
+          layout = "master";
+          no_focus_fallback = true;
+        };
+
+        input = {
+          kb_layout = "us";
+          accel_profile = "adaptive";
+          scroll_method = "2fg";
+          touchpad = {
+            natural_scroll = true;
+            tap-to-click = true;
+            middle_button_emulation = true;
+            clickfinger_behavior = 1;
+          };
+        };
+
         master = {
           new_status = "master";
           mfact = 0.5;
           new_on_top = true;
         };
 
+        misc = {
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+          focus_on_activate = true;
+          force_default_wallpaper = 0;
+          new_window_takes_over_fullscreen = 2;
+        };
+
+        monitor = dynamicMonitors;
+
         windowrule = [
           "float,class:^(yad)$"
         ];
+
+        xwayland = {
+          force_zero_scaling = true;
+        };
       };
     };
   }

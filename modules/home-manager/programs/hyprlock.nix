@@ -91,7 +91,7 @@ in
       };
 
       hyprland.binds = [
-        "SUPER ALT, Period, exec, ${loginctl} lock-session"
+        "SUPER ALT, Period, Lock Screen, exec, ${loginctl} lock-session"
       ];
     };
   }

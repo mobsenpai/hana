@@ -15,7 +15,7 @@ in {
     ++ [
       (mkAliasOptionModule
         ["desktop" "hyprland" "binds"]
-        ["wayland" "windowManager" "hyprland" "settings" "bind"])
+        ["wayland" "windowManager" "hyprland" "settings" "bindd"])
 
       (mkAliasOptionModule
         ["desktop" "hyprland" "settings"]

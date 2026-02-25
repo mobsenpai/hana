@@ -128,6 +128,14 @@ in {
 
     networking = {
       applet.enable = mkEnableOption "Iwgtk system tray applet";
+      useNetworkd =
+        mkEnableOption ''
+          Whether to enable systemd-networkd network configuration.
+        ''
+        // {
+          default = true;
+        };
+
       wireless = {
         enable = mkEnableOption "wireless";
         backend = mkOption {

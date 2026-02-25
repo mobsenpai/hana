@@ -20,7 +20,7 @@ in {
   ];
 
   systemd.network = {
-    enable = true;
+    enable = cfg.useNetworkd;
     wait-online.anyInterface = true;
 
     # The default timeout of 120 seconds is too long for devices where we want
@@ -34,7 +34,7 @@ in {
 
   networking = {
     hostName = hostname;
-    useNetworkd = true;
+    useNetworkd = cfg.useNetworkd;
     firewall = {
       enable = cfg.firewall.enable;
     };
@@ -121,11 +121,9 @@ in {
         "size 60% 60%, class:^(org\\.twosheds\\.iwgtk)$"
         "center, class:^(org\\.twosheds\\.iwgtk)$"
 
-        "float, title:^(wpa_gui)$"
-        "size 60% 60%, title:^(wpa_gui)$"
-        "center, title:^(wpa_gui)$"
+        "float, class:^(wpa_gui)$"
+        "size 60% 60%, class:^(wpa_gui)$"
+        "center, class:^(wpa_gui)$"
       ];
     };
 }
-# TODO: test on desktop environment
-

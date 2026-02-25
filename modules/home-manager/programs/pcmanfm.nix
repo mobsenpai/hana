@@ -28,7 +28,7 @@ in
       };
 
       hyprland.binds = [
-        "SUPER, F3, exec, ${pcmanfm}"
+        "SUPER, F3, Open pcmanfm file manager, exec, ${pcmanfm}"
       ];
     };
   }

@@ -24,7 +24,7 @@ in
       };
 
       hyprland.binds = [
-        "SUPER, F4, exec, ${appflowy}"
+        "SUPER, F4, Open appflowy, exec, ${appflowy}"
       ];
     };
   }

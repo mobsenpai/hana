@@ -41,5 +41,3 @@ in
       ];
     };
   }
-# TODO: test on desktop environment
-

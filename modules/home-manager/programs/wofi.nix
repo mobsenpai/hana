@@ -90,21 +90,26 @@ in
         "Mod+A" = {
           repeat = false;
           action = spawn "sh" "-c" "${pkill} wofi || ${wofi} --show drun";
+          hotkey-overlay.title = "Open launcher";
         };
+
         "Mod+E" = {
           repeat = false;
           action = spawn "sh" "-c" "${pkill} wofi || ${wofi-emoji}";
+          hotkey-overlay.title = "Open emoji picker";
         };
+
         "Mod+V" = {
           repeat = false;
           action = spawn "sh" "-c" "${pkill} wofi || ${cliphist} list | ${wofi} --dmenu | ${cliphist} decode | ${wl-copy}";
+          hotkey-overlay.title = "Open clipboard";
         };
       };
 
-      hyprland.settings.bindr = [
-        "SUPER, A, exec, ${pkill} wofi || ${wofi} --show drun"
-        "SUPER, E, exec, ${pkill} wofi || ${wofi-emoji}"
-        "SUPER, V, exec, ${pkill} wofi || ${cliphist} list | ${wofi} --dmenu | ${cliphist} decode | ${wl-copy}"
+      hyprland.settings.binddr = [
+        "SUPER, A, Open launcher, exec, ${pkill} wofi || ${wofi} --show drun"
+        "SUPER, E, Open emoji picker, exec, ${pkill} wofi || ${wofi-emoji}"
+        "SUPER, V, Open clipboard, exec, ${pkill} wofi || ${cliphist} list | ${wofi} --dmenu | ${cliphist} decode | ${wl-copy}"
       ];
     };
   }

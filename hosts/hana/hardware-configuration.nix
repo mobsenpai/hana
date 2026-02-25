@@ -61,6 +61,11 @@ in {
   services.power-profiles-daemon.enable = false;
   services.tlp.enable = false;
 
+  systemd.sleep.extraConfig = ''
+    SuspendState=mem
+    MemorySleepMode=s2idle
+  '';
+
   boot = {
     kernelPatches = [
       {

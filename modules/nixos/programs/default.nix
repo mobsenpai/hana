@@ -5,5 +5,6 @@ in {
 
   options.modules.programs = {
     gaming.enable = mkEnableOption "gaming";
+    localsend.enable = mkEnableOption "localsend";
   };
 }

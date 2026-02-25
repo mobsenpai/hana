@@ -14,6 +14,9 @@
   hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
   brightnessctl = getExe pkgs.brightnessctl;
   yad = getExe pkgs.yad;
+  sort = getExe' pkgs.coreutils "sort";
+  tr = getExe' pkgs.coreutils "tr";
+
   toggleFloating =
     pkgs.writeShellScript "hypr-toggle-floating"
     /*
@@ -27,80 +30,67 @@
       fi
     '';
 
-  # TODO: check
-  kbmenu =
-    pkgs.writeShellScript "kbmenu"
-    /*
-    bash
-    */
-    ''
-      if pidof wofi >/dev/null; then
-        pkill wofi
-      fi
+  hotkeyOverlay = pkgs.writeShellScript "hotkeyOverlay" ''
+    # (Super=64, Ctrl=4, Alt=8, Shift=1)
+    get_mods() {
+      local mask=$1
+      local mods=()
+      ((mask & 64))  && mods+=("SUPER")
+      ((mask & 4))   && mods+=("CTRL")
+      ((mask & 8))   && mods+=("ALT")
+      ((mask & 1))   && mods+=("SHIFT")
 
-      ${yad} \
-        --center \
-        --title="Hyprland Keybinds" \
-        --no-buttons \
+      if [ ''${#mods[@]} -eq 0 ]; then
+        echo ""
+      else
+        echo "''${mods[*]}"
+      fi
+    }
+
+    # Dynamic binds from Hyprland via JSON using jaq
+    dynamic_binds=$(${hyprctl} binds -j | ${jaq} -r '.[] | select(.description != "") | "\(.modmask)|\(.key)|\(.description)"' | while IFS='|' read -r mask key desc; do
+      mod=$(get_mods "$mask")
+      [[ -n "$mod" ]] && kbind="$mod $key" || kbind="$key"
+      printf "%s|%s\n" "$kbind" "$desc"
+    done)
+
+    # Manual Binds
+    manual_binds=$(cat <<EOF
+    SUPER CTRL C|Colour picker
+    SUPER Left Click|Move window with mouse
+    SUPER Right Click|Resize window with mouse
+    SUPER SHIFT HJKL|Move window (vim keys)
+    SUPER SHIFT ←↓↑→|Move window (arrow keys)
+    SUPER CTRL HJKL|Resize active window
+    SUPER SHIFT Q|Exit hyprland
+    SUPER CTRL SPACE|Toggle floating window
+    SUPER F|Toggle fullscreen
+    SUPER Q|Close active window
+    Prtscrn|Screenshot (clipboard)
+    SHIFT Prtscrn|Screenshot (save)
+    SUPER SHIFT S|Move to scratchpad
+    SUPER S|Toggle scratchpad workspace
+    ALT Tab|Cycle next window
+    ALT Shift Tab|Cycle previous window
+    SUPER ←↓↑→|Focus direction (arrow keys)
+    SUPER HJKL|Focus direction (vim keys)
+    SUPER 1-0|Switch to workspace 1-10
+    SUPER SHIFT 1-0|Move to workspace 1-10
+    EOF)
+
+    # YAD list format
+    {
+      echo "$dynamic_binds"
+      echo "$manual_binds"
+    } | ${sort} -f | ${tr} '|' '\n' | ${yad} \
         --list \
-        --width=500 \
-        --height=600 \
-        --column=Key: \
-        --column=Description: \
-        --timeout-indicator=bottom \
-        "SUPER Return" "Launch terminal" \
-        "SUPER SHIFT Return" "Launch floating terminal" \
-        "SUPER A" "Launch wofi" \
-        "SUPER F2" "Launch browser" \
-        "SUPER F3" "Launch file manager" \
-        "SUPER F4" "Launch Appflowy" \
-        "SUPER CTRL C" "Colour picker" \
-        "SUPER, Left Click" "Move window with mouse" \
-        "SUPER, Right Click" "Resize window with mouse" \
-        "SUPER SHIFT →" "Resize window right" \
-        "SUPER SHIFT ←" "Resize window left" \
-        "SUPER SHIFT ↑" "Resize window up" \
-        "SUPER SHIFT ↓" "Resize window down" \
-        "SUPER SHIFT L" "Resize window right (HJKL)" \
-        "SUPER SHIFT H" "Resize window left (HJKL)" \
-        "SUPER SHIFT K" "Resize window up (HJKL)" \
-        "SUPER SHIFT J" "Resize window down (HJKL)" \
-        "XF86MonBrightnessDown" "Decrease brightness" \
-        "XF86MonBrightnessUp" "Increase brightness" \
-        "XF86AudioLowerVolume" "Lower volume" \
-        "XF86AudioRaiseVolume" "Increase volume" \
-        "XF86AudioMicMute" "Mute microphone" \
-        "XF86AudioMute" "Mute audio" \
-        "XF86AudioPlay" "Play/Pause media" \
-        "XF86AudioNext" "Next media track" \
-        "XF86AudioPrev" "Previous media track" \
-        "SUPER SHIFT Q" "Exit Hyprland session" \
-        "SUPER CTRL SPACE" "Toggle floating window" \
-        "SUPER F" "Toggle fullscreen" \
-        "SUPER ALT Period(.)" "Lock screen" \
-        "SUPER U" "Toggle Hypridle service" \
-        "SUPER Q" "Close active window" \
-        "SUPER E" "Launch emoji picker" \
-        "Prtscrn" "Screenshot (clipboard)" \
-        "Shift Prtscrn" "Screenshot (save)" \
-        "SUPER SHIFT CTRL ←" "Move window left" \
-        "SUPER SHIFT CTRL →" "Move window right" \
-        "SUPER SHIFT CTRL ↑" "Move window up" \
-        "SUPER SHIFT CTRL ↓" "Move window down" \
-        "SUPER SHIFT S" "Move to scratchpad" \
-        "SUPER S" "Toggle scratchpad workspace" \
-        "ALT Tab" "Cycle next window" \
-        "SUPER CTRL →" "Switch to next workspace" \
-        "SUPER CTRL ←" "Switch to previous workspace" \
-        "SUPER CTRL ↓" "Go to first empty workspace" \
-        "SUPER ←" "Move focus left" \
-        "SUPER →" "Move focus right" \
-        "SUPER ↑" "Move focus up" \
-        "SUPER ↓" "Move focus down" \
-        "SUPER 1-0" "Switch to workspace 1-10" \
-        "SUPER SHIFT 1-0" "Move to workspace 1-10" \
-        "SUPER SHIFT 1-0" "Silently move to workspace 1-10"
-    '';
+        --title="Hyprland Keybinds" \
+        --width=500 --height=600 \
+        --center --no-buttons \
+        --column="Key" \
+        --column="Description" \
+        --separator=""
+  '';
 in
   mkIf (osDesktop.enable && windowManager == "Hyprland")
   {
@@ -126,9 +116,9 @@ in
 
         # Focus client by direction (hjkl keys)
         "SUPER, H, movefocus, l"
-        "SUPER, L, movefocus, r"
-        "SUPER, K, movefocus, u"
         "SUPER, J, movefocus, d"
+        "SUPER, K, movefocus, u"
+        "SUPER, L, movefocus, r"
 
         # Switch clients
         "ALT, TAB, cyclenext, 1"
@@ -154,9 +144,9 @@ in
 
         # Move window with mod + vim keys
         "SUPER SHIFT, H, movewindow, l"
-        "SUPER SHIFT, L, movewindow, r"
-        "SUPER SHIFT, K, movewindow, u"
         "SUPER SHIFT, J, movewindow, d"
+        "SUPER SHIFT, K, movewindow, u"
+        "SUPER SHIFT, L, movewindow, r"
 
         # Switch workspaces with mod + [0-9]
         "SUPER, 1, workspace, 1"
@@ -195,7 +185,7 @@ in
         "SHIFT, Print, exec, ${grimblast} --notify --freeze save area"
 
         # Keyboard shortcuts (yad)
-        "SUPER, F1, exec, ${pkill} yad || ${kbmenu}"
+        "SUPER, F1, exec, ${pkill} yad || ${hotkeyOverlay}"
 
         # Color picker
         "SUPER CTRL, C, exec, ${picker} --autocopy --format=hex"
@@ -207,16 +197,23 @@ in
         ", XF86MonBrightnessDown, exec, ${brightnessctl} set 5%-"
       ];
 
+      # Mouse
       settings.bindm = [
         "SUPER, mouse:272, movewindow"
         "SUPER, mouse:273, resizewindow"
       ];
 
+      # Resize
       settings.binde = [
         "SUPER CTRL, H, resizeactive, -25 0"
-        "SUPER CTRL, L, resizeactive, 25 0"
-        "SUPER CTRL, K, resizeactive, 0 -25"
         "SUPER CTRL, J, resizeactive, 0 25"
+        "SUPER CTRL, K, resizeactive, 0 -25"
+        "SUPER CTRL, L, resizeactive, 25 0"
+
+        "SUPER CTRL, left, resizeactive, -25 0"
+        "SUPER CTRL, down, resizeactive, 0 25"
+        "SUPER CTRL, up, resizeactive, 0 -25"
+        "SUPER CTRL, right, resizeactive, 25 0"
       ];
     };
   }

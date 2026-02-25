@@ -51,13 +51,15 @@ in
         "Mod+A" = {
           repeat = false;
           action = spawn "sh" "-c" "${pkill} tofi-drun || ${tofi-drun}";
-          hotkey-overlay.title = "Open Launcher";
+          hotkey-overlay.title = "Open launcher";
         };
+
         "Mod+E" = {
           repeat = false;
           action = spawn "sh" "-c" "${pkill} tofi || ${rofimoji} --selector tofi";
           hotkey-overlay.title = "Open emoji picker";
         };
+
         "Mod+V" = {
           repeat = false;
           action = spawn "sh" "-c" "${pkill} tofi || ${cliphist} list | ${tofi} | ${cliphist} decode | ${wl-copy}";
@@ -65,10 +67,10 @@ in
         };
       };
 
-      hyprland.settings.bindr = [
-        "SUPER, A, exec, ${pkill} tofi-drun || ${tofi-drun}"
-        "SUPER, E, exec, ${pkill} tofi || ${rofimoji} --selector tofi"
-        "SUPER, V, exec, ${pkill} tofi || ${cliphist} list | ${tofi-drun} | ${cliphist} decode | ${wl-copy}"
+      hyprland.settings.binddr = [
+        "SUPER, A, Open launcher, exec, ${pkill} tofi-drun || ${tofi-drun}"
+        "SUPER, E, Open emoji picker, exec, ${pkill} tofi || ${rofimoji} --selector tofi"
+        "SUPER, V, Open clipboard, exec, ${pkill} tofi || ${cliphist} list | ${tofi} | ${cliphist} decode | ${wl-copy}"
       ];
     };
   }

@@ -8,6 +8,7 @@
   inherit (config.modules.colorScheme) xcolors;
   inherit (config.modules.desktop) windowManager;
   osDesktop = osConfig.modules.system.desktop;
+  enabledMonitors = filter (m: m.enabled) osConfig.modules.system.device.monitors;
 
   dynamicOutputs = listToAttrs (
     map
@@ -26,7 +27,7 @@
         };
       };
     })
-    (filter (m: m.enabled) osConfig.modules.system.device.monitors)
+    enabledMonitors
   );
 in
   mkIf (osDesktop.enable && windowManager == "Niri") {

@@ -50,6 +50,8 @@ in
               on-timeout = "${loginctl} lock-session";
             }
           ]
+          # NOTE: high resolution monitors causes a black screen
+          # have to switch to a tty and then back
           ++ optional (windowManager == "Hyprland") {
             timeout = 330;
             on-timeout = "${hyprctl} dispatch dpms off";
@@ -90,7 +92,7 @@ in
       };
 
       hyprland.binds = [
-        "SUPER, U, exec, ${toggleHypridle}"
+        "SUPER, U,  Toggle hypridle, exec, ${toggleHypridle}"
       ];
     };
   }

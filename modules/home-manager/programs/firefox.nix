@@ -144,8 +144,8 @@ in
           "center, class:^(firefox)$, title:^(Picture-in-Picture)$"
         ];
 
-        bind = optionals (primaryBrowser == "Firefox") [
-          "SUPER, F2, exec, ${firefox}"
+        bindd = optionals (primaryBrowser == "Firefox") [
+          "SUPER, F2, Open firefox, exec, ${firefox}"
         ];
       };
     };
