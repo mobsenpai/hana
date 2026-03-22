@@ -23,8 +23,8 @@ in
         hyprctl = getExe' config.wayland.windowManager.hyprland.package "hyprctl";
         niri = getExe' config.programs.niri.package "niri";
         systemctl = getExe' pkgs.systemd "systemctl";
-        brightnessctl = getExe pkgs.brightnessctl;
         pidof = getExe' pkgs.procps "pidof";
+        notifySend = getExe pkgs.libnotify;
       in {
         general = {
           after_sleep_cmd =
@@ -41,10 +41,10 @@ in
         listener =
           [
             {
-              timeout = 270;
-              on-timeout = "${brightnessctl} -s set 10%";
-              on-resume = "${brightnessctl} -r";
+              timeout = 290;
+              on-timeout = "${notifySend} --urgency=normal -t 10000 'Locking screen in 10 seconds'";
             }
+
             {
               timeout = 300;
               on-timeout = "${loginctl} lock-session";

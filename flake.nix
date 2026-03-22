@@ -6,35 +6,15 @@
     nixpkgs,
     home-manager,
     ...
-  } @ inputs: let
-    inherit (lib) nixosSystem genAttrs hasPrefix;
-    lib = nixpkgs.lib.extend (final: prev: (import ./lib final) // home-manager.lib);
-
-    systems = ["x86_64-linux"];
-    forEachSystem = f:
-      genAttrs systems (system:
-        f (nixpkgs.legacyPackages.${system}));
-
-    mkHost = hostname: username: system: {
-      ${hostname} = nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit self inputs hostname username lib;
-        };
-        modules =
-          if (hasPrefix "installer" hostname)
-          then [./hosts/installer]
-          else [
-            ./hosts/${hostname}
-            ./modules/nixos
-          ];
-      };
-    };
+  }: let
+    lib = nixpkgs.lib.extend (final: prev: (import ./lib self final) // home-manager.lib);
   in {
-    formatter = forEachSystem (pkgs: pkgs.alejandra);
+    formatter = lib.forEachSystem (pkgs: pkgs.alejandra);
     templates = import ./templates;
 
-    nixosConfigurations = mkHost "hana" "yashraj" "x86_64-linux";
+    nixosConfigurations = lib.listToAttrs [
+      (lib.mkHost "hana" "yashraj" "x86_64-linux")
+    ];
   };
 
   inputs = {

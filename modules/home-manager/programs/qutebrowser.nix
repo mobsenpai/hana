@@ -12,39 +12,49 @@ in
   mkIf cfg.enable {
     programs.qutebrowser = {
       enable = true;
-      loadAutoconfig = false;
-      searchEngines = rec {
-        duckduckgo = "https://duckduckgo.com/?q={}";
-        google = "https://google.com/search?hl=en&q={}";
-        ddg = duckduckgo;
-        g = google;
-        DEFAULT = google;
-      };
+      extraConfig = ''
+        c.tabs.padding = {'top': 4, 'bottom': 4, 'right': 8, 'left': 8}
+        c.qt.args = [
+          'enable-features=DnsOverHttps',
+          'force-fieldtrials=DnsOverHttps/Enabled',
+          'force-fieldtrial-params=DnsOverHttps.Enabled:server/https%3A%2F%2Fdns.quad9.net%2Fdns-query/method/POST'
+        ]
+      '';
 
       keyBindings = {
         normal = {
-          "gg" = "scroll-to-perc 0";
-          "ge" = "scroll-to-perc 100";
-          "gp" = "tab-prev";
-          "gn" = "tab-next";
-          "gf" = "hint links";
-          "gd" = "hint inputs";
-          "u" = "undo";
+          gd = "hint inputs";
+          ge = "scroll-to-perc 100";
+          gf = "hint links";
+          gg = "scroll-to-perc 0";
+          gn = "tab-next";
+          gp = "tab-prev";
+          u = "undo";
         };
       };
 
+      loadAutoconfig = false;
+      searchEngines = rec {
+        DEFAULT = google;
+        ddg = duckduckgo;
+        duckduckgo = "https://duckduckgo.com/?q={}";
+        g = google;
+        google = "https://google.com/search?hl=en&q={}";
+      };
+
       settings = {
+        auto_save.session = true;
         backend = "webengine";
         colors = {
           completion = {
             category.bg = xcolors.base01;
             category.fg = xcolors.base06;
             even.bg = xcolors.base01;
-            odd.bg = xcolors.base02;
             fg = xcolors.base06;
             item.selected.bg = xcolors.base0D;
             item.selected.fg = xcolors.base00;
             match.fg = xcolors.base0B;
+            odd.bg = xcolors.base02;
           };
 
           hints = {
@@ -66,16 +76,16 @@ in
           };
 
           statusbar = {
-            normal.bg = xcolors.base00;
-            normal.fg = xcolors.base06;
-            insert.bg = xcolors.base0B;
-            insert.fg = xcolors.base01;
             command.bg = xcolors.base01;
             command.fg = xcolors.base06;
-            url.fg = xcolors.base06;
-            url.error.fg = xcolors.base08;
-            url.success.https.fg = xcolors.base0C;
+            insert.bg = xcolors.base0B;
+            insert.fg = xcolors.base01;
+            normal.bg = xcolors.base00;
+            normal.fg = xcolors.base06;
             progress.bg = xcolors.base0D;
+            url.error.fg = xcolors.base08;
+            url.fg = xcolors.base06;
+            url.success.https.fg = xcolors.base0C;
           };
 
           tabs = {
@@ -93,26 +103,31 @@ in
           webpage.preferred_color_scheme = polarity;
         };
 
-        fonts = {
-          default_family = font.family;
-          default_size = "10pt";
-          tabs.unselected = "10pt ${font.family}";
-          tabs.selected = "bold 10pt ${font.family}";
-          statusbar = "10pt ${font.family}";
-        };
-
-        auto_save.session = true;
         confirm_quit = ["downloads"];
         content = {
-          cookies.accept = "no-3rdparty";
-          blocking.method = "auto";
           autoplay = false;
-          plugins = false;
+          blocking = {
+            enabled = true;
+            adblock.lists = [
+              "https://easylist.to/easylist/easylist.txt"
+              "https://easylist.to/easylist/easyprivacy.txt"
+              "https://filters.adtidy.org/extension/ublock/filters/2.txt"
+              "https://abp.oisd.nl"
+            ];
+
+            hosts.lists = [
+              "https://raw.githubusercontent.com/knapah/uBlockOrigin-Filterlist/refs/heads/main/HOST"
+            ];
+
+            method = "auto";
+          };
+
+          canvas_reading = true;
+          cookies.accept = "no-3rdparty";
           headers.do_not_track = true;
           javascript.alert = false;
           notifications.enabled = false;
-          canvas_reading = true;
-          blocking.enabled = true;
+          plugins = false;
           webrtc_ip_handling_policy = "default-public-interface-only";
         };
 
@@ -121,17 +136,25 @@ in
           location.prompt = true;
         };
 
+        fonts = {
+          default_family = font.family;
+          default_size = "10pt";
+          statusbar = "10pt ${font.family}";
+          tabs.selected = "bold 10pt ${font.family}";
+          tabs.unselected = "10pt ${font.family}";
+        };
+
         hints = {
-          mode = "letter";
           chars = "asdfjkl;wer";
+          mode = "letter";
         };
 
         scrolling.smooth = true;
         session.lazy_restore = true;
         tabs = {
+          last_close = "default-page";
           show = "multiple";
           title.alignment = "left";
-          last_close = "default-page";
         };
 
         url = rec {
@@ -141,10 +164,6 @@ in
 
         window.hide_decoration = true;
       };
-
-      extraConfig = ''
-        c.tabs.padding = {'top': 4, 'bottom': 4, 'right': 8, 'left': 8}
-      '';
     };
 
     xdg.mimeApps.defaultApplications = mkIf (primaryBrowser == "Qutebrowser") {

@@ -32,7 +32,6 @@ in {
         wget
         yazi
         yt-dlp
-        zathura
         zip
       ]
       ++ optionals cfg.sillyTools (with pkgs; [

@@ -19,6 +19,7 @@ in {
       Kernel >= 6.19 detected!
       • Delete: kernelPatches block + ./btusb.patch
       • Remove: "asus_wmi" "asus_nb_wmi" from kernelModules
+      • spd5118 kernel module NOT needed be blacklisted
       • Add: "asus-armoury" to kernelModules
     ''
   ];
@@ -61,12 +62,8 @@ in {
   services.power-profiles-daemon.enable = false;
   services.tlp.enable = false;
 
-  systemd.sleep.extraConfig = ''
-    SuspendState=mem
-    MemorySleepMode=s2idle
-  '';
-
   boot = {
+    blacklistedKernelModules = ["spd5118"];
     kernelPatches = [
       {
         name = "add-realtek-8852ce-btusb";

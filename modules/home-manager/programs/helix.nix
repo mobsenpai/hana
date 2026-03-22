@@ -13,7 +13,6 @@ in
     programs.helix = {
       enable = true;
       defaultEditor = true;
-
       extraPackages = with pkgs; [
         # Language servers
         emmet-ls
@@ -46,8 +45,10 @@ in
               command = "prettier";
               args = ["--parser" "html"];
             };
+
             language-servers = ["vscode-html-language-server" "emmet-ls"];
           }
+
           {
             name = "json";
             auto-format = true;
@@ -56,6 +57,7 @@ in
               args = ["--parser" "json"];
             };
           }
+
           {
             name = "css";
             file-types = ["css"];
@@ -64,8 +66,10 @@ in
               command = "prettier";
               args = ["--parser" "css"];
             };
+
             language-servers = ["vscode-css-language-server" "emmet-ls"];
           }
+
           {
             name = "javascript";
             file-types = ["js" "jsx" "ts" "tsx"];
@@ -74,14 +78,17 @@ in
               command = "prettier";
               args = ["--parser" "typescript"];
             };
+
             language-servers = ["typescript-language-server" "emmet-ls"];
           }
+
           {
             name = "nix";
             auto-format = true;
             formatter.command = "alejandra";
             language-servers = ["nil"];
           }
+
           {
             name = "python";
             file-types = ["py"];
@@ -90,8 +97,10 @@ in
               command = "black";
               args = ["--stdio"];
             };
+
             language-servers = ["pyright"];
           }
+
           {
             name = "c";
             file-types = ["c" "h"];
@@ -99,6 +108,7 @@ in
             formatter.command = "clang-format";
             language-servers = ["clangd"];
           }
+
           {
             name = "cpp";
             file-types = ["cpp" "cc" "cxx" "hpp" "hcc" "hxx"];
@@ -106,6 +116,7 @@ in
             formatter.command = "clang-format";
             language-servers = ["clangd"];
           }
+
           {
             name = "java";
             file-types = ["java"];
@@ -114,6 +125,7 @@ in
               command = "google-java-format";
               args = ["-"];
             };
+
             language-servers = ["jdtls"];
           }
         ];
@@ -121,7 +133,6 @@ in
 
       settings = {
         theme = "main";
-
         editor = {
           bufferline = "always";
           color-modes = true;
@@ -129,15 +140,11 @@ in
           cursorline = true;
           line-number = "relative";
           rulers = [80];
-
           cursor-shape = {
             insert = "bar";
           };
 
-          soft-wrap = {
-            enable = true;
-          };
-
+          soft-wrap = {enable = true;};
           whitespace = {
             characters = {
               space = " ";
@@ -169,6 +176,7 @@ in
               "read-only-indicator"
               "file-modification-indicator"
             ];
+
             right = [
               "spinner"
               "diagnostics"
@@ -177,6 +185,7 @@ in
               "selections"
               "position"
             ];
+
             mode.normal = "NORMAL";
             mode.insert = "INSERT";
             mode.select = "SELECT";
@@ -190,6 +199,7 @@ in
           fg = "base03";
           modifiers = ["italic"];
         };
+
         "constant" = "base09";
         "constant.character.escape" = "base0C";
         "constant.numeric" = "base09";
@@ -217,16 +227,19 @@ in
           fg = "base0A";
           modifiers = ["bold"];
         };
+
         "markup.heading" = "base0D";
         "markup.italic" = {
           fg = "base0E";
           modifiers = ["italic"];
         };
+
         "markup.link.text" = "base08";
         "markup.link.url" = {
           fg = "base09";
           modifiers = ["underlined"];
         };
+
         "markup.list" = "base08";
         "markup.quote" = "base0C";
         "markup.raw" = "base0B";
@@ -241,56 +254,69 @@ in
           bg = "base03";
           modifiers = ["bold"];
         };
+
         "ui.bufferline" = {
           fg = "base04";
           bg = "base00";
         };
+
         "ui.cursor" = {
           fg = "base0A";
           modifiers = ["reversed"];
         };
+
         "ui.cursor.insert" = {
           fg = "base0A";
           modifiers = ["reversed"];
         };
+
         "ui.cursorline.primary" = {
           fg = "base05";
           bg = "base01";
         };
+
         "ui.cursor.match" = {
           fg = "base0A";
           modifiers = ["reversed"];
         };
+
         "ui.cursor.select" = {
           fg = "base0A";
           modifiers = ["reversed"];
         };
+
         "ui.gutter" = {bg = "base00";};
         "ui.help" = {
           fg = "base06";
           bg = "base01";
         };
+
         "ui.linenr" = {
           fg = "base03";
           bg = "base00";
         };
+
         "ui.linenr.selected" = {
           fg = "base04";
           bg = "base01";
           modifiers = ["bold"];
         };
+
         "ui.menu" = {
           fg = "base05";
           bg = "base01";
         };
+
         "ui.menu.scroll" = {
           fg = "base03";
           bg = "base01";
         };
+
         "ui.menu.selected" = {
           fg = "base01";
           bg = "base04";
         };
+
         "ui.popup" = {bg = "base01";};
         "ui.selection" = {bg = "base02";};
         "ui.selection.primary" = {bg = "base02";};
@@ -298,22 +324,27 @@ in
           fg = "base04";
           bg = "base01";
         };
+
         "ui.statusline.inactive" = {
           bg = "base01";
           fg = "base03";
         };
+
         "ui.statusline.insert" = {
           fg = "base00";
           bg = "base0B";
         };
+
         "ui.statusline.normal" = {
           fg = "base00";
           bg = "base03";
         };
+
         "ui.statusline.select" = {
           fg = "base00";
           bg = "base0F";
         };
+
         "ui.text" = "base05";
         "ui.text.focus" = "base05";
         "ui.virtual.indent-guide" = {fg = "base03";};
@@ -323,8 +354,8 @@ in
           fg = "base0A";
           modifiers = ["bold"];
         };
-        "ui.window" = {bg = "base01";};
 
+        "ui.window" = {bg = "base01";};
         palette = xcolors;
       };
     };
@@ -355,6 +386,7 @@ in
         "text/x-c"
         "text/x-c++"
       ];
+
       terminal = false;
       type = "Application";
       categories = [

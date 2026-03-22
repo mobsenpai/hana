@@ -69,8 +69,15 @@
       };
 
       networking = {
-        wireless.enable = true;
         applet.enable = true;
+        resolved.enable = true;
+        wiredInterface = "enp109s0";
+        wireless = {
+          enable = true;
+          backend = "wpa_supplicant";
+          interface = "wlp108s0";
+          powersave = false;
+        };
       };
     };
   };

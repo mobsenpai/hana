@@ -12,8 +12,8 @@ in {
     helix.enable = mkEnableOption "helix";
     hyprlock.enable = mkEnableOption "hyprlock";
     media.enable = mkEnableOption "media tools";
-    ncspot.enable = mkEnableOption "ncspot";
-    pcmanfm.enable = mkEnableOption "pcmanfm";
+    nautilus.enable = mkEnableOption "nautilus";
+    obsidian.enable = mkEnableOption "obsidian";
     qutebrowser.enable = mkEnableOption "qutebrowser";
     tofi.enable = mkEnableOption "tofi";
     waybar.enable = mkEnableOption "waybar";

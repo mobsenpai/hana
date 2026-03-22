@@ -20,7 +20,8 @@
       helix.enable = true;
       hyprlock.enable = true;
       media.enable = true;
-      pcmanfm.enable = true;
+      nautilus.enable = true;
+      obsidian.enable = true;
       qutebrowser.enable = true;
       tofi.enable = true;
       waybar.enable = true;
@@ -33,6 +34,7 @@
       hypridle.enable = true;
       hyprpaper.enable = true;
       swaync.enable = true;
+      syncthing.enable = true;
       wlsunset.enable = true;
     };
 

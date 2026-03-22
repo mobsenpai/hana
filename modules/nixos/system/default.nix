@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) utils mkEnableOption mkOption types;
 in {
   imports = utils.scanPaths ./.;
@@ -136,6 +140,35 @@ in {
           default = true;
         };
 
+      resolved.enable = mkEnableOption "Resolved";
+      wiredInterface = mkOption {
+        type = with types; nullOr str;
+        default = null;
+        example = "enp5s0";
+        description = ''
+          Wired network interface of the device. Be careful to use the main
+          interface name displayed in `ip a`, NOT the altname.
+        '';
+      };
+
+      staticIPAddress = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        example = "192.168.1.50/24";
+        description = ''
+          Disable DHCP and assign the device a static IPV4 address. Remember to
+          include the network's subnet mask.
+        '';
+      };
+
+      defaultGateway = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = ''
+          Default gateway of the device's primary local network.
+        '';
+      };
+
       wireless = {
         enable = mkEnableOption "wireless";
         backend = mkOption {
@@ -145,6 +178,17 @@ in {
           ];
           default = "iwd";
           description = "The wireless authentication backend to use.";
+        };
+
+        interface = mkOption {
+          type = types.str;
+          example = "wlp6s0";
+        };
+
+        powersave = mkOption {
+          type = types.bool;
+          default = config.modules.system.device.type == "laptop";
+          description = "Whether to enable wireless power management";
         };
       };
 
