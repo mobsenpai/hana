@@ -14,11 +14,6 @@ in
       enable = true;
       extraConfig = ''
         c.tabs.padding = {'top': 4, 'bottom': 4, 'right': 8, 'left': 8}
-        c.qt.args = [
-          'enable-features=DnsOverHttps',
-          'force-fieldtrials=DnsOverHttps/Enabled',
-          'force-fieldtrial-params=DnsOverHttps.Enabled:server/https%3A%2F%2Fdns.quad9.net%2Fdns-query/method/POST'
-        ]
       '';
 
       keyBindings = {
