@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  username,
   ...
 }: let
   inherit (lib) mapAttrs filterAttrs isType mapAttrsToList;
@@ -35,6 +36,17 @@ in {
       # Do not load the default global registry
       # https://channels.nixos.org/flake-registry.json
       flake-registry = "";
+      allowed-users = [
+        username
+      ];
+
+      substituters = [
+        "https://nix-community.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
     };
   };
 }
