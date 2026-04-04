@@ -13,7 +13,6 @@
 
     programs = {
       alacritty.enable = true;
-      appflowy.enable = true;
       fastfetch.enable = true;
       firefox.enable = false;
       git.enable = true;
