@@ -5,7 +5,6 @@ in {
 
   options.modules.programs = {
     alacritty.enable = mkEnableOption "alacritty";
-    appflowy.enable = mkEnableOption "appflowy";
     fastfetch.enable = mkEnableOption "fastfetch";
     firefox.enable = mkEnableOption "firefox";
     git.enable = mkEnableOption "git";
