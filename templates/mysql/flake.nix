@@ -10,6 +10,7 @@
         packages = with pkgs; [
           mariadb
         ];
+
         shellHook = ''
           MYSQL_BASEDIR=${pkgs.mariadb}
           MYSQL_HOME="$PWD/mysql"

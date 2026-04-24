@@ -1,27 +1,14 @@
 {
   lib,
+  pkgs,
   config,
   modulesPath,
   ...
 }: let
-  inherit (lib) utils mkDefault;
-  inherit (config.modules.system.device) gpu;
+  inherit (lib) mkDefault;
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
-  assertions = utils.asserts [
-    (gpu.type == "nvidia")
-    "Uses nvidia card"
-    (lib.versionOlder config.boot.kernelPackages.kernel.version "6.19")
-    ''
-      Kernel >= 6.19 detected!
-      • Delete: kernelPatches block + ./btusb.patch
-      • Remove: "asus_wmi" "asus_nb_wmi" from kernelModules
-      • spd5118 kernel module NOT needed be blacklisted
-      • Add: "asus-armoury" to kernelModules
-    ''
   ];
 
   services.xserver.videoDrivers = ["modesetting"];
@@ -64,13 +51,7 @@ in {
 
   boot = {
     blacklistedKernelModules = ["spd5118"];
-    kernelPatches = [
-      {
-        name = "add-realtek-8852ce-btusb";
-        patch = ./btusb.patch;
-      }
-    ];
-
+    kernelPackages = pkgs.linuxPackages_latest;
     initrd.availableKernelModules = [
       "xhci_pci"
       "nvme"
@@ -80,7 +61,7 @@ in {
       "sd_mod"
     ];
 
-    kernelModules = ["kvm-intel" "asus_wmi" "asus_nb_wmi"];
+    kernelModules = ["kvm-intel" "asus_armoury"];
   };
 
   fileSystems."/" = {

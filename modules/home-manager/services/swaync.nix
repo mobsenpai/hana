@@ -72,6 +72,10 @@ in
             color: ${xcolors.base05};
           }
 
+          .notification-content .summary {
+            font-weight: bold;
+          }
+
           .notification .image {
             margin-right: 8px;
           }
