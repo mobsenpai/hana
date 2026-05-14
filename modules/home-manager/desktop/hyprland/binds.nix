@@ -17,18 +17,13 @@
   sort = getExe' pkgs.coreutils "sort";
   tr = getExe' pkgs.coreutils "tr";
 
-  toggleFloating =
-    pkgs.writeShellScript "hypr-toggle-floating"
-    /*
-    bash
-    */
-    ''
-      if [[ $(${hyprctl} activewindow -j | ${jaq} -r '.floating') == "false" ]]; then
-        ${hyprctl} --batch 'dispatch togglefloating; dispatch resizeactive exact 75% 75%; dispatch centerwindow;'
-      else
-        ${hyprctl} dispatch togglefloating
-      fi
-    '';
+  toggleFloating = pkgs.writeShellScript "hypr-toggle-floating" ''
+    if [[ $(${hyprctl} activewindow -j | ${jaq} -r '.floating') == "false" ]]; then
+      ${hyprctl} --batch 'dispatch togglefloating; dispatch resizeactive exact 75% 75%; dispatch centerwindow;'
+    else
+      ${hyprctl} dispatch togglefloating
+    fi
+  '';
 
   hotkeyOverlay = pkgs.writeShellScript "hotkeyOverlay" ''
     # (Super=64, Ctrl=4, Alt=8, Shift=1)
@@ -62,7 +57,6 @@
     SUPER SHIFT HJKL|Move window (vim keys)
     SUPER SHIFT ←↓↑→|Move window (arrow keys)
     SUPER CTRL HJKL|Resize active window
-    SUPER SHIFT Q|Exit hyprland
     SUPER CTRL SPACE|Toggle floating window
     SUPER F|Toggle fullscreen
     SUPER Q|Close active window
@@ -98,10 +92,11 @@ in
       grimblast = getExe pkgs.grimblast;
       picker = getExe pkgs.hyprpicker;
       pkill = getExe' pkgs.procps "pkill";
+      loginctl = getExe' pkgs.systemd "loginctl";
     in {
       settings.bind = [
         # General
-        "SUPER SHIFT, Q, exit"
+        "SUPER SHIFT, Q, Exit session, exec, ${loginctl} terminate-session"
         "SUPER, Q, killactive"
         "SUPER, C, centerwindow, 1"
         "SUPER, F, fullscreen, 0"

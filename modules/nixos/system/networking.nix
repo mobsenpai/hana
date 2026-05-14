@@ -72,18 +72,22 @@ in {
   };
 
   services.resolved.enable = cfg.resolved.enable;
-  systemd.services.disable-wifi-powersave = mkIf (cfg.wireless.enable && !cfg.wireless.powersave) {
-    description = "Disable wifi powersave";
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${getExe pkgs.iw} dev ${cfg.wireless.interface} set power_save off";
+  systemd.services.disable-wifi-powersave = let
+    iw = getExe pkgs.iw;
+  in
+    mkIf (cfg.wireless.enable && !cfg.wireless.powersave) {
+      description = "Disable wifi powersave";
+      wantedBy = ["multi-user.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${iw} dev ${cfg.wireless.interface} set power_save off";
+      };
     };
-  };
 
   hm = let
     iwgtk = getExe pkgs.iwgtk;
     wpa_gui = getExe pkgs.wpa_supplicant_gui;
+    bash = getExe pkgs.bash;
   in
     mkIf homeManager.enable {
       home.packages = mkIf (cfg.wireless.enable && desktopEnvironment == null) [
@@ -91,28 +95,40 @@ in {
         (mkIf (cfg.wireless.backend == "wpa_supplicant") pkgs.wpa_supplicant_gui)
       ];
 
-      # NOTE: if iwgtk,wpa_gui services are upstream then can be removed
-      # and enable the native service option
       systemd.user.services = mkIf (cfg.applet.enable && desktopEnvironment == null) {
         iwgtk = mkIf (cfg.wireless.enable && cfg.wireless.backend == "iwd") {
-          Unit.Description = "iwd GTK tray applet";
+          Unit = {
+            After = ["graphical-session.target"];
+            Wants = ["graphical-session.target"];
+            PartOf = ["graphical-session.target"];
+          };
+
           Service = {
             Type = "simple";
+            ExecStartPre = "${bash} -c 'while ! busctl --user list | grep -q org.kde.StatusNotifierWatcher; do sleep 0.5; done'";
             ExecStart = "${iwgtk} -i";
             Restart = "on-failure";
             RestartSec = 3;
+            Slice = "app${utils.sliceSuffix config}.slice";
           };
 
           Install.WantedBy = ["graphical-session.target"];
         };
 
         wpa-gui = mkIf (cfg.wireless.enable && cfg.wireless.backend == "wpa_supplicant") {
-          Unit.Description = "wpa_supplicant GTK tray applet";
+          Unit = {
+            After = ["graphical-session.target"];
+            Wants = ["graphical-session.target"];
+            PartOf = ["graphical-session.target"];
+          };
+
           Service = {
             Type = "simple";
+            ExecStartPre = "${bash} -c 'while ! busctl --user list | grep -q org.kde.StatusNotifierWatcher; do sleep 0.5; done'";
             ExecStart = "${wpa_gui} -t";
             Restart = "on-failure";
             RestartSec = 3;
+            Slice = "app${utils.sliceSuffix config}.slice";
           };
 
           Install.WantedBy = ["graphical-session.target"];

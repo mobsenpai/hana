@@ -5,16 +5,21 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf getExe getExe';
   inherit (config.modules.desktop) windowManager;
   osDesktop = osConfig.modules.system.desktop;
 in
   mkIf (osDesktop.enable && windowManager == "Niri") {
     programs.niri.settings.binds = with config.lib.niri.actions; let
       brightnessctl = getExe pkgs.brightnessctl;
+      loginctl = getExe' pkgs.systemd "loginctl";
     in {
       # General - main
-      "Mod+Shift+Q".action = quit;
+      "Mod+Shift+Q" = {
+        action = spawn "sh" "-c" "${loginctl} terminate-session \"$XDG_SESSION_ID\"";
+        hotkey-overlay.title = "Exit session";
+      };
+
       "Mod+Q".action = close-window;
       "Mod+C".action = center-visible-columns;
       "Mod+F".action = fullscreen-window;

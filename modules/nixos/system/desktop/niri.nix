@@ -4,9 +4,10 @@
   username,
   ...
 }: let
-  inherit (lib) mkIf utils;
+  inherit (lib) mkIf utils mkForce;
   inherit (config.modules.core) homeManager;
   cfg = config.modules.system.desktop;
+
   homeConfig = config.home-manager.users.${username};
   homeDesktop = homeConfig.modules.desktop;
   windowManager =
@@ -22,6 +23,17 @@ in {
 
     programs.niri = {
       enable = true;
+    };
+
+    xdg.portal.enable = mkForce false;
+    programs.uwsm = {
+      enable = true;
+      waylandCompositors.niri = {
+        prettyName = "Niri";
+        comment = "Niri compositor managed by UWSM";
+        binPath = "/run/current-system/sw/bin/niri";
+        extraArgs = ["--session"];
+      };
     };
   };
 }

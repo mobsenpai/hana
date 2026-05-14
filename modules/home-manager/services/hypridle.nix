@@ -2,9 +2,10 @@
   lib,
   pkgs,
   config,
+  osConfig,
   ...
 }: let
-  inherit (lib) mkIf utils getExe getExe' optional;
+  inherit (lib) mkIf mkForce utils getExe getExe' optional;
   inherit (config.modules.desktop) windowManager;
   cfg = config.modules.services.hypridle;
 in
@@ -25,8 +26,13 @@ in
         systemctl = getExe' pkgs.systemd "systemctl";
         pidof = getExe' pkgs.procps "pidof";
         notifySend = getExe pkgs.libnotify;
+        wpctl = getExe' pkgs.wireplumber "wpctl";
+        isAudioPlaying = pkgs.writeShellScript "is-audio-playing" ''
+          ${wpctl} status | grep -A 10 "Streams" | grep -q "active"
+        '';
       in {
         general = {
+          ignore_dbus_inhibit = mkIf (windowManager == "Niri") true;
           after_sleep_cmd =
             if windowManager == "Hyprland"
             then "${hyprctl} dispatch dpms on"
@@ -50,8 +56,6 @@ in
               on-timeout = "${loginctl} lock-session";
             }
           ]
-          # NOTE: high resolution monitors causes a black screen
-          # have to switch to a tty and then back
           ++ optional (windowManager == "Hyprland") {
             timeout = 330;
             on-timeout = "${hyprctl} dispatch dpms off";
@@ -65,10 +69,26 @@ in
           ++ [
             {
               timeout = 600;
-              on-timeout = "${systemctl} suspend";
+              on-timeout = "${isAudioPlaying} || ${systemctl} suspend";
             }
           ];
       };
+    };
+
+    systemd.user.services.hypridle = {
+      Unit = {
+        After = mkForce ["graphical-session.target"];
+        Requisite = ["graphical-session.target"];
+      };
+
+      Service =
+        {
+          Slice = "background${utils.sliceSuffix osConfig}.slice";
+        }
+        // lib.optionalAttrs (! (config.services.hypridle.settings.general.ignore_dbus_inhibit or false)) {
+          Type = "dbus";
+          BusName = "org.freedesktop.ScreenSaver";
+        };
     };
 
     desktop = let
@@ -84,9 +104,9 @@ in
         }
       '';
     in {
-      niri.binds = {
+      niri.binds = with config.lib.niri.actions; {
         "Mod+U" = {
-          action.spawn = "${toggleHypridle}";
+          action = spawn "${toggleHypridle}";
           hotkey-overlay.title = "Toggle hypridle";
         };
       };

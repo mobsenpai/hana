@@ -8,6 +8,7 @@ lib: let
     mod
     singleton
     elemAt
+    optionalString
     ;
 in {
   asserts = asserts:
@@ -45,4 +46,9 @@ in {
             )
         )
         (builtins.readDir path)));
+
+  sliceSuffix = config:
+    assert (!config ? home.stateVersion)
+    || throw "Slice suffix should be passed osConfig not Home Manager config";
+      optionalString (config.programs.uwsm.enable or false) "-graphical";
 }

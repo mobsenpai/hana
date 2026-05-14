@@ -10,6 +10,8 @@ in
     programs.bash = {
       enable = true;
       historyControl = ["erasedups" "ignorespace"];
+      historySize = 10000;
+      historyFileSize = 10000;
       shellOptions = [
         "autocd"
         "cdspell"

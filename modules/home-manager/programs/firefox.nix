@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   osConfig,
   ...
@@ -107,7 +108,7 @@ in
     };
 
     desktop = let
-      firefox = getExe config.programs.firefox.package;
+      app2unit = getExe pkgs.app2unit;
     in {
       niri.settings = {
         window-rules = [
@@ -129,9 +130,9 @@ in
           }
         ];
 
-        binds = {
+        binds = with config.lib.niri.actions; {
           "Mod+F2" = mkIf (primaryBrowser == "Firefox") {
-            action.spawn = firefox;
+            action = spawn app2unit "-t" "service" "--" "firefox.desktop";
             hotkey-overlay.title = "Open firefox";
           };
         };
@@ -145,7 +146,7 @@ in
         ];
 
         bindd = optionals (primaryBrowser == "Firefox") [
-          "SUPER, F2, Open firefox, exec, ${firefox}"
+          "SUPER, F2, Open firefox, exec, ${app2unit} -t service firefox.desktop"
         ];
       };
     };

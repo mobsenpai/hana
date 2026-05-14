@@ -1,13 +1,15 @@
 {
   lib,
   config,
+  osConfig,
   ...
 }: let
+  inherit (lib) mkIf mkForce utils;
   inherit (config.modules.colorScheme) xcolors;
   inherit (config.modules.desktop.style) font;
   cfg = config.modules.services.swaync;
 in
-  lib.mkIf cfg.enable
+  mkIf cfg.enable
   {
     services.swaync = {
       enable = true;
@@ -49,9 +51,7 @@ in
       };
 
       style =
-        /*
-        css
-        */
+        # css
         ''
           * {
             all: unset;
@@ -166,5 +166,14 @@ in
             border-radius: 4px;
           }
         '';
+    };
+
+    systemd.user.services.swaync = {
+      Unit = {
+        After = mkForce ["graphical-session.target"];
+        Requisite = ["graphical-session.target"];
+      };
+
+      Service.Slice = "background${utils.sliceSuffix osConfig}.slice";
     };
   }

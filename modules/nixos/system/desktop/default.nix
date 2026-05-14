@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkIf utils mkDefault mkEnableOption mkOption types;
+  inherit (lib) mkIf utils mkDefault mkEnableOption mkOption types genAttrs;
   inherit (config.modules.core) homeManager;
   inherit (config.modules.system) device;
   cfg = config.modules.system.desktop;
@@ -51,5 +51,25 @@ in {
       "/share/xdg-desktop-portal"
       "/share/applications"
     ];
+
+    # Fix the session slice for home-manager service
+    systemd.user.units =
+      genAttrs
+      [
+        "at-spi-dbus-bus.service"
+        "xdg-desktop-portal-gtk.service"
+        "xdg-desktop-portal-hyprland.service"
+        "xdg-desktop-portal.service"
+        "xdg-document-portal.service"
+        "xdg-permission-store.service"
+        "xdg-desktop-portal-gnome.service"
+      ]
+      (_: {
+        overrideStrategy = "asDropin";
+        text = ''
+          [Service]
+          Slice=session${utils.sliceSuffix config}.slice
+        '';
+      });
   };
 }

@@ -7,6 +7,7 @@
 }: let
   inherit (lib) mkIf utils mkOption types;
   cfg = config.modules.desktop;
+
   osDesktop = osConfig.modules.system.desktop;
 in {
   imports = utils.scanPaths ./.;

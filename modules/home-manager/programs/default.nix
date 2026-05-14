@@ -10,6 +10,7 @@ in {
     git.enable = mkEnableOption "git";
     helix.enable = mkEnableOption "helix";
     hyprlock.enable = mkEnableOption "hyprlock";
+    lb-tui.enable = mkEnableOption "lb-tui";
     media.enable = mkEnableOption "media tools";
     nautilus.enable = mkEnableOption "nautilus";
     obsidian.enable = mkEnableOption "obsidian";

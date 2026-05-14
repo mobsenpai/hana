@@ -4,8 +4,9 @@
   config,
   ...
 }: let
-  inherit (lib) getExe hiPrio;
+  inherit (lib) mkIf getExe hiPrio;
   inherit (config.modules.colorScheme) xcolors;
+  inherit (config.modules) desktop;
   inherit (config.modules.desktop.style) font;
   cfg = config.modules.programs.alacritty;
 in
@@ -100,24 +101,42 @@ in
     ];
 
     desktop = let
-      alacritty = getExe config.programs.alacritty.package;
-    in {
-      niri.binds = {
-        "Mod+Return" = {
-          action.spawn = alacritty;
-          hotkey-overlay.title = "Open alacritty";
+      app2unit = getExe pkgs.app2unit;
+      alacritty = getExe pkgs.alacritty;
+    in
+      mkIf (desktop.terminal == "Alacritty") {
+        niri.settings = {
+          window-rules = [
+            {
+              matches = [{app-id = "alacritty-float";}];
+              open-floating = true;
+              default-column-width = {proportion = 0.6;};
+              default-window-height = {proportion = 0.6;};
+            }
+          ];
+
+          binds = with config.lib.niri.actions; {
+            "Mod+Return" = {
+              action = spawn app2unit "-t" "service" "--" "Alacritty.desktop";
+              hotkey-overlay.title = "Open alacritty";
+            };
+
+            "Mod+Shift+Return" = {
+              action = spawn app2unit "-t" "service" "--" "${alacritty}" "--class=alacritty-float";
+              hotkey-overlay.title = "Open alacritty (float)";
+            };
+          };
+        };
+
+        hyprland.settings = {
+          bindd = [
+            "SUPER, Return, Open alacritty, exec, ${app2unit} -t service Alacritty.desktop"
+            "SUPER SHIFT, Return, Open alacritty (float), exec, [float] ${app2unit} -t service Alacritty.desktop"
+          ];
+
+          workspace = [
+            "special:s1, gapsout:80, on-created-empty:alacritty"
+          ];
         };
       };
-
-      hyprland.settings = {
-        bindd = [
-          "SUPER, Return, Open alacritty, exec, ${alacritty}"
-          "SUPER SHIFT, Return, Open alacritty (float), exec, [float] ${alacritty}"
-        ];
-
-        workspace = [
-          "special:s1, gapsout:80, on-created-empty:alacritty"
-        ];
-      };
-    };
   }

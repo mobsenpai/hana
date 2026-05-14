@@ -27,9 +27,7 @@ in
       };
 
       style =
-        /*
-        css
-        */
+        # css
         ''
           *{
             all: unset;
@@ -85,11 +83,14 @@ in
       wofi-emoji = getExe pkgs.wofi-emoji;
       cliphist = getExe pkgs.cliphist;
       wl-copy = getExe' pkgs.wl-clipboard "wl-copy";
+      app2unit = getExe pkgs.app2unit;
     in {
       niri.binds = with config.lib.niri.actions; {
         "Mod+A" = {
           repeat = false;
-          action = spawn "sh" "-c" "${pkill} wofi || ${wofi} --show drun";
+          action =
+            spawn "sh" "-c"
+            "${pkill} wofi || true; cmd=$(compgen -c | sort -u | ${wofi} --dmenu --prompt 'Run: '); [ -n \"$cmd\" ] && ${app2unit} -t service -- $cmd";
           hotkey-overlay.title = "Open launcher";
         };
 
@@ -107,7 +108,7 @@ in
       };
 
       hyprland.settings.binddr = [
-        "SUPER, A, Open launcher, exec, ${pkill} wofi || ${wofi} --show drun"
+        "SUPER, A, Open launcher, exec, ${pkill} wofi || true; cmd=$(compgen -c | sort -u | ${wofi} --dmenu --prompt 'Run: '); [ -n \"$cmd\" ] && ${app2unit} -t service -- $cmd"
         "SUPER, E, Open emoji picker, exec, ${pkill} wofi || ${wofi-emoji}"
         "SUPER, V, Open clipboard, exec, ${pkill} wofi || ${cliphist} list | ${wofi} --dmenu | ${cliphist} decode | ${wl-copy}"
       ];

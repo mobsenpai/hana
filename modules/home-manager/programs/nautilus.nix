@@ -20,17 +20,17 @@ in
     };
 
     desktop = let
-      nautilus = getExe pkgs.nautilus;
+      app2unit = getExe pkgs.app2unit;
     in {
-      niri.binds = {
+      niri.binds = with config.lib.niri.actions; {
         "Mod+F3" = {
-          action.spawn = nautilus;
+          action = spawn app2unit "-t" "service" "--" "org.gnome.Nautilus.desktop";
           hotkey-overlay.title = "Open nautilus file manager";
         };
       };
 
       hyprland.binds = [
-        "SUPER, F3, Open nautilus file manager, exec, ${nautilus}"
+        "SUPER, F3, Open nautilus file manager, exec, ${app2unit} -t service org.gnome.Nautilus.desktop"
       ];
     };
   }

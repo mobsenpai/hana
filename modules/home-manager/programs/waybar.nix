@@ -5,19 +5,20 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf optional getExe getExe';
+  inherit (lib) mkIf mkForce optional getExe getExe' utils;
   inherit (config.modules.colorScheme) xcolors;
   inherit (osConfig.modules.system) audio device;
   inherit (config.modules.desktop) windowManager;
   inherit (config.modules.desktop.style) font;
+  inherit (osConfig.programs) uwsm;
   cfg = config.modules.programs.waybar;
-
-  swaync = getExe' config.services.swaync.package "swaync-client";
-  pwvu = getExe pkgs.pwvucontrol;
 in
   mkIf cfg.enable
   {
-    programs.waybar = {
+    programs.waybar = let
+      swaync = getExe' config.services.swaync.package "swaync-client";
+      pwvu = getExe pkgs.pwvucontrol;
+    in {
       enable = true;
       systemd.enable = true;
 
@@ -130,9 +131,7 @@ in
       };
 
       style =
-        /*
-        css
-        */
+        # css
         ''
           * {
             all: unset;
@@ -215,14 +214,20 @@ in
         '';
     };
 
-    # Removing black corner on waybar
-    # https://github.com/YaLTeR/niri/discussions/1668
-    desktop.niri.settings = {
-      layer-rules = [
-        {
-          matches = [{namespace = "waybar";}];
-          opacity = 0.99;
-        }
-      ];
+    systemd.user.services.waybar = {
+      Unit = {
+        After = mkForce ["graphical-session.target"];
+        # We do not want PartOf=tray.target if we're using UWSM
+        PartOf = mkIf uwsm.enable (mkForce ["graphical-session.target"]);
+        Requisite = ["graphical-session.target"];
+        X-Reload-Triggers = mkForce [];
+      };
+
+      Service = {
+        Slice = "app${utils.sliceSuffix osConfig}.slice";
+        ExecReload = mkForce [];
+      };
+
+      Install.WantedBy = mkIf uwsm.enable (mkForce ["graphical-session.target"]);
     };
   }

@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: let
@@ -18,13 +19,12 @@ in
 
       keyBindings = {
         normal = {
-          gd = "hint inputs";
           ge = "scroll-to-perc 100";
-          gf = "hint links";
-          gg = "scroll-to-perc 0";
           gn = "tab-next";
           gp = "tab-prev";
-          u = "undo";
+          dd = "tab-close";
+
+          d = null;
         };
       };
 
@@ -170,7 +170,7 @@ in
     };
 
     desktop = let
-      qutebrowser = getExe config.programs.qutebrowser.package;
+      app2unit = getExe pkgs.app2unit;
     in {
       niri.settings = {
         window-rules = [
@@ -180,9 +180,9 @@ in
           }
         ];
 
-        binds = {
+        binds = with config.lib.niri.actions; {
           "Mod+F2" = mkIf (primaryBrowser == "Qutebrowser") {
-            action.spawn = qutebrowser;
+            action = spawn app2unit "-t" "service" "--" "org.qutebrowser.qutebrowser.desktop";
             hotkey-overlay.title = "Open Qutebrowser";
           };
         };
@@ -194,7 +194,7 @@ in
         ];
 
         bind = optionals (primaryBrowser == "Qutebrowser") [
-          "SUPER, F2, exec, ${qutebrowser}"
+          "SUPER, F2, exec, ${app2unit} -t service org.qutebrowser.qutebrowser.desktop"
         ];
       };
     };

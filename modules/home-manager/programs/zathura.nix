@@ -4,9 +4,9 @@
   config,
   ...
 }: let
-  cfg = config.modules.programs.zathura;
   inherit (config.modules.colorScheme) xcolors colors;
   inherit (config.modules.desktop.style) font;
+  cfg = config.modules.programs.zathura;
 
   hexToRGBA = hex: alpha: let
     r = lib.fromHexString (builtins.substring 0 2 hex);

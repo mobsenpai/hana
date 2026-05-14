@@ -5,13 +5,12 @@
   modulesPath,
   ...
 }: let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault getExe' utils getExe;
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  services.xserver.videoDrivers = ["modesetting"];
   hardware.nvidia = {
     modesetting.enable = true;
     dynamicBoost.enable = true;
@@ -37,7 +36,25 @@ in {
     enable = true;
     # https://github.com/YaLTeR/niri/issues/3177
     # https://github.com/nixos/nixpkgs/issues/455932
-    autoStart = true;
+    autoStart = false;
+  };
+
+  systemd.user.services.rog-control-center = let
+    rog-control-center = getExe' pkgs.asusctl "rog-control-center";
+    bash = getExe pkgs.bash;
+  in {
+    after = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
+    serviceConfig = {
+      ExecStartPre = "${bash} -c 'while ! busctl --user list | grep -q org.kde.StatusNotifierWatcher; do sleep 0.5; done'";
+      ExecStart = rog-control-center;
+      Restart = "on-failure";
+      RestartSec = 10;
+      Slice = "app${utils.sliceSuffix config}.slice";
+    };
+
+    wantedBy = ["graphical-session.target"];
   };
 
   services.hardware.openrgb.enable = true;

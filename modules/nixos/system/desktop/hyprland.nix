@@ -7,6 +7,7 @@
   inherit (lib) mkIf mkForce utils;
   inherit (config.modules.core) homeManager;
   cfg = config.modules.system.desktop;
+
   homeConfig = config.home-manager.users.${username};
   homeDesktop = homeConfig.modules.desktop;
   windowManager =
@@ -22,6 +23,7 @@ in {
 
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
     };
 
     xdg.portal.enable = mkForce false;

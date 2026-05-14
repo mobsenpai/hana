@@ -38,5 +38,15 @@ in {
     };
 
     services.hyprpolkitagent.enable = true;
+    systemd.user.services.hyprpolkitagent = {
+      Unit = {
+        After = lib.mkForce ["graphical-session.target"];
+        Requisite = ["graphical-session.target"];
+      };
+
+      Service = {
+        Slice = "session${utils.sliceSuffix osConfig}.slice";
+      };
+    };
   };
 }

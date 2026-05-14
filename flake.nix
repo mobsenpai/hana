@@ -28,5 +28,8 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
 
     niri.url = "github:sodiboo/niri-flake";
+
+    lb-tui.url = "github:mobsenpai/lb-tui";
+    lb-tui.inputs.nixpkgs.follows = "nixpkgs";
   };
 }
